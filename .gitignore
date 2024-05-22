@@ -1,2 +1,17 @@
-api.http
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 ~
+assets
+node_modules
+.env
+*sqlite*
+
+/coverage
+/.next
+/build
+next-env.d.ts
+
+__pycache__
+/core/static
+/core/media/*
+!/core/media/defaults

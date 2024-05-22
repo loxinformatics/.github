@@ -1,0 +1,27 @@
+[
+    {
+      "model": "api.Base",
+      "pk": 1,
+      "fields": {
+        "name": "",
+        "short_name": "",
+        "motto": "",
+        "primary_email": "",
+        "secondary_email": "",
+        "primary_phone": "",
+        "secondary_phone": "",
+        "building": "",
+        "street": "",
+        "PO_box": "",
+        "city_name": "",
+        "zip_code": "",
+        "open_days": "",
+        "open_hours": "",
+        "facebook": "",
+        "twitter_x": "",
+        "instagram": "",
+        "whatsapp": "",
+        "linkedin": ""
+      }
+    }
+  ]

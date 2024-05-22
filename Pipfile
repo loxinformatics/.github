@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+django-filter = "*"
+django-cors-headers = "*"
+djangorestframework-simplejwt = "*"
+psycopg2-binary = "*"
+python-decouple = "*"
+pillow = "*"
+gunicorn = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3"
