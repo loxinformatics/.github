@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Build Directory of the Next JS front end
 
-ENVIRONMENT = config("ENVIRONMENT", default="production")
+ENVIRONMENT = config("ENVIRONMENT")
 
 
 # Quick-start development settings - unsuitable for production
@@ -32,7 +32,7 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False if ENVIRONMENT == "production" else True
+DEBUG = True if ENVIRONMENT == "development" else False
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -138,14 +138,21 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "loxinformatics",
-        "HOST": "localhost",
-        "PORT": "5432",
-        "USER": "postgres",
-        "PASSWORD": config("DB_PASSWORD"),
-    }
+    "default": (
+        {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+        if ENVIRONMENT == "development"
+        else {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "loxinformatics",
+            "HOST": "localhost",
+            "PORT": "5432",
+            "USER": "postgres",
+            "PASSWORD": config("DB_PASSWORD"),
+        }
+    )
 }
 
 
