@@ -4,13 +4,13 @@
 node_modules
 .env
 *sqlite*
+__pycache__
+next-env.d.ts
 
 /coverage
 /.next
-/build
-next-env.d.ts
 
-__pycache__
-/core/static
-/core/media/*
-!/core/media/defaults
+/core/_next/build
+/core/_next/static
+/core/_next/media/*
+!/core/_next/media/defaults

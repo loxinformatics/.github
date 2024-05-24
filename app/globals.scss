@@ -9,7 +9,9 @@
 
 /* Include any default variable overrides here
 ------------------------------*/
-$primary: #e32636;
+// #ffc451;
+// #e32636;
+$primary: #ffc451;
 $primary-rgb: 232, 69, 69;
 $secondary: #b4b4b4ef;
 $secondary-rgb: 182, 182, 182;
@@ -185,16 +187,19 @@ $secondary-rgb: 182, 182, 182;
 
 body {
     font-family: var(--font-default);
+    // font-family: "Open Sans", sans-serif;
     color: #444444;
 }
 
 a {
     color: $primary;
+    // color: #ffc451;
     text-decoration: none;
 }
 
 a:hover {
     color: var(--bs-primary);
+    // color: #ffd584;
     opacity: 0.8;
     text-decoration: none;
 }
@@ -206,6 +211,12 @@ h4,
 h5,
 h6 {
     font-family: var(--font-primary);
+    // font-family: "Raleway", sans-serif;
+}
+
+section {
+    padding: 60px 0;
+    overflow: hidden;
 }
 
 /*--------------------------------------------------------------

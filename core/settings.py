@@ -16,10 +16,10 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Build Directory of the Next JS front end
+
 ENVIRONMENT = config("ENVIRONMENT", default="production")
 
-# Build Directory of the Next JS front end
-BUILD_DIR = BASE_DIR / "build"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -34,9 +34,16 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 
 DEBUG = False if ENVIRONMENT == "production" else True
 
-ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(",")]
-)
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "143.244.178.221",
+    "loxinformatics",
+    "loxinformatics.com",
+    "www.loxinformatics.com",
+    "api.loxinformatics",
+    "api.loxinformatics.com",
+]
 
 # Application definition
 
@@ -110,9 +117,7 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            BUILD_DIR,
-        ],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -134,12 +139,12 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": config("DB_ENGINE"),
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "loxinformatics",
+        "HOST": "localhost",
+        "PORT": "5432",
+        "USER": "postgres",
         "PASSWORD": config("DB_PASSWORD"),
-        "HOST": config("DB_HOST"),
-        "PORT": config("DB_PORT"),
     }
 }
 
@@ -178,19 +183,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "/_next/static/"
+STATIC_URL = "/static/"
 
 STATIC_ROOT = BASE_DIR / "core/static"
-
-STATICFILES_DIRS = [
-    BUILD_DIR / "_next/static",
-]
 
 
 # Media files
 # https://docs.djangoproject.com/en/4.2/ref/settings/#media-files
 
-MEDIA_URL = "/_next/media/"
+MEDIA_URL = "/media/"
 
 MEDIA_ROOT = BASE_DIR / "core/media"
 
@@ -210,14 +211,14 @@ EMAIL_BACKEND = (
     else "django.core.mail.backends.console.EmailBackend"
 )
 
-EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_HOST = "smtp.ionos.com"
 
-EMAIL_PORT = config("EMAIL_PORT", cast=int)
+EMAIL_PORT = "587"
 
-EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool)
+EMAIL_USE_TLS = True
 
-EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool)
+EMAIL_USE_SSL = False
 
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_USER = "notifications@loxinformatics.com"
 
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
