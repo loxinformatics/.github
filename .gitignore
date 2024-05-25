@@ -1,6 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-~
+workout
 node_modules
 .env
 *sqlite*
@@ -10,7 +10,6 @@ next-env.d.ts
 /coverage
 /.next
 
-/core/_next/build
 /core/_next/static
 /core/_next/media/*
 !/core/_next/media/defaults

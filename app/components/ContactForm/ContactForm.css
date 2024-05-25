@@ -1,0 +1,53 @@
+
+.contactform {
+    width: 100%;
+    background: #fff;
+}
+
+.contactform .form-group {
+    padding-bottom: 8px;
+}
+
+.contactform input,
+.contactform textarea {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.contactform input:focus,
+.contactform textarea:focus {
+    border-color: #ffc451;
+}
+
+.contactform input {
+    height: 44px;
+}
+
+.contactform textarea {
+    padding: 10px 12px;
+}
+
+.contactform button[type=submit] {
+    background: #ffc451;
+    border: 0;
+    padding: 10px 24px;
+    color: #151515;
+    transition: 0.4s;
+    border-radius: 4px;
+}
+
+.contactform button[type=submit]:hover {
+    background: #ffcd6b;
+}
+
+@keyframes animate-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
