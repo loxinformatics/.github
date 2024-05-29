@@ -12,7 +12,6 @@ const links = [
     { name: 'About', href: '/#about', icon: '' },
     { name: 'Services', href: '/#services', icon: '' },
     { name: "Contact", href: "/#contact", icon: '' },
-    { name: "Blog", href: "/blog", icon: '' },
 ];
 
 export default function NavBar() {
@@ -42,6 +41,7 @@ export default function NavBar() {
     useEffect(() => {
         const navbarlinks = document.querySelectorAll<HTMLAnchorElement>('#navbar .scrollto');
 
+        // Check the scroll position on mount and add the active state event listener
         const navbarlinksActive = () => {
             const position = window.scrollY + 200;
             navbarlinks.forEach(navbarlink => {
@@ -55,8 +55,11 @@ export default function NavBar() {
                 }
             });
         };
+    
+        window.addEventListener('load', navbarlinksActive);
+        document.addEventListener('scroll', navbarlinksActive);
 
-        // Scroll with offset on links with a class name .scrollto
+        // Scroll with offset on  links with a class name .scrollto (when a .scrollto link is clicked, that is)
         const handleClick = (e: MouseEvent) => {
             const target = e.target as HTMLAnchorElement;
             if (target.classList.contains('scrollto') && target.hash && document.querySelector(target.hash)) {
@@ -80,8 +83,7 @@ export default function NavBar() {
         };
 
         window.addEventListener('load', handlePageLoad);
-        window.addEventListener('load', navbarlinksActive);
-        document.addEventListener('scroll', navbarlinksActive);
+        
 
         return () => {
             window.removeEventListener('load', handlePageLoad);

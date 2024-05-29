@@ -5,12 +5,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import 'aos/dist/aos.css';
-import Hero from '@/components/widgets/Hero/Hero'
+import Header from '@/components/sections/Header/Header'
+import Hero from '@/components/sections/Hero/Hero'
+import CallToAction from '@/components/sections/CallToAction/CallToAction'
+import Footer from '@/components/sections/Footer/Footer'
 import ContactForm from '@/components/forms/ContactForm/ContactForm';
 import { RiCheckDoubleLine } from "react-icons/ri";
 import { BiLaptop, BiCodeAlt, BiBarChart, BiLineChart, BiData, BiSupport } from "react-icons/bi";
 import { BsGeoAlt, BsEnvelope, BsPhone } from "react-icons/bs";
-import './page.css';
+import './styles.css';
 
 
 export default function Home() {
@@ -25,7 +28,7 @@ export default function Home() {
 
   return (
     <>
-      
+      <Header></Header>
       <Hero></Hero>
       <main id="main">
 
@@ -71,7 +74,7 @@ export default function Home() {
             </div>
 
           </div>
-        </section>{/* End About Section */}
+        </section>
 
         {/* ======= Services Section ======= */}
         <section id="services" className="services">
@@ -147,20 +150,9 @@ export default function Home() {
             </div>
 
           </div>
-        </section>{/* End Services Section */}
+        </section>
 
-        {/* ======= Cta Section ======= */}
-        <section id="cta" className="cta">
-          <div className="container" data-aos="zoom-in">
-
-            <div className="text-center">
-              <h3>Call To Action</h3>
-              <p> Contact us now for a free consultation</p>
-              <Link className="cta-btn" href="#">Call To Action</Link>
-            </div>
-
-          </div>
-        </section>{/* End Cta Section */}
+        <CallToAction></CallToAction>
 
         {/* ======= Contact Section ======= */}
         <section id="contact" className="contact">
@@ -211,9 +203,10 @@ export default function Home() {
             </div>
 
           </div>
-        </section>{/* End Contact Section */}
+        </section>
 
       </main>
+      <Footer></Footer>
     </>
   )
 }
