@@ -27,7 +27,7 @@ ENVIRONMENT = config("ENVIRONMENT", default="production")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = config("DJANGO_SECRET_KEY")
+SECRET_KEY = config("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -140,12 +140,12 @@ WSGI_APPLICATION = "core.wsgi.application"
 DATABASES = {
     "default": (
         {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "loxinformatics",
+            "ENGINE": "django.db.backends.postgresql",       
             "HOST": "localhost",
             "PORT": "5432",
-            "USER": "postgres",
+            "USER": config("DB_USER"),
             "PASSWORD": config("DB_PASSWORD"),
+            "NAME": config("DB_NAME"),            
         }
         if ENVIRONMENT == "production"
         else {
@@ -226,6 +226,6 @@ EMAIL_USE_TLS = True
 
 EMAIL_USE_SSL = False
 
-EMAIL_HOST_USER = "notifications@loxinformatics.com"
+EMAIL_HOST_USER = config("MAIL_USER")
 
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD = config("MAIL_PASSWORD")

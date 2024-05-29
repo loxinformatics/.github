@@ -1,6 +1,7 @@
-import '@/app/components/ContactForm/ContactForm.css'
+import './ContactForm.css'
 
-function ContactForm() {
+
+export default function ContactForm() {
     return (
         <form action="http://127.0.0.1:8000/mail/contact-us/" method="post" role="form"
             className="contactform" noValidate>
@@ -40,5 +41,3 @@ function ContactForm() {
         </form>
     )
 }
-
-export default ContactForm

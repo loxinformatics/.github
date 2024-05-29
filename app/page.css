@@ -54,7 +54,7 @@
     position: relative;
 }
 
-.about .content ul i {
+.about .content ul svg {
     position: absolute;
     font-size: 20px;
     left: 0;
@@ -161,7 +161,7 @@
     transition: 0.3s;
 }
 
-.services .icon-box .icon i {
+.services .icon-box .icon svg {
     color: #151515;
     font-size: 28px;
     transition: ease-in-out 0.3s;
@@ -626,10 +626,8 @@
     background: #fff;
 }
 
-.contact .info i {
-    font-size: 20px;
+.contact .info .icon {
     background: #ffc451;
-    color: #151515;
     float: left;
     width: 44px;
     height: 44px;
@@ -638,6 +636,11 @@
     align-items: center;
     border-radius: 4px;
     transition: all 0.3s ease-in-out;
+}
+
+.contact .info .icon svg {
+    font-size: 20px;
+    color: #151515;
 }
 
 .contact .info h4 {

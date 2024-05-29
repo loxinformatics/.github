@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import '@/app/components/Preloader/Preloader.css'
+import './Preloader.css'
 
 
-function Preloader() {
+export default function Preloader() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -26,5 +26,3 @@ function Preloader() {
 
     return isLoading ? <div id="preloader" className="preloader position-fixed bg-white top-0 bottom-0 start-0 end-0 overflow-hidden"></div> : null;
 }
-
-export default Preloader;
