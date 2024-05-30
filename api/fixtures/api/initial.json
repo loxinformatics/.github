@@ -3,10 +3,10 @@
       "model": "api.Base",
       "pk": 1,
       "fields": {
-        "name": "",
-        "short_name": "",
+        "name": "Lox Informatics",
+        "short_name": "Lox",
         "motto": "",
-        "primary_email": "",
+        "primary_email": "info@loxinformatics.com",
         "secondary_email": "",
         "primary_phone": "",
         "secondary_phone": "",

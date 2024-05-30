@@ -59,7 +59,7 @@ class MailUsViewSet(viewsets.ViewSet):
     """
 
     def create(self, request):
-        serializer = MailSerializer(request.data)
+        serializer = MailSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({"message": "Your message has been sent. Thank you!"})

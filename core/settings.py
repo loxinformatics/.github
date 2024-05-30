@@ -190,17 +190,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = "/_next/static/"
 
-STATIC_ROOT = BASE_DIR / "core/static"
+STATIC_ROOT = BASE_DIR / "_next/static"
 
 
 # Media files
 # https://docs.djangoproject.com/en/4.2/ref/settings/#media-files
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "/_next/media/"
 
-MEDIA_ROOT = BASE_DIR / "core/media"
+MEDIA_ROOT = BASE_DIR / "_next/media"
 
 
 # Default primary key field type

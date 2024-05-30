@@ -9,7 +9,4 @@ next-env.d.ts
 
 /coverage
 /.next
-
-/core/_next/static
-/core/_next/media/*
-!/core/_next/media/defaults
+/_next

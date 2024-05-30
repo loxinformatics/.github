@@ -101,6 +101,7 @@ class MailSerializer(serializers.Serializer):
 
     def validate(self, data):
         filled_contact_form = MailForm(data)
+        print(filled_contact_form)
         if not filled_contact_form.is_valid():
             raise serializers.ValidationError(filled_contact_form.errors)
         return data
