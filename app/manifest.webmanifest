@@ -8,12 +8,7 @@
 			"sizes": "64x64 64x57 32x32 24x24 16x16"
 		},
 		{
-			"src": "/apple-touch.jpg",
-			"type": "image/jpg",
-			"sizes": "192x192 192x170"
-		},
-		{
-			"src": "/logo.jpg",
+			"src": "/images/logo.jpg",
 			"type": "image/jpg",
 			"sizes": "512x512 512x454"
 		}
