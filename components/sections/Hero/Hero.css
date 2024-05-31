@@ -11,7 +11,7 @@
 
 #hero:before {
     content: "";
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(var(--bs-black-rgb), 0.6);
     position: absolute;
     bottom: 0;
     top: 0;
@@ -38,16 +38,15 @@
     font-size: 56px;
     font-weight: 700;
     line-height: 64px;
-    color: #fff;
-    font-family: "Poppins", sans-serif;
+    color: var(--bs-white);
 }
 
 #hero h1 span {
-    color: #ffc451;
+    color: var(--bs-primary);
 }
 
 #hero h2 {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(var(--bs-white-rgb), 0.9);
     margin: 10px 0 0 0;
     font-size: 24px;
 }
@@ -55,7 +54,7 @@
 #hero .icon-box {
     padding: 30px 20px;
     transition: ease-in-out 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(var(--bs-white-rgb), 0.3);
     height: 100%;
     text-align: center;
 }
@@ -63,7 +62,7 @@
 #hero .icon-box svg {
     font-size: 32px;
     line-height: 1;
-    color: #ffc451;
+    color: var(--bs-primary);
 }
 
 #hero .icon-box h3 {
@@ -76,16 +75,16 @@
 }
 
 #hero .icon-box h3 a {
-    color: #fff;
+    color: var(--bs-white);
     transition: ease-in-out 0.3s;
 }
 
 #hero .icon-box h3 a:hover {
-    color: #ffc451;
+    color: var(--bs-primary);
 }
 
 #hero .icon-box:hover {
-    border-color: #ffc451;
+    border-color: var(--bs-primary);
 }
 
 @media (min-width: 1024px) {

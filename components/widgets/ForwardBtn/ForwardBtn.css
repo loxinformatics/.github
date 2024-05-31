@@ -2,18 +2,19 @@
   #  Forward Button
   --------------------------------------------------------------*/
 .forward-btn {
-    color: #fff;
+    color: var(--bs-white);
     border-radius: 4px;
     padding: 7px 25px 8px 25px;
     white-space: nowrap;
     transition: 0.3s;
     font-size: 14px;
+    font-family: var(--font-primary);
     display: inline-block;
-    border: 2px solid #ffc451;
+    border: 2px solid var(--bs-primary);
 }
 
 .forward-btn:hover {
-    background: #ffbb38;
+    background: var(--bs-primary);
     color: #343a40;
 }
 

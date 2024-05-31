@@ -8,13 +8,13 @@
 }
 
 .cta h3 {
-    color: #fff;
+    color: var(--bs-white);
     font-size: 28px;
     font-weight: 700;
 }
 
 .cta p {
-    color: #fff;
+    color: var(--bs-white);
 }
 
 .cta .cta-btn {
@@ -27,12 +27,12 @@
     border-radius: 4px;
     transition: 0.5s;
     margin-top: 10px;
-    border: 2px solid #fff;
-    color: #fff;
+    border: 2px solid var(--bs-white);
+    color: var(--bs-white);
 }
 
 .cta .cta-btn:hover {
-    background: #ffc451;
-    border-color: #ffc451;
-    color: #151515;
+    background: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: var(--bs-dark);
 }

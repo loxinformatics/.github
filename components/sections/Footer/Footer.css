@@ -2,15 +2,15 @@
   # Footer
   --------------------------------------------------------------*/
 #footer {
-    background: black;
+    background: var(--bs-black);
     padding: 0 0 30px 0;
-    color: #fff;
+    color: var(--bs-white);
     font-size: 14px;
 }
 
 #footer .footer-top {
-    background: #151515;
-    border-bottom: 1px solid #222222;
+    background: var(--bs-dark);
+    border-bottom: 1px solid var(--bs-dark);
     padding: 60px 0 30px 0;
 }
 
@@ -28,7 +28,7 @@
 }
 
 #footer .footer-top .footer-info h3 span {
-    color: #ffc451;
+    color: var(--bs-primary);
 }
 
 #footer .footer-top .footer-info p {
@@ -36,14 +36,14 @@
     line-height: 24px;
     margin-bottom: 0;
     font-family: "Raleway", sans-serif;
-    color: #fff;
+    color: var(--bs-white);
 }
 
 #footer .footer-top .social-links a {
     font-size: 18px;
     display: inline-block;
     background: #292929;
-    color: #fff;
+    color: var(--bs-white);
     line-height: 1;
     padding: 8px 0;
     margin-right: 4px;
@@ -55,15 +55,15 @@
 }
 
 #footer .footer-top .social-links a:hover {
-    background: #ffc451;
-    color: #151515;
+    background: var(--bs-primary);
+    color: var(--bs-dark);
     text-decoration: none;
 }
 
 #footer .footer-top h4 {
     font-size: 16px;
     font-weight: 600;
-    color: #fff;
+    color: var(--bs-white);
     position: relative;
     padding-bottom: 12px;
 }
@@ -80,7 +80,7 @@
 
 #footer .footer-top .footer-links ul svg {
     padding-right: 2px;
-    color: #ffc451;
+    color: var(--bs-primary);
     font-size: 18px;
     line-height: 1;
 }
@@ -96,19 +96,19 @@
 }
 
 #footer .footer-top .footer-links ul a {
-    color: #fff;
+    color: var(--bs-white);
     transition: 0.3s;
     display: inline-block;
     line-height: 1;
 }
 
 #footer .footer-top .footer-links ul a:hover {
-    color: #ffc451;
+    color: var(--bs-primary);
 }
 
 #footer .footer-top .footer-newsletter form {
     margin-top: 30px;
-    background: #fff;
+    background: var(--bs-white);
     padding: 6px 10px;
     position: relative;
     border-radius: 4px;
@@ -129,14 +129,14 @@
     background: none;
     font-size: 16px;
     padding: 0 20px;
-    background: #ffc451;
-    color: #151515;
+    background: var(--bs-primary);
+    color: var(--bs-dark);
     transition: 0.3s;
     border-radius: 0 4px 4px 0;
 }
 
 #footer .footer-top .footer-newsletter form input[type=submit]:hover {
-    background: #ffcd6b;
+    background: rgba(var(--bs-primary-rgb), 0.8);
 }
 
 #footer .copyright {
@@ -148,5 +148,5 @@
     padding-top: 10px;
     text-align: center;
     font-size: 13px;
-    color: #fff;
+    color: var(--bs-white);
 }

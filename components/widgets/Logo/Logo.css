@@ -12,11 +12,11 @@
 }
 
 .logo {
-    color: #fff;
+    color: var(--bs-white);
 }
 
 .logo h1 span {
-    color: #ffc451;
+    color: var(--bs-primary);
 }
 
 .logo img {

@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Group
 from .models import Base, User
-from .forms import MailForm
+from .forms import MailUsForm
 
 # ****************************** base ********************************
 
@@ -97,15 +97,10 @@ class MailSerializer(serializers.Serializer):
     sender_email = serializers.EmailField()
     subject = serializers.CharField()
     message = serializers.CharField()
-    recipient_email = serializers.EmailField()
-
-    def validate(self, data):
-        filled_contact_form = MailForm(data)
-        print(filled_contact_form)
-        if not filled_contact_form.is_valid():
-            raise serializers.ValidationError(filled_contact_form.errors)
-        return data
 
     def save(self):
-        form = MailForm(self.validated_data)
-        form.send_email()
+        form = MailUsForm(self.validated_data)
+        if form.is_valid():
+            form.send_email()
+        else:
+            raise serializers.ValidationError(form.errors)

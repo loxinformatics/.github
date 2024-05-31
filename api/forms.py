@@ -2,12 +2,13 @@ from django import forms
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+from .models import Base
 
 
 # ****************************** mail ********************************
 
 
-class MailForm(forms.Form):
+class MailUsForm(forms.Form):
     """
     A Django form for handling contact form submissions via email.
     """
@@ -26,20 +27,19 @@ class MailForm(forms.Form):
     message = forms.CharField(
         widget=forms.Textarea(),
     )
-    recipient_email = forms.EmailField(  # company email
-        widget=forms.HiddenInput(),
-    )
 
-    def send_email(self, request):
+    def send_email(self):
+        if not self.is_valid():
+            raise ValueError("Form data is not valid")
+
         name = self.cleaned_data["name"]
-        email = self.cleaned_data["email"]
+        sender_email = self.cleaned_data["sender_email"]
         subject = self.cleaned_data["subject"]
         message = self.cleaned_data["message"]
-        recipient_email = self.cleaned_data["recipient_email"]
 
         email_context = {
             "name": name,
-            "email": email,
+            "email": sender_email,
             "subject": subject,
             "message": message,
         }
@@ -47,10 +47,14 @@ class MailForm(forms.Form):
         text_content = render_to_string("api/mail-us.txt", email_context)
         html_content = render_to_string("api/mail-us.html", email_context)
 
+        # Retrieve the recipient email from the Base model singleton
+        base_instance = Base.get_or_create_singleton()
+        recipient_email = base_instance.primary_email
+
         msg = EmailMultiAlternatives(
             subject,
             text_content,
-            settings.EMAIL_HOST_USER,  # not using the sender's email but the notifications email to send the message
+            settings.EMAIL_HOST_USER,  # not using the sender's email to send the email
             [recipient_email],
         )
         msg.attach_alternative(html_content, "text/html")

@@ -68,7 +68,6 @@ class MailUsViewSet(viewsets.ViewSet):
                 {"errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST
             )
 
-
 # class MailUsView(views.APIView):
 #     """
 #     View for handling contact form submissions via email.

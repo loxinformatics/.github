@@ -9,12 +9,10 @@
 
 /* Include any default variable overrides here
 ------------------------------*/
-// #ffc451;
-// #e32636;
 $primary: #ffc451;
-$primary-rgb: 232, 69, 69;
-$secondary: #b4b4b4ef;
-$secondary-rgb: 182, 182, 182;
+$primary-rgb: 255, 196, 81;
+$secondary: #444444;
+$secondary-rgb: 68, 68, 68;
 
 /* Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
 ------------------------------*/
@@ -187,20 +185,16 @@ $secondary-rgb: 182, 182, 182;
 
 body {
 	font-family: var(--font-default);
-	// font-family: "Open Sans", sans-serif;
-	color: #444444;
+	color: $secondary;
 }
 
 a {
 	color: $primary;
-	// color: #ffc451;
 	text-decoration: none;
 }
 
 a:hover {
-	color: var(--bs-primary);
-	// color: #ffd584;
-	opacity: 0.8;
+	color: rgba(var(--bs-primary), 0.8);
 	text-decoration: none;
 }
 
@@ -211,7 +205,6 @@ h4,
 h5,
 h6 {
 	font-family: var(--font-primary);
-	// font-family: "Raleway", sans-serif;
 }
 
 section {
