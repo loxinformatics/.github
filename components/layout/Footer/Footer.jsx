@@ -1,10 +1,44 @@
 "use client";
 
 import Link from "next/link";
-import { BsTwitterX, BsFacebook, BsLinkedin } from "react-icons/bs";
+import { useBaseContext } from "@/app/context";
 import { BiChevronRight } from "react-icons/bi";
+import SocialLinks from "@/components/widgets/SocialLinks/SocialLinks";
 import "./Footer.css";
 
+function FooterInfo() {
+	const { data, isLoading } = useBaseContext();
+
+	if (isLoading) return data;  // data here is the loading/error/no data component
+
+	return (
+		<div className="footer-info">
+
+			{data.name && (<h3>{data.name}<span>.</span></h3>)}
+
+			<div className="mb-3">
+
+				{data.primary_phone && data.secondary_phone && (
+					<>
+						<strong>Call:</strong><br />
+						<div>{data.primary_phone}</div>
+						<div>{data.secondary_phone}</div><br />
+					</>
+				)}
+
+				{data.primary_email && data.secondary_email && (
+					<>
+						<strong>Email:</strong><br />
+						<div>{data.primary_email}</div>
+						<div>{data.secondary_email}</div>
+					</>
+				)}
+
+			</div>
+			<SocialLinks data={data} />
+		</div>
+	)
+}
 
 export default function Footer() {
 	return (
@@ -14,21 +48,7 @@ export default function Footer() {
 					<div className="row">
 
 						<div className="col-lg-3 col-md-6">
-							<div className="footer-info">
-								<h3>Lox Informatics<span>.</span></h3>
-								<div>
-									<strong>Call:</strong><br />
-									<div>+254710289954</div>
-									<div>+254706965904</div><br />
-									<strong>Email:</strong><br />
-									<div>info@loxinformatics.com</div>
-								</div>
-								<div className="social-links mt-3">
-									<Link href="#" className="twitter"><BsTwitterX /></Link>
-									<Link href="#" className="facebook"><BsFacebook /></Link>
-									<Link href="#" className="linkedin"><BsLinkedin /></Link>
-								</div>
-							</div>
+							<FooterInfo />
 						</div>
 
 						<div className="col-lg-2 col-md-6 footer-links">

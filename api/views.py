@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from django.contrib.auth.models import Group
 from .models import Base, User
 from .serializers import (
-    BaseInfoSerializer,
+    BaseSerializer,
     UserSerializer,
     GroupSerializer,
     MailSerializer,
@@ -21,7 +21,7 @@ class BaseViewSet(viewsets.ModelViewSet):
     """
 
     queryset = Base.objects.all()
-    serializer_class = BaseInfoSerializer
+    serializer_class = BaseSerializer
 
 
 # ****************************** users & groups ********************************
@@ -50,7 +50,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-# ****************************** mail ********************************
+# ****************************** mail us ********************************
 
 
 class MailUsViewSet(viewsets.ViewSet):
@@ -67,6 +67,7 @@ class MailUsViewSet(viewsets.ViewSet):
             return Response(
                 {"errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST
             )
+
 
 # class MailUsView(views.APIView):
 #     """

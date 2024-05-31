@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import "./ContactForm.css";
+import "./MailUsForm.css";
 
-export default function ContactForm() {
+export default function MailUs() {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [subject, setSubject] = useState("");
@@ -53,7 +53,7 @@ export default function ContactForm() {
 				);
 				const responseData = await sendMailResponse.json();
 
-				 // Handle success
+				// Handle success
 				if (responseData.message) {
 					setSuccess(responseData.message);
 
@@ -62,9 +62,9 @@ export default function ContactForm() {
 					setEmail("");
 					setSubject("");
 					setMessage("");
-				} 
-				
-				 // Handle error
+				}
+
+				// Handle error
 				else if (responseData.errors) {
 					// An error can possibly occur only in the email field
 					setError(responseData.errors.sender_email[0]);
@@ -91,8 +91,8 @@ export default function ContactForm() {
 		<form
 			onSubmit={handleSubmit}
 			method="post"
-			id="contactform"
-			className="contactform w-100 bg-white"
+			id="mailusform"
+			className="mailusform w-100 bg-white"
 			noValidate
 		>
 			<div className="my-2">

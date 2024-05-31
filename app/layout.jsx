@@ -1,4 +1,6 @@
+import RootContextProvider from "./context";
 import "./globals.scss";
+
 import Preloader from "@/components/widgets/Preloader/Preloader";
 import ScrollTopBtn from "@/components/widgets/ScrollTopBtn/ScrollTopBtn";
 
@@ -9,13 +11,15 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
 	return (
 		<html lang="en" dir="ltr">
 			<body>
-				{children}
-				<ScrollTopBtn></ScrollTopBtn>
-				<Preloader></Preloader>
+				<RootContextProvider>{children}</RootContextProvider>
+				<ScrollTopBtn />
+				<Preloader />
 			</body>
 		</html>
 	);
+
 }

@@ -8,7 +8,7 @@ router = routers.DefaultRouter()
 router.register(r"base", BaseViewSet)
 router.register(r"users", UsersViewSet)
 router.register(r"groups", GroupViewSet)
-router.register(r'mail-us', MailUsViewSet, basename='mail-us')
+router.register(r"mail-us", MailUsViewSet, basename="mail-us")
 
 
 urlpatterns = [

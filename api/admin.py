@@ -8,7 +8,7 @@ from .models import Base, User
 
 
 @admin.register(Base)
-class BasicInfoAdmin(admin.ModelAdmin):
+class BaseAdmin(admin.ModelAdmin):
     def has_add_permission(self, request, obj=None):
         if Base.objects.count() > 0:
             return False

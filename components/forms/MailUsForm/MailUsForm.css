@@ -1,25 +1,25 @@
-.contactform input,
-.contactform textarea {
+.mailusform input,
+.mailusform textarea {
     border-radius: 0;
     box-shadow: none;
     font-size: 14px;
     border-radius: 4px;
 }
 
-.contactform input:focus,
-.contactform textarea:focus {
+.mailusform input:focus,
+.mailusform textarea:focus {
     border-color: var(--bs-primary);
 }
 
-.contactform input {
+.mailusform input {
     height: 44px;
 }
 
-.contactform textarea {
+.mailusform textarea {
     padding: 10px 12px;
 }
 
-.contactform button[type=submit] {
+.mailusform button[type=submit] {
     background: var(--bs-primary);
     border: 0;
     padding: 10px 24px;
@@ -28,7 +28,7 @@
     border-radius: 4px;
 }
 
-.contactform button[type=submit]:hover {
+.mailusform button[type=submit]:hover {
     background: rgba(var(--bs-primary-rgb), 0.8)
 }
 

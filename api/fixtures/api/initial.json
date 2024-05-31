@@ -5,15 +5,15 @@
       "fields": {
         "name": "Lox Informatics",
         "short_name": "Lox",
-        "motto": "",
+        "description": "Transforming Retail & E-Commerce Landscapes: Innovative Solutions and Insights for Success",
         "primary_email": "info@loxinformatics.com",
-        "secondary_email": "",
-        "primary_phone": "",
-        "secondary_phone": "",
+        "secondary_email": "loxinformatics@gmail.com",
+        "primary_phone": "+254710289954",
+        "secondary_phone": "+254774421268",
         "building": "",
         "street": "",
         "PO_box": "",
-        "city_name": "",
+        "city_name": "Nairobi",
         "zip_code": "",
         "open_days": "",
         "open_hours": "",
@@ -21,7 +21,7 @@
         "twitter_x": "",
         "instagram": "",
         "whatsapp": "",
-        "linkedin": ""
+        "linkedin": "https://www.linkedin.com/company/lox-informatics"
       }
     }
   ]

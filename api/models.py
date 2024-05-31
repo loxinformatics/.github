@@ -25,26 +25,23 @@ class Base(models.Model):
         max_length=255,
         help_text="Enter the short name. * (Required)",
     )
-    motto = models.CharField(
-        max_length=255,
-        help_text="Enter the motto.",
-        blank=True,
+    description = models.TextField(
+        help_text="Enter the description. * (Required)"
     )
+    
     # ======= Contact =======
     primary_email = models.EmailField(
         help_text="Enter the primary contact email. * (Required)"
     )
     secondary_email = models.EmailField(
-        help_text="Enter the secondary contact email.", blank=True
+        help_text="Enter the secondary contact email. * (Required)"
     )
     primary_phone = models.CharField(
-        max_length=255,
-        help_text="Enter the primary contact phone number. * (Required)",
+        max_length=255, help_text="Enter the primary contact phone number. * (Required)"
     )
     secondary_phone = models.CharField(
         max_length=255,
-        help_text="Enter the secondary contact phone number.",
-        blank=True,
+        help_text="Enter the secondary contact phone number. * (Required)",
     )
 
     # ======= Addressing =======
@@ -156,7 +153,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         # CLIENT = "CLIENT", "Client"
 
-        # check the commented out proxy Client model and manager classes below 
+        # check the commented out proxy Client model and manager classes below
 
     base_role = Role.USER
 

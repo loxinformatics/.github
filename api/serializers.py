@@ -6,10 +6,11 @@ from django.contrib.auth.models import Group
 from .models import Base, User
 from .forms import MailUsForm
 
+
 # ****************************** base ********************************
 
 
-class BaseInfoSerializer(serializers.HyperlinkedModelSerializer):
+class BaseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Base
         # fields = "__all__"
@@ -89,7 +90,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         return data
 
 
-# ****************************** mail ********************************
+# ****************************** mail us ********************************
 
 
 class MailSerializer(serializers.Serializer):
