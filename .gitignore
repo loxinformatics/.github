@@ -10,3 +10,10 @@ next-env.d.ts
 /coverage
 /.next
 /_next
+
+/core/_next/build
+/core/_next/static
+/core/_next/media/*
+!/core/_next/media/defaults
+
+seed.json

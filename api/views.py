@@ -3,25 +3,25 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 
 from django.contrib.auth.models import Group
-from .models import Base, User
+from .models import Root, User
 from .serializers import (
-    BaseSerializer,
+    RootSerializer,
     UserSerializer,
     GroupSerializer,
     MailSerializer,
 )
 
 
-# ****************************** base ********************************
+# ****************************** root ********************************
 
 
-class BaseViewSet(viewsets.ModelViewSet):
+class RootViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows basic info to be viewed.
     """
 
-    queryset = Base.objects.all()
-    serializer_class = BaseSerializer
+    queryset = Root.objects.all()
+    serializer_class = RootSerializer
 
 
 # ****************************** users & groups ********************************
@@ -61,26 +61,8 @@ class MailUsViewSet(viewsets.ViewSet):
     def create(self, request):
         serializer = MailSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
             return Response({"message": "Your message has been sent. Thank you!"})
         else:
             return Response(
                 {"errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST
             )
-
-
-# class MailUsView(views.APIView):
-#     """
-#     View for handling contact form submissions via email.
-#     """
-
-#     def post(self, request, *args, **kwargs):
-#         filled_contact_form = MailForm(request.data)
-
-#         if filled_contact_form.is_valid():
-#             filled_contact_form.send_email(request)
-#             return Response({"message": "Your message has been sent. Thank you!"})
-#         else:
-#             errors = filled_contact_form.errors.get_json_data()
-#             print(errors)
-#             return Response({"errors": errors}, status=400)

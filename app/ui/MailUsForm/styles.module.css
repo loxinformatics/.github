@@ -1,0 +1,43 @@
+.input,
+.textarea {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.input:focus,
+.textarea:focus {
+    border-color: var(--bs-primary);
+}
+
+.input {
+    height: 44px;
+}
+
+.textarea {
+    padding: 10px 12px;
+}
+
+.button[type=submit] {
+    background: var(--bs-primary);
+    border: 0;
+    padding: 10px 24px;
+    color: var(--bs-dark);
+    transition: 0.4s;
+    border-radius: 4px;
+}
+
+.button[type=submit]:hover {
+    background: rgba(var(--bs-primary-rgb), 0.8)
+}
+
+@keyframes animate-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

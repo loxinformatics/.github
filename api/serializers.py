@@ -3,16 +3,16 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Group
-from .models import Base, User
+from .models import Root, User
 from .forms import MailUsForm
 
 
-# ****************************** base ********************************
+# ****************************** root ********************************
 
 
-class BaseSerializer(serializers.HyperlinkedModelSerializer):
+class RootSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Base
+        model = Root
         # fields = "__all__"
         exclude = ["url"]
 
@@ -99,9 +99,11 @@ class MailSerializer(serializers.Serializer):
     subject = serializers.CharField()
     message = serializers.CharField()
 
-    def save(self):
-        form = MailUsForm(self.validated_data)
-        if form.is_valid():
-            form.send_email()
-        else:
+    def validate(self, data):
+        form = MailUsForm(data)
+        if not form.is_valid():
             raise serializers.ValidationError(form.errors)
+
+        form.send_email()
+
+        return data

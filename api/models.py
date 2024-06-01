@@ -8,10 +8,10 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.utils import timezone
 
 
-# ****************************** base ********************************
+# ****************************** root ********************************
 
 
-class Base(models.Model):
+class Root(models.Model):
 
     class Meta:
         verbose_name_plural = "Base Information"
@@ -25,10 +25,8 @@ class Base(models.Model):
         max_length=255,
         help_text="Enter the short name. * (Required)",
     )
-    description = models.TextField(
-        help_text="Enter the description. * (Required)"
-    )
-    
+    description = models.TextField(help_text="Enter the description. * (Required)")
+
     # ======= Contact =======
     primary_email = models.EmailField(
         help_text="Enter the primary contact email. * (Required)"
@@ -114,7 +112,7 @@ class Base(models.Model):
         Ensure only one record exists
         """
 
-        obj, created = Base.objects.get_or_create(pk=1)
+        obj, created = Root.objects.get_or_create(pk=1)
         return obj
 
     def __str__(self):

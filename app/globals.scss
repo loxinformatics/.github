@@ -9,6 +9,8 @@
 
 /* Include any default variable overrides here
 ------------------------------*/
+// #ffc451
+// #6db8ff
 $primary: #ffc451;
 $primary-rgb: 255, 196, 81;
 $secondary: #444444;
@@ -41,13 +43,8 @@ $secondary-rgb: 68, 68, 68;
 @import "../node_modules/bootstrap/scss/helpers";
 @import "../node_modules/bootstrap/scss/spinners";
 @import "../node_modules/bootstrap/scss/alert";
-@import "../node_modules/bootstrap/scss/nav";
-@import "../node_modules/bootstrap/scss/badge";
 @import "../node_modules/bootstrap/scss/card";
-@import "../node_modules/bootstrap/scss/dropdown";
-@import "../node_modules/bootstrap/scss/breadcrumb";
-@import "../node_modules/bootstrap/scss/transitions";
-@import "../node_modules/bootstrap/scss/toasts";
+@import "../node_modules/bootstrap/scss/modal";
 
 /* Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 ------------------------------*/
@@ -56,99 +53,8 @@ $secondary-rgb: 68, 68, 68;
 /*--------------------------------------------------------------
 # Additional Bootstrap Customization
 --------------------------------------------------------------
-/* Dropdown */
-.dropdown-toggle {
-	font-size: 22px;
-	margin-right: 25px;
-	position: relative;
-	transition: 0.3s;
-}
 
-.dropdown-toggle::after {
-	display: none;
-}
 
-.dropdown-toggle:hover,
-.dropdown-toggle:focus,
-.dropdown-toggle:active {
-	color: rgba(var(--bs-dark-rgb), 1.0) !important;
-}
-
-.dropdown-toggle .badge-number {
-	position: absolute;
-	inset: -2px -5px auto auto;
-	font-weight: normal;
-	font-size: 12px;
-	padding: 3px 6px;
-}
-
-.dropdown-menu {
-	transition: all 0.3s;
-	inset: 8px -15px auto auto !important;
-	border-radius: 4px;
-	padding: 10px 0;
-	animation-name: dropdown-animate;
-	animation-duration: 0.3s;
-	animation-fill-mode: both;
-	border: 0;
-	box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
-}
-
-.dropdown-menu .dropdown-header {
-	text-align: center;
-	font-size: 15px;
-	padding: 10px 25px;
-}
-
-.dropdown-menu .dropdown-divider {
-	color: #a5c5fe;
-	margin: 0;
-}
-
-.dropdown-menu .dropdown-item {
-	font-size: 14px;
-	padding: 10px 15px;
-	transition: 0.3s;
-}
-
-.dropdown-menu .dropdown-item i {
-	margin-right: 10px;
-	font-size: 18px;
-	line-height: 0;
-}
-
-.dropdown-menu .dropdown-item:hover {
-	background-color: #f6f9ff;
-}
-
-@media (min-width: 768px) {
-	.dropdown-menu-arrow::before {
-		content: "";
-		width: 13px;
-		height: 13px;
-		background: var(--bs-white);
-		position: absolute;
-		top: -7px;
-		right: 20px;
-		transform: rotate(45deg);
-		border-top: 1px solid #eaedf1;
-		border-left: 1px solid #eaedf1;
-	}
-}
-
-@keyframes dropdown-animate {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
-
-	0% {
-		opacity: 0;
-	}
-}
 
 /*--------------------------------------------------------------
 # General
@@ -207,10 +113,6 @@ h6 {
 	font-family: var(--font-primary);
 }
 
-section {
-	padding: 60px 0;
-	overflow: hidden;
-}
 
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices

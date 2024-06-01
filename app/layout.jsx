@@ -1,8 +1,8 @@
-import RootContextProvider from "./context";
+import "aos/dist/aos.css";
 import "./globals.scss";
-
-import Preloader from "@/components/widgets/Preloader/Preloader";
-import ScrollTopBtn from "@/components/widgets/ScrollTopBtn/ScrollTopBtn";
+import RootContextProvider from "./context";
+import AuthContextProvider from "./auth/context";
+import ScrollTopBtn from "@/app/ui/ScrollTopBtn/ScrollTopBtn";
 
 export const metadata = {
 	title: "Lox Informatics",
@@ -15,11 +15,14 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en" dir="ltr">
 			<body>
-				<RootContextProvider>{children}</RootContextProvider>
-				<ScrollTopBtn />
-				<Preloader />
+				<RootContextProvider>
+					<AuthContextProvider>
+						{children}
+						<ScrollTopBtn />
+					</AuthContextProvider>
+				</RootContextProvider>
+
 			</body>
 		</html>
 	);
-
 }

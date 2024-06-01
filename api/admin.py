@@ -1,16 +1,16 @@
 from django.contrib import admin
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Group
-from .models import Base, User
+from .models import Root, User
 
 
-# ****************************** base ********************************
+# ****************************** root ********************************
 
 
-@admin.register(Base)
-class BaseAdmin(admin.ModelAdmin):
+@admin.register(Root)
+class RootAdmin(admin.ModelAdmin):
     def has_add_permission(self, request, obj=None):
-        if Base.objects.count() > 0:
+        if Root.objects.count() > 0:
             return False
         else:
             return True

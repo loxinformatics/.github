@@ -3,19 +3,19 @@ from django.contrib.auth.signals import user_logged_in
 from django.db.models.signals import post_migrate, post_save
 from django.dispatch import receiver
 from django.utils import timezone
-from .models import Base, User
+from .models import Root, User
 
 
-# ****************************** base ********************************
+# ****************************** root ********************************
 
 
-@receiver(post_save, sender=Base)
+@receiver(post_save, sender=Root)
 def ensure_single_company(sender, instance, created, **kwargs):
     """
     Signal receiver to ensure only one record exists
     """
 
-    if created and Base.objects.count() > 1:
+    if created and Root.objects.count() > 1:
         instance.delete()
 
 

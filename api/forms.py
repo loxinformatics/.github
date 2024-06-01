@@ -2,7 +2,7 @@ from django import forms
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
-from .models import Base
+from .models import Root
 
 
 # ****************************** mail ********************************
@@ -48,7 +48,7 @@ class MailUsForm(forms.Form):
         html_content = render_to_string("api/mail-us.html", email_context)
 
         # Retrieve the recipient email from the Base model singleton
-        base_instance = Base.get_or_create_singleton()
+        base_instance = Root.get_or_create_singleton()
         recipient_email = base_instance.primary_email
 
         msg = EmailMultiAlternatives(

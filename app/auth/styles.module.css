@@ -1,0 +1,14 @@
+.auth {
+    background: url("/images/auth-bg.png") center top no-repeat fixed;
+    background-size: cover;
+}
+
+.auth::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(var(--bs-dark-rgb), 0.7);
+}

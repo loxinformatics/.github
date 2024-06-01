@@ -110,6 +110,8 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000",
+    "https://loxinformatics.com",
+    "https://www.loxinformatics.com",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -192,7 +194,7 @@ USE_TZ = True
 
 STATIC_URL = "/_next/static/"
 
-STATIC_ROOT = BASE_DIR / "_next/static"
+STATIC_ROOT = BASE_DIR / "core/_next/static"
 
 
 # Media files
@@ -200,7 +202,7 @@ STATIC_ROOT = BASE_DIR / "_next/static"
 
 MEDIA_URL = "/_next/media/"
 
-MEDIA_ROOT = BASE_DIR / "_next/media"
+MEDIA_ROOT = BASE_DIR / "core/_next/media"
 
 
 # Default primary key field type
