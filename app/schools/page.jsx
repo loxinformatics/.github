@@ -1,14 +1,15 @@
 "use client";
 
-import { PrivateRoute } from "../auth/context";
+import { useRoot } from "../context";
+import { PrivateRoute, useAuth } from "../auth/context";
 import Header from "@/app/ui/Header/Header";
 import Footer from "@/app/ui/Footer/Footer";
-import Link from "next/link";
-import { useRootContext } from "../context";
+
 
 export default function Schools() {
 
-	const { root } = useRootContext();
+	const { root } = useRoot();
+	const { logoutUser } = useAuth();
 
 	return (
 		<PrivateRoute>
@@ -16,7 +17,7 @@ export default function Schools() {
 			<main id="main">
 				<p>Schools Page</p>
 				<div className="my-5 py-5">
-					<Link href="/auth/logout" className="btn btn-danger">Logout</Link>
+					<button className="btn btn-danger" onClick={() => { logoutUser() }}>Logout</button>
 				</div>
 			</main>
 			<Footer root={root}></Footer>

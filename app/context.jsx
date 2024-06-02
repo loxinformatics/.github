@@ -53,7 +53,7 @@ export default function RootContextProvider({ children }) {
     );
 }
 
-export function useRootContext() {
+export function useRoot() {
     const { root_data } = useContext(RootContext);
     const root = root_data ? root_data[0] : null;
     return { root };

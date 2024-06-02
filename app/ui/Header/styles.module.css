@@ -2,10 +2,24 @@
     transition: all 0.5s;
     z-index: 997;
     padding: 15px 0;
-    /* height: 70px; */
 }
 
 .scrolled,
-.innerPage {
+.innerpage {
     background: rgba(0, 0, 0, 0.8);
+}
+
+.homepage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.authpage,
+.innerpage {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
 }

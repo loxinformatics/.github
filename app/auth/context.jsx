@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import Preloader from "@/app/ui/Preloader/Preloader";
 import ErrorModal from "@/app/ui/ErrorModal/ErrorModal";
@@ -95,6 +95,7 @@ export default function AuthContextProvider({ children }) {
         setAuthTokens,
         user,
         setUser,
+        logoutUser,
     };
 
     if (loading) return <Preloader />;
@@ -107,12 +108,8 @@ export default function AuthContextProvider({ children }) {
     );
 }
 
-export function useAuthContext() {
-    return useContext(AuthContext);
-}
-
 export function PrivateRoute({ children }) {
-    const { user } = useAuthContext();
+    const { user } = useAuth();
     const router = useRouter();
     const pathname = usePathname();
 
@@ -125,4 +122,26 @@ export function PrivateRoute({ children }) {
     if (!user) return <Preloader />;
 
     return children;
+}
+
+export function AuthRoute({ children }) {
+    const { user } = useAuth();
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        if (user && pathname.startsWith("/auth/")) {
+            const next = searchParams.get("next") || "/";
+            router.replace(next);
+        }
+    }, [router, user, pathname, searchParams]);
+
+    if (user && pathname.startsWith("/auth/")) return <Preloader />;
+
+    return children;
+}
+
+export function useAuth() {
+    return useContext(AuthContext);
 }

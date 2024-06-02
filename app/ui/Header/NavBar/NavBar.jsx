@@ -20,7 +20,7 @@ export default function NavBar({ links }) {
 		const header = document.querySelector("#header");
 		if (!header) return;
 
-		const offset = header.offsetHeight;
+		const offset = header.offsetHeight + 22;
 		const element = document.querySelector(el);
 		if (!element) return;
 

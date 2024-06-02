@@ -12,7 +12,7 @@ import {
 	RiGlobalLine,
 } from "react-icons/ri";
 import { BsGeoAlt, BsEnvelope, BsPhone } from "react-icons/bs";
-import { useRootContext } from "@/app/context";
+import { useRoot } from "@/app/context";
 import "./styles.css";
 import SectionTitle from "@/app/ui/SectionTitle/SectionTitle";
 import MailUsForm from "@/app/ui/MailUsForm/MailUsForm";
@@ -23,7 +23,7 @@ import Footer from "@/app/ui/Footer/Footer"
 
 export default function Home() {
 
-	const { root } = useRootContext();
+	const { root } = useRoot();
 
 	return (
 		<>

@@ -11,6 +11,7 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isHomePage, setIsHomePage] = useState(false);
     const [isAuthPage, setIsAuthPage] = useState(false);
+    const [isInnerPage, setIsInnerPage] = useState(false);
     const pathname = usePathname();
 
     const links = [
@@ -40,16 +41,17 @@ export default function Header() {
     useEffect(() => {
         if (pathname === "/") setIsHomePage(true);
         else if (pathname.startsWith("/auth/")) setIsAuthPage(true);
+        else setIsInnerPage(true);
     }, [pathname]);
-
 
     return (
         <header id="header" className={`
             ${styles.header}
-            ${isHomePage ? "fixed-top" : "sticky-top"}
-            ${!isHomePage && !isAuthPage ? styles.innerPage : ""}
             ${isScrolled ? styles.scrolled : ""}
-            `}>
+            ${isHomePage ? styles.homepage : ""}
+            ${isAuthPage ? styles.authpage : ""}
+            ${isInnerPage ? styles.innerpage : ""}
+        `}>
 
             <div className="container d-flex align-items-center justify-content-lg-between">
                 <Logo />

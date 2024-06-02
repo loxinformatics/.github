@@ -4,7 +4,7 @@ import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useAuthContext } from "@/app/auth/context";
+import { useAuth } from "@/app/auth/context";
 import styles from "./styles.module.css";
 
 
@@ -14,7 +14,7 @@ export default function LoginForm() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-    const { setAuthTokens, setUser } = useAuthContext();
+    const { setAuthTokens, setUser } = useAuth();
     const router = useRouter();
     const searchParams = useSearchParams();
 

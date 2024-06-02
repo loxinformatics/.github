@@ -15,13 +15,12 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en" dir="ltr">
 			<body>
-				<RootContextProvider>
-					<AuthContextProvider>
+				<AuthContextProvider>
+					<RootContextProvider>
 						{children}
 						<ScrollTopBtn />
-					</AuthContextProvider>
-				</RootContextProvider>
-
+					</RootContextProvider>
+				</AuthContextProvider>
 			</body>
 		</html>
 	);
