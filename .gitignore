@@ -2,7 +2,7 @@
 
 workout
 node_modules
-.env
+*env*
 *sqlite*
 __pycache__
 next-env.d.ts

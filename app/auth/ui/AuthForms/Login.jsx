@@ -6,9 +6,11 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/app/auth/context";
 import styles from "./styles.module.css";
+import { useRoot } from "@/app/context";
 
 
 export default function LoginForm() {
+    const { apiUrl } = useRoot();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -38,14 +40,8 @@ export default function LoginForm() {
             setLoading((loading) => !loading);
 
             try {
-                // Determine the API URL based on the environment
-                const apiAuthUrl = process.env.ENVIRONMENT === "production"
-                    ? "https://api.loxinformatics.com/auth/token/"
-                    : "http://127.0.0.1:8000/auth/token/";
-
-
                 // Send form data to backend to authenticate user
-                const response = await fetch(apiAuthUrl, {
+                const response = await fetch(apiUrl + "/auth/token/", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

@@ -11,22 +11,17 @@ export default function RootContextProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [root_data, setRootData] = useState(null);
+    const [apiUrl, setApiUrl] = useState("https://api.loxinformatics.com");
 
     useEffect(() => {
-        AOS.init({
-            duration: 1000,
-            easing: "ease-in-out",
-            once: true,
-            mirror: false
-        });
+
+        // if (process.env.ENVIRONMENT !== "production"){
+        //     setApiUrl("http://127.0.0.1:8000");
+        // }
 
         const fetchRootData = async () => {
             try {
-                const apiRootUrl = process.env.ENVIRONMENT === "production"
-                    ? "https://api.loxinformatics.com/root/"
-                    : "http://127.0.0.1:8000/root/";
-
-                const response = await fetch(apiRootUrl);
+                const response = await fetch(apiUrl + "/root/");
                 const result = await response.json();
                 setRootData(result);
             } catch (error) {
@@ -37,10 +32,19 @@ export default function RootContextProvider({ children }) {
         };
 
         fetchRootData();
-    }, []);
+
+        AOS.init({
+            duration: 1000,
+            easing: "ease-in-out",
+            once: true,
+            mirror: false
+        });
+
+    }, [apiUrl]);
 
     const contextData = {
         root_data: root_data,
+        apiUrl: apiUrl,
     };
 
     if (loading) return <Preloader />;

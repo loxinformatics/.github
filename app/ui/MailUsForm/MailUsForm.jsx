@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRoot } from "@/app/context";
 import styles from "./styles.module.css";
 
 export default function MailUsForm() {
+	const { apiUrl } = useRoot();
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [subject, setSubject] = useState("");
@@ -32,13 +34,7 @@ export default function MailUsForm() {
 			setLoading((loading) => !loading);
 
 			try {
-				// Determine the API URL based on the environment
-				const apiMailUsUrl = process.env.ENVIRONMENT === "production"
-					? "https://api.loxinformatics.com/mail-us/"
-					: "http://127.0.0.1:8000/mail-us/";
-
-				// Send form data to backend
-				const response = await fetch(apiMailUsUrl, {
+				const response = await fetch(apiUrl + "/mail-us/", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
