@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Build Directory of the Next JS front end
 
-ENVIRONMENT = config("ENVIRONMENT", default="production")
+NEXT_PUBLIC_ENVIRONMENT = config("NEXT_PUBLIC_ENVIRONMENT", default="production")
 
 
 # Quick-start development settings - unsuitable for production
@@ -32,7 +32,7 @@ SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False if ENVIRONMENT == "production" else True
+DEBUG = False if NEXT_PUBLIC_ENVIRONMENT == "production" else True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -149,7 +149,7 @@ DATABASES = {
             "PASSWORD": config("DB_PASSWORD"),
             "NAME": config("DB_NAME"),            
         }
-        if ENVIRONMENT == "production"
+        if NEXT_PUBLIC_ENVIRONMENT == "production"
         else {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
@@ -216,7 +216,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = (
     "django.core.mail.backends.smtp.EmailBackend"
-    if ENVIRONMENT == "production"
+    if NEXT_PUBLIC_ENVIRONMENT == "production"
     else "django.core.mail.backends.console.EmailBackend"
 )
 

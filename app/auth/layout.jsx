@@ -1,11 +1,11 @@
 import styles from "./styles.module.css"
 import Header from "@/app/ui/Header/Header";
-import { AuthRoute } from "@/app/auth/context";
+import { PublicRoute } from "@/app/auth/context";
 
 export default function Layout({ children }) {
 
     return (
-        <AuthRoute>
+        <PublicRoute>
             <div className="vh-100 d-flex flex-column">
                 <main id="auth" className={`${styles.auth} flex-grow-1 position-relative container-fluid d-flex flex-column`}>
                     <Header />
@@ -22,6 +22,6 @@ export default function Layout({ children }) {
                     </section>
                 </main>
             </div>
-        </AuthRoute>
+        </PublicRoute>
     );
 }

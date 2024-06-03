@@ -4,22 +4,27 @@ import AOS from "aos";
 import { createContext, useContext, useState, useEffect } from "react";
 import Preloader from "@/app/ui/Preloader/Preloader";
 import ErrorModal from "@/app/ui/ErrorModal/ErrorModal";
+import ScrollTopBtn from "@/app/ui/ScrollTopBtn/ScrollTopBtn";
 
 const RootContext = createContext(null);
 
-export default function RootContextProvider({ children }) {
+export default function Root({ children }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [root_data, setRootData] = useState(null);
-    const [apiUrl, setApiUrl] = useState("https://api.loxinformatics.com");
+    const [apiUrl, setApiUrl] = useState(null);
 
     useEffect(() => {
 
-        // if (process.env.ENVIRONMENT !== "production"){
-        //     setApiUrl("http://127.0.0.1:8000");
-        // }
+        if (process.env.NEXT_PUBLIC_ENVIRONMENT === "production"){
+            setApiUrl("https://api.loxinformatics.com");
+        } else {
+            setApiUrl("http://127.0.0.1:8000");
+        }
 
         const fetchRootData = async () => {
+            if (!apiUrl) return;
+
             try {
                 const response = await fetch(apiUrl + "/root/");
                 const result = await response.json();
@@ -33,26 +38,34 @@ export default function RootContextProvider({ children }) {
 
         fetchRootData();
 
+    }, [apiUrl]);
+
+    useEffect(() => {
         AOS.init({
             duration: 1000,
             easing: "ease-in-out",
             once: true,
             mirror: false
         });
-
-    }, [apiUrl]);
+    }, [])
 
     const contextData = {
         root_data: root_data,
         apiUrl: apiUrl,
     };
 
-    if (loading) return <Preloader />;
-    if (error) return <ErrorModal message={error} />;
-
     return (
         <RootContext.Provider value={contextData}>
-            {children}
+            {loading ? (
+                <Preloader />
+            ) : error ? (
+                <ErrorModal message={error} />
+            ) : (
+                <>
+                    {children}
+                    <ScrollTopBtn />
+                </>
+            )}
         </RootContext.Provider>
     );
 }

@@ -5,10 +5,12 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import Preloader from "@/app/ui/Preloader/Preloader";
 import ErrorModal from "@/app/ui/ErrorModal/ErrorModal";
+import { useRoot } from "@/app/context";
 
 const AuthContext = createContext(null);
 
-export default function AuthContextProvider({ children }) {
+export default function Auth({ children }) {
+    const { apiUrl } = useRoot();
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -38,17 +40,10 @@ export default function AuthContextProvider({ children }) {
     }, [router]);
 
     const updateToken = useCallback(async () => {
-        if (!authTokens) {
-            setLoading(false);
-            return;
-        }
+        if (!authTokens) return;
 
         try {
-            const apiAuthRefreshUrl = process.env.ENVIRONMENT === "production"
-                ? "https://api.loxinformatics.com/auth/token/refresh/"
-                : "http://127.0.0.1:8000/auth/token/refresh/";
-
-            const response = await fetch(apiAuthRefreshUrl, {
+            const response = await fetch(apiUrl + "/auth/token/refresh/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -70,7 +65,8 @@ export default function AuthContextProvider({ children }) {
         } finally {
             setLoading(false);
         }
-    }, [authTokens, logoutUser]);
+        
+    }, [apiUrl, authTokens, logoutUser]);
 
     useEffect(() => {
         if (loading) {
@@ -88,22 +84,20 @@ export default function AuthContextProvider({ children }) {
         }, 1000 * 60 * 4); // 4 minutes interval
 
         return () => clearInterval(interval);
+        
     }, [authTokens, loading, updateToken]);
 
     const contextData = {
-        authTokens,
-        setAuthTokens,
-        user,
-        setUser,
-        logoutUser,
+        authTokens: authTokens,
+        setAuthTokens: setAuthTokens,
+        user: user,
+        setUser: setUser,
+        logoutUser: logoutUser,
     };
-
-    if (loading) return <Preloader />;
-    if (error) return <ErrorModal message={error} />;
 
     return (
         <AuthContext.Provider value={contextData}>
-            {children}
+            {loading ? <Preloader /> : error ? <ErrorModal message={error} /> : children}
         </AuthContext.Provider>
     );
 }
@@ -124,24 +118,24 @@ export function PrivateRoute({ children }) {
     return children;
 }
 
-export function AuthRoute({ children }) {
+export function PublicRoute({ children }) {
     const { user } = useAuth();
     const router = useRouter();
-    const pathname = usePathname();
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        if (user && pathname.startsWith("/auth/")) {
+        if (user) {
             const next = searchParams.get("next") || "/";
             router.replace(next);
         }
-    }, [router, user, pathname, searchParams]);
+    }, [router, user, searchParams]);
 
-    if (user && pathname.startsWith("/auth/")) return <Preloader />;
+    if (user) return <Preloader />;
 
     return children;
 }
 
 export function useAuth() {
-    return useContext(AuthContext);
+    const { authTokens, setAuthTokens, user, setUser, logoutUser } = useContext(AuthContext);
+    return { authTokens, setAuthTokens, user, setUser, logoutUser };
 }
