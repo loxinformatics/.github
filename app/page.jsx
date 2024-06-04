@@ -222,16 +222,18 @@ export default function Home() {
 										</div>
 									)}
 
-									{root.primary_email && root.secondary_email && (
+									{root.primary_email && (
 										<div className="email">
 											<div className="icon"><BsEnvelope /></div>
 											<h4>Email:</h4>
 											<Link href={`mailto:${root.primary_email}`}>
 												<p>{root.primary_email}</p>
 											</Link>
-											<Link href={`mailto:${root.secondary_email}`}>
-												<p>{root.secondary_email}</p>
-											</Link>
+											{root.secondary_email && (
+												<Link href={`mailto:${root.secondary_email}`}>
+													<p>{root.secondary_email}</p>
+												</Link>
+											)}
 										</div>
 									)}
 

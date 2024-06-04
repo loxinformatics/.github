@@ -28,18 +28,18 @@ class Root(models.Model):
     description = models.TextField(help_text="Enter the description. * (Required)")
 
     # ======= Contact =======
-    primary_email = models.EmailField(
-        help_text="Enter the primary contact email. * (Required)"
-    )
-    secondary_email = models.EmailField(
-        help_text="Enter the secondary contact email. * (Required)"
-    )
     primary_phone = models.CharField(
         max_length=255, help_text="Enter the primary contact phone number. * (Required)"
     )
     secondary_phone = models.CharField(
         max_length=255,
         help_text="Enter the secondary contact phone number. * (Required)",
+    )
+    primary_email = models.EmailField(
+        help_text="Enter the primary contact email. * (Required)"
+    )
+    secondary_email = models.EmailField(
+        help_text="Enter the secondary contact email.", blank=True
     )
 
     # ======= Addressing =======
