@@ -10,10 +10,12 @@ from .models import Root, User
 @admin.register(Root)
 class RootAdmin(admin.ModelAdmin):
     def has_add_permission(self, request, obj=None):
-        if Root.objects.count() > 0:
-            return False
-        else:
-            return True
+        # Prevent adding other objects
+        return not Root.objects.exists()
+    
+    def has_delete_permission(self, request, obj=None):
+        # Prevent deletion if the object exists
+        return not obj
 
 
 # ****************************** users & groups ********************************

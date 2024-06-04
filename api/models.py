@@ -5,6 +5,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.contrib.auth.validators import UnicodeUsernameValidator
+from django.forms import ValidationError
 from django.utils import timezone
 
 
@@ -17,6 +18,12 @@ class Root(models.Model):
         verbose_name_plural = "Base Information"
 
     # ======= Info =======
+    logo = models.ImageField(
+        upload_to="root/",
+        help_text="Pick a logo preferably of size 500x500",
+        blank=True,
+        null=True,
+    )
     name = models.CharField(
         max_length=255,
         help_text="Enter the full name. * (Required)",
@@ -25,21 +32,25 @@ class Root(models.Model):
         max_length=255,
         help_text="Enter the short name. * (Required)",
     )
-    description = models.TextField(help_text="Enter the description. * (Required)")
+    description = models.TextField(
+        help_text="Enter the description. * (Required)",
+    )
 
     # ======= Contact =======
     primary_phone = models.CharField(
-        max_length=255, help_text="Enter the primary contact phone number. * (Required)"
+        max_length=255,
+        help_text="Enter the primary contact phone number. * (Required)",
     )
     secondary_phone = models.CharField(
         max_length=255,
         help_text="Enter the secondary contact phone number. * (Required)",
     )
     primary_email = models.EmailField(
-        help_text="Enter the primary contact email. * (Required)"
+        help_text="Enter the primary contact email. * (Required)",
     )
     secondary_email = models.EmailField(
-        help_text="Enter the secondary contact email.", blank=True
+        help_text="Enter the secondary contact email.",
+        blank=True,
     )
 
     # ======= Addressing =======
@@ -106,15 +117,6 @@ class Root(models.Model):
         blank=True,
     )
 
-    @staticmethod
-    def get_or_create_singleton():
-        """
-        Ensure only one record exists
-        """
-
-        obj, created = Root.objects.get_or_create(pk=1)
-        return obj
-
     def __str__(self):
         return self.name
 
@@ -169,7 +171,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=150,
         unique=True,
         help_text=(
-            "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+            "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
         ),
         validators=[username_validator],
         error_messages={

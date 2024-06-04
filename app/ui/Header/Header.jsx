@@ -1,5 +1,6 @@
 "use client";
 
+import { useRoot } from "@/app/context";
 import { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import Logo from "@/app/ui/Header/Logo/Logo";
@@ -8,6 +9,7 @@ import ForwardBtn from "@/app/ui/Header/ForwardBtn/ForwardBtn";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
+    const { root } = useRoot();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isHomePage, setIsHomePage] = useState(false);
     const [isAuthPage, setIsAuthPage] = useState(false);
@@ -54,7 +56,7 @@ export default function Header() {
         `}>
 
             <div className="container d-flex align-items-center justify-content-lg-between">
-                <Logo />
+                <Logo root={root} />
                 <NavBar links={links} />
                 <ForwardBtn
                     name={pathname.startsWith("/auth/") ? "Go Back" : "Get Started"}

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRoot } from "@/app/context";
 import Link from "next/link";
 import { BiChevronRight } from "react-icons/bi";
 import "./styles.css";
@@ -7,8 +8,8 @@ import "./styles.css";
 import Copyright from "@/app/ui/Footer/Copyright/Copyright";
 import SocialLinks from "@/app/ui/Footer/SocialLinks/SocialLinks";
 
-export default function Footer({ root }) {
-
+export default function Footer() {
+	const { root } = useRoot();
 	return (
 		<footer id="footer">
 			<div className="footer-top">

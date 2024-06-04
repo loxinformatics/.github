@@ -5,23 +5,22 @@ import Link from "next/link";
 import styles from "./styles.module.css";
 
 
-export default function Logo() {
-	return (
-		<Link href="/" className="link-white me-auto me-lg-0">
-
-			{/* <h1 className={styles.text}>Lox<span className="text-primary">.</span></h1> */}
-
-			{/* Uncomment below if you prefer to use an image logo */}
-
-			<Image
-				src="/images/logo.jpg"
-				width={45}
-				height={40}
-				alt="logo"
-				className={`${styles.img} img-fluid`}
-				priority={true}
-			/>
-
-		</Link>
-	)
+export default function Logo({ root }) {
+    return (
+        <Link href="/" className="link-white me-auto me-lg-0">
+            {root.logo ? (
+                <Image
+                    src={root.logo}
+                    width={55}
+                    height={55}
+                    alt="logo"
+                />
+            ) : (
+                <h1 className={styles.text}>
+                    {root.short_name}
+                    <span className="text-primary">.</span>
+                </h1>
+            )}
+        </Link>
+    );
 }

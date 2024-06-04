@@ -13,8 +13,27 @@ from .forms import MailUsForm
 class RootSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Root
-        # fields = "__all__"
-        exclude = ["url"]
+        fields = "__all__"
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        request = self.context.get("request", None)
+
+        # Define the required permissions
+        required_permissions = [
+            "api.view_root",
+            "api.change_root",
+        ]
+
+        # Remove the URL field if the request exists and either the user is not authenticated
+        # or the user is authenticated but does not have the required model permissions
+        if request and (
+            not request.user.is_authenticated
+            or not request.user.has_perms(required_permissions)
+        ):
+            data.pop("url", None)
+
+        return data
 
 
 # ****************************** users & groups ********************************
@@ -104,6 +123,9 @@ class MailSerializer(serializers.Serializer):
         if not form.is_valid():
             raise serializers.ValidationError(form.errors)
 
-        form.send_email()
+        try:
+            form.send_email()
+        except Exception as e:
+            raise serializers.ValidationError(f"An error occurred: {e}")
 
         return data

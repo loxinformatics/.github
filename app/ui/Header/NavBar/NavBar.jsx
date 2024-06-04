@@ -20,11 +20,11 @@ export default function NavBar({ links }) {
 		const header = document.querySelector("#header");
 		if (!header) return;
 
-		const offset = header.offsetHeight + 22;
+		const offset = header.offsetHeight;
 		const element = document.querySelector(el);
 		if (!element) return;
 
-		const elementPos = element.offsetTop;
+		const elementPos = element.offsetTop - 45;
 		window.scrollTo({
 			top: elementPos - offset,
 			behavior: "smooth",

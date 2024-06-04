@@ -263,7 +263,7 @@ export default function Home() {
 				</section>
 
 			</main>
-			<Footer root={root}></Footer>
+			<Footer />
 		</>
 	)
 }

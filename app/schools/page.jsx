@@ -20,7 +20,7 @@ export default function Schools() {
 					<button className="btn btn-danger" onClick={() => { logoutUser() }}>Logout</button>
 				</div>
 			</main>
-			<Footer root={root}></Footer>
+			<Footer />
 		</PrivateRoute>
 	);
 }

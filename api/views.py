@@ -17,11 +17,29 @@ from .serializers import (
 
 class RootViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows basic info to be viewed.
+    Company Basic Information.
     """
 
     queryset = Root.objects.all()
     serializer_class = RootSerializer
+    permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
+
+    def create(self, request, *args, **kwargs):
+        if Root.objects.exists():
+            return Response(
+                {"detail": "Only one instance of Root is allowed."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+        return super().create(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance:
+            return Response(
+                {"detail": "Deletion of Root instance is not allowed."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+        return super().destroy(request, *args, **kwargs)
 
 
 # ****************************** users & groups ********************************
@@ -29,12 +47,12 @@ class RootViewSet(viewsets.ModelViewSet):
 
 class UsersViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
+    Users
     """
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser]
     filter_backends = (DjangoFilterBackend, filters.SearchFilter)
     filterset_fields = ("id",)
     search_fields = ("username", "email", "first_name", "last_name")
@@ -42,12 +60,12 @@ class UsersViewSet(viewsets.ModelViewSet):
 
 class GroupViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    User Groups
     """
 
     queryset = Group.objects.all().order_by("name")
     serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAdminUser]
 
 
 # ****************************** mail us ********************************
@@ -55,8 +73,10 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class MailUsViewSet(viewsets.ViewSet):
     """
-    A simple ViewSet for handling contact form submissions via email.
+    Get in touch with us via email.
     """
+
+    permission_classes = [permissions.AllowAny]
 
     def create(self, request):
         serializer = MailSerializer(data=request.data)
