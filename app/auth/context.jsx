@@ -40,18 +40,18 @@ export default function Auth({ children }) {
     }, [router]);
 
     const updateToken = useCallback(async () => {
-        if (!authTokens) return;
-
         try {
             const response = await fetch(apiUrl + "/auth/token/refresh/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ refresh: authTokens.refresh }),
+                body: JSON.stringify({
+                    refresh: authTokens?.refresh
+                }),
             });
 
-            if (response.status === 200) {
+            if (response.ok) {
                 const data = await response.json();
                 setAuthTokens(data);
                 setUser(jwtDecode(data.access));
@@ -63,10 +63,10 @@ export default function Auth({ children }) {
             logoutUser();
             setError(`AuthContext Error: ${error.message}`);
         } finally {
-            setLoading(false);
+            if (loading) setLoading(false);
         }
-        
-    }, [apiUrl, authTokens, logoutUser]);
+
+    }, [apiUrl, authTokens?.refresh, loading, logoutUser]);
 
     useEffect(() => {
         if (loading) {
@@ -84,7 +84,7 @@ export default function Auth({ children }) {
         }, 1000 * 60 * 4); // 4 minutes interval
 
         return () => clearInterval(interval);
-        
+
     }, [authTokens, loading, updateToken]);
 
     const contextData = {
@@ -100,6 +100,10 @@ export default function Auth({ children }) {
             {loading ? <Preloader /> : error ? <ErrorModal message={error} /> : children}
         </AuthContext.Provider>
     );
+}
+
+export function useAuth() {
+    return useContext(AuthContext);
 }
 
 export function PrivateRoute({ children }) {
@@ -133,9 +137,4 @@ export function PublicRoute({ children }) {
     if (user) return <Preloader />;
 
     return children;
-}
-
-export function useAuth() {
-    const { authTokens, setAuthTokens, user, setUser, logoutUser } = useContext(AuthContext);
-    return { authTokens, setAuthTokens, user, setUser, logoutUser };
 }

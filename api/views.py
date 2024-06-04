@@ -60,9 +60,8 @@ class MailUsViewSet(viewsets.ViewSet):
 
     def create(self, request):
         serializer = MailSerializer(data=request.data)
+        print(request.data)
         if serializer.is_valid():
-            return Response({"message": "Your message has been sent. Thank you!"})
+            return Response("Your message has been sent. Thank you!")
         else:
-            return Response(
-                {"errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

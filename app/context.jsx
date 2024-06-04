@@ -11,24 +11,18 @@ const RootContext = createContext(null);
 export default function Root({ children }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [root_data, setRootData] = useState(null);
-    const [apiUrl, setApiUrl] = useState(null);
+    const [root, setRoot] = useState(null);
+    const apiUrl = process.env.NEXT_PUBLIC_ENVIRONMENT === "production"
+            ? "https://api.loxinformatics.com"
+            : "http://127.0.0.1:8000";
+
 
     useEffect(() => {
-
-        if (process.env.NEXT_PUBLIC_ENVIRONMENT === "production"){
-            setApiUrl("https://api.loxinformatics.com");
-        } else {
-            setApiUrl("http://127.0.0.1:8000");
-        }
-
         const fetchRootData = async () => {
-            if (!apiUrl) return;
-
             try {
                 const response = await fetch(apiUrl + "/root/");
-                const result = await response.json();
-                setRootData(result);
+                const data = await response.json();
+                setRoot(data[0]);
             } catch (error) {
                 setError(`RootContext Error: ${error.message}`);
             } finally {
@@ -38,19 +32,17 @@ export default function Root({ children }) {
 
         fetchRootData();
 
-    }, [apiUrl]);
-
-    useEffect(() => {
         AOS.init({
             duration: 1000,
             easing: "ease-in-out",
             once: true,
             mirror: false
         });
-    }, [])
+        
+    }, [apiUrl]);
 
     const contextData = {
-        root_data: root_data,
+        root: root,
         apiUrl: apiUrl,
     };
 
@@ -71,7 +63,5 @@ export default function Root({ children }) {
 }
 
 export function useRoot() {
-    const { root_data, apiUrl } = useContext(RootContext);
-    const root = root_data ? root_data[0] : null;
-    return { root, apiUrl };
+    return useContext(RootContext);
 }

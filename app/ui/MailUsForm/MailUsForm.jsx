@@ -47,38 +47,26 @@ export default function MailUsForm() {
 					}),
 				});
 
-				const responseData = await response.json();
+				const data = await response.json();
 
-				// Handle success
-				if (responseData.message) {
-					setSuccess(responseData.message);
-
-					// Reset form fields
+				if (response.ok) {
+					setSuccess(data);
 					setName("");
 					setEmail("");
 					setSubject("");
 					setMessage("");
-				}
-
-				// Handle error
-				else if (responseData.errors) {
+				} else if (response.status === 400) {
 					// An error can possibly occur only in the email field
-					setError(responseData.errors.sender_email[0]);
+					setError(data.sender_email[0]);
 					const emailField = form.querySelector("input[type='email']");
 					emailField.classList.add("is-invalid");
-					throw new Error(responseData.errors.sender_email[0]);
+					throw new Error(data.sender_email[0]);
 				} else {
 					setError("Something went wrong");
-					throw new Error("Something went wrong");
 				}
-
-			}
-
-			catch (error) {
+			} catch (error) {
 				console.error("Error:", error);
-			}
-
-			finally {
+			} finally {
 				form.classList.remove("was-validated");
 				setLoading((loading) => !loading);
 			}
