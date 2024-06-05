@@ -39,11 +39,7 @@ export default function RootContext({ children }) {
 
     return (
         <Root.Provider value={contextData}>
-            {loading ? <Preloader /> : error ? <ErrorModal message={error} /> : (
-                <>
-                    {children}
-                </>
-            )}
+            {loading ? <Preloader /> : error ? <ErrorModal message={error} /> : children}
         </Root.Provider>
     );
 }

@@ -13,14 +13,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" dir="ltr">
-			<RootContext>
-				<AuthContext>
-					<body>
+			<body>
+				<RootContext>
+					<AuthContext>
 						{children}
 						<ScrollTopBtn />
-					</body>
-				</AuthContext>
-			</RootContext>
+					</AuthContext>
+				</RootContext>
+			</body>
 		</html>
 	);
 }
