@@ -1,27 +1,15 @@
 "use client";
 
-import { useRoot } from "@/app/context";
-import { useState, useEffect } from "react";
-import styles from "./styles.module.css";
-import Logo from "@/app/ui/Header/Logo/Logo";
-import NavBar from "@/app/ui/Header/NavBar/NavBar";
-import ForwardBtn from "@/app/ui/Header/ForwardBtn/ForwardBtn";
-import { usePathname } from "next/navigation";
+import styles from "./header.module.css";
+import { createContext, useContext, useState, useEffect } from "react";
+import { useRootcontext } from "@/app/context";
 
-export default function Header() {
-    const { root } = useRoot();
+const HeaderContext = createContext(null);
+
+
+export default function Header({ children, position, isInnerpage }) {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isHomePage, setIsHomePage] = useState(false);
-    const [isAuthPage, setIsAuthPage] = useState(false);
-    const [isInnerPage, setIsInnerPage] = useState(false);
-    const pathname = usePathname();
-
-    const links = [
-        { name: "Home", href: "/#hero", icon: "" },
-        { name: "About", href: "/#about", icon: "" },
-        { name: "Services", href: "/#services", icon: "" },
-        { name: "Contact", href: "/#contact", icon: "" },
-    ];
+    const { root } = useRootcontext();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -40,30 +28,32 @@ export default function Header() {
         };
     }, []);
 
-    useEffect(() => {
-        if (pathname === "/") setIsHomePage(true);
-        else if (pathname.startsWith("/auth/")) setIsAuthPage(true);
-        else setIsInnerPage(true);
-    }, [pathname]);
+    // Destructure the specific items you want to pass from root
+    const { logo, short_name } = root;
+
+    const contextData = {
+        logo: logo,
+        short_name: short_name,
+        isScrolled: isScrolled,
+    };
 
     return (
-        <header id="header" className={`
-            ${styles.header}
-            ${isScrolled ? styles.scrolled : ""}
-            ${isHomePage ? styles.homepage : ""}
-            ${isAuthPage ? styles.authpage : ""}
-            ${isInnerPage ? styles.innerpage : ""}
-        `}>
-
-            <div className="container d-flex align-items-center justify-content-lg-between">
-                <Logo root={root} />
-                <NavBar links={links} />
-                <ForwardBtn
-                    name={pathname.startsWith("/auth/") ? "Go Back" : "Get Started"}
-                    href={pathname.startsWith("/auth/") ? "/#hero" : "/#about"}
-                />
-            </div>
-
-        </header>
+        <HeaderContext.Provider value={contextData}>
+            <header id="header" className={`
+                ${styles.header}
+                ${isScrolled ? styles.scrolled : ""}
+                ${isInnerpage ? styles.innerpage : ""}
+                ${position === "fixed" ? "fixed-top" : "sticky-top"}
+            `}>
+                <div className="container d-flex align-items-center">
+                    {children}
+                </div>
+            </header>
+        </HeaderContext.Provider>
     );
+}
+
+// Custom hook to use the Header context
+export function useHeadercontext() {
+    return useContext(HeaderContext);
 }

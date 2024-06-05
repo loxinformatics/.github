@@ -1,5 +1,6 @@
 import { Modal, Button } from "react-bootstrap";
-import styles from "./styles.module.css";
+import styles from "./errormodal.module.css";
+
 
 export default function ErrorModal({ message }) {
     return (

@@ -55,9 +55,8 @@ $secondary-rgb: 68, 68, 68;
 --------------------------------------------------------------
 
 
-
 /*--------------------------------------------------------------
-# General
+# Root
 --------------------------------------------------------------*/
 @font-face {
 	font-family: "preloslab-medium-regular";
@@ -81,26 +80,35 @@ $secondary-rgb: 68, 68, 68;
 }
 
 :root {
-	--font-size-xs: 12px;
-	--font-size-sm: 14px;
-	--font-size-md: 16px;
-	--font-size-lg: 18px;
-	--font-size-xl: 20px;
-	--font-size-xxl: 24px;
+	--font-size-xxs: 12px;
+	--font-size-xs: 14px;
+	--font-size-sm: 16px;
+	--font-size-md: 20px;
+	--font-size-lg: 24px;
+	--font-size-xl: 28px;
+	--font-size-xxl: 32px;
 }
+
+// xxs 12
+// xs 14
+// sm 16
+// md 20
+// lg 24
+// xl 28
+// xxl 32
 
 body {
 	font-family: var(--font-default);
-	color: $secondary;
+	color: var(--bs-secondary);
 }
 
 a {
-	color: $primary;
+	color: var(--bs-primary);
 	text-decoration: none;
 }
 
 a:hover {
-	color: rgba(var(--bs-primary), 0.8);
+	color: rgba(var(--bs-primary-rgb), 0.8);
 	text-decoration: none;
 }
 
@@ -112,7 +120,6 @@ h5,
 h6 {
 	font-family: var(--font-primary);
 }
-
 
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices

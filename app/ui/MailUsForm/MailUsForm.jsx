@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useRoot } from "@/app/context";
+import { useRootcontext } from "@/app/context";
 import styles from "./styles.module.css";
 
 export default function MailUsForm() {
-	const { apiUrl } = useRoot();
+	const { apiUrl } = useRootcontext();
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [subject, setSubject] = useState("");

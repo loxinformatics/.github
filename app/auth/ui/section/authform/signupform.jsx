@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import styles from "./styles.module.css";
+import styles from "./authform.module.css";
 
 
 export default function SignupForm() {
-
 	const [full_name, setFullName] = useState("");
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");

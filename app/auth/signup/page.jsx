@@ -1,7 +1,28 @@
-import SignupForm from "@/app/auth/ui/AuthForms/Signup";
+"use client";
 
-export default function Signup() {
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { useEffect } from "react";
+import SignupForm from "@/app/auth/ui/section/authform/signupform";
+
+
+export default function Login() {
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            easing: "ease-in-out",
+            once: true,
+            mirror: false
+        });
+    }, []);
+
     return (
-        <SignupForm />
+        <div className="col-12 col-sm-10 col-md-8 col-lg-6" data-aos="fade-in"> 
+            <div className="card">
+                <div className="card-body py-4">
+                    <SignupForm />
+                </div>
+            </div>
+        </div>
     );
 }

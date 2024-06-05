@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./styles.module.css";
+import styles from "./forwardbtn.module.css";
 
 
 export default function ForwardBtn({ name, href }) {

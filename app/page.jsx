@@ -12,22 +12,55 @@ import {
 	RiGlobalLine,
 } from "react-icons/ri";
 import { BsGeoAlt, BsEnvelope, BsPhone } from "react-icons/bs";
-import { useRoot } from "@/app/context";
-import "./styles.css";
 import SectionTitle from "@/app/ui/SectionTitle/SectionTitle";
 import MailUsForm from "@/app/ui/MailUsForm/MailUsForm";
 import CallToAction from "@/app/ui/CallToAction/CallToAction"
-import Header from "@/app/ui/Header/Header";
-import Footer from "@/app/ui/Footer/Footer"
+import { useRootcontext } from "@/app/context";
+
+import "aos/dist/aos.css";
+import "./page.css";
+import AOS from "aos";
+import { useEffect } from "react";
+
+import Header from "@/app/ui/header/header";
+import Logo from "@/app/ui/header/logo/logo";
+import ForwardBtn from "@/app/ui/header/forwardbtn/forwardbtn";
+import NavBarAndMobileNavToggle from "@/app/ui/header/navbar/navbar";
+
+import Footer from "@/app/ui/footer/footer";
+import FooterInfo from "@/app/ui/footer/footerinfo/footerinfo";
+import UsefulLinks from "@/app/ui/footer/footerlinks/usefullinks";
+import ServicesLinks from "@/app/ui/footer/footerlinks/serviceslinks";
+import SocialLinks from "@/app/ui/footer/sociallinks/sociallinks";
+
+import CopyrightAndOrCredits from "@/app/ui/copyrightandorcredits/copyrightandorcredits";
 
 
-export default function Home() {
+export default function Page() {
+	const { root } = useRootcontext();
 
-	const { root } = useRoot();
+	useEffect(() => {
+		AOS.init({
+			duration: 1000,
+			easing: "ease-in-out",
+			once: true,
+			mirror: false
+		});
+	}, []);
 
 	return (
 		<>
-			<Header />
+			<Header position="fixed">
+				<div className="me-auto">
+					<Logo />
+				</div>
+				<div className="order-last order-lg-0">
+					<NavBarAndMobileNavToggle />
+				</div>
+				<div className="ms-auto">
+					<ForwardBtn name="Get Started" href="/#about" />
+				</div>
+			</Header>
 
 			{/* Hero */}
 			<section id="hero" className="d-flex align-items-center justify-content-center">
@@ -80,7 +113,7 @@ export default function Home() {
 				</div>
 			</section>
 
-			<main id="home">
+			<main id="main">
 
 				{/* About */}
 				<section id="about" className="about">
@@ -263,7 +296,31 @@ export default function Home() {
 				</section>
 
 			</main>
-			<Footer />
+
+			<Footer>
+				<div className="col-lg-3 col-md-6 mb-0 mb-md-4">
+					<FooterInfo />
+				</div>
+
+				<div className="d-lg-none col-md-6 mb-4">
+					<SocialLinks />
+				</div>
+
+				<div className="col-lg-2 col-md-6 mb-4 mb-lg-0">
+					<UsefulLinks />
+				</div>
+
+				<div className="col-lg-3 col-md-6 mb-md-4 mb-lg-0">
+					<ServicesLinks />
+				</div>
+
+				<div className="d-none d-lg-block">
+					<SocialLinks />
+				</div>
+			</Footer>
+
+			<CopyrightAndOrCredits />
+
 		</>
 	)
 }

@@ -26,7 +26,7 @@ class RootSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
         # Remove the URL field if the request exists and either the user is not authenticated
-        # or the user is authenticated but does not have the required model permissions
+        # or does not have the required model permissions
         if request and (
             not request.user.is_authenticated
             or not request.user.has_perms(required_permissions)

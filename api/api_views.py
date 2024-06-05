@@ -85,3 +85,9 @@ class MailUsViewSet(viewsets.ViewSet):
             return Response("Your message has been sent. Thank you!")
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+
+
+# ****************************** auth ********************************
+
+

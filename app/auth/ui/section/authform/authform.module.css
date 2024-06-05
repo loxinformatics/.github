@@ -1,5 +1,5 @@
 .authform {
-    font-size: 14px;
+    font-size: var(--font-size-xs);
 }
 
 .label {
@@ -9,7 +9,7 @@
 .input {
     border-radius: 0;
     box-shadow: none;
-    font-size: 14px;
+    font-size: var(--font-size-xs);
     border-radius: 0;
 }
 

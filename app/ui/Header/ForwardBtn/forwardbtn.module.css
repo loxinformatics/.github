@@ -7,7 +7,7 @@
     padding: 7px 25px 8px 25px;
     white-space: nowrap;
     transition: 0.3s;
-    font-size: 15px;
+    font-size: var(--font-size-xs);
     font-family: var(--font-primary);
     display: inline-block;
     border: 2px solid var(--bs-primary);

@@ -1,5 +1,5 @@
 .socialLink {
-    font-size: 18px;
+    font-size: var(--font-size-md);
     display: inline-block;
     background: #292929;
     color: var(--bs-white);

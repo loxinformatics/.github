@@ -1,20 +1,19 @@
 "use client";
 
-import AOS from "aos";
 import { createContext, useContext, useState, useEffect } from "react";
-import Preloader from "@/app/ui/Preloader/Preloader";
-import ErrorModal from "@/app/ui/ErrorModal/ErrorModal";
-import ScrollTopBtn from "@/app/ui/ScrollTopBtn/ScrollTopBtn";
+import Preloader from "@/app/ui/preloader/preloader";
+import ErrorModal from "@/app/ui/errormodal/errormodal";
 
-const RootContext = createContext(null);
+const Root = createContext(null);
 
-export default function Root({ children }) {
+
+export default function RootContext({ children }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [root, setRoot] = useState(null);
     const apiUrl = process.env.NEXT_PUBLIC_ENVIRONMENT === "production"
-            ? "https://api.loxinformatics.com"
-            : "http://127.0.0.1:8000";
+        ? "https://api.loxinformatics.com"
+        : "http://127.0.0.1:8000";
 
 
     useEffect(() => {
@@ -31,14 +30,6 @@ export default function Root({ children }) {
         };
 
         fetchRootData();
-
-        AOS.init({
-            duration: 1000,
-            easing: "ease-in-out",
-            once: true,
-            mirror: false
-        });
-        
     }, [apiUrl]);
 
     const contextData = {
@@ -47,21 +38,17 @@ export default function Root({ children }) {
     };
 
     return (
-        <RootContext.Provider value={contextData}>
-            {loading ? (
-                <Preloader />
-            ) : error ? (
-                <ErrorModal message={error} />
-            ) : (
+        <Root.Provider value={contextData}>
+            {loading ? <Preloader /> : error ? <ErrorModal message={error} /> : (
                 <>
                     {children}
-                    <ScrollTopBtn />
                 </>
             )}
-        </RootContext.Provider>
+        </Root.Provider>
     );
 }
 
-export function useRoot() {
-    return useContext(RootContext);
+// Custom hook to use the Root context
+export function useRootcontext() {
+    return useContext(Root);
 }

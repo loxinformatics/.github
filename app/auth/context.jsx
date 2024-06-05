@@ -1,16 +1,17 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
-import Preloader from "@/app/ui/Preloader/Preloader";
-import ErrorModal from "@/app/ui/ErrorModal/ErrorModal";
-import { useRoot } from "@/app/context";
+import { useRootcontext } from "@/app/context";
+import Preloader from "@/app/ui/preloader/preloader";
+import ErrorModal from "@/app/ui/errormodal/errormodal";
 
-const AuthContext = createContext(null);
+const Auth = createContext(null);
 
-export default function Auth({ children }) {
-    const { apiUrl } = useRoot();
+
+export default function AuthContext({ children }) {
+    const { apiUrl } = useRootcontext();
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -88,6 +89,7 @@ export default function Auth({ children }) {
     }, [authTokens, loading, updateToken]);
 
     const contextData = {
+        apiUrl: apiUrl,
         authTokens: authTokens,
         setAuthTokens: setAuthTokens,
         user: user,
@@ -96,45 +98,13 @@ export default function Auth({ children }) {
     };
 
     return (
-        <AuthContext.Provider value={contextData}>
+        <Auth.Provider value={contextData}>
             {loading ? <Preloader /> : error ? <ErrorModal message={error} /> : children}
-        </AuthContext.Provider>
+        </Auth.Provider>
     );
 }
 
-export function useAuth() {
-    return useContext(AuthContext);
-}
-
-export function PrivateRoute({ children }) {
-    const { user } = useAuth();
-    const router = useRouter();
-    const pathname = usePathname();
-
-    useEffect(() => {
-        if (!user) {
-            router.replace(`/auth/login?next=${encodeURIComponent(pathname)}`);
-        }
-    }, [router, user, pathname]);
-
-    if (!user) return <Preloader />;
-
-    return children;
-}
-
-export function PublicRoute({ children }) {
-    const { user } = useAuth();
-    const router = useRouter();
-    const searchParams = useSearchParams();
-
-    useEffect(() => {
-        if (user) {
-            const next = searchParams.get("next") || "/";
-            router.replace(next);
-        }
-    }, [router, user, searchParams]);
-
-    if (user) return <Preloader />;
-
-    return children;
+// Custom hook to use the Auth context
+export function useAuthcontext() {
+    return useContext(Auth);
 }

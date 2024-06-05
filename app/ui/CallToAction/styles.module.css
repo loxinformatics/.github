@@ -9,7 +9,7 @@
 
 .h3 {
     color: var(--bs-white);
-    font-size: 28px;
+    font-size: var(--font-size-xl);
     font-weight: 700;
 }
 
@@ -18,9 +18,8 @@
 }
 
 .btn {
-    font-family: "Raleway", sans-serif;
     font-weight: 600;
-    font-size: 16px;
+    font-size: var(--font-size-sm);
     letter-spacing: 1px;
     display: inline-block;
     padding: 8px 28px;

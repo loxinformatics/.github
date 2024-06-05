@@ -3,7 +3,7 @@
 }
 
 .h2 {
-    font-size: 14px;
+    font-size: var(--font-size-xs);
     font-weight: 500;
     padding: 0;
     line-height: 1px;
@@ -18,13 +18,13 @@
     width: 120px;
     height: 1px;
     display: inline-block;
-    background: #ffde9e;
+    background: rgb(var(--bs-primary-rgb), 0.7);
     margin: 4px 10px;
 }
 
 .p {
     margin: 0;
-    font-size: 36px;
+    font-size: var(--font-size-xxl);
     font-weight: 700;
     text-transform: uppercase;
     font-family: var(--font-primary);

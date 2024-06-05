@@ -1,7 +1,7 @@
-import "aos/dist/aos.css";
-import "@/app/globals.scss";
-import Root from "@/app/context";
-import Auth from "@/app/auth/context";
+import "./globals.scss"
+import RootContext from "@/app/context";
+import AuthContext from "@/app/auth/context";
+import ScrollTopBtn from "@/app/ui/scrolltopbtn/scrolltopbtn";
 
 export const metadata = {
 	title: "Lox Informatics",
@@ -9,16 +9,18 @@ export const metadata = {
 	metadataBase: new URL("https://www.loxinformatics.com"),
 };
 
+
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" dir="ltr">
-			<body>
-				<Root>
-					<Auth>
+			<RootContext>
+				<AuthContext>
+					<body>
 						{children}
-					</Auth>
-				</Root>
-			</body>
+						<ScrollTopBtn />
+					</body>
+				</AuthContext>
+			</RootContext>
 		</html>
 	);
 }

@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { BsX, BsList } from "react-icons/bs";
-import "./styles.css";
+import "./navbar.css";
 
-export default function NavBar({ links }) {
+
+export default function NavBarAndMobileNavToggle() {
 	const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 	const pathname = usePathname();
 
@@ -86,8 +87,15 @@ export default function NavBar({ links }) {
 		};
 	}, []);
 
+	const links = [
+		{ name: "Home", href: "/#hero", icon: "" },
+		{ name: "About", href: "/#about", icon: "" },
+		{ name: "Services", href: "/#services", icon: "" },
+		{ name: "Contact", href: "/#contact", icon: "" },
+	];
+
 	return (
-		<nav id="navbar" className={`navbar order-last order-lg-0 ${isMobileNavOpen ? "navbar-mobile" : ""}`}>
+		<nav id="navbar" className={`navbar ${isMobileNavOpen ? "navbar-mobile" : ""}`}>
 			<ul>
 				{links.map((link) => (
 					<li key={link.name}>

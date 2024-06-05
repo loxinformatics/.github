@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link"
+import { useState, useEffect } from "react";
 import { RiArrowUpLine } from "react-icons/ri";
-import styles from "./styles.module.css";
+import styles from "./scrolltopbtn.module.css";
 
 
 export default function ScrollTopBtn() {
