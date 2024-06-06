@@ -1,0 +1,13 @@
+[
+    {
+      "model": "base.Base",
+      "pk": 1,
+      "fields": {
+        "name": "Lox Informatics",
+        "short_name": "Lox",
+        "motto": "Transforming Retail & E-Commerce Landscapes: Innovative Solutions and Insights for Success",
+        "description": "We are a team of talented software developers and analysts dedicated to revolutionizing the way retail and e-commerce businesses thrive.",   
+        "website": "https://www.loxinformatics.com"
+      }
+    }
+  ]

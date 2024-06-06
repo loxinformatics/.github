@@ -1,0 +1,26 @@
+/*--------------------------------------------------------------
+  #  Forward Button
+  --------------------------------------------------------------*/
+.customBtn {
+    color: var(--bs-white);
+    border-radius: 4px;
+    padding: 7px 25px 8px 25px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: var(--font-size-xs);
+    font-family: var(--font-primary);
+    display: inline-block;
+    border: 2px solid var(--bs-primary);
+}
+
+.customBtn:hover {
+    background: var(--bs-primary);
+    color: #343a40;
+}
+
+@media (max-width: 992px) {
+    .customBtn {
+        padding: 7px 20px 8px 20px;
+        margin-right: 15px;
+    }
+}

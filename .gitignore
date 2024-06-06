@@ -1,20 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-workout
-node_modules
+~
+.vscode
 *env*
-*sqlite*
-__pycache__
-next-env.d.ts
+*/node_modules
+*__pycache__
 
-/coverage
-/.next
-/_next
+/api/core/api/static
+/api/core/api/media/*
+!/api/core/api/media/defaults
 
-/core/_next/build
-/core/_next/static
-/core/_next/media/*
-!/core/_next/media/defaults
-
-seed.json
-TODO.txt
+/web/coverage
+/web/.next
+/web/next-env.d.ts
