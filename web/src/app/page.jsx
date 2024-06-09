@@ -69,52 +69,61 @@ export default function HomePage() {
 
 	return (
 		<>
-
-			<Header position="sticky-top"> {/* position: sticky-top | fixed-top */}
-				<div className="me-auto">
-					<Logo />
-				</div>
-				<div className="order-last order-lg-0">
-					<NavBarAndMobileNavToggle />
-				</div>
-				<div className="ms-auto">
-					<Button name="Get Started" href="/#about" />
+			<Header>
+				<div className=" d-flex align-items-center">
+					<div className="me-auto">
+						<Logo />
+					</div>
+					<div className="order-last order-lg-0">
+						<NavBarAndMobileNavToggle />
+					</div>
+					<div className="ms-auto">
+						<Button name="Get Started" href="/#about" />
+					</div>
 				</div>
 			</Header>
 
 			<Main>
-
 				<ContactSection>
 					<SectionTitle heading="Contact" paragraph="Contact Us" />
 
-					<div className="col-lg-4" data-aos="fade-up">
-						<ContactContent />
-					</div>
+					<div className="row">
+						<div className="col-lg-4" data-aos="fade-up">
+							<ContactContent />
+						</div>
 
-					<div className="col-lg-8 mt-5 mt-lg-0" data-aos="fade-up">
-						<MailForm />
+						<div className="col-lg-8 mt-5 mt-lg-0" data-aos="fade-up">
+							<MailForm />
+						</div>
 					</div>
 				</ContactSection>
 
 			</Main>
 
 			<Footer>
-				<div className="col-lg-3 col-md-6 mb-0 mb-md-4">
-					<FooterContent />
-				</div>
+				<div className="row">
+					<div className="col-lg-3 col-md-6 mb-0 mb-md-4">
+						<FooterContent />
+					</div>
 
-				<div className="col-lg-2 col-md-6 mb-4 mb-lg-0">
-					<UsefulLinks />
-				</div>
+					<div className="col-lg-2 col-md-6 mb-4 mb-lg-0">
+						<UsefulLinks />
+					</div>
 
-				<div className="col-lg-3 col-md-6 mb-md-4 mb-lg-0">
-					<ServicesLinks />
+					<div className="col-lg-3 col-md-6 mb-md-4 mb-lg-0">
+						<ServicesLinks />
+					</div>
 				</div>
 			</Footer>
 
 			<BottomBar>
-				<SocialLinks />
-				<Copyright />
+				<div className="">
+					<SocialLinks />
+				</div>
+
+				<div className="">
+					<Copyright />
+				</div>
 			</BottomBar>
 
 		</>

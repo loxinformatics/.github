@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     # required
     "base",
     # optional
+    "authentication",
     "accounts",
     "contact",
 ]
@@ -243,5 +244,5 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": False,
     # custom
     "AUTH_COOKIE": "access_token",
-    "TOKEN_OBTAIN_SERIALIZER": "auth.serializers.TokenSerializer",
+    "TOKEN_OBTAIN_SERIALIZER": "authentication.serializers.TokenSerializer",
 }

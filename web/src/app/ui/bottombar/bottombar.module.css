@@ -1,3 +1,7 @@
+.bottombar_bg {
+    background: rgba(var(--bs-black-rgb), 0.8);
+}
+
 .copyright {
     font-size: var(--font-size-xxs);
 }
@@ -5,7 +9,6 @@
 .socialLink {
     font-size: var(--font-size-md);
     display: inline-block;
-    background: #292929;
     color: var(--bs-white);
     line-height: 1;
     padding: 8px 0;

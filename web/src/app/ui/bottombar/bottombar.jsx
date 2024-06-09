@@ -11,15 +11,40 @@ import {
 } from "react-icons/bs";
 import BaseContext, { useBaseContext } from "@/app/context";
 import ContactContext, { useContactContext } from "@/app/contact/context";
+import { useState, useEffect } from "react";
 
+export default function BottomBar({ children, hasBackground = true }) {
+    const [background, setBackground] = useState(styles.bottombar_bg);
 
-export default function BottomBar({ children }) {
+    useEffect(() => {
+        const handleBackground = () => {
+            if (window.innerHeight <= 555) {
+                !hasBackground && setBackground(styles.bottombar_bg);
+            } else {
+                hasBackground ? setBackground(styles.bottombar_bg) : setBackground("");
+            }
+        };
+
+        handleBackground();
+        window.addEventListener("resize", handleBackground);
+
+        return () => {
+            window.removeEventListener("resize", handleBackground);
+        };
+    }, [hasBackground]);
+
     return (
         <BaseContext>
             <ContactContext>
-                <section className={`bg-black text-white text-center pt-4 pb-3`}>
-                    {children}
-                </section>
+                <div id="bottombar" className={`position-relative ${background} text-white text-center pt-4 pb-3`}>
+                    {/**
+                     * This is a div with it's own padding because section has a global padding */ }
+                    
+                    <div className="container">
+                        {children}
+                    </div>
+                    
+                </div>
             </ContactContext>
         </BaseContext>
     );
@@ -30,15 +55,9 @@ export function Copyright() {
     const name = base?.name;
 
     return (
-        name ? (
-            <div className={styles.copyright}>
-                &copy; Copyright <strong><span>{name}</span></strong>. All Rights Reserved
-            </div>
-        ) : (
-            <div className={styles.copyright}>
-                &copy; Copyright <strong><span>Your company</span></strong>. All Rights Reserved
-            </div>
-        )
+        <div className={styles.copyright}>
+            &copy; Copyright <strong><span>{name || "Your company"}</span></strong>. All Rights Reserved
+        </div>
     );
 }
 

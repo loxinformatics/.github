@@ -11,7 +11,7 @@ root_url = settings.ROOT_URL + "/" if settings.ROOT_URL else ""
 urlpatterns = [
     path(f"{root_url}admin/", admin.site.urls),
     path(f"{root_url}rest/", include("rest_framework.urls")),
-    path(f"{root_url}auth/", include("auth.urls")),
+    path(f"{root_url}auth/", include("authentication.urls")),
 ]
 
 

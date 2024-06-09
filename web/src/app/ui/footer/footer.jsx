@@ -7,16 +7,13 @@ import BaseContext, { useBaseContext } from "@/app/context";
 import ContactContext, { useContactContext } from "@/app/contact/context";
 
 
-export default function Footer({ children, position }) {
-
+export default function Footer({ children }) {
 	return (
 		<BaseContext>
 			<ContactContext>
-				<footer id="footer" className={`${styles.footer} ${position && "position-" + position}`}>
+				<footer id="footer" className={`${styles.footer} position-relative`}>
 					<div className="container">
-						<div className="row">
-							{children}
-						</div>
+						{children}
 					</div>
 				</footer>
 			</ContactContext>

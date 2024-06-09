@@ -1,9 +1,9 @@
-.auth {
+.bg {
     background: url("/images/auth-bg.png") center top no-repeat fixed;
     background-size: cover;
 }
 
-.auth::before {
+.bg::before {
     content: "";
     position: absolute;
     top: 0;

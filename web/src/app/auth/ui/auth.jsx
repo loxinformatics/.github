@@ -12,9 +12,11 @@ import { useAuthContext } from "@/app/auth/global_context";
 export default function AuthSection({ children }) {
 
     return (
-        <section className={`row flex-grow-1 d-flex align-items-center justify-content-center py-3`}>
-            {children}
-        </section>
+        <div id="auth" className="h-100 d-flex flex-column justify-content-center align-items-center">
+            <div className="container">
+                {children}
+            </div>
+        </div>
     );
 }
 
@@ -110,61 +112,64 @@ export function LoginForm() {
     };
 
     return (
-        <form id="loginform" className={`row ${styles.authform}`} method="post" onSubmit={handleSubmit} noValidate>
 
-            <div className="pb-2 w-100">
+        <div className="card">
+            <div className="card-body">
+                <form id="loginform" className={`row ${styles.authform}`} method="post" onSubmit={handleSubmit} noValidate>
 
-                <div className="d-flex align-items-center justify-content-between">
-                    <h5 className="d-block mx-auto fw-bold text-center fs-4">Login to Your Account</h5>
-                </div>
-                <p className="text-center small">Enter your email & password to login</p>
-            </div>
+                    <div className="pb-2 w-100">
 
-            <div className="my-2">
-                {success && (
-                    <div className="alert alert-success text-center">{success}</div>
-                )}
-                {error && (
-                    <div className="alert alert-danger text-center">{error}</div>
-                )}
-                {loading && (
-                    <div className="loading text-center">
-                        <div className="spinner-border text-primary" role="status">
-                            <span className="visually-hidden">Loading...</span>
+                        <div className="d-flex align-items-center justify-content-between">
+                            <h5 className="d-block mx-auto fw-bold text-center fs-4">Login to Your Account</h5>
                         </div>
+                        <p className="text-center small">Enter your email & password to login</p>
                     </div>
-                )}
-            </div>
 
-            <div className="col-12 form-floating mb-3">
-                <input
-                    type="text"
-                    id="login_username"
-                    onChange={(e) => setUsername(e.target.value)}
-                    className={`form-control ${styles.input}`}
-                    placeholder="name@example.com"
-                    required
-                    autoFocus
-                />
-                <label htmlFor="login_username" className={`form-label ${styles.label}`}>Your Username</label>
-                <div className="invalid-feedback">Please enter a valid username</div>
-            </div>
+                    <div className="my-2">
+                        {success && (
+                            <div className="alert alert-success text-center">{success}</div>
+                        )}
+                        {error && (
+                            <div className="alert alert-danger text-center">{error}</div>
+                        )}
+                        {loading && (
+                            <div className="loading text-center">
+                                <div className="spinner-border text-primary" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="col-12 form-floating mb-3">
+                        <input
+                            type="text"
+                            id="login_username"
+                            onChange={(e) => setUsername(e.target.value)}
+                            className={`form-control ${styles.input}`}
+                            placeholder="name@example.com"
+                            required
+                            autoFocus
+                        />
+                        <label htmlFor="login_username" className={`form-label ${styles.label}`}>Your Username</label>
+                        <div className="invalid-feedback">Please enter a valid username</div>
+                    </div>
 
 
-            <div className="col-12 form-floating mb-3">
-                <input
-                    type="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    id="login_password"
-                    className={`form-control ${styles.input}`}
-                    placeholder="Your password"
-                    autoComplete="current-password"
-                    required
-                />
-                <label htmlFor="login_password" className={`form-label ${styles.label}`}>Your password</label>
-                <div className="invalid-feedback">Please enter your password</div>
-            </div>
-            {/* 
+                    <div className="col-12 form-floating mb-3">
+                        <input
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            id="login_password"
+                            className={`form-control ${styles.input}`}
+                            placeholder="Your password"
+                            autoComplete="current-password"
+                            required
+                        />
+                        <label htmlFor="login_password" className={`form-label ${styles.label}`}>Your password</label>
+                        <div className="invalid-feedback">Please enter your password</div>
+                    </div>
+                    {/* 
             <div className={`col-12 recaptcha px-5 py-1 d-flex justify-content-sm-between align-items-center ${styles.recaptcha}`}>
                 <div
                     className="g-recaptcha"
@@ -174,20 +179,22 @@ export function LoginForm() {
                 ></div>
             </div> */}
 
-            <div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center mb-3">
-                <button type="submit" className={`btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0 ${styles.button}`} disabled={loading}>Login</button>
-            </div>
+                    <div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center mb-3">
+                        <button type="submit" className={`btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0 ${styles.button}`} disabled={loading}>Login</button>
+                    </div>
 
-            <div className="mt-4 col-12 d-sm-table text-center">
-                <div className="d-sm-table-cell mb-2 mb-sm-0 border-end border-secondary">
-                    <span className="form-text">Don&apos;t have an account? <Link className={styles.link} href="/auth/signup">Sign up here</Link></span>
-                </div>
-                <div className="d-sm-table-cell">
-                    <span className="form-text">Request <Link className={styles.link} href="">Password Reset</Link></span>
-                </div>
-            </div>
+                    <div className="mt-4 col-12 d-sm-table text-center">
+                        <div className="d-sm-table-cell mb-2 mb-sm-0 border-end border-secondary">
+                            <span className="form-text">Don&apos;t have an account? <Link className={styles.link} href="/auth/?formType=signup">Sign up here</Link></span>
+                        </div>
+                        <div className="d-sm-table-cell">
+                            <span className="form-text">Request <Link className={styles.link} href="">Password Reset</Link></span>
+                        </div>
+                    </div>
 
-        </form>
+                </form>
+            </div >
+        </div>
     );
 }
 
@@ -259,107 +266,111 @@ export function SignupForm() {
     };
 
     return (
-        <form id="signupform" className={`row ${styles.authform}`} onSubmit={handleSubmit} method="post" noValidate>
+        <div className="card">
+            <div className="card-body">
+                <form id="signupform" className={`row ${styles.authform}`} onSubmit={handleSubmit} method="post" noValidate>
 
-            <div className="pb-2 w-100">
-                <div className="d-flex align-items-center justify-content-between">
-                    <h5 className="d-block mx-auto fw-bold text-center fs-4">Create an account</h5>
-                </div>
-                <p className="text-center small">Enter your personal details to create account</p>
-            </div>
+                    <div className="pb-2 w-100">
+                        <div className="d-flex align-items-center justify-content-between">
+                            <h5 className="d-block mx-auto fw-bold text-center fs-4">Create an account</h5>
+                        </div>
+                        <p className="text-center small">Enter your personal details to create account</p>
+                    </div>
 
-            <div className="my-2">
-                {success && <div className="alert alert-success text-center">{success}</div>}
-                {error && <div className="alert alert-danger text-center">{error}</div>}
-                {loading && <div className="loading text-center"><div className="spinner-border text-primary" role="status"><span className="visually-hidden">Loading...</span></div></div>}
-            </div>
+                    <div className="my-2">
+                        {success && <div className="alert alert-success text-center">{success}</div>}
+                        {error && <div className="alert alert-danger text-center">{error}</div>}
+                        {loading && <div className="loading text-center"><div className="spinner-border text-primary" role="status"><span className="visually-hidden">Loading...</span></div></div>}
+                    </div>
 
-            {/* Full Name */}
+                    {/* Full Name */}
 
-            <div className="col-12 col-md-6 mb-3">
-                <label htmlFor="signup_full_name" className={`form-label ${styles.label}`}>Your Name</label>
+                    <div className="col-6 mb-3">
+                        <label htmlFor="signup_full_name" className={`form-label ${styles.label}`}>Your Name</label>
 
-                <input type="text" id="signup_full_name"
-                    value={full_name}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className={`form-control ${styles.input}`}
-                    required />
+                        <input type="text" id="signup_full_name"
+                            value={full_name}
+                            onChange={(e) => setFullName(e.target.value)}
+                            className={`form-control ${styles.input}`}
+                            required />
 
-                <div className="invalid-feedback">Please enter your full name!</div>
-            </div>
+                        <div className="invalid-feedback">Please enter your full name!</div>
+                    </div>
 
-            {/* Email */}
+                    {/* Email */}
 
-            <div className="col-12 col-md-6 mb-3">
-                <label htmlFor="signup_Email" className={`form-label ${styles.label}`}>Your Email</label>
+                    <div className="col-6 mb-3">
+                        <label htmlFor="signup_Email" className={`form-label ${styles.label}`}>Your Email</label>
 
-                <input type="email" id="signup_email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={`form-control ${styles.input}`}
-                    required />
+                        <input type="email" id="signup_email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className={`form-control ${styles.input}`}
+                            required />
 
-                <div className="invalid-feedback">Please enter a valid Email adddress!</div>
-            </div>
+                        <div className="invalid-feedback">Please enter a valid Email adddress!</div>
+                    </div>
 
-            {/* Username */}
+                    {/* Username */}
 
-            <div className="col-12 col-md-6 mb-3">
-                <label htmlFor="signup_username" className={`form-label ${styles.label}`}>Username</label>
+                    <div className="col-6 mb-3">
+                        <label htmlFor="signup_username" className={`form-label ${styles.label}`}>Username</label>
 
-                <input type="text" id="signup_username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className={`form-control ${styles.input}`}
-                    required />
+                        <input type="text" id="signup_username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className={`form-control ${styles.input}`}
+                            required />
 
-                <div className="invalid-feedback">Please choose a username.</div>
-            </div>
+                        <div className="invalid-feedback">Please choose a username.</div>
+                    </div>
 
-            {/* Password */}
+                    {/* Password */}
 
-            <div className="col-12 col-md-6 mb-3">
-                <label htmlFor="yourPassword" className={`form-label ${styles.label}`}>Password</label>
+                    <div className="col-6 mb-3">
+                        <label htmlFor="yourPassword" className={`form-label ${styles.label}`}>Password</label>
 
-                <input type="password" id="signup_password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`form-control ${styles.input}`}
-                    required />
+                        <input type="password" id="signup_password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className={`form-control ${styles.input}`}
+                            required />
 
-                <div className="invalid-feedback">Please enter your password!</div>
-            </div>
+                        <div className="invalid-feedback">Please enter your password!</div>
+                    </div>
 
-            {/* Has Agreed */}
+                    {/* Has Agreed */}
 
-            <div className="col-12 mb-3">
-                <div className="form-check">
-                    <input type="checkbox" id="signup_agreeterms"
-                        value={has_agreed}
-                        onChange={(e) => setHasAgreed(e.target.value)}
-                        className={`form-check-input ${styles.checkInput}`}
-                        required />
+                    <div className="col-12 mb-3">
+                        <div className="form-check">
+                            <input type="checkbox" id="signup_agreeterms"
+                                value={has_agreed}
+                                onChange={(e) => setHasAgreed(e.target.value)}
+                                className={`form-check-input ${styles.checkInput}`}
+                                required />
 
-                    <label className={`form-check-label ms-3 ${styles.label}`} htmlFor="acceptTerms">
-                        I agree and accept the <Link href="#">terms and conditions</Link>
-                    </label>
+                            <label className={`form-check-label ms-3 ${styles.label}`} htmlFor="acceptTerms">
+                                I agree and accept the <Link href="#">terms and conditions</Link>
+                            </label>
 
-                    <div className="invalid-feedback">You must agree before submitting.</div>
-                </div>
-            </div>
+                            <div className="invalid-feedback">You must agree before submitting.</div>
+                        </div>
+                    </div>
 
-            {/* Submit */}
+                    {/* Submit */}
 
-            <div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center mb-3">
-                <button type="submit" className={`btn btn-primary text-white text-uppercase w-100 mb-3 mb-sm-0 ${styles.button}`} disabled={loading}>Create Account</button>
-            </div>
+                    <div className="col-12 btns d-flex flex-column flex-sm-row justify-content-center align-items-center mb-3">
+                        <button type="submit" className={`btn btn-primary text-white text-uppercase w-100  ${styles.button}`} disabled={loading}>Create Account</button>
+                    </div>
 
-            <div className="mt-4 col-12 d-sm-table text-center">
-                <div className="d-sm-table-cell mb-2 mb-sm-0 border-end border-secondary">
-                    <span className="form-text">Already have an account? <Link className={styles.link} href="/auth/login">Login here</Link></span>
-                </div>
-            </div>
+                    <div className="col-12 d-sm-table text-center">
+                        <div className="d-sm-table-cell  border-end border-secondary">
+                            <span className="form-text">Already have an account? <Link className={styles.link} href="/auth/?formType=login">Login here</Link></span>
+                        </div>
+                    </div>
 
-        </form >
+                </form >
+            </div >
+        </div>
     );
 }

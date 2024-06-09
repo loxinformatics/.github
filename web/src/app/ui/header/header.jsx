@@ -9,16 +9,15 @@ import { usePathname } from "next/navigation";
 import { BsX, BsList } from "react-icons/bs";
 import BaseContext, { useBaseContext } from "@/app/context";
 
+export default function Header({ children, hasBackground = true, position = "sticky-top" }) {
+    const [background, setBackground] = useState("header_bg");
 
-export default function Header({ children, position }) {
-    const [hasbackground, setHasBackground] = useState(false);
-    
     useEffect(() => {
         const handleBackground = () => {
-            if (window.scrollY > 10 || window.innerHeight <= 555 || position === "sticky-top") {
-                setHasBackground(true);
+            if (window.scrollY > 5 || window.innerHeight <= 555) {
+                !hasBackground && setBackground("header_bg");
             } else {
-                setHasBackground(false);
+                hasBackground ? setBackground("header_bg") : setBackground("");
             }
         };
 
@@ -30,15 +29,12 @@ export default function Header({ children, position }) {
             window.removeEventListener("scroll", handleBackground);
             window.removeEventListener("resize", handleBackground);
         };
-    }, [position]);
+    }, [hasBackground]);
 
     return (
         <BaseContext>
-            <header id="header" className={`header
-                ${position}
-                ${hasbackground ? "header_bg" : ""}
-            `}>
-                <div className="container d-flex align-items-center">
+            <header id="header" className={`header ${background} ${position}`}>
+                <div className="container">
                     {children}
                 </div>
             </header>

@@ -13,9 +13,7 @@ export default function ContactSection({ children }) {
         <ContactContext>
             <section id="contact" className="contact">
                 <div className="container">
-                    <div className="row">
-                        {children}
-                    </div>
+                    {children}
                 </div>
             </section>
         </ContactContext>

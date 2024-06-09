@@ -4,46 +4,37 @@
 ------------------------------*/
 import Main from "@/app/ui/main/main";
 
-
 /* Optionally Include node_modules and packages
 ------------------------------*/
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from "react";
-
+import { useSearchParams } from "next/navigation";
 
 /* Optionally Include custom styling
 ------------------------------*/
-import styles from "./page.module.css"
-
+import styles from "./page.module.css";
 
 /* Optionally include context and utils
 ------------------------------*/
 import PublicRoute from "./utils/publicroute/publicroute";
 
-
 /* Optionally include global ui components with their widgets as needed
 ------------------------------*/
-import Header, {
-    Logo,
-    NavBarAndMobileNavToggle,
-} from "@/app/ui/header/header";
-
+import Header, { Logo, NavBarAndMobileNavToggle } from "@/app/ui/header/header";
+import BottomBar, { Copyright, SocialLinks } from "@/app/ui/bottombar/bottombar";
 
 /* Optionally include section context providers and ui components with their widgets as needed
 ------------------------------*/
-import AuthSection, {
-    LoginForm,
-    SignupForm,
-} from "@/app/auth/ui/auth";
-
+import AuthSection, { LoginForm, SignupForm } from "@/app/auth/ui/auth";
 
 /* Optionally include shared ui components to nest in any block component
 ------------------------------*/
 import Button from "@/app/utils/button/button";
 
-
 export default function AuthPage() {
+    const searchParams = useSearchParams();
+    const authForm = searchParams.get("formType") === "signup" ? <SignupForm /> : <LoginForm />;
 
     useEffect(() => {
         AOS.init({
@@ -56,34 +47,36 @@ export default function AuthPage() {
 
     return (
         <PublicRoute>
-
-            <Header position="fixed-top">
-                <div className="me-auto">
-                    <Logo />
-                </div>
-                <div className="order-last order-lg-0">
-                    <NavBarAndMobileNavToggle />
-                </div>
-                <div className="ms-auto">
-                    <Button name="Go Back" href="/#hero" />
+            <Header hasBackground={false}>
+                <div className=" d-flex align-items-center">
+                    <div className="me-auto">
+                        <Logo />
+                    </div>
+                    <div className="order-last order-lg-0">
+                        <NavBarAndMobileNavToggle />
+                    </div>
+                    <div className="ms-auto">
+                        <Button name="Get Started" href="/#about" />
+                    </div>
                 </div>
             </Header>
 
-            <div className="vh-100 d-flex flex-column">
-                <main id="main" className={`${styles.auth} flex-grow-1 position-relative container-fluid d-flex flex-column`}>
+            <Main fit={true} background={styles.bg}>
 
-                    <AuthSection>
-                        <div className="col-12 col-sm-10 col-md-8 col-lg-6" data-aos="fade-in">
-                            <div className="card">
-                                <div className="card-body py-4">
-                                    <LoginForm />
-                                </div>
-                            </div>
+                <AuthSection>
+                    <div className="row">
+                        <div className="mx-auto col-12 col-sm-10 col-md-8 col-lg-6">
+                            {authForm}
                         </div>
-                    </AuthSection>
+                    </div>
+                </AuthSection>
 
-                </main>
-            </div>
-        </PublicRoute >
+            </Main>
+
+            <BottomBar hasBackground={false}>
+                <Copyright />
+            </BottomBar>
+
+        </PublicRoute>
     );
 }
