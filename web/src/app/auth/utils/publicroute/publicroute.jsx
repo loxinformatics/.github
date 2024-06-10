@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Loader from "@/app/utils/loader/loader";
+import Preloader from "@/app/utils/preloader/preloader";
 import { useAuthContext } from "../../global_context";
 
 
@@ -18,7 +18,7 @@ export default function PublicRoute({ children }) {
         }
     }, [router, user, searchParams]);
 
-    if (user) return <Loader />;
+    if (user) return <Preloader />;
 
     return children;
 }

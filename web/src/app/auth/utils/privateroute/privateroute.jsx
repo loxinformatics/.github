@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import Loader from "@/app/utils/loader/loader";
+import Preloader from "@/app/utils/preloader/preloader";
 import { useAuthContext } from "../../global_context";
 
 
@@ -17,7 +17,7 @@ export default function PrivateRoute({ children }) {
         }
     }, [router, user, pathname]);
 
-    if (!user) return <Loader />;
+    if (!user) return <Preloader />;
 
     return children;
 }

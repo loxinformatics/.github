@@ -4,11 +4,9 @@ import { createContext, useContext, useState, useEffect, useCallback } from "rea
 import { jwtDecode } from "jwt-decode";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { apiUrl } from "../context";
-import Loader from "@/app/utils/loader/loader";
-import Error from "@/app/utils/error/error";
+import Preloader from "@/app/utils/preloader/preloader";
 
 const authContext = createContext(null);
-
 
 export default function AuthContext({ children }) {
     const router = useRouter();
@@ -59,14 +57,14 @@ export default function AuthContext({ children }) {
             } else {
                 logoutUser();
             }
-        } catch (error) {
+        } catch (e) {
             logoutUser();
-            setError(`Accounts Provider Error: ${error.message}`);
+            setError(`Accounts Provider Error: ${e.message}`);
         } finally {
             if (loading) setLoading(false);
         }
 
-    }, [token?.refresh, loading, logoutUser]);
+    }, [token?.refresh, logoutUser, loading]);
 
     useEffect(() => {
         if (loading) {
@@ -98,7 +96,16 @@ export default function AuthContext({ children }) {
 
     return (
         <authContext.Provider value={contextData}>
-            {loading ? <Loader /> : error ? <Error message={error} /> : children}
+            {loading ? (
+                <Preloader />
+            ) : error ? (
+                <>
+                    {console.error(error)}
+                    {children}
+                </>
+            ) : (
+                children
+            )}
         </authContext.Provider>
     );
 }
@@ -119,7 +126,7 @@ export function PrivateRoute({ children }) {
         }
     }, [router, user, pathname]);
 
-    if (!user) return <Loader />;
+    if (!user) return <Preloader />;
 
     return children;
 }
@@ -136,7 +143,7 @@ export function PublicRoute({ children }) {
         }
     }, [router, user, searchParams]);
 
-    if (user) return <Loader />;
+    if (user) return <Preloader />;
 
     return children;
 }

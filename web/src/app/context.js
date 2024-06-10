@@ -1,8 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import Loader from "@/app/utils/loader/loader";
-import Error from "@/app/utils/error/error";
+import Preloader from "@/app/utils/preloader/preloader";
 
 const baseContext = createContext(null);
 
@@ -24,8 +23,8 @@ export default function BaseContext({ children }) {
                 const response = await fetch(apiUrl + "/base/");
                 const data = await response.json();
                 setBase(data[0]);
-            } catch (error) {
-                setError(`Base Provider Error: ${error.message}`);
+            } catch (e) {
+                setError(`Base Provider Error: ${e.message}`);
             } finally {
                 setLoading(false);
             }
@@ -40,7 +39,16 @@ export default function BaseContext({ children }) {
 
     return (
         <baseContext.Provider value={contextData}>
-            {loading ? <Loader /> : error ? <Error message={error} /> : children}
+            {loading ? (
+                <Preloader />
+            ) : error ? (
+                <>
+                    {console.error(error)}
+                    {children}
+                </>
+            ) : (
+                children
+            )}
         </baseContext.Provider>
     );
 }

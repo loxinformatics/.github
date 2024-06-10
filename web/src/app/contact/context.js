@@ -1,8 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import Loader from "@/app/utils/loader/loader";
-import Error from "@/app/utils/error/error";
+import Preloader from "@/app/utils/preloader/preloader";
 import { apiUrl } from "../context";
 
 const contactContext = createContext(null);
@@ -19,15 +18,15 @@ export default function ContactContext({ children }) {
                 const response = await fetch(apiUrl + "/contact/info");
                 const data = await response.json();
                 setContactInfo(data[0]);
-            } catch (error) {
-                setError(`Contact Info Provider Error: ${error.message}`);
+            } catch (e) {
+                setError(`Contact Info Provider Error: ${e.message}`);
             } finally {
                 setLoading(false);
             }
         };
 
         fetchContactInfo();
-    }, []);
+    }, [error]);
 
     const contextData = {
         contact_info: contact_info,
@@ -36,7 +35,16 @@ export default function ContactContext({ children }) {
 
     return (
         <contactContext.Provider value={contextData}>
-            {loading ? <Loader /> : error ? <Error message={error} /> : children}
+            {loading ? (
+                <Preloader />
+            ) : error ? (
+                <>
+                    {console.error(error)}
+                    {children}
+                </>
+            ) : (
+                children
+            )}
         </contactContext.Provider>
     );
 }
