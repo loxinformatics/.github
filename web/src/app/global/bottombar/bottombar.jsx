@@ -36,15 +36,11 @@ export default function BottomBar({ children, hasBackground = true }) {
     return (
         <BaseContext>
             <ContactContext>
-                <div id="bottombar" className={`position-relative ${background} text-white text-center pt-4 pb-3`}>
-                    {/**
-                     * This is a div with it's own padding because section has a global padding */ }
-                    
+                <section id="bottombar" className={`position-relative ${background} text-white text-center pt-4 pb-3`}>  
                     <div className="container">
                         {children}
                     </div>
-                    
-                </div>
+                </section>
             </ContactContext>
         </BaseContext>
     );

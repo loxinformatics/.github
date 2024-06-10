@@ -1,0 +1,21 @@
+.fixedMain {
+    display: flex;
+    flex-direction: column;
+    flex-grow: inherit;
+    
+}
+
+.centeredSection {
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.section {
+    padding: 60px 0;
+    overflow: hidden;
+}

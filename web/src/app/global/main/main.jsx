@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import styles from "./main.module.css";
 
-export default function Main({ children, fit = false, background }) {
+import React, { useEffect, useState } from 'react';
+
+export default function Main({ children, fixAndCenter = false, background }) {
     const [contentHeight, setContentHeight] = useState('100vh');
 
     useEffect(() => {
@@ -17,11 +19,11 @@ export default function Main({ children, fit = false, background }) {
                 document.body.classList.add(background);
             }
 
-            if (fit && header) {
+            if (fixAndCenter && header) {
                 headerHeight = header.offsetHeight;
             }
 
-            if (fit && bottombar) {
+            if (fixAndCenter && bottombar) {
                 bottombarHeight = bottombar.offsetHeight;
             }
 
@@ -49,19 +51,17 @@ export default function Main({ children, fit = false, background }) {
                 document.body.classList.remove(background);
             }
         };
-    }, [fit, background]);
+    }, [fixAndCenter, background]);
 
-    const mainContent = fit ? (
-        <main id="main" style={{ height: contentHeight }} className="position-relative d-flex flex-column flex-grow-1">
-            <div className="overflow-y-auto h-100">
-                {children}
-            </div>
-        </main>
-    ) : (
-        <main id="main" className="position-relative">
-            {children}
+    // Apply the fit class conditionally based on the fit prop
+    const mainClass = fixAndCenter ? `position-relative ${styles.fixedMain}` : "position-relative";
+
+    return (
+        <main id="main" style={{ height: contentHeight }} className={mainClass}>
+            {React.Children.map(children, child => {
+                // Clone each child and pass down the fitInMain className directly or via prop if in a section component. 
+                return React.cloneElement(child, { sectionmain: fixAndCenter ? styles.centeredSection : styles.section });
+            })}
         </main>
     );
-
-    return mainContent;
 }

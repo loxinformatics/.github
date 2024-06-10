@@ -5,9 +5,9 @@ import PrivateRoute from "@/app/auth/global_context";
 import Header, {
 	Logo,
 	NavBarAndMobileNavToggle,
-} from "@/app/ui/header/header";
+} from "@/app/global/header/header";
 
-import Main from "@/app/ui/main/main";
+import Main from "@/app/global/main/main";
 import Button from "@/app/utils/button/button";
 
 

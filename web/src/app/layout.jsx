@@ -1,4 +1,4 @@
-import "./global.scss"
+import "./custom.scss"
 import AuthContext from "@/app/auth/global_context";
 import ScrollTop from "@/app/utils/scrolltop/scrolltop";
 

@@ -1,6 +1,9 @@
-import styles from "./sectiontitle.module.css"
+"use client";
 
-export default function SectionTitle({ heading, paragraph }) {
+import styles from "./title.module.css";
+
+
+export default function Title({ heading, paragraph }) {
     return (
         <div className={styles.title}>
             <h2 className={styles.h2}>{heading}</h2>

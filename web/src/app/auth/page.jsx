@@ -2,7 +2,7 @@
 
 /* Include required global ui components
 ------------------------------*/
-import Main from "@/app/ui/main/main";
+import Main from "@/app/global/main/main";
 
 /* Optionally Include node_modules and packages
 ------------------------------*/
@@ -21,12 +21,12 @@ import PublicRoute from "./utils/publicroute/publicroute";
 
 /* Optionally include global ui components with their widgets as needed
 ------------------------------*/
-import Header, { Logo, NavBarAndMobileNavToggle } from "@/app/ui/header/header";
-import BottomBar, { Copyright, SocialLinks } from "@/app/ui/bottombar/bottombar";
+import Header, { Logo, NavBarAndMobileNavToggle } from "@/app/global/header/header";
+import BottomBar, { Copyright, SocialLinks } from "@/app/global/bottombar/bottombar";
 
 /* Optionally include section context providers and ui components with their widgets as needed
 ------------------------------*/
-import AuthSection, { LoginForm, SignupForm } from "@/app/auth/ui/auth";
+import AuthSection, { LoginForm, SignupForm } from "@/app/auth/section/auth";
 
 /* Optionally include shared ui components to nest in any block component
 ------------------------------*/
@@ -56,12 +56,12 @@ export default function AuthPage() {
                         <NavBarAndMobileNavToggle />
                     </div>
                     <div className="ms-auto">
-                        <Button name="Get Started" href="/#about" />
+                        <Button name="Back Home" href="/#hero" />
                     </div>
                 </div>
             </Header>
 
-            <Main fit={true} background={styles.bg}>
+            <Main fixAndCenter={true} background={styles.bg}>
 
                 <AuthSection>
                     <div className="row">

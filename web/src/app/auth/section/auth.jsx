@@ -8,15 +8,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { apiUrl } from "@/app/context";
 import { useAuthContext } from "@/app/auth/global_context";
 
-
-export default function AuthSection({ children }) {
+export default function AuthSection({ sectionmain, children }) {
 
     return (
-        <div id="auth" className="h-100 d-flex flex-column justify-content-center align-items-center">
+        <section id="auth" className={sectionmain}>
             <div className="container">
                 {children}
             </div>
-        </div>
+        </section>
     );
 }
 

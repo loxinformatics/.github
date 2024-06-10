@@ -9,7 +9,7 @@
 
 /* Include required global components
 ------------------------------*/
-import Main from "@/app/ui/main/main";
+import Main from "@/app/global/main/main";
 
 
 /* Optionally Include node_modules and packages
@@ -28,18 +28,18 @@ import { useEffect } from "react";
 import Header, {
 	Logo,
 	NavBarAndMobileNavToggle,
-} from "@/app/ui/header/header";
+} from "@/app/global/header/header";
 
 import Footer, {
 	FooterContent,
 	UsefulLinks,
 	ServicesLinks,
-} from "@/app/ui/footer/footer";
+} from "@/app/global/footer/footer";
 
 import BottomBar, {
 	Copyright,
 	SocialLinks,
-} from "@/app/ui/bottombar/bottombar";
+} from "@/app/global/bottombar/bottombar";
 
 
 /* Optionally include section context providers and ui components with their widgets as needed
@@ -47,13 +47,13 @@ import BottomBar, {
 import ContactSection, {
 	ContactContent,
 	MailForm,
-} from "@/app/contact/ui/contact";
+} from "@/app/contact/section/contact";
 
 
 /* Optionally include shared ui components to nest in any block component
 ------------------------------*/
-import SectionTitle from "@/app/utils/sectiontitle/sectiontitle";
 import Button from "@/app/utils/button/button";
+import Title from "@/app/utils/title/title";
 
 
 export default function HomePage() {
@@ -85,7 +85,7 @@ export default function HomePage() {
 
 			<Main>
 				<ContactSection>
-					<SectionTitle heading="Contact" paragraph="Contact Us" />
+					<Title heading="Contact" paragraph="Contact Us" />
 
 					<div className="row">
 						<div className="col-lg-4" data-aos="fade-up">

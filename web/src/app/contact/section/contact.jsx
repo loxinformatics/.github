@@ -7,11 +7,10 @@ import { BsGeoAlt, BsEnvelope, BsPhone } from "react-icons/bs";
 import ContactContext, { useContactContext } from "@/app/contact/context";
 import { apiUrl } from "@/app/context";
 
-
-export default function ContactSection({ children }) {
+export default function ContactSection({ sectionmain, children }) {
     return (
         <ContactContext>
-            <section id="contact" className="contact">
+            <section id="contact" className={sectionmain}>
                 <div className="container">
                     {children}
                 </div>
