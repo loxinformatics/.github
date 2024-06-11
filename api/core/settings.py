@@ -58,11 +58,10 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework_simplejwt.token_blacklist",
     # required
+    "authentication",
     "base",
     # optional
-    "authentication",
-    "accounts",
-    "contact",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -200,10 +199,10 @@ EMAIL_HOST_PASSWORD = SECRET_KEY
 # Authentication
 # https://docs.djangoproject.com/en/stable/topics/auth/
 
-AUTH_USER_MODEL = "accounts.Account"
+AUTH_USER_MODEL = "users.User"
 
 AUTHENTICATION_BACKENDS = [
-    # "accounts.backends.UsernameOrEmailBackend",
+    # "users.backends.UsernameOrEmailBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
 

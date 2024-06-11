@@ -10,11 +10,19 @@ class Base(models.Model):
 
     class Meta:
         verbose_name_plural = "Base Information"
-        db_table = "api_base"
+        db_table = "app_base"
 
+    
+    logo = models.ImageField(
+        upload_to="base/",
+        help_text="Pick a logo preferably of size 500x500",
+        blank=True,
+        null=True,
+    )
     name = models.CharField(
         max_length=255,
-        help_text="Enter the full name. * (Required)",
+        help_text="Enter the full name.",
+        blank=True,
     )
     short_name = models.CharField(
         max_length=255,
@@ -30,15 +38,87 @@ class Base(models.Model):
         help_text="Enter the description.",
         blank=True,
     )
-    logo = models.ImageField(
-        upload_to="base/",
-        help_text="Pick a logo preferably of size 500x500",
-        blank=True,
-        null=True,
-    )
     website = models.URLField(
         max_length=255,
         help_text="Enter the website url",
+        blank=True,
+    )
+    primary_phone = models.CharField(
+        max_length=255,
+        help_text="Enter the primary contact phone number.",
+        blank=True,
+    )
+    secondary_phone = models.CharField(
+        max_length=255,
+        help_text="Enter the secondary contact phone number.",
+        blank=True,
+    )
+    primary_email = models.EmailField(
+        help_text="Enter the primary contact email.",
+        blank=True,
+    )
+    secondary_email = models.EmailField(
+        help_text="Enter the secondary contact email.",
+        blank=True,
+    )
+    building = models.CharField(
+        max_length=255,
+        help_text="Enter the location building",
+        blank=True,
+    )
+    street = models.CharField(
+        max_length=255,
+        help_text="Enter the location street",
+        blank=True,
+    )
+    PO_box = models.CharField(
+        max_length=255,
+        help_text="Enter the P.O Box",
+        blank=True,
+    )
+    city_name = models.CharField(
+        max_length=255,
+        help_text="Enter the city name",
+        blank=True,
+    )
+    zip_code = models.CharField(
+        max_length=255,
+        help_text="Enter the zip code",
+        blank=True,
+    )
+    open_days = models.CharField(
+        max_length=255,
+        help_text="e.g Monday - Friday",
+        blank=True,
+    )
+    open_hours = models.CharField(
+        max_length=255,
+        help_text="e.g 8:15AM - 05:00PM",
+        blank=True,
+    )
+    facebook = models.URLField(
+        max_length=255,
+        help_text="Enter the facebook account url",
+        blank=True,
+    )
+    twitter_x = models.URLField(
+        max_length=255,
+        help_text="Enter the X account url",
+        blank=True,
+    )
+    instagram = models.URLField(
+        max_length=255,
+        help_text="Enter the Instagram account url",
+        blank=True,
+    )
+    linkedin = models.URLField(
+        max_length=255,
+        help_text="Enter the Linkedin account url",
+        blank=True,
+    )
+    whatsapp = models.URLField(
+        max_length=255,
+        help_text="Enter the Whatsapp url in the format 'https://wa.me/254700000000'. Replace with appropriate phone number",
         blank=True,
     )
 

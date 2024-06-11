@@ -1,0 +1,19 @@
+.socialLink {
+    font-size: var(--font-size-md);
+    display: inline-block;
+    color: var(--bs-white);
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 4px;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+}
+
+.socialLink:hover {
+    background: var(--bs-primary);
+    color: var(--bs-dark);
+    text-decoration: none;
+}

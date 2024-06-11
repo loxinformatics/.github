@@ -20,15 +20,10 @@ class CombinedRouter(DefaultRouter):
         super().__init__(*args, **kwargs)
         self.registry.extend(base_router.registry)
 
-        if "accounts" in settings.INSTALLED_APPS:
-            from accounts.urls import accounts_router
+        if "users" in settings.INSTALLED_APPS:
+            from users.urls import users_router
 
-            self.registry.extend(accounts_router.registry)
-
-        if "contact" in settings.INSTALLED_APPS:
-            from contact.urls import contact_router
-
-            self.registry.extend(contact_router.registry)
+            self.registry.extend(users_router.registry)
 
 
 router = CombinedRouter()

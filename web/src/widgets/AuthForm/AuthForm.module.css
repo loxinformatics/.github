@@ -1,0 +1,48 @@
+.authform {
+  font-size: var(--font-size-xs);
+}
+
+.label {
+  margin-left: 0.5rem;
+}
+
+.input {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: var(--font-size-xs);
+  border-radius: 0;
+}
+
+.input:focus {
+  border-color: var(--bs-primary);
+}
+
+.checkInput {
+  transform: scale(1.5);
+}
+
+.checkInput:focus {
+  box-shadow: none;
+  border-color: var(--bs-primary);
+}
+
+.checkInput:checked {
+  background-color: rgba(var(--bs-primary-rgb), 0.9);
+  border-color: var(--bs-primary);
+}
+
+.recaptcha {
+  color: var(--bs-white);
+}
+
+.recaptchaImage {
+  max-width: 30px;
+}
+
+.button[type="submit"] {
+  transition: 0.4s;
+}
+
+.link:hover {
+  color: var(--bs-danger);
+}

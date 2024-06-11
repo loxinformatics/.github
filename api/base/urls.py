@@ -1,5 +1,6 @@
 from rest_framework.routers import SimpleRouter
-from .views import BaseViewSet
+from base.views import BaseViewSet, MailUsViewSet
 
 base_router = SimpleRouter()
-base_router.register(r"base", BaseViewSet)
+base_router.register(r"base/info", BaseViewSet)
+base_router.register(r"base/mail", MailUsViewSet, basename="base/mail-us")

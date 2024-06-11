@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from .models import Base
+
+from base.forms import MailUsForm
+from base.models import Base
 
 
 class BaseSerializer(serializers.HyperlinkedModelSerializer):
@@ -32,4 +34,19 @@ class BaseSerializer(serializers.HyperlinkedModelSerializer):
             if not is_authenticated or not has_permissions:
                 data.pop("url", None)
 
+        return data
+
+
+
+class MailUsSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100)
+    sender_email = serializers.EmailField()
+    subject = serializers.CharField()
+    message = serializers.CharField()
+    recipient_email = serializers.EmailField()
+
+    def validate(self, data):
+        form = MailUsForm(data)
+        if not form.is_valid():
+            raise serializers.ValidationError(form.errors)
         return data
