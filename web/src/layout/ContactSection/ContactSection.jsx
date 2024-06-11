@@ -1,8 +1,10 @@
 "use client";
 
 import styles from "./ContactSection.module.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Link from "next/link";
-import { Container, Row, Col } from "react-bootstrap";
 import { useBaseContext } from "@/app/base/context";
 import { BsGeoAlt, BsEnvelope, BsPhone } from "react-icons/bs";
 import { MailForm } from "@/widgets/MailForm/MailForm";

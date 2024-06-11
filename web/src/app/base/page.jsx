@@ -7,27 +7,13 @@
 
 "use client";
 
-// packages
-import "aos/dist/aos.css";
-import AOS from "aos";
-import { useEffect } from "react";
 import Header from "@/layout/Header/Header";
-import Aside from "@/layout/Aside/Aside";
 import Main from "@/layout/Main/Main";
 import ContactSection from "@/layout/ContactSection/ContactSection";
 import Footer from "@/layout/Footer/Footer";
 import BottomBar from "@/layout/BottomBar/BottomBar";
 
 export default function BasePage() {
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      easing: "ease-in-out",
-      once: true,
-      mirror: false,
-    });
-  }, []);
-
   return (
     <>
       <Header position="sticky-top" />

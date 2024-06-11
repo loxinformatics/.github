@@ -2,9 +2,11 @@
 
 import styles from "./Footer.module.css";
 import Link from "next/link";
-import { Container, Row, Col } from "react-bootstrap";
-import { BiChevronRight } from "react-icons/bi";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { useBaseContext } from "@/app/base/context";
+import { BiChevronRight } from "react-icons/bi";
 
 export default function Footer() {
   const { base } = useBaseContext();

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { apiUrl } from "@/app/base/context";
+import { APIUrl } from "@/app/rootcontext";
 import { useAuthContext } from "@/app/auth/context";
 
 export function LoginForm() {
@@ -39,7 +39,7 @@ export function LoginForm() {
 
       try {
         // Send form data to backend to authenticate user
-        const response = await fetch(apiUrl + "/auth/token/", {
+        const response = await fetch(APIUrl + "/auth/token/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

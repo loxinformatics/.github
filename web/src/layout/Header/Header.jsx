@@ -1,12 +1,15 @@
 "use client";
 
 import styles from "./Header.module.css";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/widgets/Logo/Logo";
 import { NavbarAndMobileNav } from "@/widgets/NavBarAndMobileNav/NavbarAndMobileNav";
-import { Button } from "@/widgets/Button/Button";
+import { LinkButton } from "@/widgets/LinkButton/LinkButton";
 
 export default function Header({
   hasBackground = true,
@@ -56,10 +59,25 @@ export default function Header({
             xs={4}
             className="d-flex justify-content-center justify-content-lg-end ps-5"
           >
-            <Button
-              name={pathname.startsWith("/auth") ? "Back Home" : "Get Started"}
-              href={pathname.startsWith("/auth") ? "/#" : "/#about"}
-            />
+            {pathname.startsWith("/auth") ? (
+              <Button
+                as={LinkButton}
+                variant="outline-primary"
+                href="/#"
+                className="border-2 px-4 py-2 text-white"
+              >
+                Back Home
+              </Button>
+            ) : (
+              <Button
+                as={LinkButton}
+                variant="outline-primary"
+                href="/auth"
+                className="border-2 px-4 py-2 text-white"
+              >
+                Login
+              </Button>
+            )}
           </Col>
         </Row>
       </Container>

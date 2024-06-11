@@ -1,8 +1,9 @@
 "use client";
 
 import styles from "./BottomBar.module.css";
-
-import { Container, Row, Col } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react";
 import { SocialLinks } from "@/widgets/SocialLinks/SocialLinks";
 import { Copyright } from "@/widgets/Copyright/Copyright";
@@ -30,7 +31,7 @@ export default function BottomBar({ hasBackground = true }) {
   return (
     <section
       id="bottombar"
-      className={`position-relative ${background} text-white py-1`}
+      className={`position-relative ${background} text-white py-2`}
     >
       <Container>
         <Row className="align-items-center">

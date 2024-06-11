@@ -2,6 +2,7 @@
 
 import styles from "./SocialLinks.module.css";
 import Link from "next/link";
+import { useBaseContext } from "@/app/base/context";
 import {
   BsTwitterX,
   BsFacebook,
@@ -9,7 +10,6 @@ import {
   BsWhatsapp,
   BsInstagram,
 } from "react-icons/bs";
-import { useBaseContext } from "@/app/base/context";
 
 export function SocialLinks() {
   const { base } = useBaseContext();

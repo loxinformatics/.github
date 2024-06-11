@@ -5,7 +5,7 @@ import PrivateRoute from "@/utils/viewAuthorized";
 import Header, { Logo, NavBarAndMobileNavToggle } from "@/layout/Header/Header";
 
 import Main from "@/layout/Main/Main";
-import Button from "@/widgets/Button/Button";
+import Button from "@/widgets/LinkButton/Button";
 
 export default function Schools() {
   const { logoutUser } = useAuthContext();

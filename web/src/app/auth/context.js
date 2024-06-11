@@ -9,12 +9,12 @@ import {
 } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { apiUrl } from "@/app/base/context";
+import { APIUrl } from "@/app/rootcontext";
 import { Preloader } from "@/widgets/Preloader/Preloader";
 
 const authContext = createContext(null);
 
-export default function AuthContext({ children }) {
+export function AuthContext({ children }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -45,7 +45,7 @@ export default function AuthContext({ children }) {
 
   const updateToken = useCallback(async () => {
     try {
-      const response = await fetch(apiUrl + "/auth/token/refresh/", {
+      const response = await fetch(APIUrl + "/auth/token/refresh/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

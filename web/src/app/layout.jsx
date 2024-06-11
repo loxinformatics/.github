@@ -1,7 +1,5 @@
+import { RootContext } from "@/app/rootcontext";
 import "@/app/global.scss";
-import AuthContext from "@/app/auth/context";
-import BaseContext from "@/app/base/context";
-import { ScrollTop } from "@/widgets/ScrollTop/ScrollTop";
 
 export const metadata = {
   title: "Lox Informatics",
@@ -14,12 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="ltr">
       <body>
-        <AuthContext>
-          <BaseContext>
-            {children}
-            <ScrollTop />
-          </BaseContext>
-        </AuthContext>
+        <RootContext>{children}</RootContext>
       </body>
     </html>
   );

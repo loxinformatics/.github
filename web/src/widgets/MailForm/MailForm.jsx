@@ -2,11 +2,12 @@
 
 import styles from "./MailForm.module.css";
 import { useState } from "react";
-import { apiUrl } from "@/app/base/context";
+import Button from "react-bootstrap/Button";
+import { APIUrl } from "@/app/rootcontext";
 
 // sendMail utility
 async function sendMail({ name, email, subject, message }) {
-  const response = await fetch(apiUrl + "/base/mail/", {
+  const response = await fetch(APIUrl + "/base/mail/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -160,13 +161,14 @@ export function MailForm() {
           </div>
         </div>
         <div className="col-md-12 text-center">
-          <button
+          <Button
             className={`btn ${styles.mailform_button}`}
             type="submit"
             disabled={loading}
           >
             Send Message
-          </button>
+          </Button>
+
         </div>
       </div>
     </form>
