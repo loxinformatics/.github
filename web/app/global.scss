@@ -1,0 +1,123 @@
+/*--------------------------------------------------------------
+# Custom Boostrap
+# Help: https://getbootstrap.com/docs/5.3/customize/sass/
+--------------------------------------------------------------*/
+
+/* Include functions first (so you can manipulate colors, SVGs, calc, etc)
+------------------------------*/
+@import "../node_modules/bootstrap/scss/functions";
+
+/* Include any default variable overrides here
+------------------------------*/
+// #ffc451
+// #6db8ff
+$primary: #ffc451;
+$primary-rgb: 255, 196, 81;
+$secondary: #444444;
+$secondary-rgb: 68, 68, 68;
+
+/* Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+------------------------------*/
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+
+/* Include any default map overrides here
+------------------------------*/
+
+/* Include remainder of required parts
+------------------------------*/
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+/* Optionally include any other parts as needed
+------------------------------*/
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/spinners";
+@import "../node_modules/bootstrap/scss/alert";
+@import "../node_modules/bootstrap/scss/card";
+@import "../node_modules/bootstrap/scss/modal";
+
+/* Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+------------------------------*/
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+/*--------------------------------------------------------------
+# Additional Bootstrap Customization
+--------------------------------------------------------------
+
+
+/*--------------------------------------------------------------
+# Base
+--------------------------------------------------------------*/
+@font-face {
+	font-family: "preloslab-medium-regular";
+	src: url("/fonts/preloslab-book1.otf");
+}
+
+@font-face {
+	font-family: "preloslab-medium-bold";
+	src: url("/fonts/preloslab-bold2_1.otf");
+}
+
+@font-face {
+	font-family: "Titillium-Regular";
+	src: url("/fonts/Titillium-Regular.otf");
+}
+
+:root {
+	--font-default: "Titillium-Regular", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-primary: "preloslab-medium-bold", sans-serif;
+	--font-secondary: "preloslab-medium-regular", sans-serif;
+}
+
+:root {
+	--font-size-xxs: 12px;
+	--font-size-xs: 14px;
+	--font-size-sm: 16px;
+	--font-size-md: 20px;
+	--font-size-lg: 24px;
+	--font-size-xl: 28px;
+	--font-size-xxl: 32px;
+}
+
+body {
+	font-family: var(--font-default);
+	color: var(--bs-secondary);
+}
+
+a {
+	color: var(--bs-primary);
+	text-decoration: none;
+}
+
+a:hover {
+	color: rgba(var(--bs-primary-rgb), 0.8);
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-primary);
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 767.98px) {
+	[data-aos-delay] {
+		transition-delay: 0 !important;
+	}
+}
