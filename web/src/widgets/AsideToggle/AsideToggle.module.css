@@ -1,0 +1,12 @@
+.toggleAsideBtn {
+  font-size: 32px;
+  padding-left: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  z-index: 20000;
+}
+
+.toggleAsideBtn:hover{
+  background: none;
+}

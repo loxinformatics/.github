@@ -10,7 +10,7 @@ import { BsGeoAlt, BsEnvelope, BsPhone } from "react-icons/bs";
 import { MailForm } from "@/widgets/MailForm/MailForm";
 import { SectionTitle } from "@/widgets/SectionTitle/SectionTitle";
 
-export default function ContactSection({ sectionmain }) {
+export default function ContactSection({ sectionInMain }) {
   const { base } = useBaseContext();
   const city_name = base?.city_name;
   const primary_email = base?.primary_email;
@@ -19,9 +19,9 @@ export default function ContactSection({ sectionmain }) {
   const secondary_phone = base?.secondary_phone;
 
   return (
-    <section id="contact" className={`${sectionmain} bg-white`}>
+    <section id="contact" className={`${sectionInMain}`}>
       <Container>
-        <SectionTitle heading="Contact" paragraph="Contact Us" />
+        <SectionTitle heading="Contact" paragraph="Contact Us" dataAOS="fade-in" />
         <Row>
           <Col lg={4} data-aos="fade-up">
             <div>

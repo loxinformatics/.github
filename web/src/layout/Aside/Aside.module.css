@@ -1,6 +1,24 @@
-.aside {
-    width: 300px;
-    top: 0;
-    left: 0;
-    bottom: 0;
+.sectionInMain {
+  margin-left: 300px;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.asideHidden {
+  margin-left: -300px;
+}
+
+@media (max-width: 1199px) {
+  .aside {
+    transition: transform 0.3s;
+    transform: translateX(-300px);
+  }
+
+  .asideOver {
+    z-index: 1000;
+  }
+
+  .asideHidden {
+    transform: translateX(-300px);
+  }
 }

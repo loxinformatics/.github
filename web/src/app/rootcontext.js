@@ -22,6 +22,7 @@ export function RootContext({ children }) {
       easing: "ease-in-out",
       once: true,
       mirror: false,
+      delay: 200,
     });
   }, []);
 

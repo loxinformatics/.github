@@ -6,13 +6,13 @@ import Col from "react-bootstrap/Col";
 import { useSearchParams } from "next/navigation";
 import { LoginForm, SignupForm } from "@/widgets/AuthForm/AuthForm";
 
-export default function AuthSection({ sectionmain }) {
+export default function AuthSection({ sectionInMain }) {
   const searchParams = useSearchParams();
   const authForm =
     searchParams.get("formType") === "signup" ? <SignupForm /> : <LoginForm />;
 
   return (
-    <section id="auth" className={sectionmain}>
+    <section id="auth" className={sectionInMain}>
       <Container>
         <Row>
           <Col xs={12} sm={10} md={8} lg={6} className="mx-auto">

@@ -19,19 +19,6 @@
   padding: 10px 12px;
 }
 
-.mailform_button[type="submit"] {
-  background: var(--bs-primary);
-  border: 0;
-  padding: 10px 24px;
-  color: var(--bs-dark);
-  transition: 0.4s;
-  border-radius: 4px;
-}
-
-.mailform_button[type="submit"]:hover {
-  background: rgba(var(--bs-primary-rgb), 0.8);
-}
-
 @keyframes animate-loading {
   0% {
     transform: rotate(0deg);

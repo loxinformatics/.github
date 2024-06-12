@@ -4,12 +4,11 @@ import styles from "./Header.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/widgets/Logo/Logo";
-import { NavbarAndMobileNav } from "@/widgets/NavBarAndMobileNav/NavbarAndMobileNav";
-import { LinkButton } from "@/widgets/LinkButton/LinkButton";
+import { NavbarAndMobileNavModal } from "@/widgets/NavBarAndMobileNavModal/NavbarAndMobileNavModal";
 
 export default function Header({
   hasBackground = true,
@@ -52,14 +51,14 @@ export default function Header({
             xs={4}
             className="d-flex justify-content-end justify-content-lg-center order-last order-lg-0"
           >
-            <NavbarAndMobileNav />
+            <NavbarAndMobileNavModal />
           </Col>
 
           <Col
             xs={4}
             className="d-flex justify-content-center justify-content-lg-end ps-5"
           >
-            {pathname.startsWith("/auth") ? (
+            {/* {pathname.startsWith("/auth") ? (
               <Button
                 as={LinkButton}
                 variant="outline-primary"
@@ -77,7 +76,10 @@ export default function Header({
               >
                 Login
               </Button>
-            )}
+            )} */}
+            <Link className={styles.forwardBtn} href="/auth?formType=login">
+              Login
+            </Link>
           </Col>
         </Row>
       </Container>

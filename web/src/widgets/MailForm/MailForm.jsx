@@ -162,13 +162,13 @@ export function MailForm() {
         </div>
         <div className="col-md-12 text-center">
           <Button
-            className={`btn ${styles.mailform_button}`}
+            variant="primary"
+            className="px-4 py-2"
             type="submit"
             disabled={loading}
           >
             Send Message
           </Button>
-
         </div>
       </div>
     </form>

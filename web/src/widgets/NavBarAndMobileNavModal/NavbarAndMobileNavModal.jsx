@@ -1,13 +1,20 @@
 "use client";
 
-import "./NavbarAndMobileNav.css";
+import "./NavbarAndMobileNavModal.css";
 import clsx from "clsx";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { BsX, BsList } from "react-icons/bs";
 
-export function NavbarAndMobileNav() {
+const links = [
+  { name: "Home", href: "/#hero", icon: "" },
+  { name: "About", href: "/#about", icon: "" },
+  { name: "Services", href: "/#services", icon: "" },
+  { name: "Contact", href: "/#contact", icon: "" },
+];
+
+export function NavbarAndMobileNavModal() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const pathname = usePathname();
 
@@ -95,13 +102,6 @@ export function NavbarAndMobileNav() {
       document.removeEventListener("click", handleClick);
     };
   }, []);
-
-  const links = [
-    { name: "Home", href: "/#hero", icon: "" },
-    { name: "About", href: "/#about", icon: "" },
-    { name: "Services", href: "/#services", icon: "" },
-    { name: "Contact", href: "/#contact", icon: "" },
-  ];
 
   return (
     <nav

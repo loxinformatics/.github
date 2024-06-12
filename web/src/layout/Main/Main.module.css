@@ -1,22 +1,19 @@
-.fixedMain {
-    display: flex;
-    flex-direction: column;
-    flex-grow: inherit;
-}
-
-.centeredSection {
-    padding: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto;
-    position: relative;
+.sectionInMain {
+  transition: margin-left 0.3s;
 }
 
 .section {
-    padding: 60px 0;
-    overflow: hidden;
-    position: relative;
+  padding: 60px 0;
+  overflow: hidden;
 }
+
+.centeredSection {
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
