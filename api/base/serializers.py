@@ -43,7 +43,6 @@ class MailUsSerializer(serializers.Serializer):
     sender_email = serializers.EmailField()
     subject = serializers.CharField()
     message = serializers.CharField()
-    recipient_email = serializers.EmailField()
 
     def validate(self, data):
         form = MailUsForm(data)

@@ -4,9 +4,13 @@
   cursor: pointer;
   background: none;
   border: none;
-  z-index: 20000;
 }
 
 .toggleAsideBtn:hover{
   background: none;
+}
+
+.svg {
+  color: var(--bs-white);
+  background: var(--bs-white);
 }

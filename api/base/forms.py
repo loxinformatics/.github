@@ -24,7 +24,3 @@ class MailUsForm(forms.Form):
         widget=forms.Textarea(),
         error_messages={"required": "Please enter your message."},
     )
-    recipient_email = forms.EmailField(
-        widget=forms.EmailInput(),
-        error_messages={"required": "Please provide a valid recipient email address."},
-    )

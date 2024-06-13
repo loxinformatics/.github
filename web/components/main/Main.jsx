@@ -6,10 +6,9 @@ import React, { useEffect, useState } from "react";
 export default function Main({ children, fixAndCenter = false, background }) {
   const [height, setHeight] = useState("100%");
 
+  // adjust the height if header and/or bottom bar is present
   useEffect(() => {
-    const adjustHeightAndBackground = () => {
-      if (background) document.body.classList.add(background);
-
+    const adjustHeight = () => {
       const header = document.querySelector("#header");
       const bottombar = document.querySelector("#bottombar");
 
@@ -17,39 +16,52 @@ export default function Main({ children, fixAndCenter = false, background }) {
       const headerHeight = fixAndCenter && header ? header.offsetHeight : 0;
       const bottombarHeight =
         fixAndCenter && bottombar ? bottombar.offsetHeight : 0;
-
       const totalHeight = `calc(${mainHeight} - ${headerHeight}px - ${bottombarHeight}px)`;
+
       setHeight(totalHeight);
     };
 
-    adjustHeightAndBackground();
+    adjustHeight();
 
-    const observer = new MutationObserver(adjustHeightAndBackground);
+    const observer = new MutationObserver(adjustHeight);
     observer.observe(document.body, { childList: true, subtree: true });
 
-    window.addEventListener("resize", adjustHeightAndBackground);
+    window.addEventListener("resize", adjustHeight);
 
     return () => {
       observer.disconnect();
-      window.removeEventListener("resize", adjustHeightAndBackground);
+      window.removeEventListener("resize", adjustHeight);
+    };
+  }, [fixAndCenter]);
+
+  // Set the background if provided
+  useEffect(() => {
+    const adjustBackground = () => {
+      if (background) document.body.classList.add(background);
+    };
+
+    adjustBackground();
+
+    return () => {
       if (background) {
         document.body.classList.remove(background);
       }
     };
-  }, [fixAndCenter, background]);
+  }, [background]);
 
   return (
     <main
       id="main"
-      style={{ height: height, transition: "margin-left 0.3s" }}
-      className={`${
+      style={{ height: height }}
+      className={`position-relative ${
         fixAndCenter ? "d-flex flex-column flex-grow-1" : ""
-      } position-relative`}
+      } `}
     >
       {React.Children.map(children, (child) =>
         React.cloneElement(child, {
-          sectionInMain: `sectionInMain
-          ${fixAndCenter ? styles.centeredSection : styles.section}`,
+          sectionInMain: `sectionInMain ${styles.transition} ${
+            fixAndCenter ? styles.centeredSection : styles.section
+          }`,
         })
       )}
     </main>

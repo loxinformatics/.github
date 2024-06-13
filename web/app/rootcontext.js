@@ -7,6 +7,7 @@ import AuthContext from "./auth/context";
 import BaseContext from "./base/context";
 import ScrollTop from "../components/shared/ScrollTop/ScrollTop";
 import Preloader from "../components/shared/Preloader/Preloader";
+import AsideToggleContext from "@/components/shared/AsideToggle/context";
 
 const APIUrl =
   process.env.NEXT_PUBLIC_ENVIRONMENT === "production"
@@ -29,8 +30,10 @@ export default function RootContext({ children }) {
   return (
     <AuthContext>
       <BaseContext>
-        {children}
-        <ScrollTop />
+        <AsideToggleContext>
+          {children}
+          <ScrollTop />
+        </AsideToggleContext>
         <Preloader />
       </BaseContext>
     </AuthContext>
