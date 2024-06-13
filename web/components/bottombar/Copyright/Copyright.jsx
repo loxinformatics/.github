@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./Copyright.module.css";
-import { useBaseContext } from "../../../app/base/context";
+import { useBaseContext } from "@/app/base/context";
 
 export default function Copyright() {
   const { base } = useBaseContext();

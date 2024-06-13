@@ -1,13 +1,16 @@
 "use client";
 
 import styles from "./Main.module.css";
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useEffect, useState, useRef } from "react";
+import Sidebar from "@/components/navigation/Sidebar&Toggle/Sidebar&Toggle";
 
 export default function Main({ children, fixAndCenter = false, background }) {
+  const mainRef = useRef(null);
+  const [asideNavigation, setAsideNavigation] = useState(null);
   const [height, setHeight] = useState("100%");
 
   // adjust the height if header and/or bottom bar is present
-  useEffect(() => {
+  useLayoutEffect(() => {
     const adjustHeight = () => {
       const header = document.querySelector("#header");
       const bottombar = document.querySelector("#bottombar");
@@ -49,17 +52,31 @@ export default function Main({ children, fixAndCenter = false, background }) {
     };
   }, [background]);
 
+  // Determine whether to include Aside navigation based on 'hasAside' class
+  // *: The 'hasAside' class is toggled by the `NavType` element from `useNavigationContext()`
+  useEffect(() => {
+    const mainElement = mainRef.current;
+    mainElement &&
+      mainElement.classList.contains("hasAside") &&
+      setAsideNavigation(<Sidebar />);
+
+    return () => {};
+  }, []);
+
   return (
     <main
+      ref={mainRef}
       id="main"
       style={{ height: height }}
       className={`position-relative ${
         fixAndCenter ? "d-flex flex-column flex-grow-1" : ""
       } `}
     >
+      {asideNavigation}
+
       {React.Children.map(children, (child) =>
         React.cloneElement(child, {
-          sectionInMain: `sectionInMain ${styles.transition} ${
+          sectionInMain: `sectionInMain ${
             fixAndCenter ? styles.centeredSection : styles.section
           }`,
         })

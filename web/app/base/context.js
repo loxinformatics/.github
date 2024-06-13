@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { APIUrl } from "../rootcontext";
-import Preloader from "../../components/shared/Preloader/Preloader";
+import { APIUrl } from "@/app/context";
+import Preloader from "@/components/shared/Preloader/Preloader";
 
 const baseContext = createContext(null);
 

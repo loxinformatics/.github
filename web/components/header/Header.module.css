@@ -5,7 +5,7 @@
 }
 
 .header_bg {
-  background: rgba(var(--bs-black-rgb), 1);
+  background: rgba(var(--bs-dark-rgb), 1);
 }
 
 /*--------------------------------------------------------------

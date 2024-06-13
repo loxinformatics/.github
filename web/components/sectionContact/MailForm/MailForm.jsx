@@ -3,7 +3,7 @@
 import styles from "./MailForm.module.css";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import { APIUrl } from "../../../app/rootcontext";
+import { APIUrl } from "@/app/context";
 
 // sendMail utility
 async function sendMail({ name, email, subject, message }) {

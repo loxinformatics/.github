@@ -9,8 +9,8 @@ import {
 } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { APIUrl } from "../rootcontext";
-import Preloader from "../../components/shared/Preloader/Preloader";
+import { APIUrl } from "@/app/context";
+import Preloader from "@/components/shared/Preloader/Preloader";
 
 const authContext = createContext(null);
 

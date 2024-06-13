@@ -3,7 +3,7 @@
 import styles from "./Logo.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useBaseContext } from "../../../app/base/context";
+import { useBaseContext } from "@/app/base/context";
 
 export default function Logo() {
   const { base } = useBaseContext();

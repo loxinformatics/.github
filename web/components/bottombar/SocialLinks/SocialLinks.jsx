@@ -2,7 +2,7 @@
 
 import styles from "./SocialLinks.module.css";
 import Link from "next/link";
-import { useBaseContext } from "../../../app/base/context";
+import { useBaseContext } from "@/app/base/context";
 import {
   BsTwitterX,
   BsFacebook,

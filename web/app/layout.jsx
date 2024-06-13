@@ -1,4 +1,4 @@
-import RootContext from "./rootcontext";
+import RootContext from "./context";
 import "@/app/global.scss";
 
 export const metadata = {

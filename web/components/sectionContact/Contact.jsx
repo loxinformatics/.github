@@ -5,10 +5,10 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Link from "next/link";
-import { useBaseContext } from "../../../app/base/context";
+import { useBaseContext } from "@/app/base/context";
 import { BsGeoAlt, BsEnvelope, BsPhone } from "react-icons/bs";
-import MailForm from "../../shared/MailForm/MailForm";
-import SectionTitle from "../../shared/SectionTitle/SectionTitle";
+import MailForm from "./MailForm/MailForm";
+import SectionTitle from "@/components/shared/SectionTitle/SectionTitle";
 
 export default function Contact({ sectionInMain }) {
   const { base } = useBaseContext();

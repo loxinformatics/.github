@@ -4,8 +4,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useSearchParams } from "next/navigation";
-import LoginForm from "../../shared/AuthForm/LoginForm";
-import SignupForm from "../../shared/AuthForm/SignupForm";
+import LoginForm from "./AuthForm/LoginForm";
+import SignupForm from "./AuthForm/SignupForm";
 
 export default function Auth({ sectionInMain }) {
   const searchParams = useSearchParams();

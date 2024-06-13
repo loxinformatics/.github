@@ -5,8 +5,8 @@ import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { APIUrl } from "../../../app/rootcontext";
-import { useAuthContext } from "../../../app/auth/context";
+import { APIUrl } from "@/app/context";
+import { useAuthContext } from "@/app/auth/context";
 
 export default function LoginForm() {
   const { setToken, setUser } = useAuthContext();

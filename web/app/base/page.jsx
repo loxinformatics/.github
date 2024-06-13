@@ -7,12 +7,11 @@
 
 "use client";
 
-import Header from "../../components/header/Header";
-import Main from "../../components/main/Main";
-import Aside from "../../components/main/Aside/Aside";
-import Contact from "../../components/main/Contact/Contact";
-import Footer from "../../components/footer/Footer";
-import BottomBar from "../../components/bottombar/BottomBar";
+import Header from "@/components/header/Header";
+import Main from "@/components/main/Main";
+import Contact from "@/components/sectionContact/Contact";
+import Footer from "@/components/footer/Footer";
+import BottomBar from "@/components/bottombar/BottomBar";
 
 export default function BasePage() {
   return (
@@ -20,12 +19,6 @@ export default function BasePage() {
       <Header position="sticky-top" />
 
       <Main>
-        <Aside />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
-        <Contact />
         <Contact />
       </Main>
 

@@ -9,7 +9,7 @@ import SocialLinks from "./SocialLinks/SocialLinks";
 import Copyright from "./Copyright/Copyright";
 
 export default function BottomBar({ hasBackground = true }) {
-  const [background, setBackground] = useState(styles.bottombar_bg);
+  const [background, setBackground] = useState(hasBackground && styles.bottombar_bg);
 
   useEffect(() => {
     const handleBackground = () => {
@@ -31,7 +31,7 @@ export default function BottomBar({ hasBackground = true }) {
   return (
     <section
       id="bottombar"
-      className={`position-relative ${background} text-white py-2`}
+      className={`position-relative ${background} text-white py-3`}
     >
       <Container>
         <Row className="align-items-center">
