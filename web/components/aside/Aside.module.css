@@ -1,0 +1,15 @@
+.asideHidden {
+  margin-left: -250px;
+}
+
+.mainWhenAsideOpen {
+  margin-left: 300px;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.mainWhenAsideClose {
+  margin-left: 50px;
+  padding-left: 0;
+  padding-right: 0;
+}

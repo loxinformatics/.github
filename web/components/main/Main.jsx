@@ -2,15 +2,9 @@
 
 import styles from "./Main.module.css";
 import React, { useEffect, useState } from "react";
-import AsideToggle from "./AsideToggle/AsideToggle";
 
 export default function Main({ children, fixAndCenter = false, background }) {
   const [height, setHeight] = useState("100%");
-  const [isAsideOpen, setIsAsideOpen] = useState(true);
-
-  const toggleAside = () => {
-    setIsAsideOpen(!isAsideOpen);
-  };
 
   useEffect(() => {
     const adjustHeightAndBackground = () => {
@@ -47,27 +41,15 @@ export default function Main({ children, fixAndCenter = false, background }) {
   return (
     <main
       id="main"
-      style={{ height }}
+      style={{ height: height, transition: "margin-left 0.3s" }}
       className={`${
         fixAndCenter ? "d-flex flex-column flex-grow-1" : ""
       } position-relative`}
     >
-      <div
-        className="position-fixed"
-        style={{
-          left: isAsideOpen ? "300px" : "0px",
-          transition: "left 0.3s",
-        }}
-      >
-        <AsideToggle toggleAside={toggleAside} />
-      </div>
-
       {React.Children.map(children, (child) =>
         React.cloneElement(child, {
-          sectionInMain: `sectionInMain ${styles.sectionInMain} ${
-            fixAndCenter ? styles.centeredSection : styles.section
-          }`,
-          isAsideOpen: isAsideOpen,
+          sectionInMain: `sectionInMain
+          ${fixAndCenter ? styles.centeredSection : styles.section}`,
         })
       )}
     </main>
