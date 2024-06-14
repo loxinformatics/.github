@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import Nav from "react-bootstrap/Nav";
-import styles from "./navigation.module.css";
+import styles from "./NavLinks.module.css";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useNavContext } from "@/components/shared/Navigation/context";
 import {
   FaHome,
   FaInfoCircle,
@@ -10,31 +13,24 @@ import {
   FaEnvelope,
   FaLock,
 } from "react-icons/fa";
-import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { useNavigationContext } from "@/components/navigation/context";
 
 const links = [
-  { name: "Home", href: "/", icon: FaHome },
+  { name: "Home", href: "/#hero", icon: FaHome },
   { name: "About", href: "/#about", icon: FaInfoCircle },
   { name: "Services", href: "/#services", icon: FaServicestack },
   { name: "Contact", href: "/#contact", icon: FaEnvelope },
   { name: "Login", href: "/auth", icon: FaLock },
 ];
 
-function CustomNavLink({ href = "", className, children }) {
-  return (
-    <Link href={href} passHref className={className}>
-      {children}
-    </Link>
-  );
-}
-
-export default function Navigation({ isSidebar = false, isMobileNav = false }) {
-  const pathname = usePathname();
+export default function NavLinks({
+  inNavbar = true,
+  inSidebar = false,
+  inMobileNav = false,
+}) {
   const { isSidebarOpen, isMobileNavOpen, setIsMobileNavOpen } =
-    useNavigationContext();
+    useNavContext();
   const [isVisible, setIsVisible] = useState("invisible");
+  const pathname = usePathname();
 
   // Function to scroll to an element with header offset
   const scrollto = (el) => {
@@ -52,36 +48,36 @@ export default function Navigation({ isSidebar = false, isMobileNav = false }) {
     });
   };
 
-  // Set icons to be visible when sidebar is retracted
+  // Check the scroll position on mount and add the active state event listener on navbar links
   useEffect(() => {
-    setIsVisible(isSidebarOpen ? "invisible" : "visible");
-  }, [isSidebarOpen]);
-
-  useEffect(() => {
-    const navlinks = document.querySelectorAll(".scrollto");
-
-    // Check the scroll position on mount and add the active state event listener
-    const navlinksActive = () => {
+    const navbarlinks = document.querySelectorAll("#navbar .scrollto");
+    const navbarlinksActive = () => {
       const position = window.scrollY + 200;
-      navlinks.forEach((navlink) => {
-        if (!navlink.hash) return;
-        const section = document.querySelector(navlink.hash);
+      navbarlinks.forEach((navbarlink) => {
+        if (!navbarlink.hash) return;
+        const section = document.querySelector(navbarlink.hash);
         if (!section) return;
         if (
           position >= section.offsetTop &&
           position <= section.offsetTop + section.offsetHeight
         ) {
-          navlink.classList.add(styles.navbarNavLinkActive);
+          navbarlink.classList.add(styles.navbarNavLinkActive);
         } else {
-          navlink.classList.remove(styles.navbarNavLinkActive);
+          navbarlink.classList.remove(styles.navbarNavLinkActive);
         }
       });
     };
 
-    window.addEventListener("load", navlinksActive);
-    document.addEventListener("scroll", navlinksActive);
+    window.addEventListener("load", navbarlinksActive);
+    document.addEventListener("scroll", navbarlinksActive);
+    return () => {
+      window.removeEventListener("load", navbarlinksActive);
+      document.removeEventListener("scroll", navbarlinksActive);
+    };
+  }, []);
 
-    // Scroll with offset on links with a class name .scrollto (when a .scrollto link is clicked, that is)
+  // Scroll with offset on links with a class name .scrollto (when a .scrollto link is clicked, that is)
+  useEffect(() => {
     const handleClick = (e) => {
       const target = e.target;
       if (
@@ -96,8 +92,13 @@ export default function Navigation({ isSidebar = false, isMobileNav = false }) {
     };
 
     document.addEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [isMobileNavOpen, setIsMobileNavOpen]);
 
-    // Scroll with offset on page load with hash links in the url
+  // Scroll with offset on page load with hash links in the url
+  useEffect(() => {
     const handlePageLoad = () => {
       if (
         window.location.hash &&
@@ -112,17 +113,20 @@ export default function Navigation({ isSidebar = false, isMobileNav = false }) {
 
     return () => {
       window.removeEventListener("load", handlePageLoad);
-      window.removeEventListener("load", navlinksActive);
-      document.removeEventListener("scroll", navlinksActive);
-      document.removeEventListener("click", handleClick);
     };
-  }, [isMobileNavOpen, setIsMobileNavOpen]);
+  }, []);
+
+  // Set icons to be visible when sidebar is retracted
+  useEffect(() => {
+    setIsVisible(isSidebarOpen ? "invisible" : "visible");
+  }, [isSidebarOpen]);
 
   return (
     <>
       {links.map((link, index) => {
         const Icon = link?.icon;
-        return isSidebar ? (
+        // in Sidebar
+        return inSidebar ? (
           <Nav.Link
             as={() => (
               <CustomNavLink
@@ -143,30 +147,39 @@ export default function Navigation({ isSidebar = false, isMobileNav = false }) {
             )}
             key={index}
           />
-        ) : isMobileNav ? (
+        ) : // in Mobile Nav
+        inMobileNav ? (
           <li key={link?.name}>
             <CustomNavLink
               href={link?.href}
-              className={`scrollto nav-link ${styles.mobileNavLink} ${
-                pathname === link?.href && styles.mobileNavLinkActive
-              }`}
+              className={`scrollto nav-link ${styles.mobileNavLink}`}
             >
               {link?.name}
             </CustomNavLink>
           </li>
-        ) : (
+        ) : // in Navbar
+        inNavbar ? (
           <li key={link?.name} className={`position-relative`}>
             <CustomNavLink
               href={link?.href}
-              className={`scrollto ${styles.navbarNavLink} ${
-                pathname === link?.href && styles.navbarNavLinkActive
+              className={`scrollto ${styles.navbarNavLink}
               }`}
             >
               {Icon && <Icon className={styles.navbarNavIcon} />} {link?.name}
             </CustomNavLink>
           </li>
+        ) : (
+          <></>
         );
       })}
     </>
+  );
+}
+
+function CustomNavLink({ href = "", className, children }) {
+  return (
+    <Link href={href} passHref className={className}>
+      {children}
+    </Link>
   );
 }

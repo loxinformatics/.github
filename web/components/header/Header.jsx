@@ -8,8 +8,9 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo/Logo";
-import Navbar from "@/components/navigation/Navbar/Navbar";
-import MobileNav from "@/components/navigation/MobileNav&Toggle/MobileNav&Toggle";
+import Navbar from "@/components/header/Navbar/Navbar";
+import MobileNav from "@/components/header/MobileNav&Toggle/MobileNav&Toggle";
+import { useNavContext } from "../shared/Navigation/context";
 
 export default function Header({
   hasBackground = true,
@@ -19,8 +20,8 @@ export default function Header({
   const [background, setBackground] = useState(
     hasBackground && styles.header_bg
   );
-  const [navbarNavigation, setNavbarNavigation] = useState(false);
   const pathname = usePathname();
+  const { navType } = useNavContext();
 
   // Set the background color on scroll or on resize
   useEffect(() => {
@@ -42,27 +43,6 @@ export default function Header({
     };
   }, [hasBackground]);
 
-  // Add Navigation if header classlist contains "hasNavbar"
-  // *: The 'hasNavbar' class is toggled by the `NavType` element from `useNavigationContext()`
-  useEffect(() => {
-    const headerElement = headerRef.current;
-    headerElement &&
-      headerElement.classList.contains("hasNavbar") &&
-      setNavbarNavigation(
-        <>
-          <div className="d-none d-lg-block">
-            <Navbar />
-          </div>
-
-          <div className="d-block d-lg-none">
-            <MobileNav />
-          </div>
-        </>
-      );
-
-    return () => {};
-  }, []);
-
   return (
     <header
       ref={headerRef}
@@ -79,7 +59,17 @@ export default function Header({
             xs={4}
             className="d-flex justify-content-end justify-content-lg-center order-last order-lg-0"
           >
-            {navbarNavigation}
+            {navType === "navbar" && (
+              <>
+                <div className="d-none d-lg-block">
+                  <Navbar />
+                </div>
+
+                <div className="d-block d-lg-none">
+                  <MobileNav />
+                </div>
+              </>
+            )}
           </Col>
 
           <Col

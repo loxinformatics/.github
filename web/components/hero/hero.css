@@ -4,6 +4,7 @@
     background: url("/images/hero-bg.jpg") top center;
     background-size: cover;
     position: relative;
+    padding: 60px 0;
 }
 
 #hero:before {

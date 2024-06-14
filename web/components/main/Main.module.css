@@ -1,5 +1,6 @@
 .section {
   overflow: hidden;
+  position: relative;
 }
 
 /* Extra small devices (phones, less than 576px) */
@@ -45,4 +46,5 @@
   justify-content: center;
   align-items: center;
   overflow-y: auto;
+  position: relative;
 }

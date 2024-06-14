@@ -5,9 +5,9 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
-import { useNavigationContext } from "@/components/navigation/context";
+import { useNavContext } from "@/components/shared/Navigation/context";
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import Navigation from "@/components/navigation/navigation";
+import NavLinks from "@/components/shared/Navigation/NavLinks";
 import { FiChevronLeft } from "react-icons/fi";
 import { AiOutlineMenu } from "react-icons/ai";
 
@@ -17,8 +17,12 @@ export default function Sidebar() {
     typeof window !== "undefined" ? window.innerWidth : 0
   );
   const [contentTop, setContentTop] = useState(0);
-  const { isSidebarOpen, setIsSidebarOpen, toggleSidebar } =
-    useNavigationContext();
+  const { isSidebarOpen, setIsSidebarOpen } = useNavContext();
+
+  // Toggle Sidebar function
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   // Monitor Changes in Window Size
   useEffect(() => {
@@ -102,7 +106,7 @@ export default function Sidebar() {
         </Col>
 
         <Nav className="flex-column">
-          <Navigation isSidebar={true} />
+          <NavLinks inSidebar={true} />
         </Nav>
       </Container>
     </aside>

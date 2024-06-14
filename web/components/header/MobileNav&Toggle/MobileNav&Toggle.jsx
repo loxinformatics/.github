@@ -2,11 +2,16 @@
 
 import styles from "./MobileNav&Toggle.module.css";
 import { BsX, BsList } from "react-icons/bs";
-import Navigation from "@/components/navigation/navigation";
-import { useNavigationContext } from "@/components/navigation/context";
+import NavLinks from "@/components/shared/Navigation/NavLinks";
+import { useNavContext } from "@/components/shared/Navigation/context";
 
 export default function MobileNav() {
-  const { isMobileNavOpen, toggleMobileNav } = useNavigationContext();
+  const { isMobileNavOpen, setIsMobileNavOpen } = useNavContext();
+
+  // Toggle Mobile Nav Modal function
+  const toggleMobileNav = () => {
+    setIsMobileNavOpen(!isMobileNavOpen);
+  };
 
   return (
     <nav
@@ -17,7 +22,7 @@ export default function MobileNav() {
       }`}
     >
       <ul className={`${styles.ul} ${isMobileNavOpen ? "d-block" : "d-none"}`}>
-        <Navigation isMobileNav={true} />
+        <NavLinks inMobileNav={true} />
       </ul>
       <div
         className={` ${styles.toggle} ${

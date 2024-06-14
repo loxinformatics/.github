@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import AuthContext from "./auth/context";
 import BaseContext from "./base/context";
 import ScrollTop from "@/components/shared/ScrollTop/ScrollTop";
-import NavigationContext from "@/components/navigation/context";
+import NavContext from "@/components/shared/Navigation/context";
 
 export const APIUrl =
   process.env.NEXT_PUBLIC_ENVIRONMENT === "production"
@@ -27,10 +27,10 @@ export default function RootContext({ children }) {
   return (
     <AuthContext>
       <BaseContext>
-        <NavigationContext>
+        <NavContext>
           {children}
           <ScrollTop />
-        </NavigationContext>
+        </NavContext>
       </BaseContext>
     </AuthContext>
   );

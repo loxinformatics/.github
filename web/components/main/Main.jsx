@@ -2,12 +2,13 @@
 
 import styles from "./Main.module.css";
 import React, { useLayoutEffect, useEffect, useState, useRef } from "react";
-import Sidebar from "@/components/navigation/Sidebar&Toggle/Sidebar&Toggle";
+import Sidebar from "@/components/main/Sidebar&Toggle/Sidebar&Toggle";
+import { useNavContext } from "../shared/Navigation/context";
 
 export default function Main({ children, fixAndCenter = false, background }) {
   const mainRef = useRef(null);
-  const [asideNavigation, setAsideNavigation] = useState(null);
   const [height, setHeight] = useState("100%");
+  const { navType } = useNavContext();
 
   // adjust the height if header and/or bottom bar is present
   useLayoutEffect(() => {
@@ -52,27 +53,16 @@ export default function Main({ children, fixAndCenter = false, background }) {
     };
   }, [background]);
 
-  // Determine whether to include Aside navigation based on 'hasAside' class
-  // *: The 'hasAside' class is toggled by the `NavType` element from `useNavigationContext()`
-  useEffect(() => {
-    const mainElement = mainRef.current;
-    mainElement &&
-      mainElement.classList.contains("hasAside") &&
-      setAsideNavigation(<Sidebar />);
-
-    return () => {};
-  }, []);
-
   return (
     <main
       ref={mainRef}
       id="main"
       style={{ height: height }}
-      className={`position-relative ${
+      className={`${
         fixAndCenter ? "d-flex flex-column flex-grow-1" : ""
       } `}
     >
-      {asideNavigation}
+      {navType === "sidebar" && <Sidebar />}
 
       {React.Children.map(children, (child) =>
         React.cloneElement(child, {
