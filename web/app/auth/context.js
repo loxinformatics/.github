@@ -10,7 +10,7 @@ import {
 import { jwtDecode } from "jwt-decode";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { APIUrl } from "@/app/context";
-import Preloader from "@/components/shared/Preloader/Preloader";
+import Preloader from "@/components/widgets/Preloader/Preloader";
 
 const authContext = createContext(null);
 
@@ -90,11 +90,11 @@ export default function AuthContext({ children }) {
   }, [token, loading, updateToken]);
 
   const contextData = {
-    token: token,
-    setToken: setToken,
-    user: user,
-    setUser: setUser,
-    logoutUser: logoutUser,
+    token,
+    setToken,
+    user,
+    setUser,
+    logoutUser,
     PrivateView,
     PublicView,
   };

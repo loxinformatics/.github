@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { APIUrl } from "@/app/context";
-import Preloader from "@/components/shared/Preloader/Preloader";
+import Preloader from "@/components/widgets/Preloader/Preloader";
 
 const baseContext = createContext(null);
 
