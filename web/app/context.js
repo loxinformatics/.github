@@ -36,7 +36,7 @@ export default function RootContext({ children }) {
     { name: "About", href: "/#about", icon: FaInfoCircle },
     { name: "Services", href: "/#services", icon: FaServicestack },
     { name: "Contact", href: "/#contact", icon: FaEnvelope },
-    { name: "Schools", href: "/dashboard", icon: FaUserGraduate },
+    // { name: "Schools", href: "/dashboard", icon: FaUserGraduate },
   ];
 
   // Sidebar Links
