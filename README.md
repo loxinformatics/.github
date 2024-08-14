@@ -1,1 +1,1 @@
-# Template to be used with Lox Components
+# Lox Informatics
