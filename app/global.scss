@@ -1,0 +1,119 @@
+// Custom Bootstrap
+// *: https://getbootstrap.com/docs/5.3/customize/sass/
+
+/* Include functions first (so you can manipulate colors, SVGs, calc, etc)
+------------------------------*/
+@import "../node_modules/bootstrap/scss/functions";
+
+/* Include any default variable overrides here
+------------------------------*/
+@font-face {
+  font-family: "Titillium-Regular";
+  src: url("/fonts/Titillium-Regular.otf");
+}
+
+$font-sans-serif: "Titillium-Regular", system-ui, -apple-system, "Segoe UI",
+  Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+$primary: #ffc451; // custom color  
+$link-decoration: none;
+
+/* Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+------------------------------*/
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+
+/* Include any default map overrides here
+------------------------------*/
+
+/* Include remainder of required parts
+------------------------------*/
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+/* Optionally include any other parts as needed
+------------------------------*/
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/spinners";
+@import "../node_modules/bootstrap/scss/alert";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/list-group";
+@import "../node_modules/bootstrap/scss/card";
+@import "../node_modules/bootstrap/scss/modal";
+
+/* Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+------------------------------*/
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+/* Add additional custom code here
+------------------------------*/
+:root {
+  --font-size-xxs: 12px;
+  --font-size-xs: 14px;
+  --font-size-sm: 16px;
+  --font-size-md: 20px;
+  --font-size-lg: 24px;
+  --font-size-xl: 28px;
+  --font-size-xxl: 32px;
+
+  /* Define light theme primary colors */
+  --bs-primary-light: #{lighten($primary, 5%)};
+  --bs-primary-dark: #{darken($primary, 5%)};
+  --bs-primary-light-rgb: #{red(lighten($primary, 5%))},
+    #{green(lighten($primary, 5%))}, #{blue(lighten($primary, 5%))};
+  --bs-primary-dark-rgb: #{red(darken($primary, 5%))},
+    #{green(darken($primary, 5%))}, #{blue(darken($primary, 5%))};
+}
+
+// Disable aos animation delay on mobile devices
+@media screen and (max-width: 767.98px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/* Sections general */
+section {
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 575.98px) {
+  section {
+    padding: 10px 20px;
+  }
+}
+
+@media (min-width: 576px) {
+  section {
+    padding: 10px 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 10px 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  section {
+    padding: 10px 50px;
+  }
+}
+
+@media (min-width: 1200px) {
+  section {
+    padding: 10px 60px;
+  }
+}
