@@ -11,6 +11,8 @@
 /~
 /lox
 fixtures/
+/public/static
+/public/media
 test/
 opengraph-image.jpg
 robots.txt
