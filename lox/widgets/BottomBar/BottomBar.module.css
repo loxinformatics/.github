@@ -1,0 +1,7 @@
+.bottombar {
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.copyright {
+  font-size: var(--font-size-xxs);
+}

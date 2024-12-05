@@ -1,0 +1,13 @@
+.V1_forwardBtn {
+  padding: 7px 25px 8px 25px;
+  white-space: nowrap;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.5px;
+  background: var(--bs-primary);
+}
+
+@media (max-width: 575.98px) {
+  .V1_forwardBtn {
+    padding: 7px 12px 8px 12px;
+  }
+}

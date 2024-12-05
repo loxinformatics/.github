@@ -1,0 +1,53 @@
+.aside {
+  width: 300px;
+  background: var(--bs-secondary-bg);
+}
+
+.asideOpen {
+  margin-left: 0px;
+}
+
+.mainWhenAsideOpen {
+  margin-left: 300px;
+}
+
+.asideClose {
+  margin-left: -250px;
+}
+
+.mainWhenAsideClose {
+  margin-left: 50px;
+}
+
+.retractedLogo{
+  margin-right: -15px;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+}
+
+.toggleBtn {
+  width: 33px;
+  height: 30px;
+  border: none;
+  margin-right: -4px;
+}
+
+.toggleBtnWhenSidebarOpen {
+  top: 18px;
+  left: 260px;
+}
+
+.toggleIcon {
+  color: var(--bs-body-color);
+  font-size: var(--font-size-xl);
+}
+
+.toggleBtn:hover {
+  box-shadow: 0 0 0.5rem 0 rgba(var(--bs-body-color-rgb), 0.4);
+}
+
+.toggleBtn:hover>.toggleIcon {
+  color: var(--bs-white);
+}

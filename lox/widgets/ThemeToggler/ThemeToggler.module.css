@@ -1,0 +1,13 @@
+.V1_themeTogglerBtn {
+  width: 33px;
+  height: 30px;
+  border:none;
+}
+
+.V1_themeTogglerBtn:hover{
+background: none;
+}
+
+.themeTogglerIcon {
+  color: var(--bs-body-color);
+}
