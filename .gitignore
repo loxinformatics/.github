@@ -9,7 +9,6 @@
 # assets
 /.vscode
 /~
-fixtures/
 /public/static
 /public/media
 test/

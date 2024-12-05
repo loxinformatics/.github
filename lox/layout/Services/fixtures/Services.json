@@ -1,0 +1,56 @@
+[
+  {
+    "model": "Services.Service",
+    "pk": 1,
+    "fields": {
+      "icon": "bi bi-laptop",
+      "heading": "Custom Software Solutions",
+      "description": "We tailor our services to meet the specific needs and goals of each client."
+    }
+  },
+  {
+    "model": "Services.Service",
+    "pk": 2,
+    "fields": {
+      "icon": "bi bi-code-slash",
+      "heading": "Web design and development",
+      "description": "We use data insights to optimize user experiences and website functionality."
+    }
+  },
+  {
+    "model": "Services.Service",
+    "pk": 3,
+    "fields": {
+      "icon": "bi bi-bar-chart",
+      "heading": "Website analytics & user behaviour analysis",
+      "description": "We focus on understanding user behaviour and website performance through data analytics."
+    }
+  },
+  {
+    "model": "Services.Service",
+    "pk": 4,
+    "fields": {
+      "icon": "bi bi-graph-up",
+      "heading": "Dashboard development and reporting",
+      "description": "We offer custom dashboard development for live reporting to suit any business needs together with data visualization services."
+    }
+  },
+  {
+    "model": "Services.Service",
+    "pk": 5,
+    "fields": {
+      "icon": "bi bi-database",
+      "heading": "Data analytics and statistical modelling",
+      "description": "Our team leverages advanced analytics tools and methodologies to dissect website data, uncover trends, and extract valuable insights."
+    }
+  },
+  {
+    "model": "Services.Service",
+    "pk": 6,
+    "fields": {
+      "icon": "bi bi-headset",
+      "heading": "Support and maintenance",
+      "description": "We will also offer post-project support, updates and maintenance services for software created and other data solutions."
+    }
+  }
+]
