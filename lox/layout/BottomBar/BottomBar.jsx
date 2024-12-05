@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import SocialLinks from "../SocialLinks/SocialLinks";
+import SocialLinks from "../../widgets/SocialLinks/SocialLinks";
 import style from "./BottomBar.module.css";
 
 export default function BottomBar() {

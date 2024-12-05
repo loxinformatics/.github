@@ -4,7 +4,7 @@ import Link from "next/link";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import BottomBar from "../../widgets/BottomBar/Bottombar";
+import BottomBar from "../BottomBar/Bottombar";
 import Contact from "../Contact/Contact";
 import style from "./Footer.module.css";
 
