@@ -13,9 +13,6 @@ fixtures/
 /public/static
 /public/media
 test/
-opengraph-image.jpg
-robots.txt
-sitemap.xml
 .env
 
 # misc
