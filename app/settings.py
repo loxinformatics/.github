@@ -82,9 +82,9 @@ WSGI_APPLICATION = "app.wsgi.application"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATIC_URL = "static/"
+STATIC_URL = "api/static/"
 
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / "api" /"static"
 
 STATICFILES_DIRS = [
     BASE_DIR / "app" / "static",
@@ -94,9 +94,9 @@ STATICFILES_DIRS = [
 # Media files
 # https://docs.djangoproject.com/en/4.2/ref/settings/#media-files
 
-MEDIA_URL = "media/"
+MEDIA_URL = "api/media/"
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR / "api" / "media"
 
 
 # Internationalization

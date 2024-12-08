@@ -9,8 +9,8 @@
 # assets
 /.vscode
 /~
-/static
-/media
+/api/static
+/api/media
 test/
 .env
 
