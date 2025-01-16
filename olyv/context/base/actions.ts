@@ -1,17 +1,46 @@
 "use server";
 
+import chalk from "chalk";
+import { baseApiURL } from "./config";
 import type {
   BaseData,
   BaseManifest,
   BaseMetadata,
   FetchBaseDetailPropOptions,
+  FetchDataOptions,
   FormResponse,
   MailProps,
 } from "./types";
-import { baseApiURL, fetchData } from "./utils";
+
+export const fetchData = async <T>(
+  options: FetchDataOptions
+): Promise<T | null> => {
+  const { endpoint, extra_action } = options;
+  const revalidate =
+    options.revalidate ?? (process.env.ENVIRONMENT === "development" ? 0 : 300);
+
+  try {
+    const response = await fetch(
+      `${endpoint}${extra_action ? extra_action + "/" : ""}`,
+      {
+        next: { revalidate },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${endpoint} data`);
+    }
+
+    const data = await response.json();
+    return (data as T) || null;
+  } catch (error) {
+    console.warn(chalk.yellow(error));
+    return null;
+  }
+};
 
 export default async function fetchBase(
-  detail?: FetchBaseDetailPropOptions,
+  detail?: FetchBaseDetailPropOptions
 ): Promise<BaseData | BaseMetadata | BaseManifest> {
   const data = await fetchData<BaseData | BaseMetadata | BaseManifest>({
     endpoint: `${baseApiURL}/`,
@@ -51,7 +80,13 @@ export async function mail({
         success: true,
         message: data.detail || "Email sent successfully",
       };
-    else if (response.status === 400 && data.name && data.email && data.subject && data.message) {
+    else if (
+      response.status === 400 &&
+      data.name &&
+      data.email &&
+      data.subject &&
+      data.message
+    ) {
       return {
         success: false,
         message: `${data.name[0]}\n${data.email[0]}\n${data.subject[0]}\n${data.message[0]}`,

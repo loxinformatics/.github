@@ -1,14 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useBase } from "../../base/context";
-import { useCore } from "../context";
-import type { NavLink } from "../context/types";
+import { useBase } from "../../../context/base";
+import { useCore } from "../../../context/core";
+import type { NavLink } from "../../../context/core/types";
 import styles from "./styles.module.css";
-import type { BottombarProps, FooterBottombarProps, FooterNavProps } from "./types";
+import type {
+  BottombarProps,
+  FooterBottombarProps,
+  FooterNavProps,
+} from "./types";
 
-export default function FooterBottombarSection({ themeToggler, component }: FooterBottombarProps) {
-  const { fullName, textPrimary, textColorHover, ThemeToggler, SocialMediaLinks } = useBase();
+export default function FooterBottombarSection({
+  themeToggler,
+  component,
+}: FooterBottombarProps) {
+  const {
+    fullName,
+    textPrimary,
+    textColorHover,
+    ThemeToggler,
+    SocialMediaLinks,
+  } = useBase();
   const { createNavLinks, navLinksMap } = useCore();
 
   const Footer = () => {
@@ -22,17 +35,23 @@ export default function FooterBottombarSection({ themeToggler, component }: Foot
       const otherLinks = links?.filter((link) => link.type !== "heading");
 
       return (
-        <div className={`${styles.footer_nav} sm:basis-1/2 flex flex-col items-center`}>
+        <div
+          className={`${styles.footer_nav} sm:basis-1/2 flex flex-col items-center`}
+        >
           <div>
             {/* Display heading if it exists */}
             {headingLink && (
-              <h4 className={`${styles.footer_h4} font-semibold`}>{headingLink.text}</h4>
+              <h4 className={`${styles.footer_h4} font-semibold`}>
+                {headingLink.text}
+              </h4>
             )}
             <nav>
               <ul>
                 {otherLinks?.map((link: NavLink, index: number) => (
                   <li key={index} className={styles.footerlinks_li}>
-                    <i className={`bi bi-chevron-right text-base ${textPrimary} pr-[2px]`}></i>
+                    <i
+                      className={`bi bi-chevron-right text-base ${textPrimary} pr-[2px]`}
+                    ></i>
                     <Link
                       className={`${textColorHover} transition-colors duration-200`}
                       href={link.href || "#"}
@@ -85,7 +104,8 @@ export default function FooterBottombarSection({ themeToggler, component }: Foot
   };
 
   const BottomBar = ({ themeToggler }: BottombarProps) => {
-    const hasThemeToggler = themeToggler !== null ? (themeToggler === false ? false : true) : true;
+    const hasThemeToggler =
+      themeToggler !== null ? (themeToggler === false ? false : true) : true;
 
     return (
       <section

@@ -1,15 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { User } from "../Users/types";
+import type { User } from "../../app/auth/Users/types";
 import { authenticate, login, logout } from "./actions";
-import useAuth, { authContext } from "./hooks";
-import type {
-  AuthProps,
-  AuthProviderContextValues,
-  AuthProviderProps,
-  IsAuthorizedProps,
-} from "./types";
 import {
   authApiURL,
   loginRedirectURL,
@@ -17,7 +10,14 @@ import {
   logoutRedirectURL,
   logoutURL,
   privateRoutes,
-} from "./utils";
+} from "./config";
+import useAuth, { authContext } from "./hooks";
+import type {
+  AuthProps,
+  AuthProviderContextValues,
+  AuthProviderProps,
+  IsAuthorizedProps,
+} from "./types";
 
 export default function Auth({ component, groups, children }: AuthProps) {
   switch (component) {
@@ -68,7 +68,9 @@ const AuthProvider = ({ children, groups }: AuthProviderProps) => {
     privateRoutes,
   };
 
-  return <authContext.Provider value={context}>{children}</authContext.Provider>;
+  return (
+    <authContext.Provider value={context}>{children}</authContext.Provider>
+  );
 };
 
 const IsAuthorized = ({ children, groups }: IsAuthorizedProps) => {
@@ -78,12 +80,14 @@ const IsAuthorized = ({ children, groups }: IsAuthorizedProps) => {
   // Validate groups and throw an error if invalid groups are passed (only if authGroups is not empty)
   useEffect(() => {
     if (authGroups && authGroups.length > 0) {
-      const invalidGroups = groupList.filter((group) => !authGroups?.includes(group));
+      const invalidGroups = groupList.filter(
+        (group) => !authGroups?.includes(group)
+      );
       if (invalidGroups.length > 0) {
         throw new Error(
           `Invalid groups passed to <Auth>: ${invalidGroups.join(
-            ", ",
-          )}. Allowed groups: ${authGroups?.join(", ")}`,
+            ", "
+          )}. Allowed groups: ${authGroups?.join(", ")}`
         );
       }
     }

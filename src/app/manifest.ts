@@ -1,5 +1,5 @@
-import { fetchBase } from "@/olyv/app/base/context";
-import type { BaseManifest } from "@/olyv/app/base/context/types";
+import { fetchBase } from "@/olyv/context/base";
+import type { BaseManifest } from "@/olyv/context/base/types";
 import type { MetadataRoute } from "next";
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {

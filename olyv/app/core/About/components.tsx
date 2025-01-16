@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useBase } from "../../base/context";
+import { useBase } from "../../../context/base";
 import styles from "./styles.module.css";
 import type { AboutProps } from "./types";
 
@@ -42,7 +42,9 @@ export default function AboutSection({
         <div className="flex flex-col lg:flex-row">
           <div
             className={`relative h-80 lg:h-auto ${!aboutImage && "hidden"} ${
-              aboutContent ? "lg:basis-1/2 lg:order-last" : "flex justify-center"
+              aboutContent
+                ? "lg:basis-1/2 lg:order-last"
+                : "flex justify-center"
             }`}
             data-aos="fade-left"
             data-aos-delay="200"

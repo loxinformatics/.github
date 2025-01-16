@@ -1,11 +1,12 @@
 "use server";
 
+import { fetchData } from "../../../context/base/actions";
+import { coreApiURL } from "../../../context/core/config";
 import type { ContactData } from "./types";
 
-import { fetchData } from "../../base/context/utils";
-import { coreApiURL } from "../context/utils";
-
-export default async function fetchContact(detail: string): Promise<ContactData | null> {
+export default async function fetchContact(
+  detail: string
+): Promise<ContactData | null> {
   const data = await fetchData<ContactData>({
     endpoint: `${coreApiURL}/contact/`,
     extra_action: detail,

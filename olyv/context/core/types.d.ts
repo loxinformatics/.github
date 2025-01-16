@@ -41,5 +41,4 @@ export interface CoreContextValues {
   navLinksMap: NavLinksMap;
   scroll_to: (el: string) => void;
   Nav: (props: NavLinksProps) => JSX.Element;
-  coreApiURL: string;
 }

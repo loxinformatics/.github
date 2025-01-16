@@ -4,10 +4,10 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useAuth } from "../../auth/context";
-import { useBase } from "../../base/context";
-import { useCore } from "../context";
-import type { NavLink } from "../context/types";
+import { useAuth } from "../../../context/auth";
+import { useBase } from "../../../context/base";
+import { useCore } from "../../../context/core";
+import type { NavLink } from "../../../context/core/types";
 import styles from "./styles.module.css";
 import type {
   HeaderHeroProps,
@@ -31,9 +31,11 @@ export default function HeaderHeroSection({
   hero_button_text,
   hero_button_href,
 }: HeaderHeroProps) {
-  const { textColorHover, bgBodyHover, Btn, Modal, ThemeToggler, Logo } = useBase();
+  const { textColorHover, bgBodyHover, Btn, Modal, ThemeToggler, Logo } =
+    useBase();
   const { user, privateRoutes } = useAuth();
-  const { createNavLinks, navLinksMap, scroll_to: scrollto, Nav, AsideToggle } = useCore();
+  const { createNavLinks, navLinksMap, scroll_to, Nav, AsideToggle } =
+    useCore();
 
   const headerProps = {
     section_instance,
@@ -72,18 +74,21 @@ export default function HeaderHeroSection({
 
     const sectionId = section_instance || "";
     const position = headerPosition || "sticky";
-    const border = headerBorder !== null ? (headerBorder === false ? false : true) : true;
+    const border =
+      headerBorder !== null ? (headerBorder === false ? false : true) : true;
     const headerBackground = header_background || "body";
     const heroButtonText = hero_button_text || "Get Started";
     const heroButtonHref = hero_button_href || "";
-    const headerNav = header_nav !== null ? (header_nav === false ? false : true) : true;
+    const headerNav =
+      header_nav !== null ? (header_nav === false ? false : true) : true;
     const themeToggler = theme_toggler || true;
 
     const HeaderNav = ({ linkColor }: HeaderNavProps) => {
       const navLinks_color = linkColor || "text-color-reverse dark:text-color";
 
       const handleLinkClick =
-        (href: string | undefined) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+        (href: string | undefined) =>
+        (e: React.MouseEvent<HTMLAnchorElement>) => {
           if (!href) return;
 
           const hashIndex = href.indexOf("#");
@@ -92,13 +97,15 @@ export default function HeaderHeroSection({
             const element = document.querySelector<HTMLElement>(hash);
             if (element) {
               e.preventDefault();
-              scrollto(hash);
+              scroll_to(hash);
               window.history.pushState(null, "", hash);
               return;
             }
           }
 
-          const isInPrivateRoutes = privateRoutes.some((route: string) => href.startsWith(route));
+          const isInPrivateRoutes = privateRoutes.some((route: string) =>
+            href.startsWith(route)
+          );
           if (isInPrivateRoutes && !user) {
             e.preventDefault();
             const param = `?callbackUrl=${pathname}`;
@@ -115,7 +122,9 @@ export default function HeaderHeroSection({
               href={link.href || "#"}
               onClick={handleLinkClick(link.href)}
             >
-              {Icon && <i className={`${Icon} ${styles.header_navlink_icon}`}></i>}
+              {Icon && (
+                <i className={`${Icon} ${styles.header_navlink_icon}`}></i>
+              )}
               {link?.text}
             </Link>
           </li>
@@ -145,7 +154,8 @@ export default function HeaderHeroSection({
       }, []);
 
       const handleLinkClick =
-        (href: string | undefined) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+        (href: string | undefined) =>
+        (e: React.MouseEvent<HTMLAnchorElement>) => {
           setIsNavModalOpen(false);
           if (!href) return;
 
@@ -155,13 +165,15 @@ export default function HeaderHeroSection({
             const element = document.querySelector<HTMLElement>(hash);
             if (element) {
               e.preventDefault();
-              scrollto(hash);
+              scroll_to(hash);
               window.history.pushState(null, "", hash);
               return;
             }
           }
 
-          const isInPrivateRoutes = privateRoutes.some((route: string) => href.startsWith(route));
+          const isInPrivateRoutes = privateRoutes.some((route: string) =>
+            href.startsWith(route)
+          );
           if (isInPrivateRoutes && !user) {
             e.preventDefault();
             const param = `?callbackUrl=${pathname}`;
@@ -178,7 +190,8 @@ export default function HeaderHeroSection({
               href={link?.href || "#"}
               onClick={handleLinkClick(link.href)}
             >
-              {Icon && <i className={`${Icon} ${styles.navLinkIcon}`}></i>} {link?.text}
+              {Icon && <i className={`${Icon} ${styles.navLinkIcon}`}></i>}{" "}
+              {link?.text}
             </Link>
           </li>
         );
@@ -217,18 +230,23 @@ export default function HeaderHeroSection({
 
       useLayoutEffect(() => {
         const hero = document.querySelector<HTMLElement>(`#hero_${sectionId}`);
-        const heroButton = document.querySelector<HTMLElement>(`#hero_button_${sectionId}`);
+        const heroButton = document.querySelector<HTMLElement>(
+          `#hero_button_${sectionId}`
+        );
         const heroBottom = hero?.getBoundingClientRect().height ?? 0;
 
         const handleScroll = () => {
           setIsTransparent(
             window.scrollY <= 10 &&
-              (headerBackground === "transparent" || (!!hero && headerPosition === "fixed"))
+              (headerBackground === "transparent" ||
+                (!!hero && headerPosition === "fixed"))
           );
           setHasShadow(window.scrollY > heroBottom);
           setHasBorder(!headerBorder ? window.scrollY > heroBottom : true);
           setShowForwardButton(
-            !!heroButton && window.scrollY > heroButton.getBoundingClientRect().top + window.scrollY
+            !!heroButton &&
+              window.scrollY >
+                heroButton.getBoundingClientRect().top + window.scrollY
           );
         };
 
@@ -255,11 +273,15 @@ export default function HeaderHeroSection({
             : headerBackground === "body"
             ? "bg-body dark:bg-body-reverse"
             : "bg-body",
-          headerPosition === "fixed" ? "fixed top-0 w-full z-30" : "sticky top-0 z-30",
+          headerPosition === "fixed"
+            ? "fixed top-0 w-full z-30"
+            : "sticky top-0 z-30",
           hasBorder
             ? "border-b border-b-color-tertiary dark:border-b-color-tertiary-reverse"
             : "border-b-transparent",
-          hasShadow ? "shadow-md shadow-color/10 dark:shadow-color-reverse/10" : "shadow-none",
+          hasShadow
+            ? "shadow-md shadow-color/10 dark:shadow-color-reverse/10"
+            : "shadow-none",
         ].join(" "),
         color,
         showForwardButton,
@@ -295,7 +317,9 @@ export default function HeaderHeroSection({
               // * This will only happen if the HeaderHero component is used in a page
               <Btn
                 href={heroButtonHref}
-                className={`${styles.redirectButton} ${showForwardButton && styles.visible}`}
+                className={`${styles.redirectButton} ${
+                  showForwardButton && styles.visible
+                }`}
               >
                 {heroButtonText}
               </Btn>
@@ -335,7 +359,8 @@ export default function HeaderHeroSection({
     // Set hero height based on header presence and position
     useLayoutEffect(() => {
       const hero = heroRef.current;
-      const header: HTMLElement | null = document.querySelector<HTMLElement>('[id^="header_"]');
+      const header: HTMLElement | null =
+        document.querySelector<HTMLElement>('[id^="header_"]');
       const headerHeight = header?.offsetHeight || 0;
       const isHeaderFixed = !!header?.classList.contains("fixed");
 
@@ -368,13 +393,22 @@ export default function HeaderHeroSection({
       >
         <div className={styles.hero_container}>
           {heroSubHeading && (
-            <h3 data-aos={animation} dangerouslySetInnerHTML={{ __html: heroSubHeading }} />
+            <h3
+              data-aos={animation}
+              dangerouslySetInnerHTML={{ __html: heroSubHeading }}
+            />
           )}
           {heroHeading && (
-            <h1 data-aos={animation} dangerouslySetInnerHTML={{ __html: heroHeading }} />
+            <h1
+              data-aos={animation}
+              dangerouslySetInnerHTML={{ __html: heroHeading }}
+            />
           )}
           {heroParagraph && (
-            <h2 data-aos={animation} dangerouslySetInnerHTML={{ __html: heroParagraph }} />
+            <h2
+              data-aos={animation}
+              dangerouslySetInnerHTML={{ __html: heroParagraph }}
+            />
           )}
           {heroButtonHref && (
             <Btn
@@ -403,7 +437,11 @@ export default function HeaderHeroSection({
     case "headerhero":
       return (
         <>
-          <Header {...headerProps} headerBorder={false} headerPosition="fixed" />
+          <Header
+            {...headerProps}
+            headerBorder={false}
+            headerPosition="fixed"
+          />
           <Hero {...hero} />
         </>
       );

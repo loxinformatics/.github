@@ -2,11 +2,12 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
+import { useAuth } from "../../../context/auth";
 import Preloader from "../../base/Preloader/components";
-import { useAuth } from "../context";
 
 export default function LogoutSection() {
-  const { loginURL, logoutRedirectURL, setUser, setIsAuthorized, logout } = useAuth();
+  const { loginURL, logoutRedirectURL, setUser, setIsAuthorized, logout } =
+    useAuth();
   const SignoutInner = () => {
     const searchParams = useSearchParams();
     const router = useRouter();

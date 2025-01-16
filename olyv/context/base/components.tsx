@@ -1,10 +1,10 @@
 "use client";
 
+import { useBase } from "@/olyv/context/base";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 import { forwardRef, useEffect, useRef, useState } from "react";
-import useBase from "./hooks";
 import styles from "./styles.module.css";
 import type {
   AlertProps,
@@ -19,7 +19,6 @@ import type {
   ThemeTogglerProps,
   TitleProps,
 } from "./types";
-import { homeURL } from "./utils";
 
 export const Btn = ({
   id,
@@ -60,13 +59,20 @@ export const Btn = ({
     case "button":
     default:
       return (
-        <button type={type} onClick={onClick} disabled={disabled} id={id} className={commonClasses}>
+        <button
+          type={type}
+          onClick={onClick}
+          disabled={disabled}
+          id={id}
+          className={commonClasses}
+        >
           {children}
         </button>
       );
 
     case "link":
-      const isExternalLink = href?.startsWith("http") || href?.startsWith("https");
+      const isExternalLink =
+        href?.startsWith("http") || href?.startsWith("https");
       return (
         <Link
           href={href || "#"}
@@ -135,14 +141,23 @@ export const Alert = ({ children, status }: AlertProps) => {
       break;
   }
   return (
-    <div className={`relative p-4 rounded-md text-center ${border} ${textColor} ${bg}`}>
+    <div
+      className={`relative p-4 rounded-md text-center ${border} ${textColor} ${bg}`}
+    >
       {children}
     </div>
   );
 };
 
-export const Modal = ({ id, toggleButtonColor, isModalOpen, toggleModal, children }: ModalProps) => {
-  const toggle_color = toggleButtonColor || "text-color dark:text-color-reverse";
+export const Modal = ({
+  id,
+  toggleButtonColor,
+  isModalOpen,
+  toggleModal,
+  children,
+}: ModalProps) => {
+  const toggle_color =
+    toggleButtonColor || "text-color dark:text-color-reverse";
 
   return (
     <div
@@ -192,7 +207,13 @@ export const FormStatus = ({ success, error, loading }: FormStatusProps) => {
   );
 };
 
-export const Form = ({ children, onSubmit, success, error, loading }: FormProps) => {
+export const Form = ({
+  children,
+  onSubmit,
+  success,
+  error,
+  loading,
+}: FormProps) => {
   return (
     <form className="mt-12" onSubmit={onSubmit} noValidate>
       <div className="grid grid-cols-1 gap-4 px-12">
@@ -235,7 +256,8 @@ export const ThemeToggler = ({ toggleColor }: ThemeTogglerProps) => {
 };
 
 export const Logo = ({ logoVersion, textColor }: LogoProps) => {
-  const { coloredLogoFullImage, fullName, shortName, textPrimary } = useBase();
+  const { coloredLogoFullImage, fullName, shortName, textPrimary, homeURL } =
+    useBase();
   const version = logoVersion || "logo_image";
   const color = textColor || "text-color dark:text-color-reverse";
 
@@ -243,7 +265,13 @@ export const Logo = ({ logoVersion, textColor }: LogoProps) => {
     <Link id="logo" href={homeURL} className="py-2">
       {version === "logo_image" ? (
         // TODO: Have an option for choosing whether to either differentiate which images should be showing based on screen size or theme is dark, or if just one image should be used irrespective of screen size or theme.
-        <Image src={coloredLogoFullImage} width={55} height={55} alt="logo" priority />
+        <Image
+          src={coloredLogoFullImage}
+          width={55}
+          height={55}
+          alt="logo"
+          priority
+        />
       ) : (
         <h1 className={`${color} font-bold text-3xl py-2`}>
           {version === "app_full_name" && fullName}
@@ -297,7 +325,12 @@ export const SocialMediaLinks = () => {
     },
   ];
 
-  const SocialMediaLink = ({ href, version, className, iconClass }: SocialMediaLinkProps) => {
+  const SocialMediaLink = ({
+    href,
+    version,
+    className,
+    iconClass,
+  }: SocialMediaLinkProps) => {
     return (
       <a
         href={href}
@@ -333,96 +366,110 @@ export const SocialMediaLinks = () => {
               className={link.className}
               iconClass={link.iconClass}
             />
-          ),
+          )
       )}
     </div>
   );
 };
 
-export const Section = forwardRef<HTMLDivElement, SectionProps>(function Section(
-  {
-    id,
-    className,
-    style,
-    dataAos,
-    container = true,
-    center = true,
-    padding = true,
-    fullscreen = false,
-    children,
-    title_version,
-    title_h2,
-    title_h3,
-    title_p,
-  },
-  ref,
-) {
-  // Check if any title-related props are provided
-  const hasTitle = title_h2 || title_h3 || title_p;
+export const Section = forwardRef<HTMLDivElement, SectionProps>(
+  function Section(
+    {
+      id,
+      className,
+      style,
+      dataAos,
+      container = true,
+      center = true,
+      padding = true,
+      fullscreen = false,
+      children,
+      title_version,
+      title_h2,
+      title_h3,
+      title_p,
+    },
+    ref
+  ) {
+    // Check if any title-related props are provided
+    const hasTitle = title_h2 || title_h3 || title_p;
 
-  // TODO: Remove ClassName, and put custom props
-  return (
-    <section
-      ref={ref}
-      id={id}
-      className={`relative overflow-hidden ${className}
+    // TODO: Remove ClassName, and put custom props
+    return (
+      <section
+        ref={ref}
+        id={id}
+        className={`relative overflow-hidden ${className}
           ${fullscreen && "h-screen w-full flex flex-col"}
         `}
-      style={style}
-      {...(dataAos && { "data-aos": dataAos })}
-    >
-      {hasTitle && (
-        <div
-          className={`
+        style={style}
+        {...(dataAos && { "data-aos": dataAos })}
+      >
+        {hasTitle && (
+          <div
+            className={`
                  ${container && "container"}
                  ${center && `mx-auto`}
                  ${padding ? "py-10" : "pb-10"}
                  ${fullscreen && "flex-initial"}
                 `}
-        >
-          <Title
-            titleVersion={title_version}
-            titleH2={title_h2}
-            titleH3={title_h3}
-            titleP={title_p}
-          />
-        </div>
-      )}
+          >
+            <Title
+              titleVersion={title_version}
+              titleH2={title_h2}
+              titleH3={title_h3}
+              titleP={title_p}
+            />
+          </div>
+        )}
 
-      <div
-        className={`
+        <div
+          className={`
             ${container && `container`}
             ${center && `mx-auto`}
             ${padding && (!hasTitle ? "py-10" : "pb-10")}
             ${fullscreen && "flex-1 flex"} 
           `}
-        // TODO: For fullscreen add the option of making it 'flex flex-row', 'flex flex-col' 'or 'grid and the number of grid rows.'
-      >
-        {children}
-      </div>
-    </section>
-  );
-});
+          // TODO: For fullscreen add the option of making it 'flex flex-row', 'flex flex-col' 'or 'grid and the number of grid rows.'
+        >
+          {children}
+        </div>
+      </section>
+    );
+  }
+);
 
 const Title = ({ titleH2, titleH3, titleP, titleVersion }: TitleProps) => {
   const { textPrimary, bgPrimaryBefore, bgPrimaryAfter } = useBase();
   const version = titleVersion || "V1";
 
   return (
-    <div className={`${styles.title} ${version !== "V1" ? "text-center" : "text-start"}`}>
+    <div
+      className={`${styles.title} ${
+        version !== "V1" ? "text-center" : "text-start"
+      }`}
+    >
       <div>
         {titleH2 && (
           <h2
             className={`${styles[`${version}_h2`]} 
-            ${version === "V1" && "text-color-secondary dark:text-color-secondary-reverse"}
-            ${version === "V3" && `${textPrimary} bg-body-secondary dark:bg-body-secondary-reverse`}
+            ${
+              version === "V1" &&
+              "text-color-secondary dark:text-color-secondary-reverse"
+            }
+            ${
+              version === "V3" &&
+              `${textPrimary} bg-body-secondary dark:bg-body-secondary-reverse`
+            }
              ${bgPrimaryBefore} ${bgPrimaryAfter}`}
           >
             {titleH2}
           </h2>
         )}
 
-        {titleH3 && version === "V3" && <h3 className={styles[`${version}_h3`]}>{titleH3}</h3>}
+        {titleH3 && version === "V3" && (
+          <h3 className={styles[`${version}_h3`]}>{titleH3}</h3>
+        )}
 
         {titleP && <p className={styles[`${version}_p`]}>{titleP}</p>}
       </div>
@@ -484,10 +531,14 @@ export const MailUsForm = () => {
           setMessage("");
           setSuccess(result.message);
         } else {
-          result.error.includes("name") && nameRef.current?.classList.add("is-invalid");
-          result.error.includes("email") && emailRef.current?.classList.add("is-invalid");
-          result.error.includes("subject") && subjectRef.current?.classList.add("is-invalid");
-          result.error.includes("message") && messageRef.current?.classList.add("is-invalid");
+          result.error.includes("name") &&
+            nameRef.current?.classList.add("is-invalid");
+          result.error.includes("email") &&
+            emailRef.current?.classList.add("is-invalid");
+          result.error.includes("subject") &&
+            subjectRef.current?.classList.add("is-invalid");
+          result.error.includes("message") &&
+            messageRef.current?.classList.add("is-invalid");
           setError(result.message);
           throw new Error(result.error);
         }
@@ -570,7 +621,11 @@ export const MailUsForm = () => {
         </div>
 
         <div className="flex justify-center">
-          <Btn className={`${styles.mailform_button}`} type="submit" disabled={loading}>
+          <Btn
+            className={`${styles.mailform_button}`}
+            type="submit"
+            disabled={loading}
+          >
             Send Message
           </Btn>
         </div>

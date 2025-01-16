@@ -4,7 +4,7 @@
 // * this doesn't have any dependencies and can be used globally. Therefore, it is a Base component.
 
 import { useEffect, useState } from "react";
-import { useBase } from "../context";
+import { useBase } from "../../../context/base";
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);

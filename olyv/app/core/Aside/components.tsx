@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useLayoutEffect, useState } from "react";
-import { useAuth } from "../../auth/context";
-import { useBase } from "../../base/context";
-import { useCore } from "../context";
-import type { NavLink } from "../context/types";
+import { useAuth } from "../../../context/auth";
+import { useBase } from "../../../context/base";
+import { useCore } from "../../../context/core";
+import type { NavLink } from "../../../context/core/types";
 import styles from "./styles.module.css";
 
 export default function AsideSection() {
@@ -20,7 +20,7 @@ export default function AsideSection() {
     toggleAside,
     createNavLinks,
     navLinksMap,
-    scroll_to: scrollto,
+    scroll_to,
     Nav,
   } = useCore();
 
@@ -37,33 +37,42 @@ export default function AsideSection() {
     };
   }, []);
 
-  const handleLinkClick = (href: string | undefined) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!href) return;
+  const handleLinkClick =
+    (href: string | undefined) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (!href) return;
 
-    const hashIndex = href.indexOf("#");
-    if (hashIndex !== -1) {
-      const hash = href.slice(hashIndex);
-      const element = document.querySelector<HTMLElement>(hash);
-      if (element) {
-        e.preventDefault();
-        scrollto(hash);
-        window.history.pushState(null, "", hash);
-        return;
+      const hashIndex = href.indexOf("#");
+      if (hashIndex !== -1) {
+        const hash = href.slice(hashIndex);
+        const element = document.querySelector<HTMLElement>(hash);
+        if (element) {
+          e.preventDefault();
+          scroll_to(hash);
+          window.history.pushState(null, "", hash);
+          return;
+        }
       }
-    }
 
-    const isInPrivateRoutes = privateRoutes.some((route: string) => href.startsWith(route));
-    if (isInPrivateRoutes && !user) {
-      e.preventDefault();
-      const param = `?callbackUrl=${pathname}`;
-      router.push(href + param);
-    }
-  };
+      const isInPrivateRoutes = privateRoutes.some((route: string) =>
+        href.startsWith(route)
+      );
+      if (isInPrivateRoutes && !user) {
+        e.preventDefault();
+        const param = `?callbackUrl=${pathname}`;
+        router.push(href + param);
+      }
+    };
 
   const renderLink = (
     link: NavLink,
     index: number,
-    { shouldRenderLink, openDropdowns, handleDropdownClick, pathname, user }: any,
+    {
+      shouldRenderLink,
+      openDropdowns,
+      handleDropdownClick,
+      pathname,
+      user,
+    }: any
   ) => {
     switch (link.type) {
       case "dropdown":
@@ -86,7 +95,14 @@ export default function AsideSection() {
       case "logout":
         return <LogoutNavLink key={index} link={link} pathname={pathname} />;
       case "login/logout":
-        return <LoginLogoutNavLink key={index} user={user} link={link} pathname={pathname} />;
+        return (
+          <LoginLogoutNavLink
+            key={index}
+            user={user}
+            link={link}
+            pathname={pathname}
+          />
+        );
       default:
         return (
           <PageNavLink
@@ -112,10 +128,11 @@ export default function AsideSection() {
 
     if (!visibleChildren || visibleChildren.length === 0) return null;
 
-    const handleNestedLinkClick = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-      handleLinkClick(href)(e);
-      toggleAside("closeOnMobile");
-    };
+    const handleNestedLinkClick =
+      (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+        handleLinkClick(href)(e);
+        toggleAside("closeOnMobile");
+      };
 
     return (
       <li key={`dropdown-${index}`} className={styles.nav_item}>
@@ -123,14 +140,18 @@ export default function AsideSection() {
           className={`group ${styles.nav_link} ${textColorHover}
           bg-body-secondary dark:bg-body-secondary-reverse
           hover:bg-body-tertiary dark:hover:bg-body-tertiary-reverse ${
-            visibleChildren.some((child: any) => child.href === pathname) ? styles.active : ""
+            visibleChildren.some((child: any) => child.href === pathname)
+              ? styles.active
+              : ""
           }`}
           onClick={() => handleDropdownClick(String(index))}
           aria-controls={`dropdown-${index}`}
           aria-expanded={openDropdowns[String(index)] || false}
           href="#"
         >
-          {link.icon && <i className={`${link.icon} ${textColorGroupHover}`}></i>}
+          {link.icon && (
+            <i className={`${link.icon} ${textColorGroupHover}`}></i>
+          )}
           {link.text && <span>{link.text}</span>}
           <i
             className={`bi bi-chevron-down ms-auto ${textColorGroupHover} ${styles.dropdown_icon} me-0`}
@@ -139,7 +160,9 @@ export default function AsideSection() {
         <ul
           id={`dropdown-${index}`}
           className={`${styles.nav_content} ${
-            openDropdowns[String(index)] ? styles.openDropdown : styles.closedDropdown
+            openDropdowns[String(index)]
+              ? styles.openDropdown
+              : styles.closedDropdown
           }`}
         >
           {visibleChildren.map((child: any, childIndex: any) => (
@@ -183,9 +206,15 @@ export default function AsideSection() {
           href={`${loginURL}/?nextUrl=${nextUrl}&callbackUrl=${pathname}`}
           className={`group ${styles.nav_link} bg-body-secondary dark:bg-body-secondary-reverse ${textColorHover} hover:bg-body-tertiary dark:hover:bg-body-tertiary-reverse`}
         >
-          {link.icon && <i className={`${link.icon} ${textColorGroupHover}`}></i>}
-          {link.text || link.loginText ? <span>{link.loginText || link.text}</span> : null}
-          <i className={`bi bi-chevron-right ${textColorGroupHover} ms-auto me-0`}></i>
+          {link.icon && (
+            <i className={`${link.icon} ${textColorGroupHover}`}></i>
+          )}
+          {link.text || link.loginText ? (
+            <span>{link.loginText || link.text}</span>
+          ) : null}
+          <i
+            className={`bi bi-chevron-right ${textColorGroupHover} ms-auto me-0`}
+          ></i>
         </Link>
       </li>
     );
@@ -198,9 +227,15 @@ export default function AsideSection() {
           className={`group ${styles.nav_link} bg-body-secondary dark:bg-body-secondary-reverse ${textColorHover} hover:bg-body-tertiary dark:hover:bg-body-tertiary-reverse`}
           href={`${logoutURL}?callbackUrl=${pathname}`}
         >
-          {link.icon && <i className={`${link.icon} ${textColorGroupHover}`}></i>}
-          {link.text || link.logoutText ? <span>{link.logoutText || link.text}</span> : null}
-          <i className={`bi bi-chevron-right ${textColorGroupHover} ms-auto me-0`}></i>
+          {link.icon && (
+            <i className={`${link.icon} ${textColorGroupHover}`}></i>
+          )}
+          {link.text || link.logoutText ? (
+            <span>{link.logoutText || link.text}</span>
+          ) : null}
+          <i
+            className={`bi bi-chevron-right ${textColorGroupHover} ms-auto me-0`}
+          ></i>
         </Link>
       </li>
     );
@@ -227,9 +262,13 @@ export default function AsideSection() {
           hover:bg-body-tertiary dark:hover:bg-body-tertiary-reverse
           ${link.href === pathname ? styles.active : ""}`}
         >
-          {link.icon && <i className={`${link.icon} ${textColorGroupHover}`}></i>}
+          {link.icon && (
+            <i className={`${link.icon} ${textColorGroupHover}`}></i>
+          )}
           {link.text && <span>{link.text}</span>}
-          <i className={`bi bi-chevron-right ${textColorGroupHover} ms-auto me-0`}></i>
+          <i
+            className={`bi bi-chevron-right ${textColorGroupHover} ms-auto me-0`}
+          ></i>
         </Link>
       </li>
     );

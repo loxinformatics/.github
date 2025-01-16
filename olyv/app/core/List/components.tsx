@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useBase } from "../../base/context";
+import { useBase } from "../../../context/base";
 import style from "./styles.module.css";
 import type { ListDescriptionsProps } from "./types";
 
@@ -83,7 +83,9 @@ export default function ListSection({
                       >
                         {itemTitle}
                       </h4>
-                      <p className={`${style.description} text-color dark:text-color-reverse`}>
+                      <p
+                        className={`${style.description} text-color dark:text-color-reverse`}
+                      >
                         {itemDescription}
                       </p>
                     </div>
@@ -106,8 +108,12 @@ export default function ListSection({
                     border-r-[5px] after:border-r-body dark:after:border-r-body-reverse
                   `}
                   >
-                    <div className={`${bgPrimaryBefore30} ${style.icon} before:z-10`}>
-                      <i className={`${itemIcon} text-color/70 dark:text-color-reverse/70 z-20`}></i>
+                    <div
+                      className={`${bgPrimaryBefore30} ${style.icon} before:z-10`}
+                    >
+                      <i
+                        className={`${itemIcon} text-color/70 dark:text-color-reverse/70 z-20`}
+                      ></i>
                     </div>
                     <div>
                       <h4
@@ -131,7 +137,13 @@ export default function ListSection({
                 >
                   <Link href="" className={`group ${style.V3_services}`}>
                     <div className={style.img}>
-                      <Image src={itemImage} className="w-full" alt="" width={800} height={600} />
+                      <Image
+                        src={itemImage}
+                        className="w-full"
+                        alt=""
+                        width={800}
+                        height={600}
+                      />
                     </div>
                     <div
                       className={`${style.details} relative

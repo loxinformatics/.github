@@ -1,6 +1,9 @@
 import { Preloader } from "@/olyv/app/base/Preloader";
 import { AboutSection, fetchAbout } from "@/olyv/app/core/About";
-import { CallToActionSection, fetchCallToAction } from "@/olyv/app/core/CallToAction";
+import {
+  CallToActionSection,
+  fetchCallToAction,
+} from "@/olyv/app/core/CallToAction";
 import { ContactSection, fetchContact } from "@/olyv/app/core/Contact";
 import { FooterBottombarSection } from "@/olyv/app/core/FooterBottombar";
 import { HeaderHeroSection, fetchHeaderHero } from "@/olyv/app/core/HeaderHero";

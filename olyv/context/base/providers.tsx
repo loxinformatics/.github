@@ -19,9 +19,9 @@ import {
   Spinner,
   ThemeToggler,
 } from "./components";
+import { baseApiURL, homeURL } from "./config";
 import { baseContext } from "./hooks";
 import type { BaseContextValues, BaseProps, ThemeColorKey } from "./types";
-import { baseApiURL, homeURL } from "./utils";
 
 export default function Base({
   csrf_token,
@@ -57,27 +57,37 @@ export default function Base({
     "#e84545": {
       // textColor: use the one already defined by 'color' variable in Tailwind
       textColorHover: "hover:text-primary dark:hover:text-primary-reverse",
-      textColorGroupHover: "group-hover:text-primary dark:group-hover:text-primary-reverse",
+      textColorGroupHover:
+        "group-hover:text-primary dark:group-hover:text-primary-reverse",
       textPrimary: "text-primary dark:text-primary-reverse",
       textPrimaryHover: "hover:text-primary-reverse dark:hover:text-primary",
       // bgBody: use the one already defined by 'body' variable in Tailwind
       bgBodyHover: "hover:bg-primary dark:hover:bg-primary-reverse",
       bgPrimary: "bg-primary dark:bg-primary-reverse",
       bgPrimaryHover: "hover:bg-primary-reverse dark:hover:bg-primary",
-      bgPrimaryChecked: "checked:bg-primary/90 dark:checked:bg-primary-reverse/90",
+      bgPrimaryChecked:
+        "checked:bg-primary/90 dark:checked:bg-primary-reverse/90",
       bgPrimaryBefore: "before:bg-primary dark:before:bg-primary-reverse",
-      bgPrimaryBefore30: "before:bg-primary/30 dark:before:bg-primary-reverse/30",
+      bgPrimaryBefore30:
+        "before:bg-primary/30 dark:before:bg-primary-reverse/30",
       bgPrimaryAfter: "after:bg-primary dark:after:bg-primary-reverse",
       bgPrimaryAfter50: "after:bg-primary/50 dark:after:bg-primary-reverse/50",
       // borderColor ( note that 'border' by itself automatically applies a color.): use the one already defined by 'color' variable in Tailwind
-      borderColorHover: "hover:border-primary dark:hover:border-primary-reverse",
-      borderColorGroupHover: "group-hover:border-primary dark:group-hover:border-primary-reverse",
+      borderColorHover:
+        "hover:border-primary dark:hover:border-primary-reverse",
+      borderColorGroupHover:
+        "group-hover:border-primary dark:group-hover:border-primary-reverse",
       borderPrimary: "border-primary dark:border-primary-reverse",
-      borderPrimaryHover: "hover:border-primary-reverse dark:hover:border-primary",
-      borderPrimaryFocus: "focus:border-primary dark:focus:border-primary-reverse",
-      borderPrimaryChecked: "checked:border-primary dark:checked:border-primary-reverse",
-      borderPrimaryBefore: "before:border-primary dark:before:border-primary-reverse",
-      borderPrimaryAfter: "after:border-primary dark:after:border-primary-reverse",
+      borderPrimaryHover:
+        "hover:border-primary-reverse dark:hover:border-primary",
+      borderPrimaryFocus:
+        "focus:border-primary dark:focus:border-primary-reverse",
+      borderPrimaryChecked:
+        "checked:border-primary dark:checked:border-primary-reverse",
+      borderPrimaryBefore:
+        "before:border-primary dark:before:border-primary-reverse",
+      borderPrimaryAfter:
+        "after:border-primary dark:after:border-primary-reverse",
     },
   } as const;
 

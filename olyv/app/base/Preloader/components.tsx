@@ -1,13 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useBase } from "../context";
+import { useBase } from "../../../context/base";
 
 import styles from "./styles.module.css";
 
 import type { PreloaderProps } from "./types";
 
-export default function Preloader({ version = "V3", indefinite }: PreloaderProps) {
+export default function Preloader({
+  version = "V3",
+  indefinite,
+}: PreloaderProps) {
   const [isLoading, setIsLoading] = useState(true);
   const { bgPrimary, borderPrimaryBefore, borderPrimaryAfter } = useBase();
 

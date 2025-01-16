@@ -3,11 +3,12 @@
 import chalk from "chalk";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
-import type { FormResponse } from "../../base/context/types";
-import { fetchData, homeURL } from "../../base/context/utils";
-import type { User } from "../Users/types";
+import type { User } from "../../app/auth/Users/types";
+import { fetchData } from "../base/actions";
+import { homeURL } from "../base/config";
+import type { FormResponse } from "../base/types";
+import { authApiURL, isTokenExpired } from "./config";
 import type { AuthData, DecodedToken, TokenData } from "./types";
-import { authApiURL, isTokenExpired, refreshAccessToken } from "./utils";
 
 export default async function fetchAuth(): Promise<AuthData> {
   const data = await fetchData<string[]>({
@@ -19,9 +20,35 @@ export default async function fetchAuth(): Promise<AuthData> {
   return { groups: data || null } as AuthData;
 }
 
+export async function refresh(
+  refreshToken: string
+): Promise<{ newAccessToken: string; newRefreshToken: string }> {
+  // TODO: Have this use the 'Fetch' util
+  try {
+    const response = await fetch(`${authApiURL}/token/refresh/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ refresh: refreshToken }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to refresh token");
+    }
+
+    const data = await response.json();
+    const { access, refresh } = data;
+    return { newAccessToken: access, newRefreshToken: refresh };
+  } catch (error) {
+    console.error("Error refreshing access token:", error);
+    throw new Error("Failed to refresh token");
+  }
+}
+
 export async function authenticate(
   username: string,
-  password: string,
+  password: string
 ): Promise<FormResponse & TokenData> {
   try {
     const response = await fetch(`${authApiURL}/token/`, {
@@ -44,7 +71,11 @@ export async function authenticate(
       };
     }
     // no username and password provided
-    else if (response.status === 400 && responseData.username && responseData.password) {
+    else if (
+      response.status === 400 &&
+      responseData.username &&
+      responseData.password
+    ) {
       return {
         success: false,
         message: `These fields may not be blank`,
@@ -84,7 +115,10 @@ export async function authenticate(
   }
 }
 
-export async function login({ accessToken, refreshToken }: TokenData = {}): Promise<User | null> {
+export async function login({
+  accessToken,
+  refreshToken,
+}: TokenData = {}): Promise<User | null> {
   const setCookies = async (accessToken: string, refreshToken: string) => {
     const cookieStore = await cookies();
     const decodedAccessToken = jwtDecode<DecodedToken>(accessToken);
@@ -130,7 +164,7 @@ export async function login({ accessToken, refreshToken }: TokenData = {}): Prom
     if (!accessToken || isTokenExpired(accessToken)) {
       if (refreshToken && !isTokenExpired(refreshToken)) {
         // Refresh the access token using the refresh token
-        const { newAccessToken, newRefreshToken } = await refreshAccessToken(refreshToken);
+        const { newAccessToken, newRefreshToken } = await refresh(refreshToken);
         accessToken = newAccessToken;
 
         // Update cookies with new tokens
@@ -148,7 +182,9 @@ export async function login({ accessToken, refreshToken }: TokenData = {}): Prom
     });
 
     if (!userRes.ok) {
-      throw new Error(`Failed to fetch user data: ${userRes.status} ${userRes.statusText}`);
+      throw new Error(
+        `Failed to fetch user data: ${userRes.status} ${userRes.statusText}`
+      );
     }
 
     const user = await userRes.json();

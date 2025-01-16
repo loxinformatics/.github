@@ -1,7 +1,14 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./olyv/app/**/*.{js,ts,jsx,tsx}", "./src/app/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./olyv/**/*.tsx",
+    "!./olyv/api/**/*.tsx",
+    "!./olyv/middleware/**/*.tsx",
+    "./src/**/*.tsx",
+    "!./src/api/**/*.tsx",
+    "!./src/middleware.tsx",
+  ],
   darkMode: "selector",
   theme: {
     extend: {

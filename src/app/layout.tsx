@@ -1,10 +1,11 @@
-import { Auth, fetchAuth } from "@/olyv/app/auth/context";
-import type { AuthData } from "@/olyv/app/auth/context/types";
-import { Base, fetchBase } from "@/olyv/app/base/context";
-import type { BaseData, BaseMetadata } from "@/olyv/app/base/context/types";
 import { ScrollToTop } from "@/olyv/app/base/ScrollToTop";
-import { Core } from "@/olyv/app/core/context";
+import { Auth, fetchAuth } from "@/olyv/context/auth";
+import type { AuthData } from "@/olyv/context/auth/types";
+import { Base, fetchBase } from "@/olyv/context/base";
+import type { BaseData, BaseMetadata } from "@/olyv/context/base/types";
+import { Core } from "@/olyv/context/core";
 import type { Metadata } from "next";
+
 import "./global.css";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -50,7 +51,11 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const baseData: BaseData = await fetchBase();
   const authData: AuthData = await fetchAuth();
 

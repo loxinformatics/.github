@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useBase } from "../../base/context";
+import { useBase } from "../../../context/base";
 import styles from "./styles.module.css";
 import type { CallToActionProps } from "./types";
 
@@ -27,7 +27,12 @@ export default function CallToActionSection({
   const ctaImage = cta_image || "/app/img/cta.png";
 
   const hasContainer = sectionVersion === "V2";
-  const render = !!ctaHeading && !!ctaParagraph && !!ctaButtonText && !!ctaButtonHref && !!ctaImage;
+  const render =
+    !!ctaHeading &&
+    !!ctaParagraph &&
+    !!ctaButtonText &&
+    !!ctaButtonHref &&
+    !!ctaImage;
 
   return (
     render && (
@@ -54,7 +59,11 @@ export default function CallToActionSection({
               priority
             />
             <div className={`${styles.container} relative z-20`}>
-              <div className="flex justify-center" data-aos="zoom-in" data-aos-delay="100">
+              <div
+                className="flex justify-center"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+              >
                 <div className="w-full xl:w-5/6">
                   <div className="flex flex-col items-center">
                     <h3
@@ -69,9 +78,16 @@ export default function CallToActionSection({
                         __html: ctaParagraph,
                       }}
                     />
-                    <Btn className="mt-4" href={ctaButtonHref} size="lg" outline>
+                    <Btn
+                      className="mt-4"
+                      href={ctaButtonHref}
+                      size="lg"
+                      outline
+                    >
                       <span>{ctaButtonText}</span>
-                      {ctaButtonIcon && <i className={`${ctaButtonIcon} ml-2`}></i>}
+                      {ctaButtonIcon && (
+                        <i className={`${ctaButtonIcon} ml-2`}></i>
+                      )}
                     </Btn>
                   </div>
                 </div>
@@ -107,7 +123,9 @@ export default function CallToActionSection({
                 />
                 <Btn className="self-start mt-4" href={ctaButtonHref} size="lg">
                   <span>{ctaButtonText}</span>
-                  {ctaButtonIcon && <i className={`${ctaButtonIcon} ms-2 text-white`}></i>}
+                  {ctaButtonIcon && (
+                    <i className={`${ctaButtonIcon} ms-2 text-white`}></i>
+                  )}
                 </Btn>
               </div>
 

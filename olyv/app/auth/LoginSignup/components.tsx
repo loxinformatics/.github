@@ -3,16 +3,17 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, Suspense, useRef, useState } from "react";
-import { useBase } from "../../base/context";
+import { useAuth } from "../../../context/auth";
+import { useBase } from "../../../context/base";
 import Preloader from "../../base/Preloader/components";
-import { useAuth } from "../context";
 import styles from "./styles.module.css";
 import type { LoginSignupProps } from "./types";
 
 export default function LoginSignupSection({ component }: LoginSignupProps) {
   const router = useRouter();
   const { borderPrimaryFocus, Btn, FormStatus, Section, homeURL } = useBase();
-  const { authApiURL, setUser, authenticate, login, loginRedirectURL } = useAuth();
+  const { authApiURL, setUser, authenticate, login, loginRedirectURL } =
+    useAuth();
 
   const Login = () => {
     const SigninForm = () => {
@@ -71,8 +72,10 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
                 !result.error.includes("Internal server error") &&
                 "is-valid";
 
-            if (usernameValidity) usernameRef.current?.classList.add(usernameValidity);
-            if (passwordValidity) passwordRef.current?.classList.add(passwordValidity);
+            if (usernameValidity)
+              usernameRef.current?.classList.add(usernameValidity);
+            if (passwordValidity)
+              passwordRef.current?.classList.add(passwordValidity);
 
             setError(result.message);
             throw new Error(result.error);
@@ -99,9 +102,13 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
         >
           <div>
             <div className="flex items-center justify-between">
-              <h5 className="mx-auto font-bold text-center  text-sm">Login to Your Account</h5>
+              <h5 className="mx-auto font-bold text-center  text-sm">
+                Login to Your Account
+              </h5>
             </div>
-            <p className="text-center text-sm">Enter your username & password to login</p>
+            <p className="text-center text-sm">
+              Enter your username & password to login
+            </p>
           </div>
 
           <FormStatus success={success} error={error} loading={loading} />
@@ -148,7 +155,11 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
 
           {/* Login and Back Buttons */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Btn className="w-full sm:w-1/2" type="submit" disabled={loading || !!success}>
+            <Btn
+              className="w-full sm:w-1/2"
+              type="submit"
+              disabled={loading || !!success}
+            >
               {loading ? "Logging in..." : "Login"}
             </Btn>
 
@@ -189,7 +200,8 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
       const [loading, setLoading] = useState<boolean>(false);
       const [error, setError] = useState<string | null>(null);
       const [success, setSuccess] = useState<string | null>(null);
-      const { borderPrimaryFocus, borderPrimaryChecked, bgPrimaryChecked } = useBase();
+      const { borderPrimaryFocus, borderPrimaryChecked, bgPrimaryChecked } =
+        useBase();
 
       const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -255,9 +267,13 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
         >
           <div className="pb-2">
             <div className="flex items-center justify-content-between">
-              <h5 className="d-block mx-auto font-bold text-center fs-4">Create an account</h5>
+              <h5 className="d-block mx-auto font-bold text-center fs-4">
+                Create an account
+              </h5>
             </div>
-            <p className="text-center text-xs">Enter your personal details to create an account</p>
+            <p className="text-center text-xs">
+              Enter your personal details to create an account
+            </p>
           </div>
 
           <div className="my-2">
@@ -267,7 +283,10 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
           {/* Full Name */}
 
           <div className="col-6 mb-4">
-            <label htmlFor="signup_full_name" className={`forlabel ${styles.label}`}>
+            <label
+              htmlFor="signup_full_name"
+              className={`forlabel ${styles.label}`}
+            >
               Your Name
             </label>
 
@@ -286,7 +305,10 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
           {/* Email */}
 
           <div className="col-6 mb-4">
-            <label htmlFor="signup_email" className={`forlabel ${styles.label}`}>
+            <label
+              htmlFor="signup_email"
+              className={`forlabel ${styles.label}`}
+            >
               Your Email
             </label>
 
@@ -299,13 +321,18 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
               required
             />
 
-            <div className="invalid-feedback">Please enter a valid Email address!</div>
+            <div className="invalid-feedback">
+              Please enter a valid Email address!
+            </div>
           </div>
 
           {/* Username */}
 
           <div className="col-6 mb-4">
-            <label htmlFor="signup_username" className={`forlabel ${styles.label}`}>
+            <label
+              htmlFor="signup_username"
+              className={`forlabel ${styles.label}`}
+            >
               Username
             </label>
 
@@ -324,7 +351,10 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
           {/* Password */}
 
           <div className="col-6 mb-4">
-            <label htmlFor="signup_password" className={`forlabel ${styles.label}`}>
+            <label
+              htmlFor="signup_password"
+              className={`forlabel ${styles.label}`}
+            >
               Password
             </label>
 
@@ -353,11 +383,17 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
                 required
               />
 
-              <label className={`forcheck-label ms-3 ${styles.label}`} htmlFor="signup_agreeterms">
-                I agree and accept the <Link href="#">terms and conditions</Link>
+              <label
+                className={`forcheck-label ms-3 ${styles.label}`}
+                htmlFor="signup_agreeterms"
+              >
+                I agree and accept the{" "}
+                <Link href="#">terms and conditions</Link>
               </label>
 
-              <div className="invalid-feedback">You must agree before submitting.</div>
+              <div className="invalid-feedback">
+                You must agree before submitting.
+              </div>
             </div>
           </div>
 

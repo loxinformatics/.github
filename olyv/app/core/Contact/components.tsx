@@ -1,6 +1,6 @@
 "use client";
 
-import { useBase } from "../../base/context";
+import { useBase } from "../../../context/base";
 import styles from "./styles.module.css";
 import type { ContactItemProps, ContactProps } from "./types";
 
@@ -39,9 +39,15 @@ export default function ContactSection({
   const titleP = title_p || "Get In Touch";
   const has_map = hasMap !== null ? (hasMap === false ? false : true) : true;
 
-  const render = !!cityName && !!primaryPhone && !!primaryEmail && !!openDays && !!openHours;
+  const render =
+    !!cityName && !!primaryPhone && !!primaryEmail && !!openDays && !!openHours;
 
-  const ContactItem = ({ icon, title, lines, linkPrefix }: ContactItemProps) => (
+  const ContactItem = ({
+    icon,
+    title,
+    lines,
+    linkPrefix,
+  }: ContactItemProps) => (
     <>
       <i
         className={`bi bi-${icon} ${textPrimary} float-left
@@ -59,7 +65,9 @@ export default function ContactSection({
         {title[`${sectionVersion}` as keyof typeof title]}
       </h3>
       {lines.filter(Boolean).map((line, index) => (
-        <p key={index}>{linkPrefix ? <a href={`${linkPrefix}${line}`}>{line}</a> : line}</p>
+        <p key={index}>
+          {linkPrefix ? <a href={`${linkPrefix}${line}`}>{line}</a> : line}
+        </p>
       ))}
     </>
   );
@@ -204,7 +212,11 @@ export default function ContactSection({
               </div>
             </div>
 
-            <div className="flex flex-row justify-center" data-aos="fade-up" data-aos-delay="300">
+            <div
+              className="flex flex-row justify-center"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
               <div className="basis-full xl:basis-3/4 mt-6">
                 <MailUsForm />
               </div>

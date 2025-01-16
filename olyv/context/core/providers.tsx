@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { AsideToggle, Nav } from "./components";
+import { createNavLinks, scroll_to, toggleAside } from "./config";
 import { coreContext } from "./hooks";
 import navLinksMap from "./navigation";
 import type { CoreContextValues, CoreProps } from "./types";
-import { coreApiURL, createNavLinks, scroll_to, toggleAside } from "./utils";
 
 export default function Core({ children }: CoreProps) {
   const [asideExists, setAsideExists] = useState<boolean>(false);
@@ -22,8 +22,9 @@ export default function Core({ children }: CoreProps) {
     navLinksMap,
     Nav,
     scroll_to,
-    coreApiURL,
   };
 
-  return <coreContext.Provider value={context}>{children}</coreContext.Provider>;
+  return (
+    <coreContext.Provider value={context}>{children}</coreContext.Provider>
+  );
 }

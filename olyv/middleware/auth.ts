@@ -3,24 +3,26 @@
 import { jwtDecode } from "jwt-decode";
 import type { NextRequest, NextResponse } from "next/server";
 import { NextResponse as Response } from "next/server";
-import { homeURL } from "../../base/context/utils";
-import type { DecodedToken } from "./types";
+import { refresh } from "../context/auth/actions";
 import {
   isTokenExpired,
   loginRedirectURL,
   loginURL,
   privateRoutes,
   publicRoutes,
-  refreshAccessToken,
-} from "./utils";
+} from "../context/auth/config";
+import type { DecodedToken } from "../context/auth/types";
+import { homeURL } from "../context/base/config";
 
-export default async function AuthMiddleware(request: NextRequest): Promise<NextResponse | null> {
+export async function AuthMiddleware(
+  request: NextRequest
+): Promise<NextResponse | null> {
   const { pathname, searchParams } = request.nextUrl;
 
   const setCookies = (
     response: NextResponse,
     accessToken: string,
-    refreshToken: string,
+    refreshToken: string
   ): NextResponse => {
     const decodedAccessToken = jwtDecode<DecodedToken>(accessToken);
     const decodedRefreshToken = jwtDecode<DecodedToken>(refreshToken);
@@ -46,7 +48,7 @@ export default async function AuthMiddleware(request: NextRequest): Promise<Next
   const getCookies = async (
     request: NextRequest,
     retries: number,
-    delay: number,
+    delay: number
   ): Promise<{
     accessToken: string | undefined;
     refreshToken: string | undefined;
@@ -64,7 +66,9 @@ export default async function AuthMiddleware(request: NextRequest): Promise<Next
   };
 
   const clearCookies = (response: NextResponse): NextResponse => {
-    ["accessToken", "refreshToken"].forEach((cookie) => response.cookies.delete(cookie));
+    ["accessToken", "refreshToken"].forEach((cookie) =>
+      response.cookies.delete(cookie)
+    );
     return response;
   };
 
@@ -73,7 +77,7 @@ export default async function AuthMiddleware(request: NextRequest): Promise<Next
     pathname: string,
     callbackUrl: string | undefined,
     accessToken: string | undefined,
-    refreshToken: string | undefined,
+    refreshToken: string | undefined
   ): Promise<NextResponse> => {
     if (!accessToken || isTokenExpired(accessToken)) {
       const nextUrl = new URL(loginURL, request.url);
@@ -82,7 +86,9 @@ export default async function AuthMiddleware(request: NextRequest): Promise<Next
 
       if (refreshToken && !isTokenExpired(refreshToken)) {
         try {
-          const { newAccessToken, newRefreshToken } = await refreshAccessToken(refreshToken);
+          const { newAccessToken, newRefreshToken } = await refresh(
+            refreshToken
+          );
           return setCookies(Response.next(), newAccessToken, newRefreshToken); // not using redirect url here
         } catch (error) {
           console.error("Failed to refresh access token", error);
@@ -98,7 +104,7 @@ export default async function AuthMiddleware(request: NextRequest): Promise<Next
 
   const handlePublicRoute = async (
     request: NextRequest,
-    accessToken: string | undefined,
+    accessToken: string | undefined
   ): Promise<NextResponse> => {
     if (accessToken && !isTokenExpired(accessToken)) {
       return Response.redirect(new URL(loginRedirectURL, request.url));
@@ -113,7 +119,13 @@ export default async function AuthMiddleware(request: NextRequest): Promise<Next
 
   if (privateRoutes.some((route: string) => pathname.startsWith(route))) {
     const callbackUrl = searchParams.get("callbackUrl") || undefined;
-    return handlePrivateRoute(request, pathname, callbackUrl, accessToken, refreshToken);
+    return handlePrivateRoute(
+      request,
+      pathname,
+      callbackUrl,
+      accessToken,
+      refreshToken
+    );
   }
 
   if (mergedPublicRoutes.some((route) => pathname.startsWith(route))) {

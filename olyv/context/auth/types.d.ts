@@ -1,5 +1,5 @@
-import type { FormResponse } from "../../base/context/types";
-import type { User } from "../Users/types";
+import type { User } from "../../app/auth/Users/types";
+import type { FormResponse } from "../base/types";
 
 // actions & utils
 export interface AuthData {
@@ -37,7 +37,10 @@ export interface AuthProviderContextValues {
   setUser: React.Dispatch<React.SetStateAction<any>>;
   isAuthorized: boolean;
   setIsAuthorized: React.Dispatch<React.SetStateAction<boolean>>;
-  authenticate: (username: string, password: string) => Promise<FormResponse & TokenData>;
+  authenticate: (
+    username: string,
+    password: string
+  ) => Promise<FormResponse & TokenData>;
   login: (tokens?: TokenData) => Promise<User | null>;
   logout: () => Promise<FormResponse>;
   authApiURL: string;

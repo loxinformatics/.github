@@ -2,12 +2,18 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { useAuth } from "../../auth/context";
-import useCore from "./hooks";
+import { useCore } from ".";
+import { useAuth } from "../auth";
 import styles from "./styles.module.css";
 import type { NavLink, NavLinksProps } from "./types";
 
-export const Nav = ({ links, layout, renderLink, className, id }: NavLinksProps) => {
+export const Nav = ({
+  links,
+  layout,
+  renderLink,
+  className,
+  id,
+}: NavLinksProps) => {
   const pathname = usePathname();
   const { user } = useAuth();
 
@@ -22,10 +28,13 @@ export const Nav = ({ links, layout, renderLink, className, id }: NavLinksProps)
   const shouldRenderLink = (link: NavLink) => {
     if (user) {
       if (link.authorized) {
-        const isUserOnly = link.authorized.length === 1 && link.authorized.includes("USER");
+        const isUserOnly =
+          link.authorized.length === 1 && link.authorized.includes("USER");
         if (isUserOnly) return true;
 
-        return link.authorized.some((group) => group !== "USER" && user.groups.includes(group));
+        return link.authorized.some(
+          (group) => group !== "USER" && user.groups.includes(group)
+        );
       }
     }
     return !link.authorized;
@@ -46,7 +55,10 @@ export const Nav = ({ links, layout, renderLink, className, id }: NavLinksProps)
   }, [links, pathname]);
 
   return (
-    <nav id={id} className={`${layout === "header" ? "hidden lg:block" : ""} ${className}`}>
+    <nav
+      id={id}
+      className={`${layout === "header" ? "hidden lg:block" : ""} ${className}`}
+    >
       <ul className={layout === "header" ? "flex items-center" : ""}>
         {links?.map((link, index) => {
           if (!shouldRenderLink(link)) return null;

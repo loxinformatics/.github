@@ -1,4 +1,4 @@
-import type { SectionData } from "../../base/context/types";
+import type { SectionData } from "../../../context/base/types";
 
 // actions & utils
 interface ItemDescription {
