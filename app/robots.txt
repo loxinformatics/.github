@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+# This file is used to manage how search engines crawl and index your site.
+
+User-agent: *
+Disallow: /api/
+
+# Allow all other pages to be crawled
+Allow: /
+

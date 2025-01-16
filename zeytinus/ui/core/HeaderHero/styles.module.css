@@ -1,0 +1,125 @@
+/* * Redirect Button */
+
+.redirectButton {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.redirectButton.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* * HeaderNav */
+
+.header_nav .header_navlink,
+.header_nav .header_navlink:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 30px;
+  font-size: var(--font-size-xs);
+  font-family: var(--font-primary);
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.header_nav .header_navlink_icon,
+.header_nav .header_navlink_icon:focus {
+  margin-right: 0.5rem;
+  font-size: var(--font-size-xs);
+  line-height: 0;
+  margin-left: 5px;
+}
+
+/* *  ModalNav */
+
+@media (prefers-reduced-motion: reduce) {
+  .modal_nav .navLink {
+    transition: none;
+  }
+}
+
+.modal_nav .navLink,
+.modal_nav .navLink:focus {
+  padding: 10px 20px !important;
+  font-size: var(--font-size-sm);
+}
+
+.modal_nav .navLinkIcon,
+.modal_nav .navLinkIcon:focus {
+  margin-right: 0.5rem;
+  font-size: var(--font-size-xs);
+  line-height: 0;
+  margin-left: 5px;
+}
+
+/* * Hero */
+
+.hero .hero_container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 15px;
+}
+
+.hero h3 {
+  @apply text-white bg-white/10;
+  font-size: 26px;
+  padding: 10px 30px;
+  margin-bottom: 30px;
+  border-radius: 50px;
+}
+
+.hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  @apply text-white;
+}
+
+.hero h2 {
+  color: #eee;
+  margin-bottom: 40px;
+  font-size: 24px;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h3 {
+    font-size: 22px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-height: 500px) {
+  .hero {
+    height: 150vh;
+  }
+}

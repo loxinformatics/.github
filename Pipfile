@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+python-decouple = "*"
+django = "*"
+tzdata = "*"
+pillow = "*"
+psycopg2-binary = "*"
+djangorestframework = "*"
+django-filter = "*"
+djangorestframework-simplejwt = "*"
+django-cors-headers = "*"
+django-ckeditor-5 = "*"
+gunicorn = "*"
+termcolor = "*"
+
+[dev-packages]
+djlint = "*"
+
+[requires]
+python_version = "3.12"

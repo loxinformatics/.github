@@ -1,0 +1,126 @@
+/*--------------------------------------------------------------
+# Version 1
+--------------------------------------------------------------*/
+.V1_services .heading {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.V1_services p {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Version 2
+--------------------------------------------------------------*/
+.V2_services {
+  position: relative;
+}
+
+.V2_services:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.V2_services::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+}
+
+.V2_services .icon {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  margin-right: 50px;
+  line-height: 0;
+}
+
+.V2_services .icon i {
+  font-size: 56px;
+  transition: ease-in-out 0.3s;
+  position: relative;
+}
+
+.V2_services .icon:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+  bottom: -15px;
+  right: -15px;
+  transition: 0.3s;
+}
+
+.V2_services .heading {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.V2_services .description {
+  line-height: 24px;
+  font-size: 14px;
+}
+
+/*--------------------------------------------------------------
+# Version 3
+--------------------------------------------------------------*/
+.V3_services .img {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.V3_services .img img {
+  transition: 0.6s;
+}
+
+.V3_services .details {
+  padding: 50px 30px;
+  margin: -100px 30px 10px 30px;
+  transition: all ease-in-out 0.3s;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.V3_services .details .icon {
+  margin: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  transition: ease-in-out 0.3s;
+  position: absolute;
+  top: -36px;
+  left: calc(50% - 36px);
+}
+
+.V3_services .details .heading {
+  font-weight: 700;
+  margin: 10px 0 15px 0;
+  font-size: 22px;
+  transition: ease-in-out 0.3s;
+}
+
+.V3_services .description {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.V3_services:hover .img img {
+  transform: scale(1.2);
+}

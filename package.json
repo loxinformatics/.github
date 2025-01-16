@@ -1,27 +1,38 @@
 {
-  "name": "lox_informatics",
+  "name": "loxinformatics",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "setup": "node ./zeytinus/ui/setup.mjs",
+    "dev": "npm run setup && next dev --turbopack",
+    "build": "npm run setup && next build",
     "start": "next start",
-    "lint": "next lint"
+    "prettier": "npx prettier --write .",
+    "lint": "next lint",
+    "update": "npx npm-check-updates -u && npm install"
   },
   "dependencies": {
     "aos": "^2.3.4",
-    "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
-    "critters": "^0.0.24",
+    "chalk": "^5.4.1",
+    "isotope-layout": "^3.0.6",
     "jwt-decode": "^4.0.0",
-    "next": "14.2.5",
-    "react": "^18",
-    "react-bootstrap": "^2.10.4",
-    "react-dom": "^18"
+    "next": "15.1.4",
+    "next-themes": "^0.4.4",
+    "react": "^19",
+    "react-dom": "^19"
   },
   "devDependencies": {
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5",
-    "sass": "^1.77.6"
+    "@types/aos": "^3.0.7",
+    "@types/isotope-layout": "^3.0.14",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.4",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5"
   }
 }

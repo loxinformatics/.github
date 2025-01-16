@@ -1,20 +1,24 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependecies
-/node_modules
-/.venv
-/.vscode
-*sqlite*
+# web
+node_modules/
+.next/
+next-env.d.ts
 
-# assets
-/.vscode
-/~
-/api/static
-/api/media
-test/
-.env
+# backend
+.venv/
+*__pycache__/
+*sqlite*
+/api/static/
+/api/media/
+*fixtures/
 
 # misc
-/.next
-__pycache__/
-next-env.d.ts
+/.vscode/
+/~/
+*test/
+*.env*
+
+# zeytinus
+navigation.ts
+!/app/navigation.ts
