@@ -1,9 +1,9 @@
-import { Auth, fetchAuth } from "@/zeytinus/app/auth/context";
-import type { AuthData } from "@/zeytinus/app/auth/context/types";
-import { Base, fetchBase } from "@/zeytinus/app/base/context";
-import type { BaseData, BaseMetadata } from "@/zeytinus/app/base/context/types";
-import { ScrollToTop } from "@/zeytinus/app/base/ScrollToTop";
-import { Core } from "@/zeytinus/app/core/context";
+import { Auth, fetchAuth } from "@/olyv/app/auth/context";
+import type { AuthData } from "@/olyv/app/auth/context/types";
+import { Base, fetchBase } from "@/olyv/app/base/context";
+import type { BaseData, BaseMetadata } from "@/olyv/app/base/context/types";
+import { ScrollToTop } from "@/olyv/app/base/ScrollToTop";
+import { Core } from "@/olyv/app/core/context";
 import type { Metadata } from "next";
 import "./global.css";
 
@@ -13,17 +13,17 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: meta?.full_name,
     description: meta?.motto,
-    metadataBase: new URL(meta?.website || "https://www.treeolive.tech"),
+    metadataBase: new URL(meta?.website || "https://www.loxinformatics.co.ke"),
     applicationName: meta?.full_name,
     // keywords: ["technology", "software", "services"],
     authors: [
       {
-        name: "Treeolive Technologies",
-        url: meta?.website || "https://www.treeolive.tech",
+        name: "Lox Informatics",
+        url: meta?.website || "https://www.loxinformatics.co.ke",
       },
     ],
-    creator: "Treeolive Technologies",
-    publisher: "Treeolive Technologies",
+    creator: "Lox Informatics",
+    publisher: "Lox Informatics",
     generator: "Next.js",
     formatDetection: {
       telephone: true,
@@ -32,8 +32,8 @@ export async function generateMetadata(): Promise<Metadata> {
       email: true,
     },
     icons: {
-      icon: meta?.favicon || "/app/favicon.ico",
-      apple: meta?.apple_touch_icon || "/app/apple.png",
+      icon: meta?.favicon || "/app/img/favicon.ico",
+      apple: meta?.apple_touch_icon || "/app/img/apple.png",
     },
     openGraph: {
       title: meta?.full_name,

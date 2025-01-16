@@ -1,5 +1,5 @@
-import { fetchBase } from "@/zeytinus/app/base/context";
-import type { BaseManifest } from "@/zeytinus/app/base/context/types";
+import { fetchBase } from "@/olyv/app/base/context";
+import type { BaseManifest } from "@/olyv/app/base/context/types";
 import type { MetadataRoute } from "next";
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
@@ -15,19 +15,19 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     theme_color: manifest?.theme_color,
     icons: [
       {
-        src: manifest?.pwa_192 || "/app/pwa_192.png",
+        src: manifest?.pwa_192 || "/app/img/pwa_192.png",
         sizes: "192x192",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: manifest?.pwa_512 || "/app/pwa_512.png",
+        src: manifest?.pwa_512 || "/app/img/pwa_512.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: manifest?.apple_touch_icon || "/app/apple.png",
+        src: manifest?.apple_touch_icon || "/app/img/apple.png",
         sizes: "180x180",
         type: "image/png",
         purpose: "any",

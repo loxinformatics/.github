@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { AuthMiddleware } from "../zeytinus/app/auth/context";
-import { BaseMiddleware } from "../zeytinus/app/base/context";
+import { AuthMiddleware } from "../olyv/app/auth/context";
+import { BaseMiddleware } from "../olyv/app/base/context";
 
 const middlewares = [BaseMiddleware, AuthMiddleware]; // List middlewares here - they will be executed in this order.
 

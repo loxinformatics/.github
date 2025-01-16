@@ -207,7 +207,7 @@ export default function HeaderHeroSection({
       sectionId: string,
       headerPosition: string,
       headerBackground: string,
-      headerBorder: boolean,
+      headerBorder: boolean
     ) => {
       const { theme } = useTheme();
       const [isTransparent, setIsTransparent] = useState(true);
@@ -223,12 +223,12 @@ export default function HeaderHeroSection({
         const handleScroll = () => {
           setIsTransparent(
             window.scrollY <= 10 &&
-              (headerBackground === "transparent" || (!!hero && headerPosition === "fixed")),
+              (headerBackground === "transparent" || (!!hero && headerPosition === "fixed"))
           );
           setHasShadow(window.scrollY > heroBottom);
           setHasBorder(!headerBorder ? window.scrollY > heroBottom : true);
           setShowForwardButton(
-            !!heroButton && window.scrollY > heroButton.getBoundingClientRect().top + window.scrollY,
+            !!heroButton && window.scrollY > heroButton.getBoundingClientRect().top + window.scrollY
           );
         };
 
@@ -240,10 +240,10 @@ export default function HeaderHeroSection({
       const color = isTransparent
         ? "text-color-reverse"
         : theme === "dark" || headerBackground === "dark"
-          ? "text-color-reverse"
-          : headerBackground === "body"
-            ? "text-color dark:text-color-reverse"
-            : "text-color";
+        ? "text-color-reverse"
+        : headerBackground === "body"
+        ? "text-color dark:text-color-reverse"
+        : "text-color";
 
       const classes = {
         header: [
@@ -251,10 +251,10 @@ export default function HeaderHeroSection({
           isTransparent
             ? "bg-transparent"
             : theme === "dark" || headerBackground === "dark"
-              ? "bg-body-reverse"
-              : headerBackground === "body"
-                ? "bg-body dark:bg-body-reverse"
-                : "bg-body",
+            ? "bg-body-reverse"
+            : headerBackground === "body"
+            ? "bg-body dark:bg-body-reverse"
+            : "bg-body",
           headerPosition === "fixed" ? "fixed top-0 w-full z-30" : "sticky top-0 z-30",
           hasBorder
             ? "border-b border-b-color-tertiary dark:border-b-color-tertiary-reverse"
@@ -272,7 +272,7 @@ export default function HeaderHeroSection({
       sectionId,
       position,
       headerBackground,
-      border,
+      border
     );
 
     return (
@@ -328,7 +328,7 @@ export default function HeaderHeroSection({
     const heroHeading = hero_heading;
     const heroSubHeading = hero_sub_heading;
     const heroParagraph = hero_paragraph;
-    const heroImage = hero_image || "/app/images/hero.png";
+    const heroImage = hero_image || "/app/img/hero.png";
     const heroButtonText = hero_button_text || "Get Started";
     const heroButtonHref = hero_button_href || "";
 
@@ -348,8 +348,8 @@ export default function HeaderHeroSection({
           headerTop >= heroBottom
             ? "100vh"
             : isHeaderFixed
-              ? "100vh"
-              : `calc(100vh - ${headerHeight}px)`,
+            ? "100vh"
+            : `calc(100vh - ${headerHeight}px)`
         );
       }
     }, []);

@@ -45,7 +45,7 @@ export default function ListSection({
       <div className="flex flex-wrap mx-4">
         {descriptions.map((item: any, index: number) => {
           const itemId = item.id || index;
-          const itemImage = item.image || "/app/images/list_item.png";
+          const itemImage = item.image || "/app/img/list_item.png";
           const itemIcon = item.icon || "";
           const itemTitle = item.title || "";
           const itemDescription = item.description || "";

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "setup": "node ./zeytinus/scripts/next-setup.mjs",
+    "setup": "node ./olyv/scripts/next-setup.mjs",
     "dev": "npm run setup && next dev --turbopack",
     "build": "npm run setup && next build",
     "start": "next start",

@@ -13,11 +13,11 @@ public/api/
 *fixtures/
 
 # misc
-/.vscode/
-/~/
+.vscode/
+.backup/
 *test/
 *.env*
 
-# zeytinus
+# olyv
 navigation.ts
-!/app/navigation.ts
+!/src/app/navigation.ts

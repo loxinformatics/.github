@@ -1,8 +1,5 @@
 import type { NextConfig } from "next";
-import {
-  imagesRemotePatterns,
-  serverActionsAllowedOrigins,
-} from "./zeytinus/app/base/context/utils";
+import { imagesRemotePatterns, serverActionsAllowedOrigins } from "./olyv/app/base/context/utils";
 
 const nextConfig: NextConfig = {
   images: {

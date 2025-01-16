@@ -29,9 +29,9 @@ INSTALLED_APPS = [
     "django_filters",
     "rest_framework_simplejwt",
     "corsheaders",
-    # zeytinus
-    "zeytinus.api.base",
-    "zeytinus.api.core",
+    # olyv
+    "olyv.api.base",
+    "olyv.api.core",
 ]
 
 MIDDLEWARE = [

@@ -12,12 +12,12 @@ import {
   Form,
   FormStatus,
   Logo,
+  MailUsForm,
   Modal,
   Section,
   SocialMediaLinks,
   Spinner,
   ThemeToggler,
-  MailUsForm,
 } from "./components";
 import { baseContext } from "./hooks";
 import type { BaseContextValues, BaseProps, ThemeColorKey } from "./types";
@@ -119,7 +119,7 @@ export default function Base({
   const openHours = open_hours || "";
   const map = mapURL || "";
   const primaryColor = primary_color || "#e84545";
-  const coloredLogoFullImage = colored_logo_full_image || "/app/images/logo.png";
+  const coloredLogoFullImage = colored_logo_full_image || "/app/img/logo.png";
   const coloredLogoMiniImage = colored_logo_mini_image || "";
   const lightLogoFullImage = light_logo_full_image || "";
   const lightLogoMiniImage = light_logo_mini_image || "";
