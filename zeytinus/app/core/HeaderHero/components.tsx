@@ -328,7 +328,7 @@ export default function HeaderHeroSection({
     const heroHeading = hero_heading;
     const heroSubHeading = hero_sub_heading;
     const heroParagraph = hero_paragraph;
-    const heroImage = hero_image || "/images/hero.png";
+    const heroImage = hero_image || "/app/images/hero.png";
     const heroButtonText = hero_button_text || "Get Started";
     const heroButtonHref = hero_button_href || "";
 

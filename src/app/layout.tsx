@@ -1,9 +1,9 @@
-import { Auth, fetchAuth } from "@/zeytinus/ui/auth/context";
-import type { AuthData } from "@/zeytinus/ui/auth/context/types";
-import { Base, fetchBase } from "@/zeytinus/ui/base/context";
-import type { BaseData, BaseMetadata } from "@/zeytinus/ui/base/context/types";
-import { ScrollToTop } from "@/zeytinus/ui/base/ScrollToTop";
-import { Core } from "@/zeytinus/ui/core/context";
+import { Auth, fetchAuth } from "@/zeytinus/app/auth/context";
+import type { AuthData } from "@/zeytinus/app/auth/context/types";
+import { Base, fetchBase } from "@/zeytinus/app/base/context";
+import type { BaseData, BaseMetadata } from "@/zeytinus/app/base/context/types";
+import { ScrollToTop } from "@/zeytinus/app/base/ScrollToTop";
+import { Core } from "@/zeytinus/app/core/context";
 import type { Metadata } from "next";
 import "./global.css";
 
@@ -32,8 +32,8 @@ export async function generateMetadata(): Promise<Metadata> {
       email: true,
     },
     icons: {
-      icon: meta?.favicon,
-      apple: meta?.apple_touch_icon,
+      icon: meta?.favicon || "/app/favicon.ico",
+      apple: meta?.apple_touch_icon || "/app/apple.png",
     },
     openGraph: {
       title: meta?.full_name,

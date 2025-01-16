@@ -5,7 +5,7 @@ from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 API_BASEPATH = config("NEXT_PUBLIC_API_BASEPATH", default="api")
 
@@ -45,7 +45,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "api.urls"
+ROOT_URLCONF = "src.api.urls"
 
 TEMPLATES = [
     {
@@ -63,7 +63,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "api.wsgi.application"
+WSGI_APPLICATION = "src.api.wsgi.application"
 
 
 # Password validation: https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -157,16 +157,16 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 
 # Static files: https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "api/static/"
+STATIC_URL = "static/"
 
-STATIC_ROOT = BASE_DIR / "api" / "static"
+STATIC_ROOT = BASE_DIR / "public" / "api" / "static"
 
 
 # Media files: https://docs.djangoproject.com/en/5.1/ref/settings/#media-files
 
-MEDIA_URL = "api/media/"
+MEDIA_URL = "media/"
 
-MEDIA_ROOT = BASE_DIR / "api" / "media"
+MEDIA_ROOT = BASE_DIR / "public" / "api" / "media"
 
 
 # Internationalization: https://docs.djangoproject.com/en/5.1/topics/i18n/

@@ -1,10 +1,10 @@
-import { Preloader } from "@/zeytinus/ui/base/Preloader";
-import { AboutSection, fetchAbout } from "@/zeytinus/ui/core/About";
-import { CallToActionSection, fetchCallToAction } from "@/zeytinus/ui/core/CallToAction";
-import { ContactSection, fetchContact } from "@/zeytinus/ui/core/Contact";
-import { FooterBottombarSection } from "@/zeytinus/ui/core/FooterBottombar";
-import { HeaderHeroSection, fetchHeaderHero } from "@/zeytinus/ui/core/HeaderHero";
-import { ListSection, fetchList } from "@/zeytinus/ui/core/List";
+import { Preloader } from "@/zeytinus/app/base/Preloader";
+import { AboutSection, fetchAbout } from "@/zeytinus/app/core/About";
+import { CallToActionSection, fetchCallToAction } from "@/zeytinus/app/core/CallToAction";
+import { ContactSection, fetchContact } from "@/zeytinus/app/core/Contact";
+import { FooterBottombarSection } from "@/zeytinus/app/core/FooterBottombar";
+import { HeaderHeroSection, fetchHeaderHero } from "@/zeytinus/app/core/HeaderHero";
+import { ListSection, fetchList } from "@/zeytinus/app/core/List";
 
 export default async function Page() {
   const headerHero = await fetchHeaderHero("page_1");

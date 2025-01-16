@@ -9,8 +9,7 @@ next-env.d.ts
 .venv/
 *__pycache__/
 *sqlite*
-/api/static/
-/api/media/
+public/api/
 *fixtures/
 
 # misc

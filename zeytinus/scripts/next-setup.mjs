@@ -23,9 +23,11 @@ const main = async () => {
 
 // Function to check and copy navigation.ts file
 const checkAndCopyNavigationFile = async () => {
-  const sourceDir = path.resolve(process.cwd(), "app", "navigation.ts");
+  const sourceDir = path.resolve(process.cwd(), "src", "app", "navigation.ts");
   const destinationDir = path.join(
     path.dirname(fileURLToPath(import.meta.url)),
+    "..",
+    "app",
     "core",
     "context",
     "navigation.ts",

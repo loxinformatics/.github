@@ -11,7 +11,7 @@ import type {
 import { baseApiURL, fetchData } from "./utils";
 
 export default async function fetchBase(
-  detail?: FetchBaseDetailPropOptions
+  detail?: FetchBaseDetailPropOptions,
 ): Promise<BaseData | BaseMetadata | BaseManifest> {
   const data = await fetchData<BaseData | BaseMetadata | BaseManifest>({
     endpoint: `${baseApiURL}/`,

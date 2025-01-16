@@ -23,7 +23,7 @@ export default function AboutSection({
   const titleH3 = title_h3 || "About Us";
   const titleP = title_p || "Learn More";
   const aboutContent = about_content || "";
-  const aboutImage = about_image || "/images/about.png";
+  const aboutImage = about_image || "/app/images/about.png";
   const aboutVideo = about_video || "";
   const aboutMediaAlt = about_alt || "about section media";
 

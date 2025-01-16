@@ -24,7 +24,7 @@ export default function CallToActionSection({
   const ctaButtonText = cta_button_text || "";
   const ctaButtonHref = cta_button_href || "";
   const ctaButtonIcon = cta_button_icon || "";
-  const ctaImage = cta_image || "/images/cta.png";
+  const ctaImage = cta_image || "/app/images/cta.png";
 
   const hasContainer = sectionVersion === "V2";
   const render = !!ctaHeading && !!ctaParagraph && !!ctaButtonText && !!ctaButtonHref && !!ctaImage;
