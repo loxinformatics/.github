@@ -3,8 +3,7 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   content: [
     "./olyv/**/*.tsx",
-    "!./olyv/api/**/*.tsx",
-    "!./olyv/middleware/**/*.tsx",
+    "!./olyv/{api,middleware}/**/*.tsx",
     "./src/**/*.tsx",
     "!./src/api/**/*.tsx",
     "!./src/middleware.tsx",
