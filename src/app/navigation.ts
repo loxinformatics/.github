@@ -1,6 +1,6 @@
-import { apiURL, homeURL } from "@/olyv/context/base/config";
-import { createNavDropdown } from "@/olyv/context/core/config";
-import type { NavLinksMap } from "@/olyv/context/core/types";
+import { apiURL, homeURL } from "@/olyv/providers/base/config";
+import { createNavDropdown } from "@/olyv/providers/core/config";
+import type { NavLinksMap } from "@/olyv/providers/core/types";
 
 const navLinksMap: NavLinksMap = {
   header: [

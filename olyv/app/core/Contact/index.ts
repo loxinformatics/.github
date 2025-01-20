@@ -1,2 +1,2 @@
 export { default as fetchContact } from "./actions";
-export { default as ContactSection } from "./components";
+export { default as ContactSection } from "./component";

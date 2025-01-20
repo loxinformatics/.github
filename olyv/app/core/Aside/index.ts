@@ -1,1 +1,1 @@
-export { default as AsideSection } from "./components";
+export { default as AsideSection } from "./component";

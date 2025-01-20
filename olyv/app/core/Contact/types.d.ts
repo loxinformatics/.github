@@ -1,6 +1,6 @@
-import type { SectionData } from "../../../context/base/types";
+import type { SectionData } from "../../../providers/base/types";
 
-// actions & utils
+// actions & config
 export interface ContactData extends SectionData {
   section_instance?: string;
   section_version?: "V1" | "V2" | "V3";

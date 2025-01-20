@@ -1,1 +1,1 @@
-export { default as FooterBottombarSection } from "./components";
+export { default as FooterBottombarSection } from "./component";

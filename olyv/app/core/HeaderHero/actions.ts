@@ -1,7 +1,7 @@
 "use server";
 
-import { fetchData } from "../../../context/base/actions";
-import { coreApiURL } from "../../../context/core/config";
+import { fetchData } from "../../../providers/base/actions";
+import { coreApiURL } from "../../../providers/core/config";
 import type { HeaderHeroData } from "./types";
 
 export default async function fetchHeaderHero(

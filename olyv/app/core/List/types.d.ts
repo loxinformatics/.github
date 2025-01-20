@@ -1,6 +1,6 @@
-import type { SectionData } from "../../../context/base/types";
+import type { SectionData } from "../../../providers/base/types";
 
-// actions & utils
+// actions & config
 interface ItemDescription {
   image?: string | null;
   icon?: string;

@@ -1,1 +1,1 @@
-export { default as LogoutSection } from "./components";
+export { default as LogoutSection } from "./component";

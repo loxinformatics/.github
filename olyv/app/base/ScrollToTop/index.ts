@@ -1,1 +1,1 @@
-export { default as ScrollToTop } from "./components";
+export { default as ScrollToTop } from "./component";

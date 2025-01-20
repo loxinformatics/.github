@@ -1,1 +1,1 @@
-export { default as Preloader } from "./components";
+export { default as Preloader } from "./component";

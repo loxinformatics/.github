@@ -1,9 +1,10 @@
 import { ScrollToTop } from "@/olyv/app/base/ScrollToTop";
-import { Auth, fetchAuth } from "@/olyv/context/auth";
-import type { AuthData } from "@/olyv/context/auth/types";
-import { Base, fetchBase } from "@/olyv/context/base";
-import type { BaseData, BaseMetadata } from "@/olyv/context/base/types";
-import { Core } from "@/olyv/context/core";
+import { Auth, fetchAuth } from "@/olyv/providers/auth";
+import { Base, fetchBase } from "@/olyv/providers/base";
+import { Core } from "@/olyv/providers/core";
+
+import type { AuthData } from "@/olyv/providers/auth/types";
+import type { BaseData, BaseMetadata } from "@/olyv/providers/base/types";
 import type { Metadata } from "next";
 
 import "./global.css";

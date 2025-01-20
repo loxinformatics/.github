@@ -1,4 +1,4 @@
-import type { NavLink } from "../../../context/core/types";
+import type { NavLink } from "../../../providers/core/types";
 
 // components
 export interface FooterNavProps {

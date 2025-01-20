@@ -1,4 +1,4 @@
-// actions & utils
+// actions & config
 export interface CallToActionData {
   section_instance?: string;
   section_version?: "V1" | "V2";

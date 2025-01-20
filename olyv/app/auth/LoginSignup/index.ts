@@ -1,1 +1,1 @@
-export { default as LoginSignupSection } from "./components";
+export { default as LoginSignupSection } from "./component";
