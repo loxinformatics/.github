@@ -23,7 +23,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "django_filters",
     "rest_framework_simplejwt",
     "corsheaders",
     # olyv
@@ -79,7 +78,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Database: https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+# Database: https://docs.djangoproject.com/en/5.1/ref/databases/
 
 DATABASES = {
     "default": {
