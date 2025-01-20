@@ -3,16 +3,13 @@ from pathlib import Path
 
 from decouple import Csv, config
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# * Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-API_BASEPATH = config("NEXT_PUBLIC_API_BASEPATH", default="api")
-
 # Quick Start Settings
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = config("SECRET_KEY")  # * keep the secret key used in production secret!
 
 DEBUG = config("ENVIRONMENT", default="development") != "production"
 
@@ -44,6 +41,10 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+APP_DIR = BASE_DIR / "src" / "app"
+
+API_BASEPATH = config("NEXT_PUBLIC_API_BASEPATH", default="api")
 
 ROOT_URLCONF = "src.api.urls"
 

@@ -1,6 +1,6 @@
-from pathlib import Path
 from typing import List, Tuple
 
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -248,7 +248,7 @@ class Section(models.Model):
 
     # title
     TITLE_FIELDS = ["title_version", "title_h2", "title_h3", "title_p"]
-    
+
     TITLE_VERSION_CHOICES = [
         ("V1", "Version 1"),
         ("V2", "Version 2"),
@@ -269,14 +269,14 @@ class Section(models.Model):
         instances: list, patterns: List[str], file_type: str, component: str
     ) -> None:
         """Helper method to process files and find component instances."""
-        app_dir = Path.cwd() / "app"
+
         for pattern in patterns:
-            for file in app_dir.rglob(pattern):
+            for file in settings.APP_DIR.rglob(pattern):
                 content = file.read_text(encoding="utf-8")
                 component_count = content.count(f"<{component}")
 
                 if component_count > 0:
-                    parts = file.relative_to(app_dir).parts
+                    parts = file.relative_to(settings.APP_DIR).parts
                     path = "/" + "/".join(parts[:-1]) if len(parts) > 1 else "/"
                     safe_path = path.replace("/", "_").replace("-", "_").strip("_")
 
