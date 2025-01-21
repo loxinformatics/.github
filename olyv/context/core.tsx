@@ -3,12 +3,14 @@
 import { createContext, useContext, useState } from "react";
 import type { CoreContext, CoreProps } from "../types/core";
 import { createNavLinks } from "../utils/core";
+import { ScrollTop } from "../widgets/core";
 import navLinksMap from "./navigation";
 
-export const coreContext = createContext<CoreContext | undefined>(undefined);
+const Core = createContext<CoreContext | undefined>(undefined);
 
-export function Core({ children }: CoreProps) {
+export function CoreProvider({ children }: CoreProps) {
   const [asideExists, setAsideExists] = useState<boolean>(false);
+  const [isNavModalOpen, setIsNavModalOpen] = useState<boolean>(false);
 
   // Context
   const context: CoreContext = {
@@ -16,17 +18,22 @@ export function Core({ children }: CoreProps) {
     // * If not, move to base or auth (if auth related).
     asideExists,
     setAsideExists,
+    isNavModalOpen,
+    setIsNavModalOpen,
     createNavLinks,
     navLinksMap,
   };
 
   return (
-    <coreContext.Provider value={context}>{children}</coreContext.Provider>
+    <Core.Provider value={context}>
+      {children}
+      <ScrollTop />
+    </Core.Provider>
   );
 }
 
 export function useCore() {
-  const context = useContext(coreContext);
+  const context = useContext(Core);
   if (context === undefined) {
     throw new Error("useCore must be used within a CoreProvider");
   }

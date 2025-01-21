@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Section } from "../../providers/base";
 import coreStyles from "../../styles/core.module.css";
 import type { AboutProps } from "../../types/core";
+import { Section } from "../../widgets/base";
 
 export default function AboutSection({
   section_instance,
@@ -24,7 +24,7 @@ export default function AboutSection({
   const titleH3 = title_h3 || "About Us";
   const titleP = title_p || "Learn More";
   const aboutContent = about_content || "";
-  const aboutImage = about_image || "/app/img/about.png";
+  const aboutImage = about_image || "/app/about.png";
   const aboutVideo = about_video || "";
   const aboutMediaAlt = about_alt || "about section media";
 
@@ -34,7 +34,6 @@ export default function AboutSection({
     render && (
       <Section
         id={`about_${sectionId}`}
-        dataAos="fade-up"
         title_version={titleVersion}
         title_h2={titleH2}
         title_h3={titleH3}

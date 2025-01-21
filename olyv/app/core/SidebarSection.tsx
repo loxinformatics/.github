@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useLayoutEffect, useState } from "react";
-import { useAuth } from "../../providers/auth";
-import { useBase } from "../../providers/base";
-import { useCore } from "../../providers/core";
+import { useAuth } from "../../context/auth";
+import { useBase } from "../../context/base";
+import { useCore } from "../../context/core";
 import coreStyles from "../../styles/core.module.css";
 import type { NavLink } from "../../types/core";
-import { handleHashLinkClick } from "../../utils/base";
-import { toggleAside } from "../../utils/core";
+import { handleHashLinkClick, toggleAside } from "../../utils/core";
 import { Nav } from "../../widgets/core";
 
 export default function SidebarSection() {
@@ -263,7 +262,7 @@ export default function SidebarSection() {
     <aside
       id="aside"
       className={`
-        ${coreStyles.sidebar} z-40 w-[300px] p-[20px]
+        ${coreStyles.sidebar} z-20 w-[300px] p-[20px]
         fixed start-0 bottom-0 overflow-y-auto
         bg-body dark:bg-body-reverse
         shadow-lg shadow-color/40 dark:shadow-color-reverse/40

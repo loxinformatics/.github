@@ -90,6 +90,8 @@ export interface CoreContext {
   asideExists: boolean;
   setAsideExists: (asideExists: boolean) => void;
   createNavLinks: (config: NavLink[]) => NavLink[];
+  isNavModalOpen: boolean;
+  setIsNavModalOpen: (isNavModalOpen: boolean) => void;
   navLinksMap: NavLinksMap;
 }
 

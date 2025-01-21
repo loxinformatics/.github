@@ -1,10 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Btn, FormStatus } from ".";
 import { mail } from "../../api/base";
 import baseStyles from "../../styles/base.module.css";
 import { baseApiURL } from "../../utils/base";
+import { Btn, FormStatus } from "../base";
 
 export default function MailUsForm() {
   const [name, setName] = useState<string>("");

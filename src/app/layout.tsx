@@ -1,8 +1,8 @@
 import { fetchAuth } from "@/olyv/api/auth";
 import { fetchBase } from "@/olyv/api/base";
-import { Auth } from "@/olyv/providers/auth";
-import { Base } from "@/olyv/providers/base";
-import { Core } from "@/olyv/providers/core";
+import { AuthProvider } from "@/olyv/context/auth";
+import { BaseProvider } from "@/olyv/context/base";
+import { CoreProvider } from "@/olyv/context/core";
 import type { AuthReponse } from "@/olyv/types/auth";
 import type { BaseResponse, MetadataResponse } from "@/olyv/types/base";
 import type { Metadata } from "next";
@@ -32,8 +32,8 @@ export async function generateMetadata(): Promise<Metadata> {
       email: true,
     },
     icons: {
-      icon: meta?.favicon || "/app/img/favicon.ico",
-      apple: meta?.apple_touch_icon || "/app/img/apple.png",
+      icon: meta?.favicon || "/app/favicon.ico",
+      apple: meta?.apple_touch_icon || "/app/apple.png",
     },
     openGraph: {
       title: meta?.full_name,
@@ -59,10 +59,10 @@ export default async function RootLayout({
   const authData: AuthReponse = await fetchAuth();
 
   return (
-    <Base {...baseData}>
-      <Auth {...authData}>
-        <Core>{children}</Core>
-      </Auth>
-    </Base>
+    <BaseProvider {...baseData}>
+      <AuthProvider {...authData}>
+        <CoreProvider>{children}</CoreProvider>
+      </AuthProvider>
+    </BaseProvider>
   );
 }

@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useBase } from "../../providers/base";
+import { useBase } from "../../context/base";
 import type { ButtonProps } from "../../types/base";
-import { handleHashLinkClick } from "../../utils/base";
+import { handleHashLinkClick } from "../../utils/core";
 
 export default function Btn({
   id,
@@ -31,7 +31,7 @@ export default function Btn({
     ${outline === "primary" && borderPrimary}
     ${!!outline ? `${bgBodyHover} hover:border-transparent` : bgPrimaryHover}
     disabled:bg-gray-400 disabled:cursor-not-allowed
-    text-white whitespace-nowrap rounded font-medium
+    text-white whitespace-nowrap rounded
     flex items-center justify-center  
     transition duration-300
     tracking-wider 

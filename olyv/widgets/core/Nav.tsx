@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../providers/auth";
+import { useAuth } from "../../context/auth";
 import type { NavLink, NavLinksProps } from "../../types/core";
 
 export default function Nav({

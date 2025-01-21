@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { useBase } from "../../providers/base";
+import { useBase } from "../../context/base";
 import type { ThemeTogglerProps } from "../../types/base";
 
 export default function ThemeToggler({ toggleColor }: ThemeTogglerProps) {

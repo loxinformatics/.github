@@ -33,11 +33,11 @@ export default function Modal({
       <button className="bg-transparent border-0" onClick={toggleModal}>
         {isModalOpen ? (
           <i
-            className={`bi bi-x text-white absolute top-[15px] end-[15px] text-3xl border-0 cursor-pointer transition duration-500`}
+            className={`bi bi-x text-white absolute top-[15px] end-[15px] text-4xl border-0 cursor-pointer transition duration-500`}
           ></i>
         ) : (
           <i
-            className={`bi bi-list ${toggle_color} text-3xl border-0 cursor-pointer transition duration-500`}
+            className={`bi bi-list ${toggle_color} text-4xl border-0 cursor-pointer transition duration-500`}
           ></i>
         )}
       </button>

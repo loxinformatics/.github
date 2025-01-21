@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect } from "react";
-import { useCore } from "../../providers/core";
+import { useCore } from "../../context/core";
 import coreStyles from "../../styles/core.module.css";
 import { toggleAside } from "../../utils/core";
 

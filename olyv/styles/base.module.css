@@ -43,9 +43,8 @@ SocialMediaLinks
 Section & Title
 =============================== */
 /* Version 1 */
-.title .V1_h2 {
+.title .V1_h3 {
   font-size: var(--font-size-xs);
-  font-weight: 500;
   padding: 0;
   line-height: 1px;
   margin: 0 0 5px 0;
@@ -53,7 +52,7 @@ Section & Title
   text-transform: uppercase;
 }
 
-.title .V1_h2::after {
+.title .V1_h3::after {
   content: "";
   width: 120px;
   height: 1px;
@@ -64,30 +63,28 @@ Section & Title
 .title .V1_p {
   margin: 0;
   font-size: var(--font-size-xxl);
-  font-weight: 700;
   font-family: var(--font-primary);
 }
 
 /* Version 2 */
-.title .V2_h2 {
+.title .V2_h3 {
   font-size: var(--font-size-xxl);
-  font-weight: 700;
   position: relative;
 }
 
-.title .V2_h2:before,
-.title .V2_h2:after {
+.title .V2_h3:before,
+.title .V2_h3:after {
   content: "";
   width: 50px;
   height: 2px;
   display: inline-block;
 }
 
-.title .V2_h2:before {
+.title .V2_h3:before {
   margin: 0 15px 10px 0;
 }
 
-.title .V2_h2:after {
+.title .V2_h3:after {
   margin: 0 0 10px 15px;
 }
 
@@ -96,10 +93,9 @@ Section & Title
 }
 
 /* Version 3 */
-.title .V3_h2 {
+.title .V3_h3 {
   font-size: 13px;
   letter-spacing: 1px;
-  font-weight: 700;
   padding: 8px 20px;
   line-height: 1;
   margin: 0;
@@ -108,10 +104,9 @@ Section & Title
   border-radius: 50px;
 }
 
-.title .V3_h3 {
+.title .V3_h4 {
   margin: 15px 0 0 0;
   font-size: 32px;
-  font-weight: 700;
 }
 
 .title .V3_p {

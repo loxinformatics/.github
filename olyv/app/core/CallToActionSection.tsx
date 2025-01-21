@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Section, useBase } from "../../providers/base";
+import { useBase } from "../../context/base";
 import coreStyles from "../../styles/core.module.css";
 import type { CallToActionProps } from "../../types/core";
-import { Btn } from "../../widgets/base";
+import { Btn, Heading, Section } from "../../widgets/base";
 
 export default function CallToActionSection({
   section_instance,
@@ -25,7 +25,7 @@ export default function CallToActionSection({
   const ctaButtonText = cta_button_text || "";
   const ctaButtonHref = cta_button_href || "";
   const ctaButtonIcon = cta_button_icon || "";
-  const ctaImage = cta_image || "/app/img/cta.png";
+  const ctaImage = cta_image || "/app/cta.png";
 
   const hasContainer = sectionVersion === "V2";
   const render =
@@ -50,7 +50,7 @@ export default function CallToActionSection({
       >
         {/* V1  */}
         {sectionVersion === "V1" && (
-          <div className="relative py-12">
+          <div className="relative py-12 text-white">
             <Image
               src={ctaImage}
               alt="Call To Action background image"
@@ -59,7 +59,7 @@ export default function CallToActionSection({
               style={{ maxWidth: "100%" }}
               priority
             />
-            <div className={`${coreStyles.container} relative z-20`}>
+            <div className={`${coreStyles.container} relative z-10`}>
               <div
                 className="flex justify-center"
                 data-aos="zoom-in"
@@ -67,20 +67,21 @@ export default function CallToActionSection({
               >
                 <div className="w-full xl:w-5/6">
                   <div className="flex flex-col items-center">
-                    <h3
-                      className="text-white"
+                    <Heading
+                      variant="h3"
+                      className={`${coreStyles.title} font-bold text-3xl`}
                       dangerouslySetInnerHTML={{
                         __html: ctaHeading,
                       }}
                     />
                     <p
-                      className="text-white"
+                      className="my-3"
                       dangerouslySetInnerHTML={{
                         __html: ctaParagraph,
                       }}
                     />
                     <Btn
-                      className="mt-4"
+                      className="mt-4 mb-1"
                       href={ctaButtonHref}
                       size="lg"
                       outline
@@ -106,16 +107,17 @@ export default function CallToActionSection({
               <div
                 className={`${coreStyles.content} md:basis-1/2 lg:basis-2/3 flex flex-col justify-center order-last md:order-first`}
               >
-                <h3>
+                <Heading variant="h3" className={coreStyles.title}>
                   <span
-                    className={`text-color dark:text-color-reverse relative
-                     after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[10px] after:h-[10px] ${bgPrimaryAfter50}
+                    className={`
+                    relative
+                     after:content-[''] after:absolute after:left-0 after:right-0 after:bottom-[8px] after:h-[5px] ${bgPrimaryAfter50}
                     `}
                     dangerouslySetInnerHTML={{
                       __html: ctaHeading,
                     }}
                   />
-                </h3>
+                </Heading>
                 <p
                   className="text-color dark:text-color-reverse"
                   dangerouslySetInnerHTML={{

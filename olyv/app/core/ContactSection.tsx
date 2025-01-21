@@ -1,9 +1,10 @@
 "use client";
 
-import { Section, useBase } from "../../providers/base";
+import { useBase } from "../../context/base";
 import coreStyles from "../../styles/core.module.css";
 import type { ContactItemProps, ContactProps } from "../../types/core";
-import { MailUsForm } from "../../widgets/base";
+import { Heading, Section } from "../../widgets/base";
+import { MailUsForm } from "../../widgets/core";
 
 export default function ContactSection({
   section_instance,
@@ -60,9 +61,9 @@ export default function ContactSection({
           }   
         `}
       ></i>
-      <h3 className="text-color-secondary dark:text-color-secondary-reverse">
+      <Heading variant="h5" className={`${coreStyles.heading} `}>
         {title[`${sectionVersion}` as keyof typeof title]}
-      </h3>
+      </Heading>
       {lines.filter(Boolean).map((line, index) => (
         <p key={index}>
           {linkPrefix ? <a href={`${linkPrefix}${line}`}>{line}</a> : line}
@@ -114,7 +115,6 @@ export default function ContactSection({
     render && (
       <Section
         id={`contact_${sectionId}`}
-        dataAos="fade-up"
         title_version={titleVersion}
         title_h2={titleH2}
         title_h3={titleH3}
@@ -139,7 +139,7 @@ export default function ContactSection({
                 <div
                   className={`${coreStyles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
                   data-aos="fade"
-                  data-aos-delay="200"
+                  data-aos-delay="50"
                 >
                   <Address />
                 </div>
@@ -147,7 +147,7 @@ export default function ContactSection({
                 <div
                   className={`${coreStyles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
                   data-aos="fade"
-                  data-aos-delay="300"
+                  data-aos-delay="100"
                 >
                   <CallDetails />
                 </div>
@@ -155,7 +155,7 @@ export default function ContactSection({
                 <div
                   className={`${coreStyles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
                   data-aos="fade"
-                  data-aos-delay="400"
+                  data-aos-delay="150"
                 >
                   <EmailDetails />
                 </div>
@@ -163,7 +163,7 @@ export default function ContactSection({
                 <div
                   className={`${coreStyles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
                   data-aos="fade"
-                  data-aos-delay="500"
+                  data-aos-delay="200"
                 >
                   <OpenDaysAndHours />
                 </div>
@@ -188,7 +188,7 @@ export default function ContactSection({
                   </div>
                 </div>
 
-                <div className="flex-1" data-aos="fade-up" data-aos-delay="100">
+                <div className="flex-1" data-aos="fade-up" data-aos-delay="50">
                   <div
                     className={`${coreStyles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5  rounded`}
                   >
@@ -198,7 +198,7 @@ export default function ContactSection({
               </div>
 
               <div className="flex flex-col md:flex-row xl:flex-1 gap-6">
-                <div className="flex-1" data-aos="fade-up" data-aos-delay="200">
+                <div className="flex-1" data-aos="fade-up" data-aos-delay="100">
                   <div
                     className={`${coreStyles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5 rounded`}
                   >
@@ -206,7 +206,7 @@ export default function ContactSection({
                   </div>
                 </div>
 
-                <div className="flex-1" data-aos="fade-up" data-aos-delay="300">
+                <div className="flex-1" data-aos="fade-up" data-aos-delay="150">
                   <div
                     className={`${coreStyles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5 rounded`}
                   >
@@ -219,7 +219,7 @@ export default function ContactSection({
             <div
               className="flex flex-row justify-center"
               data-aos="fade-up"
-              data-aos-delay="300"
+              data-aos-delay="150"
             >
               <div className="basis-full xl:basis-3/4 mt-6">
                 <MailUsForm />

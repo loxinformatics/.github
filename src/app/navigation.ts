@@ -11,7 +11,7 @@ const navLinksMap: NavLinksMap = {
     {
       text: "Services",
       icon: "bi bi-briefcase",
-      href: "/#listdescriptions_page_1",
+      href: "/#list_page_1",
     },
     { text: "Contact", icon: "bi bi-envelope", href: "/#contact_page_1" },
   ],

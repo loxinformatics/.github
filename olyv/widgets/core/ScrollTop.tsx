@@ -1,10 +1,12 @@
 "use client";
 
+import { useCore } from "@/olyv/context/core";
 import { useEffect, useState } from "react";
-import { Btn } from ".";
+import { Btn } from "../base";
 
 export default function ScrollTop() {
   const [isVisible, setIsVisible] = useState(false);
+  const { isNavModalOpen } = useCore();
 
   // Scroll Function
   const scroll = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -30,14 +32,16 @@ export default function ScrollTop() {
   }, []);
 
   return (
-    <Btn
-      id="scroll-top"
-      className={`fixed end-4 bottom-4 z-30 w-10 h-10
+    !isNavModalOpen && (
+      <Btn
+        id="scroll-top"
+        className={`fixed end-4 bottom-4 z-20 w-10 h-10
         ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"}
       `}
-      onClick={scroll}
-    >
-      <i className="bi bi-arrow-up-short text-2xl"></i>
-    </Btn>
+        onClick={scroll}
+      >
+        <i className="bi bi-arrow-up-short text-2xl"></i>
+      </Btn>
+    )
   );
 }

@@ -38,37 +38,31 @@ AsideToggle & toggleAside util
 /* =====================================================
 AboutSection
 ======================================================== */
-.about .about-content h1,
-.about .about-content h2,
-.about-content h3 {
-  font-size: 28px;
-  font-weight: bold;
+.about-content h5 {
+  margin-bottom: 0.5rem;
+  @apply font-bold text-xl;
 }
 
+.about .about-content ul,
 .about .about-content p {
-  font-style: italic;
+  @apply mb-4;
 }
 
 .about .about-content ul {
-  list-style: none;
-  padding: 0;
+  @apply p-0 list-none
 }
 
 .about .about-content ul li {
   padding: 0 0 8px 26px;
-  position: relative;
+  @apply relative;
 }
 
 .about .about-content ul li::before {
-  content: "»";
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 28px;
+  @apply content-["»"] absolute start-0 top-0
 }
 
 .about .about-content p:last-child {
-  margin-bottom: 0;
+  @apply mb-0;
 }
 
 /* =====================================================
@@ -174,7 +168,7 @@ CallToActionSection
   clip-path: inset(0);
 }
 
-.cta .V1_cta h3 {
+.cta .V1_cta .title {
   font-size: 28px;
   font-weight: 700;
 }
@@ -197,7 +191,7 @@ CallToActionSection
   }
 }
 
-.cta .V2_cta .content h3 {
+.cta .V2_cta .content .title {
   font-size: 48px;
   font-weight: 700;
 }
@@ -248,9 +242,8 @@ ContactSection
   line-height: 0;
 }
 
-.contact .V1 h3 {
+.contact .V1 .heading {
   font-size: var(--font-size-md);
-  font-weight: 700;
   margin: 0 0 10px 50px;
 }
 
@@ -263,9 +256,8 @@ ContactSection
 
 /* Version 2 */
 
-.contact .V2 h3 {
+.contact .V2 .heading {
   font-size: 20px;
-  font-weight: 700;
   margin: 10px 0 10px 68px;
 }
 
@@ -286,10 +278,9 @@ ContactSection
   transition: all 0.3s ease-in-out;
 }
 
-.contact .V3 h3 {
+.contact .V3 .heading {
   padding: 0 0 0 60px;
   font-size: 22px;
-  font-weight: 600;
   margin-bottom: 5px;
 }
 
@@ -308,28 +299,7 @@ FooterBottombarSection
 ======================================================== */
 
 .footer .footer_main {
-  font-size: var(--font-size-xs);
   padding: 60px 0 30px 0;
-}
-
-.footer .footer_h3 {
-  font-weight: 700;
-  font-size: var(--font-size-xl);
-  margin: 0 0 20px 0;
-  padding: 2px 0 2px 0;
-  line-height: 1;
-}
-
-.footer .footer_p {
-  font-size: var(--font-size-xs);
-  line-height: 24px;
-  margin-bottom: 0;
-}
-
-.footer .footer_nav .footer_h4 {
-  font-size: var(--font-size-sm);
-  position: relative;
-  padding-bottom: 12px;
 }
 
 .footer .footer_nav .footerlinks_li {
@@ -343,27 +313,97 @@ FooterBottombarSection
 }
 
 /* =====================================================
-ListSection
+Header
 ======================================================== */
 
-/* V1 */
-.list .V1_services .heading {
-  margin-bottom: 15px;
-  font-size: 24px;
+.header .redirectButton {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.list .V1_services p {
-  line-height: 24px;
-  font-size: 14px;
-  margin-bottom: 0;
+.header .redirectButton.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
+.header .header_nav .header_navlink,
+.header .header_nav .header_navlink:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 30px;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.header .header_nav .header_navlink_icon,
+.header .header_nav .header_navlink_icon:focus {
+  margin-right: 0.5rem;
+  line-height: 0;
+  margin-left: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header .modal_nav .navLink {
+    transition: none;
+  }
+}
+
+.header .modal_nav .navLink,
+.header .modal_nav .navLink:focus {
+  padding: 10px 20px !important;
+}
+
+.header .modal_nav .navLinkIcon,
+.header .modal_nav .navLinkIcon:focus {
+  margin-right: 0.5rem;
+  line-height: 0;
+  margin-left: 5px;
+}
+
+/* =====================================================
+Hero
+======================================================== */
+
+.hero .hero_image {
+  object-fit: cover;
+  object-position: center;
+  transform: translateZ(0); /* Helps with performance */
+}
+
+.hero .hero_container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0 15px;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero .hero_image {
+    object-position: center; /* Ensure proper centering on mobile */
+  }
+}
+
+/* =====================================================
+ListSection
+======================================================== */
 /* V2 */
-.list .V2_services {
-  position: relative;
-}
 
-.list .V2_services:before {
+.list .V2:before {
   content: "";
   position: absolute;
   top: 0;
@@ -372,7 +412,7 @@ ListSection
   height: 2px;
 }
 
-.list .V2_services::after {
+.list .V2::after {
   content: "";
   position: absolute;
   top: 0;
@@ -381,7 +421,7 @@ ListSection
   height: 2px;
 }
 
-.list .V2_services .icon {
+.list .V2 .icon {
   width: 48px;
   height: 48px;
   position: relative;
@@ -389,13 +429,13 @@ ListSection
   line-height: 0;
 }
 
-.list .V2_services .icon i {
+.list .V2 .icon i {
   font-size: 56px;
   transition: ease-in-out 0.3s;
   position: relative;
 }
 
-.list .V2_services .icon:before {
+.list .V2 .icon:before {
   position: absolute;
   content: "";
   height: 30px;
@@ -406,27 +446,18 @@ ListSection
   transition: 0.3s;
 }
 
-.list .V2_services .heading {
-  font-weight: 700;
-  font-size: 18px;
-}
-
-.list .V2_services .description {
-  line-height: 24px;
-  font-size: 14px;
-}
 
 /* V3 */
-.list .V3_services .img {
+.list .V3 .img {
   border-radius: 8px;
   overflow: hidden;
 }
 
-.list .V3_services .img img {
+.list .V3 .img img {
   transition: 0.6s;
 }
 
-.list .V3_services .details {
+.list .V3 .details {
   padding: 50px 30px;
   margin: -100px 30px 10px 30px;
   transition: all ease-in-out 0.3s;
@@ -434,7 +465,7 @@ ListSection
   border-radius: 8px;
 }
 
-.list .V3_services .details .icon {
+.list .V3 .details .icon {
   margin: 0;
   width: 72px;
   height: 72px;
@@ -450,19 +481,11 @@ ListSection
   left: calc(50% - 36px);
 }
 
-.list .V3_services .details .heading {
-  font-weight: 700;
+.list .V3 .details .heading {
   margin: 10px 0 15px 0;
-  font-size: 22px;
   transition: ease-in-out 0.3s;
 }
 
-.list .V3_services .description {
-  line-height: 24px;
-  font-size: 14px;
-  margin-bottom: 0;
-}
-
-.list .V3_services:hover .img img {
+.list .V3:hover .img img {
   transform: scale(1.2);
 }

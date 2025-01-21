@@ -161,8 +161,6 @@ export interface SectionProps extends SectionResponse {
   id?: string;
   className?: string;
   style?: React.CSSProperties;
-  dataAos?: "fade-up";
-  dataAosDelay?: string;
 }
 
 // app
@@ -183,6 +181,14 @@ export interface ButtonProps {
   onClick?: any; // TODO: change this to match the function type
   children?: React.ReactNode;
 }
+
+export type HeadingProps = {
+  variant: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  className?: string;
+} & (
+  | { children: React.ReactNode; dangerouslySetInnerHTML?: never }
+  | { children?: never; dangerouslySetInnerHTML: { __html: string } }
+);
 
 export interface SpinnerProps {
   borderSize?: "small" | "medium" | "large";

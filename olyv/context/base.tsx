@@ -4,26 +4,30 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { ThemeProvider } from "next-themes";
-import { Titillium_Web } from "next/font/google";
-import { createContext, forwardRef, useContext, useEffect } from "react";
-import baseStyles from "../styles/base.module.css";
-import type {
-  BaseContext,
-  BaseProps,
-  SectionProps,
-  SectionTitleProps,
-  ThemeColorKey,
-} from "../types/base";
-import { ScrollTop } from "../widgets/base";
+import localFont from "next/font/local";
+import { createContext, useContext, useEffect } from "react";
+import type { BaseContext, BaseProps, ThemeColorKey } from "../types/base";
 
-export const baseContext = createContext<BaseContext | undefined>(undefined);
 
-const titillium = Titillium_Web({
-  subsets: ["latin"],
-  weight: "300",
+const Base = createContext<BaseContext | undefined>(undefined);
+
+const Preloslab = localFont({
+  src: [
+    {
+      path: "./fonts/preloslab-book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/preloslab-bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  display: "swap",
 });
 
-export function Base({
+export function BaseProvider({
   csrf_token,
   full_name,
   short_name,
@@ -218,15 +222,13 @@ export function Base({
       <body
         className={`
               bg-body dark:bg-body-reverse
-              text-color dark:text-color-reverse
-              ${titillium.className} antialiased
+              ${Preloslab.className} antialiased
             `}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <baseContext.Provider value={context}>
+          <Base.Provider value={context}>
             {children}
-            <ScrollTop />
-          </baseContext.Provider>
+          </Base.Provider>
         </ThemeProvider>
       </body>
     </html>
@@ -234,119 +236,9 @@ export function Base({
 }
 
 export function useBase() {
-  const context = useContext(baseContext);
+  const context = useContext(Base);
   if (!context) {
     throw new Error("useBase must be used within a BaseProvider");
   }
   return context;
 }
-
-export const Section = forwardRef<HTMLDivElement, SectionProps>(
-  function Section(
-    {
-      id,
-      className,
-      style,
-      dataAos,
-      container = true,
-      center = true,
-      padding = true,
-      fullscreen = false,
-      children,
-      title_version,
-      title_h2,
-      title_h3,
-      title_p,
-    },
-    ref
-  ) {
-    const Title = ({
-      titleH2,
-      titleH3,
-      titleP,
-      titleVersion,
-    }: SectionTitleProps) => {
-      const { textPrimary, bgPrimaryBefore, bgPrimaryAfter } = useBase();
-      const version = titleVersion || "V1";
-
-      return (
-        <div
-          className={`${baseStyles.title} ${
-            version !== "V1" ? "text-center" : "text-start"
-          }`}
-        >
-          <div>
-            {titleH2 && (
-              <h2
-                className={`${baseStyles[`${version}_h2`]} 
-            ${
-              version === "V1" &&
-              "text-color-secondary dark:text-color-secondary-reverse"
-            }
-            ${
-              version === "V3" &&
-              `${textPrimary} bg-body-secondary dark:bg-body-secondary-reverse`
-            }
-             ${bgPrimaryBefore} ${bgPrimaryAfter}`}
-              >
-                {titleH2}
-              </h2>
-            )}
-
-            {titleH3 && version === "V3" && (
-              <h3 className={baseStyles[`${version}_h3`]}>{titleH3}</h3>
-            )}
-
-            {titleP && <p className={baseStyles[`${version}_p`]}>{titleP}</p>}
-          </div>
-        </div>
-      );
-    };
-
-    // Check if any title-related props are provided
-    const hasTitle = title_h2 || title_h3 || title_p;
-
-    // TODO: Remove ClassName, and put custom props
-    return (
-      <section
-        ref={ref}
-        id={id}
-        className={`relative overflow-hidden ${className}
-          ${fullscreen && "h-screen w-full flex flex-col"}
-        `}
-        style={style}
-        {...(dataAos && { "data-aos": dataAos })}
-      >
-        {hasTitle && (
-          <div
-            className={`
-                 ${container && "container"}
-                 ${center && `mx-auto`}
-                 ${padding ? "py-10" : "pb-10"}
-                 ${fullscreen && "flex-initial"}
-                `}
-          >
-            <Title
-              titleVersion={title_version}
-              titleH2={title_h2}
-              titleH3={title_h3}
-              titleP={title_p}
-            />
-          </div>
-        )}
-
-        <div
-          className={`
-            ${container && `container`}
-            ${center && `mx-auto`}
-            ${padding && (!hasTitle ? "py-10" : "pb-10")}
-            ${fullscreen && "flex-1 flex"} 
-          `}
-          // TODO: For fullscreen add the option of making it 'flex flex-row', 'flex flex-col' 'or 'grid and the number of grid rows.'
-        >
-          {children}
-        </div>
-      </section>
-    );
-  }
-);

@@ -3,8 +3,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import { logout } from "../../api/auth";
-import { useAuth } from "../../providers/auth";
-import { Preloader } from "../../widgets/base";
+import { useAuth } from "../../context/auth";
+import { Preloader } from "../../widgets/core";
 
 export default function LogoutSection() {
   const { loginURL, logoutRedirectURL, setUser, setIsAuthorized } = useAuth();

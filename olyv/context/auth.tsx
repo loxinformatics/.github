@@ -16,9 +16,9 @@ import {
   privateRoutes,
 } from "../utils/auth";
 
-export const authContext = createContext<AuthContext | undefined>(undefined);
+const Auth = createContext<AuthContext | undefined>(undefined);
 
-export function Auth({ groups, children }: AuthProps) {
+export function AuthProvider({ groups, children }: AuthProps) {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
   const authGroups = groups || [];
@@ -53,13 +53,11 @@ export function Auth({ groups, children }: AuthProps) {
     privateRoutes,
   };
 
-  return (
-    <authContext.Provider value={context}>{children}</authContext.Provider>
-  );
+  return <Auth.Provider value={context}>{children}</Auth.Provider>;
 }
 
 export function useAuth() {
-  const context = useContext(authContext);
+  const context = useContext(Auth);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }

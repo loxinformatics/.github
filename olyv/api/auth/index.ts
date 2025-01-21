@@ -11,7 +11,7 @@ import type {
 } from "../../types/auth";
 import type { FormResponse } from "../../types/base";
 import { authApiURL, isTokenExpired } from "../../utils/auth";
-import { homeURL } from "../../utils/base";
+import { homeURL } from "../../utils/core";
 import { fetchData } from "../base";
 
 export async function fetchAuth(): Promise<AuthReponse> {

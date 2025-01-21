@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, Suspense, useRef, useState } from "react";
 import { authenticate, login } from "../../api/auth";
-import { useAuth } from "../../providers/auth";
-import { Section, useBase } from "../../providers/base";
+import { useAuth } from "../../context/auth";
+import { useBase } from "../../context/base";
 import authStyles from "../../styles/auth.module.css";
 import type { LoginSignupProps } from "../../types/auth";
 import { authApiURL } from "../../utils/auth";
-import { homeURL } from "../../utils/base";
-import { Btn, FormStatus, Preloader } from "../../widgets/base";
+import { homeURL } from "../../utils/core";
+import { Btn, FormStatus, Section } from "../../widgets/base";
+import { Preloader } from "../../widgets/core";
 
 export default function LoginSignupSection({ component }: LoginSignupProps) {
   const router = useRouter();

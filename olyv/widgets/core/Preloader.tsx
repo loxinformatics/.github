@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useBase } from "../../providers/base";
+import { useBase } from "../../context/base";
 import baseStyles from "../../styles/base.module.css";
 import type { PreloaderProps } from "../../types/base";
 
