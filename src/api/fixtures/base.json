@@ -1,0 +1,24 @@
+[
+  {
+    "model": "base.Metadata",
+    "pk": 1,
+    "fields": {
+      "full_name": "Lox Informatics",
+      "short_name": "Lox",
+      "website": "https://www.loxinformatics.co.ke",
+      "theme_color": "#e84545",
+      "background_color": "#ffffff"
+    }
+  },
+  {
+    "model": "base.ContactInfo",
+    "pk": 1,
+    "fields": {
+      "primary_phone": "+2547102289954",
+      "primary_email": "contact@loxinformatics.info",
+      "city_name": "Nairobi",
+      "open_days": "Monday to Friday",
+      "open_hours": "8:00am - 5:00pm"
+    }
+  }
+]

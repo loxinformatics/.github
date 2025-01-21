@@ -1,23 +1,21 @@
-import { ScrollToTop } from "@/olyv/app/base/ScrollToTop";
-import { Auth, fetchAuth } from "@/olyv/providers/auth";
-import { Base, fetchBase } from "@/olyv/providers/base";
+import { fetchAuth } from "@/olyv/api/auth";
+import { fetchBase } from "@/olyv/api/base";
+import { Auth } from "@/olyv/providers/auth";
+import { Base } from "@/olyv/providers/base";
 import { Core } from "@/olyv/providers/core";
-
-import type { AuthData } from "@/olyv/providers/auth/types";
-import type { BaseData, BaseMetadata } from "@/olyv/providers/base/types";
+import type { AuthReponse } from "@/olyv/types/auth";
+import type { BaseResponse, MetadataResponse } from "@/olyv/types/base";
 import type { Metadata } from "next";
-
 import "./global.css";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const meta: BaseMetadata = await fetchBase("metadata");
+  const meta: MetadataResponse = await fetchBase("metadata");
 
   return {
     title: meta?.full_name,
     description: meta?.motto,
     metadataBase: new URL(meta?.website || "https://www.loxinformatics.co.ke"),
     applicationName: meta?.full_name,
-    // keywords: ["technology", "software", "services"],
     authors: [
       {
         name: "Lox Informatics",
@@ -57,19 +55,14 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const baseData: BaseData = await fetchBase();
-  const authData: AuthData = await fetchAuth();
+  const baseData: BaseResponse = await fetchBase();
+  const authData: AuthReponse = await fetchAuth();
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="bg-body dark:bg-body-reverse text-color dark:text-color-reverse">
-        <Base {...baseData}>
-          <Auth {...authData}>
-            <Core>{children}</Core>
-          </Auth>
-          <ScrollToTop />
-        </Base>
-      </body>
-    </html>
+    <Base {...baseData}>
+      <Auth {...authData}>
+        <Core>{children}</Core>
+      </Auth>
+    </Base>
   );
 }

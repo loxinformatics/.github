@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
-    # olyv
+    "src.api",
     "olyv.api.base",
     "olyv.api.core",
 ]

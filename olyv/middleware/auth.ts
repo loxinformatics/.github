@@ -3,16 +3,16 @@
 import { jwtDecode } from "jwt-decode";
 import type { NextRequest, NextResponse } from "next/server";
 import { NextResponse as Response } from "next/server";
-import { refresh } from "../providers/auth/actions";
+import { refresh } from "../api/auth";
+import type { DecodedToken } from "../types/auth";
 import {
   isTokenExpired,
   loginRedirectURL,
   loginURL,
   privateRoutes,
   publicRoutes,
-} from "../providers/auth/config";
-import type { DecodedToken } from "../providers/auth/types";
-import { homeURL } from "../providers/base/config";
+} from "../utils/auth";
+import { homeURL } from "../utils/base";
 
 export async function AuthMiddleware(
   request: NextRequest

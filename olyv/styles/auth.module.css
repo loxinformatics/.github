@@ -1,0 +1,29 @@
+/* ============================
+app - LoginSignup
+=============================== */
+.authform {
+  font-size: var(--font-size-xs);
+}
+
+.authform .label {
+  margin-left: 0.5rem;
+}
+
+.authform .input {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: var(--font-size-xs);
+  border-radius: 0;
+}
+
+.authform .checkInput {
+  transform: scale(1.5);
+}
+
+.authform .checkInput:focus {
+  box-shadow: none;
+}
+
+.authform .recaptchaImage {
+  max-width: 30px;
+}

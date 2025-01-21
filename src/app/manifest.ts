@@ -1,9 +1,9 @@
-import { fetchBase } from "@/olyv/providers/base";
-import type { BaseManifest } from "@/olyv/providers/base/types";
+import { fetchBase } from "@/olyv/api/base";
+import type { ManifestResponse } from "@/olyv/types/base";
 import type { MetadataRoute } from "next";
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
-  const manifest: BaseManifest = await fetchBase("manifest");
+  const manifest: ManifestResponse = await fetchBase("manifest");
 
   return {
     name: manifest?.full_name,

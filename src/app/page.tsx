@@ -1,20 +1,33 @@
-import { Preloader } from "@/olyv/app/base/Preloader";
-import { AboutSection, fetchAbout } from "@/olyv/app/core/About";
 import {
-  CallToActionSection,
+  fetchAbout,
   fetchCallToAction,
-} from "@/olyv/app/core/CallToAction";
-import { ContactSection, fetchContact } from "@/olyv/app/core/Contact";
-import { FooterBottombarSection } from "@/olyv/app/core/FooterBottombar";
-import { HeaderHeroSection, fetchHeaderHero } from "@/olyv/app/core/HeaderHero";
-import { ListSection, fetchList } from "@/olyv/app/core/List";
+  fetchContact,
+  fetchHeaderHero,
+  fetchList,
+} from "@/olyv/api/core";
+import {
+  AboutSection,
+  CallToActionSection,
+  ContactSection,
+  FooterBottombarSection,
+  HeaderHeroSection,
+  ListSection,
+} from "@/olyv/app/core";
+import type {
+  AboutResponse,
+  CallToActionResponse,
+  ContactResponse,
+  HeaderHeroResponse,
+  ListResponse,
+} from "@/olyv/types/core";
+import { Preloader } from "@/olyv/widgets/base";
 
 export default async function Page() {
-  const headerHero = await fetchHeaderHero("page_1");
-  const about = await fetchAbout("page_1");
-  const cta = await fetchCallToAction("page_1");
-  const contact = await fetchContact("page_1");
-  const listdescriptions = await fetchList("page_1");
+  const headerHero: HeaderHeroResponse = await fetchHeaderHero("page_1");
+  const about: AboutResponse = await fetchAbout("page_1");
+  const cta: CallToActionResponse = await fetchCallToAction("page_1");
+  const contact: ContactResponse = await fetchContact("page_1");
+  const listdescriptions: ListResponse = await fetchList("page_1");
 
   return (
     <>

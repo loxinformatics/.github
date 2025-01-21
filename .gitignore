@@ -10,7 +10,6 @@ next-env.d.ts
 *__pycache__/
 *sqlite*
 public/api/
-*fixtures/
 
 # misc
 .vscode/

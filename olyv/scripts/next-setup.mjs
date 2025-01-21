@@ -28,7 +28,6 @@ const checkAndCopyNavigationFile = async () => {
     path.dirname(fileURLToPath(import.meta.url)),
     "..",
     "providers",
-    "core",
     "navigation.ts",
   );
 
