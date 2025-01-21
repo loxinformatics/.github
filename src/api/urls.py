@@ -25,4 +25,4 @@ if settings.DEBUG:
 
 # Call the function to set the admin panel site URL, optionally passing a path
 # You can pass a path like admin_site_url("/dashboard") if needed.
-admin_site_url("/dashboard")
+admin_site_url("/")
