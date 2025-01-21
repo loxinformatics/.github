@@ -157,14 +157,14 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 
 # Static files: https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "public/api/static/"
 
 STATIC_ROOT = BASE_DIR / "public" / "api" / "static"
 
 
 # Media files: https://docs.djangoproject.com/en/5.1/ref/settings/#media-files
 
-MEDIA_URL = "media/"
+MEDIA_URL = "public/api/media/"
 
 MEDIA_ROOT = BASE_DIR / "public" / "api" / "media"
 
