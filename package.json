@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "setup": "node ./olyv/scripts/next-setup.mjs",
-    "dev": "next dev --turbopack",
+    "dev": "npm run setup && next dev --turbopack",
     "build": "npm run setup && next build",
-    "start": "next start",
+    "start": "next start -p 7000",
     "lint": "next lint",
     "update": "npx npm-check-updates -u && pnpm install"
   },
