@@ -3,10 +3,10 @@
 import { useLayoutEffect } from "react";
 import { useCore } from "../../context/core";
 import coreStyles from "../../styles/core.module.css";
-import { toggleAside } from "../../utils/core";
 
-export default function AsideToggler() {
-  const { asideExists } = useCore();
+export default function SidebarToggler() {
+  const { asideExists, toggleAside } = useCore();
+
   useLayoutEffect(() => {
     if (!asideExists) return;
 

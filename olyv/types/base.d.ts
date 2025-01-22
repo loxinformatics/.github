@@ -163,13 +163,14 @@ export interface SectionProps extends SectionResponse {
   style?: React.CSSProperties;
 }
 
-// app
-export interface PreloaderProps {
-  version?: "V1" | "V2" | "V3";
-  indefinite?: boolean;
+// widgets
+export interface AnchorProps {
+  href?: string;
+  id?: string;
+  className?: string;
+  children: React.ReactNode;
 }
 
-// widgets
 export interface ButtonProps {
   id?: string;
   className?: string;

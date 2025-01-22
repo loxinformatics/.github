@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useBase } from "../../context/base";
 import type { LogoProps } from "../../types/base";
 import { homeURL } from "../../utils/core";
+import { Anchor } from "../base";
 
 export default function Logo({ logoVersion, textColor }: LogoProps) {
   const { coloredLogoFullImage, fullName, shortName, textPrimary } = useBase();
@@ -12,7 +12,7 @@ export default function Logo({ logoVersion, textColor }: LogoProps) {
   const color = textColor || "text-color dark:text-color-reverse";
 
   return (
-    <Link id="logo" href={homeURL} className=" py-2">
+    <Anchor href={homeURL} id="logo" className="py-2">
       {version === "logo_image" ? (
         // TODO: Have an option for choosing whether to either differentiate which images should be showing based on screen size or theme is dark, or if just one image should be used irrespective of screen size or theme.
         <Image
@@ -29,6 +29,6 @@ export default function Logo({ logoVersion, textColor }: LogoProps) {
           <span className={textPrimary}>.</span>
         </span>
       )}
-    </Link>
+    </Anchor>
   );
 }

@@ -93,6 +93,7 @@ export interface CoreContext {
   isNavModalOpen: boolean;
   setIsNavModalOpen: (isNavModalOpen: boolean) => void;
   navLinksMap: NavLinksMap;
+  toggleAside: (action?: ToggleAsideAction) => void;
 }
 
 // app
@@ -146,4 +147,9 @@ export interface NavLinksProps {
   renderLink: (link: NavLink, index: number, sharedProps: any) => ReactNode;
   className?: any;
   id?: string;
+}
+
+export interface PreloaderProps {
+  version?: "V1" | "V2" | "V3";
+  indefinite?: boolean;
 }

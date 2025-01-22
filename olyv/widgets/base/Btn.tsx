@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { Anchor } from ".";
 import { useBase } from "../../context/base";
 import type { ButtonProps } from "../../types/base";
-import { handleHashLinkClick } from "../../utils/core";
 
 export default function Btn({
   id,
@@ -59,18 +58,9 @@ export default function Btn({
       if (!href) return;
 
       return (
-        <Link
-          id={id}
-          className={commonClasses}
-          href={href || "#"}
-          onClick={(e) => handleHashLinkClick(e, href)}
-          {...((href.startsWith("http") || href.startsWith("https")) && {
-            target: "_blank",
-            rel: "noopener noreferrer",
-          })}
-        >
+        <Anchor href={href || "#"} id={id} className={commonClasses}>
           {children}
-        </Link>
+        </Anchor>
       );
   }
 }

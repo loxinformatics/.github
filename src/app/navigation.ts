@@ -1,4 +1,6 @@
 import type { NavLinksMap } from "@/olyv/types/core";
+import { apiURL } from "@/olyv/utils/base";
+import { createNavDropdown, homeURL } from "@/olyv/utils/core";
 
 const navLinksMap: NavLinksMap = {
   header: [
@@ -23,7 +25,41 @@ const navLinksMap: NavLinksMap = {
     { text: "Terms of service", href: "#" },
     { text: "Privacy policy", href: "#" },
   ],
-  footer_2: [
+  footer_2: [],
+  aside: [
+    {
+      type: "dropdown",
+      text: "Schools",
+      icon: "bi bi-shop",
+      href: "#",
+      children: createNavDropdown([
+        { text: "Overview", href: "/dashboard" },
+        { text: "Foundation", href: "/dashboard/schools/foundation" },
+        { text: "Baptism", href: "/dashboard/schools/baptism" },
+        { text: "Evangelism", href: "/dashboard/schools/evangelism" },
+        {
+          text: "Ministry",
+          href: "/dashboard/schools/ministry",
+          authorized: ["STAFF"],
+        },
+      ]),
+    },
+    { type: "heading", text: "Pages", href: "" },
+    { text: "Home", icon: "bi bi-house", href: homeURL },
+    {
+      text: "Admin",
+      icon: "bi bi-shield-lock",
+      href: `${apiURL}/admin`,
+      authorized: ["STAFF"],
+    },
+    { text: "Profile", href: "#", authorized: ["USER"], icon: "bi bi-person" },
+    {
+      type: "login/logout",
+      loginText: "Login",
+      logoutText: "Logout",
+      icon: "bi bi-box-arrow-right",
+      href: "#",
+    },
   ],
 };
 

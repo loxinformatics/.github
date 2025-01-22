@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useBase } from "../../context/base";
 import baseStyles from "../../styles/base.module.css";
-import type { PreloaderProps } from "../../types/base";
+import type { PreloaderProps } from "../../types/core";
 
 export default function Preloader({
   version = "V3",

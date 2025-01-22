@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useBase } from "../../context/base";
 import { useCore } from "../../context/core";
 import coreStyles from "../../styles/core.module.css";
@@ -10,7 +9,7 @@ import type {
   FooterNavProps,
   NavLink,
 } from "../../types/core";
-import { Heading, Section } from "../../widgets/base";
+import { Anchor, Heading, Section } from "../../widgets/base";
 import { SocialMediaLinks, ThemeToggler } from "../../widgets/core";
 
 export default function FooterBottombarSection({
@@ -106,12 +105,12 @@ function FooterNav({ links }: FooterNavProps) {
                 <i
                   className={`bi bi-chevron-right text-base ${textPrimary} pr-[2px]`}
                 ></i>
-                <Link
-                  className={`${textColorHover} transition-colors duration-200`}
+                <Anchor
                   href={link.href || "#"}
+                  className={`${textColorHover} transition-colors duration-200`}
                 >
                   {link.text}
-                </Link>
+                </Anchor>
               </li>
             ))}
           </ul>

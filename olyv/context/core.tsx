@@ -1,7 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import type { CoreContext, CoreProps } from "../types/core";
+import coreStyles from "../styles/core.module.css";
+import type { CoreContext, CoreProps, ToggleAsideAction } from "../types/core";
 import { createNavLinks } from "../utils/core";
 import { ScrollTop } from "../widgets/core";
 import navLinksMap from "./navigation";
@@ -12,12 +13,34 @@ export function CoreProvider({ children }: CoreProps) {
   const [asideExists, setAsideExists] = useState<boolean>(false);
   const [isNavModalOpen, setIsNavModalOpen] = useState<boolean>(false);
 
+  const toggleAside = (action: ToggleAsideAction = "toggle") => {
+    const mediaQuery = window.matchMedia("(max-width: 1199.98px)");
+
+    switch (action) {
+      case "closeOnMobile":
+        // * will only toggle aside on mobile devices
+        if (
+          mediaQuery.matches &&
+          document.body.classList.contains(coreStyles.toggle_aside)
+        ) {
+          document.body.classList.remove(coreStyles.toggle_aside);
+        }
+        break;
+
+      case "toggle":
+      default:
+        document.body.classList.toggle(coreStyles.toggle_aside);
+        break;
+    }
+  };
+
   // Context
   const context: CoreContext = {
     // * Ensure that all of these are being used only within core.
     // * If not, move to base or auth (if auth related).
     asideExists,
     setAsideExists,
+    toggleAside,
     isNavModalOpen,
     setIsNavModalOpen,
     createNavLinks,

@@ -2,10 +2,7 @@
 
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useAuth } from "../../context/auth";
 import { useBase } from "../../context/base";
 import { useCore } from "../../context/core";
 import coreStyles from "../../styles/core.module.css";
@@ -17,9 +14,8 @@ import type {
   ModalNavProps,
   NavLink,
 } from "../../types/core";
-import { handleHashLinkClick } from "../../utils/core";
-import { Btn, Heading, Modal, Section } from "../../widgets/base";
-import { AsideToggler, Logo, Nav, ThemeToggler } from "../../widgets/core";
+import { Anchor, Btn, Heading, Modal, Nav, Section } from "../../widgets/base";
+import { Logo, SidebarToggler, ThemeToggler } from "../../widgets/core";
 
 export default function HeaderHeroSection({
   component,
@@ -116,7 +112,7 @@ function Header({
           <Logo logoVersion={logo_version} textColor={color} />
           <div className="ml-3" />
           {headerNav && <ModalNav toggleColor={color} />}
-          <AsideToggler />
+          <SidebarToggler />
         </div>
 
         <div className="w-1/2 flex justify-center items-center">
@@ -149,44 +145,25 @@ function Header({
 }
 
 function HeaderNav({ linkColor }: HeaderNavProps) {
-  const pathname = usePathname();
-  const router = useRouter();
   const { textColorHover } = useBase();
-  const { user, privateRoutes } = useAuth();
   const { createNavLinks, navLinksMap } = useCore();
 
   const navLinks = createNavLinks(navLinksMap.header);
   const navLinks_color = linkColor || "text-color-reverse dark:text-color";
 
-  const handleLinkClick =
-    (href: string | undefined) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (!href) return;
-      handleHashLinkClick(e, href);
-
-      const isInPrivateRoutes = privateRoutes.some((route: string) =>
-        href.startsWith(route)
-      );
-      if (isInPrivateRoutes && !user) {
-        e.preventDefault();
-        const param = `?callbackUrl=${pathname}`;
-        router.push(href + param);
-      }
-    };
-
   const renderLink = (link: NavLink, index: number) => {
     const Icon = link?.icon;
     return (
       <li key={`navbar-link-${index}`}>
-        <Link
+        <Anchor
           className={`${navLinks_color} ${coreStyles.header_navlink} ${textColorHover}`}
           href={link.href || "#"}
-          onClick={handleLinkClick(link.href)}
         >
           {Icon && (
             <i className={`${Icon} ${coreStyles.header_navlink_icon}`}></i>
           )}
           {link?.text}
-        </Link>
+        </Anchor>
       </li>
     );
   };
@@ -202,10 +179,8 @@ function HeaderNav({ linkColor }: HeaderNavProps) {
 }
 
 function ModalNav({ toggleColor }: ModalNavProps) {
-  const pathname = usePathname();
-  const router = useRouter();
   const { bgBodyHover } = useBase();
-  const { user, privateRoutes } = useAuth();
+
   const {
     createNavLinks,
     navLinksMap,
@@ -225,34 +200,17 @@ function ModalNav({ toggleColor }: ModalNavProps) {
     setAsideExists(!!document.querySelector("aside"));
   }, []);
 
-  const handleLinkClick =
-    (href: string | undefined) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-      setIsNavModalOpen(false);
-      if (!href) return;
-      handleHashLinkClick(e, href);
-
-      const isInPrivateRoutes = privateRoutes.some((route: string) =>
-        href.startsWith(route)
-      );
-      if (isInPrivateRoutes && !user) {
-        e.preventDefault();
-        const param = `?callbackUrl=${pathname}`;
-        router.push(href + param);
-      }
-    };
-
   const renderLink = (link: NavLink, index: number) => {
     const Icon = link?.icon;
     return (
       <li key={`modal-link-${index}`}>
-        <Link
+        <Anchor
           className={`${coreStyles.navLink} block px-4 py-2 transition-all ease-in-out duration-150 text-color dark:text-color-reverse ${bgBodyHover}`}
           href={link?.href || "#"}
-          onClick={handleLinkClick(link.href)}
         >
           {Icon && <i className={`${Icon} ${coreStyles.navLinkIcon}`}></i>}{" "}
           {link?.text}
-        </Link>
+        </Anchor>
       </li>
     );
   };

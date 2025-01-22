@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useBase } from "../../context/base";
 import coreStyles from "../../styles/core.module.css";
 import type { ListDescriptionsProps } from "../../types/core";
-import { Heading, Section } from "../../widgets/base";
+import { Anchor, Heading, Section } from "../../widgets/base";
 
 export default function ListSection({
   section_instance,
@@ -61,8 +60,8 @@ export default function ListSection({
                   data-aos="zoom-in"
                   data-aos-delay={`${50 + index * 50}`}
                 >
-                  <Link
-                    href=""
+                  <Anchor
+                    href="#"
                     className={`group
                       py-[80px] px-[20px] block text-center  
                       border border-solid border-color-tertiary dark:border-color-tertiary-reverse ${borderColorHover} 
@@ -85,7 +84,7 @@ export default function ListSection({
                       </Heading>
                       <p className="px-3 leading-6">{itemDescription}</p>
                     </div>
-                  </Link>
+                  </Anchor>
                 </div>
               );
 
@@ -97,8 +96,8 @@ export default function ListSection({
                   data-aos="fade-up"
                   data-aos-delay={`${50 + index * 50}`}
                 >
-                  <Link
-                    href=""
+                  <Anchor
+                    href="#"
                     className={`group relative ${coreStyles.V2} flex pt-[40px]
                     before:bg-color/10 dark:before:bg-color-reverse/10 ${bgPrimaryAfter}
                     border-r-[5px] after:border-r-body dark:after:border-r-body-reverse
@@ -122,7 +121,7 @@ export default function ListSection({
                         {itemDescription}
                       </p>
                     </div>
-                  </Link>
+                  </Anchor>
                 </div>
               );
 
@@ -134,7 +133,7 @@ export default function ListSection({
                   data-aos="zoom-in"
                   data-aos-delay={`${50 + index * 50}`}
                 >
-                  <Link href="" className={`group ${coreStyles.V3}`}>
+                  <Anchor href="#" className={`group ${coreStyles.V3}`}>
                     <div className={coreStyles.img}>
                       <Image
                         src={itemImage}
@@ -168,7 +167,7 @@ export default function ListSection({
                         {itemDescription}
                       </p>
                     </div>
-                  </Link>
+                  </Anchor>
                 </div>
               );
           }

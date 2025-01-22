@@ -1,22 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import { useLayoutEffect, useState } from "react";
 import { useAuth } from "../../context/auth";
 import { useBase } from "../../context/base";
 import { useCore } from "../../context/core";
 import coreStyles from "../../styles/core.module.css";
 import type { NavLink } from "../../types/core";
-import { handleHashLinkClick, toggleAside } from "../../utils/core";
-import { Nav } from "../../widgets/core";
+import { Anchor, Nav } from "../../widgets/base";
 
 export default function SidebarSection() {
-  const pathname = usePathname();
-  const router = useRouter();
   const [top, setTop] = useState<number>(0);
   const { textColorHover, textColorGroupHover, textPrimary } = useBase();
-  const { user, loginURL, logoutURL, privateRoutes } = useAuth();
+  const { loginURL, logoutURL } = useAuth();
   const { setAsideExists, createNavLinks, navLinksMap } = useCore();
 
   const navLinks = createNavLinks(navLinksMap.aside);
@@ -31,21 +26,6 @@ export default function SidebarSection() {
       setAsideExists(false);
     };
   }, []);
-
-  const handleLinkClick =
-    (href: string | undefined) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (!href) return;
-      handleHashLinkClick(e, href);
-
-      const isInPrivateRoutes = privateRoutes.some((route: string) =>
-        href.startsWith(route)
-      );
-      if (isInPrivateRoutes && !user) {
-        e.preventDefault();
-        const param = `?callbackUrl=${pathname}`;
-        router.push(href + param);
-      }
-    };
 
   const renderLink = (
     link: NavLink,
@@ -69,7 +49,6 @@ export default function SidebarSection() {
             pathname={pathname}
             openDropdowns={openDropdowns}
             handleDropdownClick={handleDropdownClick}
-            handleLinkClick={handleLinkClick}
           />
         );
       case "heading":
@@ -88,14 +67,7 @@ export default function SidebarSection() {
           />
         );
       default:
-        return (
-          <PageNavLink
-            key={index}
-            link={link}
-            pathname={pathname}
-            handleLinkClick={handleLinkClick} // Updated to use handleLinkClick
-          />
-        );
+        return <PageNavLink key={index} link={link} pathname={pathname} />;
     }
   };
 
@@ -106,17 +78,10 @@ export default function SidebarSection() {
     handleDropdownClick,
     pathname,
     shouldRenderLink,
-    handleLinkClick,
   }: any) => {
     const visibleChildren = link.children?.filter(shouldRenderLink);
 
     if (!visibleChildren || visibleChildren.length === 0) return null;
-
-    const handleNestedLinkClick =
-      (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-        handleLinkClick(href)(e);
-        toggleAside("closeOnMobile");
-      };
 
     return (
       <li key={`dropdown-${index}`} className={coreStyles.nav_item}>
@@ -154,16 +119,15 @@ export default function SidebarSection() {
               key={`child-${index}-${childIndex}`}
               className={child.href === pathname ? coreStyles.active : ""}
             >
-              <Link
+              <Anchor
                 href={child.href || "#"}
-                onClick={handleNestedLinkClick(child.href)}
                 className={`group ${coreStyles.nav_link} ${textColorHover} ${
                   child.href === pathname && textPrimary
                 } nested`} //* the nested class is needed for proper toggling open or close the aside component
               >
                 <i className={`bi bi-circle ${textColorGroupHover}`}></i>
                 {child.text && <span>{child.text}</span>}
-              </Link>
+              </Anchor>
             </li>
           ))}
         </ul>
@@ -186,7 +150,7 @@ export default function SidebarSection() {
     const nextUrl = encodeURIComponent(pathname);
     return (
       <li className={coreStyles.nav_item}>
-        <Link
+        <Anchor
           href={`${loginURL}/?nextUrl=${nextUrl}&callbackUrl=${pathname}`}
           className={`group ${coreStyles.nav_link} bg-body-secondary dark:bg-body-secondary-reverse ${textColorHover} hover:bg-body-tertiary dark:hover:bg-body-tertiary-reverse`}
         >
@@ -199,7 +163,7 @@ export default function SidebarSection() {
           <i
             className={`bi bi-chevron-right ${textColorGroupHover} ms-auto me-0`}
           ></i>
-        </Link>
+        </Anchor>
       </li>
     );
   };
@@ -207,9 +171,9 @@ export default function SidebarSection() {
   const LogoutNavLink = ({ link, pathname }: any) => {
     return (
       <li className={coreStyles.nav_item}>
-        <Link
-          className={`group ${coreStyles.nav_link} bg-body-secondary dark:bg-body-secondary-reverse ${textColorHover} hover:bg-body-tertiary dark:hover:bg-body-tertiary-reverse`}
+        <Anchor
           href={`${logoutURL}?callbackUrl=${pathname}`}
+          className={`group ${coreStyles.nav_link} bg-body-secondary dark:bg-body-secondary-reverse ${textColorHover} hover:bg-body-tertiary dark:hover:bg-body-tertiary-reverse`}
         >
           {link.icon && (
             <i className={`${link.icon} ${textColorGroupHover}`}></i>
@@ -220,7 +184,7 @@ export default function SidebarSection() {
           <i
             className={`bi bi-chevron-right ${textColorGroupHover} ms-auto me-0`}
           ></i>
-        </Link>
+        </Anchor>
       </li>
     );
   };
@@ -234,12 +198,11 @@ export default function SidebarSection() {
     }
   };
 
-  const PageNavLink = ({ link, pathname, handleLinkClick }: any) => {
+  const PageNavLink = ({ link, pathname }: any) => {
     return (
       <li className={coreStyles.nav_item}>
-        <Link
+        <Anchor
           href={link.href || "#"}
-          onClick={handleLinkClick(link.href)} // Updated to use handleLinkClick
           className={`group ${coreStyles.nav_link}
           ${textColorHover} 
           bg-body-secondary dark:bg-body-secondary-reverse
@@ -253,7 +216,7 @@ export default function SidebarSection() {
           <i
             className={`bi bi-chevron-right ${textColorGroupHover} ms-auto me-0`}
           ></i>
-        </Link>
+        </Anchor>
       </li>
     );
   };
