@@ -27,7 +27,7 @@ const checkAndCopyNavigationFile = async () => {
   const destinationDir = path.join(
     path.dirname(fileURLToPath(import.meta.url)),
     "..",
-    "providers",
+    "context",
     "navigation.ts",
   );
 
