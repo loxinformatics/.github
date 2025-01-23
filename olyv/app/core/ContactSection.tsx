@@ -3,8 +3,9 @@
 import { useBase } from "../../context/base";
 import coreStyles from "../../styles/core.module.css";
 import type { ContactItemProps, ContactProps } from "../../types/core";
-import { Heading, Section } from "../../widgets/base";
-import { MailUsForm } from "../../widgets/core";
+import Heading from "../../widgets/base/Heading";
+import Section from "../../widgets/base/Section";
+import MailUsForm from "../../widgets/core/MailUsForm";
 
 export default function ContactSection({
   section_instance,

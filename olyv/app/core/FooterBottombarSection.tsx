@@ -9,8 +9,11 @@ import type {
   FooterNavProps,
   NavLink,
 } from "../../types/core";
-import { Anchor, Heading, Section } from "../../widgets/base";
-import { SocialMediaLinks, ThemeToggler } from "../../widgets/core";
+import Anchor from "../../widgets/base/Anchor";
+import Heading from "../../widgets/base/Heading";
+import Section from "../../widgets/base/Section";
+import SocialMediaLinks from "../../widgets/core/SocialMediaLinks";
+import ThemeToggler from "../../widgets/core/ThemeToggler";
 
 export default function FooterBottombarSection({
   themeToggler,

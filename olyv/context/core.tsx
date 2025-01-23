@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 import coreStyles from "../styles/core.module.css";
 import type { CoreContext, CoreProps, ToggleAsideAction } from "../types/core";
 import { createNavLinks } from "../utils/core";
-import { ScrollTop } from "../widgets/core";
+import ScrollTop from "../widgets/core/ScrollTop";
 import navLinksMap from "./navigation";
 
 const Core = createContext<CoreContext | undefined>(undefined);

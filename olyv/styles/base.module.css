@@ -9,7 +9,7 @@ SocialMediaLinks
   height: 36px;
   border-radius: 50%;
   border: none;
-  font-size: var(--font-size-md);
+  @apply text-xl;
   margin-right: 4px;
   transition: 0.3s;
 }
@@ -44,7 +44,7 @@ Section & Title
 =============================== */
 /* Version 1 */
 .title .V1_h3 {
-  font-size: var(--font-size-xs);
+  @apply text-sm;
   padding: 0;
   line-height: 1px;
   margin: 0 0 5px 0;
@@ -62,13 +62,13 @@ Section & Title
 
 .title .V1_p {
   margin: 0;
-  font-size: var(--font-size-xxl);
+  @apply text-4xl;
   font-family: var(--font-primary);
 }
 
 /* Version 2 */
 .title .V2_h3 {
-  font-size: var(--font-size-xxl);
+ @apply text-4xl;
   position: relative;
 }
 

@@ -20,7 +20,7 @@ import type {
   HeaderHeroResponse,
   ListResponse,
 } from "@/olyv/types/core";
-import { Preloader } from "@/olyv/widgets/core";
+import Preloader from "@/olyv/widgets/core/Preloader";
 
 export default async function Page() {
   const headerHero: HeaderHeroResponse = await fetchHeaderHero("page_1");

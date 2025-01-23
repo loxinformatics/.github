@@ -9,8 +9,12 @@ import authStyles from "../../styles/auth.module.css";
 import type { LoginSignupProps } from "../../types/auth";
 import { authApiURL } from "../../utils/auth";
 import { homeURL } from "../../utils/core";
-import { Anchor, Btn, FormStatus, Heading, Section } from "../../widgets/base";
-import { Preloader } from "../../widgets/core";
+import Anchor from "../../widgets/base/Anchor";
+import Btn from "../../widgets/base/Btn";
+import FormStatus from "../../widgets/base/Form";
+import Heading from "../../widgets/base/Heading";
+import Section from "../../widgets/base/Section";
+import Preloader from "../../widgets/core/Preloader";
 
 export default function LoginSignupSection({ component }: LoginSignupProps) {
   switch (component) {
