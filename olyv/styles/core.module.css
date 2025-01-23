@@ -1,160 +1,36 @@
 /* =====================================================
-AsideToggle & toggleAside util
-======================================================== */
-
-.aside,
-.main {
-  transition: margin-left 0.3s ease-in-out;
-}
-
-@media (max-width: 1199.98px) {
-  /* here, the aside section will come over the main element when toggled open */
-
-  .aside {
-    margin-left: -300px;
-  }
-
-  .toggle_aside .aside {
-    margin-left: 0;
-  }
-}
-
-@media (min-width: 1200px) {
-  /* here, both aside and main are shifted when toggled open. Aside doesn't come over the main element */
-
-  .main {
-    margin-left: 300px;
-  }
-
-  .toggle_aside .main {
-    margin-left: 0;
-  }
-
-  .toggle_aside .aside {
-    margin-left: -300px;
-  }
-}
-
-/* =====================================================
 AboutSection
 ======================================================== */
 .about-content h5 {
   margin-bottom: 0.5rem;
-  @apply font-bold text-xl;
+  font-weight: 700;
+  font-size: 20px;
 }
 
 .about .about-content ul,
 .about .about-content p {
-  @apply mb-4;
+  margin-bottom: 1rem;
 }
 
 .about .about-content ul {
-  @apply p-0 list-none
+  padding: 0;
+  list-style: none;
 }
 
 .about .about-content ul li {
   padding: 0 0 8px 26px;
-  @apply relative;
+  position:relative;
 }
 
 .about .about-content ul li::before {
-  @apply content-["»"] absolute start-0 top-0
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "»";
 }
 
 .about .about-content p:last-child {
-  @apply mb-0;
-}
-
-/* =====================================================
-SidebarSection
-======================================================== */
-
-.sidebar {
-  scrollbar-width: thin;
-}
-
-/* * Aside Navigation */
-.sidebar .aside_nav {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.sidebar .aside_nav li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.sidebar .aside_nav .nav_item {
-  margin-bottom: 5px;
-}
-
-.sidebar .aside_nav .nav_heading {
-  font-size: 11px;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 15px 0 5px 15px;
-}
-
-.sidebar .aside_nav .nav_link {
-  display: flex;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 600;
-  transition: background-color 0.3s, color 0.3s; /* Combine transitions */
-  padding: 10px 15px;
-  border-radius: 4px;
-}
-
-.sidebar .aside_nav .nav_link i {
-  font-size: 16px;
-  margin-right: 10px;
-  transition: color 0.3s;
-}
-
-.sidebar .aside_nav .nav_link .dropdown_icon {
-  transition: transform 0.2s ease-in-out;
-}
-
-.sidebar .aside_nav .nav_link[aria-expanded="true"] .dropdown_icon {
-  transform: rotate(180deg);
-}
-
-.sidebar .aside_nav .nav_content {
-  padding: 5px 0 0 0;
-  margin: 0;
-  list-style: none;
-}
-
-.sidebar .aside_nav .nav_content a {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 600;
-  transition: color 0.3s;
-  padding: 10px 0 10px 40px;
-}
-
-.sidebar .aside_nav .nav_content a i {
-  font-size: 6px;
-  margin-right: 8px;
-  line-height: 0;
-  border-radius: 50%;
-}
-
-.sidebar .aside_nav .nav_content {
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  max-height: 0;
-}
-
-.sidebar .aside_nav .openDropdown {
-  max-height: 500px; /* Adjust this based on your content height */
-}
-
-.sidebar .aside_nav .closedDropdown {
-  max-height: 0;
+  margin-bottom: 0;
 }
 
 /* =====================================================
@@ -250,7 +126,7 @@ ContactSection
   padding: 0;
   margin-left: 50px;
   line-height: 24px;
-  @apply text-sm;
+  font-size: 14px;
 }
 
 /* Version 2 */
@@ -263,7 +139,7 @@ ContactSection
 .contact .V2 p {
   padding: 0;
   line-height: 24px;
-  @apply text-sm;
+  font-size: 14px;
   margin-left: 68px;
 }
 
@@ -487,4 +363,165 @@ ListSection
 
 .list .V3:hover .img img {
   transform: scale(1.2);
+}
+
+/* =====================================================
+SidebarSection
+======================================================== */
+
+.sidebar {
+  scrollbar-width: thin;
+}
+
+/* * Aside Navigation */
+.sidebar .aside_nav {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar .aside_nav li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar .aside_nav .nav_item {
+  margin-bottom: 5px;
+}
+
+.sidebar .aside_nav .nav_heading {
+  font-size: 12px;
+  margin: 15px 0 5px 15px;
+}
+
+.sidebar .aside_nav .nav_link {
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s; /* Combine transitions */
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+.sidebar .aside_nav .nav_link i {
+  margin-right: 10px;
+  transition: color 0.3s;
+}
+
+.sidebar .aside_nav .nav_link .dropdown_icon {
+  transition: transform 0.2s ease-in-out;
+}
+
+.sidebar .aside_nav .nav_link[aria-expanded="true"] .dropdown_icon {
+  transform: rotate(180deg);
+}
+
+.sidebar .aside_nav .nav_content {
+  padding: 5px 0 0 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar .aside_nav .nav_content a {
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+  padding: 10px 0 10px 40px;
+}
+
+.sidebar .aside_nav .nav_content a i {
+  margin-right: 8px;
+  line-height: 0;
+  border-radius: 50%;
+}
+
+.sidebar .aside_nav .nav_content {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  max-height: 0;
+}
+
+.sidebar .aside_nav .openDropdown {
+  max-height: 500px; /* Adjust this based on your content height */
+}
+
+.sidebar .aside_nav .closedDropdown {
+  max-height: 0;
+}
+
+/* =====================================================
+Sidebaroggle & toggleSidebarutil
+======================================================== */
+
+.aside,
+.main {
+  transition: margin-left 0.3s ease-in-out;
+}
+
+@media (max-width: 1199.98px) {
+  /* here, the aside section will come over the main element when toggled open */
+
+  .aside {
+    margin-left: -300px;
+  }
+
+  .toggle_aside .aside {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* here, both aside and main are shifted when toggled open. Aside doesn't come over the main element */
+
+  .main {
+    margin-left: 300px;
+  }
+
+  .toggle_aside .main {
+    margin-left: 0;
+  }
+
+  .toggle_aside .aside {
+    margin-left: -300px;
+  }
+}
+
+/* ============================
+SocialMediaLinks
+=============================== */
+.V1_socialMediaLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  margin-right: 4px;
+  transition: 0.3s;
+}
+
+.V2_socialMediaLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.V3_socialMediaLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  margin-right: 4px;
+  transition: 0.3s;
 }

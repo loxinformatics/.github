@@ -6,7 +6,7 @@ import { CoreProvider } from "@/olyv/context/core";
 import type { AuthReponse } from "@/olyv/types/auth";
 import type { BaseResponse, MetadataResponse } from "@/olyv/types/base";
 import type { Metadata } from "next";
-import "./global.css";
+import "./glob.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta: MetadataResponse = await fetchBase("metadata");

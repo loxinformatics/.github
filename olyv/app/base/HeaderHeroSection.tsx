@@ -17,12 +17,12 @@ import type {
 import Anchor from "../../widgets/base/Anchor";
 import Btn from "../../widgets/base/Btn";
 import Heading from "../../widgets/base/Heading";
+import Logo from "../../widgets/base/Logo";
 import Modal from "../../widgets/base/Modal";
 import Nav from "../../widgets/base/Nav";
 import Section from "../../widgets/base/Section";
-import Logo from "../../widgets/core/Logo";
-import SidebarToggler from "../../widgets/core/SidebarToggler";
-import ThemeToggler from "../../widgets/core/ThemeToggler";
+import SidebarToggler from "../../widgets/base/SidebarToggler";
+import ThemeToggler from "../../widgets/base/ThemeToggler";
 
 export default function HeaderHeroSection({
   component,

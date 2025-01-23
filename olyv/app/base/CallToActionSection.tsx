@@ -4,7 +4,9 @@ import Image from "next/image";
 import { useBase } from "../../context/base";
 import coreStyles from "../../styles/core.module.css";
 import type { CallToActionProps } from "../../types/core";
-import { Btn, Heading, Section } from "../../widgets/base";
+import Btn from "../../widgets/base/Btn";
+import Heading from "../../widgets/base/Heading";
+import Section from "../../widgets/base/Section";
 
 export default function CallToActionSection({
   section_instance,

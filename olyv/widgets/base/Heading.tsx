@@ -21,7 +21,10 @@ export default function Heading({
     "text-xl text-color-secondary dark:text-color-secondary-reverse"
   }
   
-  ${variant === "h6" && "text-lg"}
+  ${
+    variant === "h6" &&
+    "text-lg text-color-secondary dark:text-color-secondary-reverse"
+  }
   
   ${className}`;
 

@@ -12,7 +12,7 @@ import {
   LoginNavLink,
   LogoutNavLink,
   PageNavLink,
-} from "../../widgets/core/SidebarLinks";
+} from "../../widgets/base/SidebarLinks";
 
 export default function SidebarSection() {
   const [top, setTop] = useState<number>(0);
@@ -89,7 +89,7 @@ export default function SidebarSection() {
     >
       <Nav
         id="aside-nav"
-        className={coreStyles.aside_nav}
+        className={`text-sm tracking-wider ${coreStyles.aside_nav}`}
         links={navLinks}
         layout="aside"
         renderLink={renderLink}

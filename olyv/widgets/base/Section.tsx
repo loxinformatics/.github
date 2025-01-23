@@ -4,6 +4,7 @@ import { forwardRef } from "react";
 import { useBase } from "../../context/base";
 import baseStyles from "../../styles/base.module.css";
 import type { SectionProps, SectionTitleProps } from "../../types/base";
+import Container from "./Container";
 
 const Section = forwardRef<HTMLDivElement, SectionProps>(function Section(
   {
@@ -11,7 +12,6 @@ const Section = forwardRef<HTMLDivElement, SectionProps>(function Section(
     className,
     style,
     container = true,
-    center = true,
     padding = true,
     fullscreen = false,
     children,
@@ -30,7 +30,7 @@ const Section = forwardRef<HTMLDivElement, SectionProps>(function Section(
       ref={ref}
       id={id}
       className={`
-          relative overflow-hidden  
+          relative overflow-hidden 
           bg-body dark:bg-body-reverse
           text-color dark:text-color-reverse
           tracking-wide
@@ -39,11 +39,25 @@ const Section = forwardRef<HTMLDivElement, SectionProps>(function Section(
         `}
       style={style}
     >
-      {hasTitle && (
+      {hasTitle && container && (
+        <Container
+          className={`
+                 ${padding ? "py-10" : "pb-10"}
+                 ${fullscreen && "flex-initial"}
+                `}
+        >
+          <Title
+            titleVersion={title_version}
+            titleH2={title_h2}
+            titleH3={title_h3}
+            titleP={title_p}
+          />
+        </Container>
+      )}
+
+      {hasTitle && !container && (
         <div
           className={`
-                 ${container && "container"}
-                 ${center && `mx-auto`}
                  ${padding ? "py-10" : "pb-10"}
                  ${fullscreen && "flex-initial"}
                 `}
@@ -57,17 +71,25 @@ const Section = forwardRef<HTMLDivElement, SectionProps>(function Section(
         </div>
       )}
 
-      <div
-        className={`
-            ${container && `container`}
-            ${center && `mx-auto`}
+      {container ? (
+        <Container
+          className={`
             ${padding && (!hasTitle ? "py-10" : "pb-10")}
             ${fullscreen && "flex-1 flex"} 
           `}
-        // TODO: For fullscreen add the option of making it 'flex flex-row', 'flex flex-col' 'or 'grid and the number of grid rows.'
-      >
-        {children}
-      </div>
+        >
+          {children}
+        </Container>
+      ) : (
+        <div
+          className={`
+            ${padding && (!hasTitle ? "py-10" : "pb-10")}
+            ${fullscreen && "flex-1 flex"} 
+          `}
+        >
+          {children}
+        </div>
+      )}
     </section>
   );
 });
@@ -88,8 +110,9 @@ function Title({ titleH2, titleH3, titleP, titleVersion }: SectionTitleProps) {
             className={`font-bold ${baseStyles[`${version}_h3`]} 
             ${
               version === "V1" &&
-              "text-color-secondary dark:text-color-secondary-reverse"
+              "text-sm text-color-secondary dark:text-color-secondary-reverse"
             }
+            ${version === "V2" && "relative text-4xl"}
             ${
               version === "V3" &&
               `${textPrimary} bg-body-secondary dark:bg-body-secondary-reverse`
@@ -107,11 +130,21 @@ function Title({ titleH2, titleH3, titleP, titleVersion }: SectionTitleProps) {
         )}
 
         {titleP && (
-          <p className={`font-bold ${baseStyles[`${version}_p`]}`}>{titleP}</p>
+          <p
+            className={`
+              font-bold
+
+              ${baseStyles[`${version}_p`]}
+              ${version === "V1" && "text-4xl m-0"}
+            `}
+          >
+            {titleP}
+          </p>
         )}
       </div>
     </div>
   );
 }
+
 
 export default Section;

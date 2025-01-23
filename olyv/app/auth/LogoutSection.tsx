@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import { logout } from "../../api/auth";
 import { useAuth } from "../../context/auth";
-import Preloader from "../../widgets/core/Preloader";
+import Preloader from "../../widgets/base/Preloader";
 
 export default function LogoutSection() {
   const { loginURL, logoutRedirectURL, setUser, setIsAuthorized } = useAuth();

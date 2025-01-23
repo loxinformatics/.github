@@ -153,3 +153,10 @@ export interface PreloaderProps {
   version?: "V1" | "V2" | "V3";
   indefinite?: boolean;
 }
+
+export interface SocialMediaLinkProps {
+  href: string;
+  version: string | undefined;
+  className: string;
+  iconClass: string;
+}

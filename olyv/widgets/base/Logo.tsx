@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useBase } from "../../context/base";
 import type { LogoProps } from "../../types/base";
 import { homeURL } from "../../utils/core";
-import { Anchor } from "../base";
+import Anchor from "./Anchor";
 
 export default function Logo({ logoVersion, textColor }: LogoProps) {
   const { coloredLogoFullImage, fullName, shortName, textPrimary } = useBase();

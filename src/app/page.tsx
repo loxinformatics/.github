@@ -12,7 +12,7 @@ import {
   FooterBottombarSection,
   HeaderHeroSection,
   ListSection,
-} from "@/olyv/app/core";
+} from "@/olyv/app/base";
 import type {
   AboutResponse,
   CallToActionResponse,
@@ -20,7 +20,7 @@ import type {
   HeaderHeroResponse,
   ListResponse,
 } from "@/olyv/types/core";
-import Preloader from "@/olyv/widgets/core/Preloader";
+import Preloader from "@/olyv/widgets/base/Preloader";
 
 export default async function Page() {
   const headerHero: HeaderHeroResponse = await fetchHeaderHero("page_1");

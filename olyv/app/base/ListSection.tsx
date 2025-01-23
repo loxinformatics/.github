@@ -4,7 +4,9 @@ import Image from "next/image";
 import { useBase } from "../../context/base";
 import coreStyles from "../../styles/core.module.css";
 import type { ListDescriptionsProps } from "../../types/core";
-import { Anchor, Heading, Section } from "../../widgets/base";
+import Anchor from "../../widgets/base/Anchor";
+import Heading from "../../widgets/base/Heading";
+import Section from "../../widgets/base/Section";
 
 export default function ListSection({
   section_instance,

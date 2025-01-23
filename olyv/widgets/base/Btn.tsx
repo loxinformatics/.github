@@ -1,8 +1,8 @@
 "use client";
 
-import { Anchor } from ".";
 import { useBase } from "../../context/base";
 import type { ButtonProps } from "../../types/base";
+import Anchor from "./Anchor";
 
 export default function Btn({
   id,

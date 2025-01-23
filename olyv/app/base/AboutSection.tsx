@@ -3,7 +3,7 @@
 import Image from "next/image";
 import coreStyles from "../../styles/core.module.css";
 import type { AboutProps } from "../../types/core";
-import { Section } from "../../widgets/base";
+import Section from "../../widgets/base/Section";
 
 export default function AboutSection({
   section_instance,

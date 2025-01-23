@@ -3,7 +3,8 @@
 import { useAuth } from "../../context/auth";
 import { useBase } from "../../context/base";
 import coreStyles from "../../styles/core.module.css";
-import { Anchor } from "../../widgets/base";
+import Anchor from "./Anchor";
+import Heading from "./Heading";
 
 export function DropdownNavLink({
   link,
@@ -59,7 +60,7 @@ export function DropdownNavLink({
                 child.href === pathname && textPrimary
               } nested`} //* the nested class is needed for proper toggling open or close the aside component
             >
-              <i className={`bi bi-circle ${textColorGroupHover}`}></i>
+              <i className={`bi bi-dash ${textColorGroupHover}`}></i>
               {child.text && <span>{child.text}</span>}
             </Anchor>
           </li>
@@ -71,11 +72,10 @@ export function DropdownNavLink({
 
 export function HeadingNavLink({ link, index }: any) {
   return (
-    <li
-      key={`heading-${index}`}
-      className={`${coreStyles.nav_heading} text-color-secondary dark:text-color-secondary-reverse`}
-    >
-      {link.text}
+    <li key={`heading-${index}`}>
+      <Heading variant="h6" className={`uppercase ${coreStyles.nav_heading}`}>
+        {link.text}
+      </Heading>
     </li>
   );
 }

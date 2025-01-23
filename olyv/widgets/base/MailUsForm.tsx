@@ -4,7 +4,8 @@ import { useRef, useState } from "react";
 import { mail } from "../../api/base";
 import baseStyles from "../../styles/base.module.css";
 import { baseApiURL } from "../../utils/base";
-import { Btn, FormStatus } from "../base";
+import Btn from "./Btn";
+import FormStatus from "./Form";
 
 export default function MailUsForm() {
   const [name, setName] = useState<string>("");

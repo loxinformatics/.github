@@ -1,8 +1,8 @@
 "use client";
 
 import { useBase } from "../../context/base";
-import type { SocialMediaLinkProps } from "../../types/base";
-import baseStyles from "../../styles/base.module.css";
+import coreStyles from "../../styles/core.module.css";
+import type { SocialMediaLinkProps } from "../../types/core";
 
 export default function SocialMediaLinks() {
   const {
@@ -57,18 +57,17 @@ export default function SocialMediaLinks() {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`${baseStyles[`${version}_socialMediaLink`]} ${className}
-
-        ${version === "V1" && bgBodyHover}
-        
-        ${
-          version === "V2" &&
-          `border border-color/50 dark:border-color-reverse/50 ${borderColorHover}
-          text-color/50 dark:text-color-reverse/50 ${textColorHover}`
-        }
-
-        ${version === "V3" && `text-white ${bgPrimary} ${bgPrimaryHover}`}
-      `}
+        className={`
+          ${coreStyles[`${version}_socialMediaLink`]}
+          ${version === "V1" && `text-xl ${bgBodyHover}`}
+          ${
+            version === "V2" &&
+            `border border-color/50 dark:border-color-reverse/50 ${borderColorHover}
+            text-color/50 dark:text-color-reverse/50 ${textColorHover}`
+          }
+          ${version === "V3" && `text-white ${bgPrimary} ${bgPrimaryHover}`}
+          ${className}
+        `}
       >
         <i className={`bi ${iconClass}`}></i>
       </a>

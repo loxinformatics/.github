@@ -2,7 +2,7 @@
 
 import { useCore } from "@/olyv/context/core";
 import { useEffect, useState } from "react";
-import { Btn } from "../base";
+import Btn from "./Btn";
 
 export default function ScrollTop() {
   const [isVisible, setIsVisible] = useState(false);

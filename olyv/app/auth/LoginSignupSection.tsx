@@ -13,8 +13,8 @@ import Anchor from "../../widgets/base/Anchor";
 import Btn from "../../widgets/base/Btn";
 import FormStatus from "../../widgets/base/Form";
 import Heading from "../../widgets/base/Heading";
+import Preloader from "../../widgets/base/Preloader";
 import Section from "../../widgets/base/Section";
-import Preloader from "../../widgets/core/Preloader";
 
 export default function LoginSignupSection({ component }: LoginSignupProps) {
   switch (component) {
@@ -29,7 +29,7 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
 
 function Login() {
   return (
-    <Section container center id="login" fullscreen>
+    <Section container id="login" fullscreen>
       <div className="flex-1 flex items-center justify-center px-4 sm:px-6 md:px-8">
         <div className="basis-full sm:basis-1/2 md:basis-1/2 lg:basis-1/3 max-w-sm">
           <Suspense fallback={<Preloader />}>

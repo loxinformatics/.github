@@ -1,7 +1,9 @@
 "use client";
 
-import { Alert, Btn, Spinner } from ".";
 import type { FormProps, FormStatusProps } from "../../types/base";
+import Alert from "./Alert";
+import Btn from "./Btn";
+import Spinner from "./Spinner";
 
 export function FormStatus({ success, error, loading }: FormStatusProps) {
   return (

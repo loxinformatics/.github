@@ -153,7 +153,6 @@ export interface SectionTitleProps {
 
 export interface SectionProps extends SectionResponse {
   container?: boolean;
-  center?: boolean;
   padding?: boolean;
   fullscreen?: boolean;
   children?: React.ReactNode;
@@ -232,9 +231,3 @@ export interface LogoProps {
   textColor?: string;
 }
 
-export interface SocialMediaLinkProps {
-  href: string;
-  version: string | undefined;
-  className: string;
-  iconClass: string;
-}

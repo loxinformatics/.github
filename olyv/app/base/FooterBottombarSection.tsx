@@ -10,10 +10,11 @@ import type {
   NavLink,
 } from "../../types/core";
 import Anchor from "../../widgets/base/Anchor";
+import Container from "../../widgets/base/Container";
 import Heading from "../../widgets/base/Heading";
 import Section from "../../widgets/base/Section";
-import SocialMediaLinks from "../../widgets/core/SocialMediaLinks";
-import ThemeToggler from "../../widgets/core/ThemeToggler";
+import SocialMediaLinks from "../../widgets/base/SocialMediaLinks";
+import ThemeToggler from "../../widgets/base/ThemeToggler";
 
 export default function FooterBottombarSection({
   themeToggler,
@@ -49,35 +50,36 @@ function Footer() {
       id="footer"
       className={`
         ${coreStyles.footer} relative
-          pt-16 py-10 
-          tracking-wide
+          
           bg-body-secondary dark:bg-body-secondary-reverse
           border-t border-t-color-tertiary dark:border-t-color-tertiary-reverse
         `}
     >
-      <div id="footer-links">
-        <div className="container mx-auto">
-          <div className="flex flex-col lg:flex-row gap-y-10 lg:gap-y-0 lg:gap-x-10">
-            {/* Footer Main */}
-            <div className="lg:basis-1/3 flex flex-col items-center lg:items-start">
-              <Heading variant="h3">
-                {fullName}
-                <span className={textPrimary}>.</span>
-              </Heading>
-              <SocialMediaLinks />
-            </div>
+      <Container className="pt-16 py-10 tracking-wide">
+        <div id="footer-links">
+          <div className="container mx-auto">
+            <div className="flex flex-col lg:flex-row gap-y-10 lg:gap-y-0 lg:gap-x-10">
+              {/* Footer Main */}
+              <div className="lg:basis-1/3 flex flex-col items-center lg:items-start">
+                <Heading variant="h3">
+                  {fullName}
+                  <span className={textPrimary}>.</span>
+                </Heading>
+                <SocialMediaLinks />
+              </div>
 
-            {/* Links */}
-            <div className="lg:basis-2/3 flex flex-col sm:flex-row gap-y-10 lg:gap-y-0 lg:gap-x-10">
-              {/* Useful Links */}
-              <FooterNav links={navLinks_1} />
+              {/* Links */}
+              <div className="lg:basis-2/3 flex flex-col sm:flex-row gap-y-10 lg:gap-y-0 lg:gap-x-10">
+                {/* Useful Links */}
+                <FooterNav links={navLinks_1} />
 
-              {/* Products / Services Links */}
-              <FooterNav links={navLinks_2} />
+                {/* Products / Services Links */}
+                <FooterNav links={navLinks_2} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

@@ -1,50 +1,8 @@
 /* ============================
-SocialMediaLinks
-=============================== */
-.V1_socialMediaLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  @apply text-xl;
-  margin-right: 4px;
-  transition: 0.3s;
-}
-
-.V2_socialMediaLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 16px;
-  margin-right: 10px;
-  transition: 0.3s;
-}
-
-.V3_socialMediaLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  font-size: 18px;
-  margin-right: 4px;
-  transition: 0.3s;
-}
-
-/* ============================
 Section & Title
 =============================== */
 /* Version 1 */
 .title .V1_h3 {
-  @apply text-sm;
   padding: 0;
   line-height: 1px;
   margin: 0 0 5px 0;
@@ -60,18 +18,7 @@ Section & Title
   margin: 4px 10px;
 }
 
-.title .V1_p {
-  margin: 0;
-  @apply text-4xl;
-  font-family: var(--font-primary);
-}
-
 /* Version 2 */
-.title .V2_h3 {
- @apply text-4xl;
-  position: relative;
-}
-
 .title .V2_h3:before,
 .title .V2_h3:after {
   content: "";
