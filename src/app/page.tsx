@@ -4,7 +4,7 @@ import {
   fetchContact,
   fetchHeaderHero,
   fetchList,
-} from "@/olyv/api/core";
+} from "@/olyv/api/base";
 import {
   AboutSection,
   CallToActionSection,
@@ -12,15 +12,15 @@ import {
   FooterBottombarSection,
   HeaderHeroSection,
   ListSection,
-} from "@/olyv/app/base";
+} from "@/olyv/app/base/layout";
+import { Preloader } from "@/olyv/app/base/widgets";
 import type {
   AboutResponse,
   CallToActionResponse,
   ContactResponse,
   HeaderHeroResponse,
   ListResponse,
-} from "@/olyv/types/core";
-import Preloader from "@/olyv/widgets/base/Preloader";
+} from "@/olyv/types/base";
 
 export default async function Page() {
   const headerHero: HeaderHeroResponse = await fetchHeaderHero("page_1");

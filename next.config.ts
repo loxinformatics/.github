@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 import {
   imagesRemotePatterns,
   serverActionsAllowedOrigins,
-} from "./olyv/utils/base";
+} from "./olyv/utils/config";
 
 const nextConfig: NextConfig = {
   images: {

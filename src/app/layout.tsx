@@ -1,8 +1,7 @@
 import { fetchAuth } from "@/olyv/api/auth";
 import { fetchBase } from "@/olyv/api/base";
-import { AuthProvider } from "@/olyv/context/auth";
-import { BaseProvider } from "@/olyv/context/base";
-import { CoreProvider } from "@/olyv/context/core";
+import { AuthProvider } from "@/olyv/app/auth/context";
+import { BaseProvider } from "@/olyv/app/base/context";
 import type { AuthReponse } from "@/olyv/types/auth";
 import type { BaseResponse, MetadataResponse } from "@/olyv/types/base";
 import type { Metadata } from "next";
@@ -60,9 +59,7 @@ export default async function RootLayout({
 
   return (
     <BaseProvider {...baseData}>
-      <AuthProvider {...authData}>
-        <CoreProvider>{children}</CoreProvider>
-      </AuthProvider>
+      <AuthProvider {...authData}>{children}</AuthProvider>
     </BaseProvider>
   );
 }

@@ -1,5 +1,13 @@
 from django import forms
 
+from .models import (
+    AboutSection,
+    CallToActionSection,
+    ContactSection,
+    HeaderHeroSection,
+    ListSection,
+)
+
 
 class TitleFormMixin:
     def __init__(self, *args, **kwargs):
@@ -100,3 +108,53 @@ class MailForm(forms.Form):
         widget=forms.Textarea(),
         error_messages={"required": "Please enter your message."},
     )
+
+
+class HeaderHeroAddForm(BaseAddForm):
+    class Meta(BaseAddForm.Meta):
+        model = HeaderHeroSection
+
+
+class HeaderHeroChangeForm(BaseChangeForm):
+    class Meta(BaseChangeForm.Meta):
+        model = HeaderHeroSection
+
+
+class AboutAddForm(BaseAddForm):
+    class Meta(BaseAddForm.Meta):
+        model = AboutSection
+
+
+class AboutChangeForm(BaseChangeForm):
+    class Meta(BaseChangeForm.Meta):
+        model = AboutSection
+
+
+class CTAAddForm(BaseAddForm):
+    class Meta(BaseAddForm.Meta):
+        model = CallToActionSection
+
+
+class CTAChangeForm(BaseChangeForm):
+    class Meta(BaseChangeForm.Meta):
+        model = CallToActionSection
+
+
+class ContactAddForm(BaseAddForm):
+    class Meta(BaseAddForm.Meta):
+        model = ContactSection
+
+
+class ContactChangeForm(BaseChangeForm):
+    class Meta(BaseChangeForm.Meta):
+        model = ContactSection
+
+
+class ListDescriptionsAddForm(BaseAddForm):
+    class Meta(BaseAddForm.Meta):
+        model = ListSection
+
+
+class ListDescriptionsChangeForm(BaseChangeForm):
+    class Meta(BaseChangeForm.Meta):
+        model = ListSection

@@ -9,12 +9,8 @@ from olyv.api.base.admin import admin_site_url
 
 urlpatterns = [
     path(f"{settings.API_BASEPATH}/admin/", admin.site.urls),
-    # BaseApiURL
     path(f"{settings.API_BASEPATH}/base/", include("olyv.api.base.urls")),
-    # AuthApiURL
     path(f"{settings.API_BASEPATH}/auth/", include("olyv.api.auth.urls")),
-    # CoreApiURL
-    path(f"{settings.API_BASEPATH}/core/", include("olyv.api.core.urls")),
 ]
 
 

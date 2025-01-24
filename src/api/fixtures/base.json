@@ -20,5 +20,125 @@
       "open_days": "Monday to Friday",
       "open_hours": "8:00am - 5:00pm"
     }
+  },
+  {
+    "model": "base.HeaderHeroSection",
+    "fields": {
+      "section_instance": "page_1",
+      "section_version": "V1",
+      "header_background": "body",
+      "logo_version": "logo_image",
+      "header_nav": true,
+      "theme_toggler": true,
+      "hero_heading": "Transforming Retail & E-Commerce Landscapes",
+      "hero_sub_heading": "Innovative Solutions and Insights for Success",
+      "hero_paragraph": "We are a team of talented software developers and analysts dedicated to revolutionizing the way retail and e-commerce businesses thrive.",
+      "hero_button_text": "Learn More",
+      "hero_button_href": "/#about_page_1"
+    }
+  },
+  {
+    "model": "base.AboutSection",
+    "fields": {
+      "section_instance": "page_1",
+      "section_version": "V1",
+      "title_h2": "About",
+      "title_h3": "About Us",
+      "title_p": "Learn More",
+      "about_content": "<h5 class='fw-bold'>Why you should choose to work with us</h5><p class='fst-italic'>At Lox Informatics, our mission is to empower retail and e-commerce businesses to harness the full potential of their online presence through comprehensive data analysis and tailored Web solutions.</p><p class='fst-italic'>Our Company bridges the gap between data and impact. Helping businesses connect with their audience on a deeper level and guiding them in transforming their data into tangible value through:</p><ul><li>personalized content</li><li>informed design and optimized websites</li><li>Actionable insights and measurable results.</li></ul><p class='fst-italic'>Our company brings together a unique blend of skills and experience to provide cutting edge solutions in the digital realm and offer a comprehensive suite of services that focus on delivering results.</p>"
+    }
+  },
+  {
+    "model": "base.CallToActionSection",
+    "fields": {
+      "section_instance": "page_1",
+      "section_version": "V1",
+      "cta_heading": "<em>Chat with Us</em>",
+      "cta_paragraph": "Reach out to us directly on WhatsApp for quick assistance.",
+      "cta_button_text": "WhatsApp",
+      "cta_button_href": "#",
+      "cta_button_icon": "bi bi-whatsapp"
+    }
+  },
+  {
+    "model": "base.ContactSection",
+    "fields": {
+      "section_instance": "page_1",
+      "section_version": "V1",
+      "title_h2": "Contact",
+      "title_h3": "Contact Us",
+      "title_p": "Get In Touch",
+      "map": true
+    }
+  },
+  {
+    "model": "base.ListSection",
+    "fields": {
+      "section_instance": "page_1",
+      "section_version": "V1",
+      "title_h2": "Services",
+      "title_h3": "Our Services",
+      "title_p": "Check our Services"
+    }
+  },
+  {
+    "model": "base.ItemDescription",
+    "pk": 1,
+    "fields": {
+      "list_description_id": "page_1",
+      "icon": "bi bi-laptop",
+      "title": "Custom Software Solutions",
+      "description": "We tailor our services to meet the specific needs and goals of each client."
+    }
+  },
+  {
+    "model": "base.ItemDescription",
+    "pk": 2,
+    "fields": {
+      "list_description_id": "page_1",
+      "icon": "bi bi-code-slash",
+      "title": "Web design and development",
+      "description": "We use data insights to optimize user experiences and website functionality."
+    }
+  },
+  {
+    "model": "base.ItemDescription",
+    "pk": 3,
+    "fields": {
+      "list_description_id": "page_1",
+      "icon": "bi bi-bar-chart",
+      "title": "Website analytics & user behaviour analysis",
+      "description": "We focus on understanding user behaviour and website performance through data analytics."
+    }
+  },
+  {
+    "model": "base.ItemDescription",
+    "pk": 4,
+    "fields": {
+      "list_description_id": "page_1",
+      "icon": "bi bi-graph-up",
+      "title": "Dashboard development and reporting",
+      "description": "We offer custom dashboard development for live reporting to suit any business needs together with data visualization services."
+    }
+  },
+  {
+    "model": "base.ItemDescription",
+    "pk": 5,
+    "fields": {
+      "list_description_id": "page_1",
+      "icon": "bi bi-database",
+      "title": "Data analytics and statistical modelling",
+      "description": "Our team leverages advanced analytics tools and methodologies to dissect website data, uncover trends, and extract valuable insights."
+    }
+  },
+  {
+    "model": "base.ItemDescription",
+    "pk": 6,
+    "fields": {
+      "list_description_id": "page_1",
+      "icon": "bi bi-headset",
+      "title": "Support and maintenance",
+      "description": "We will also offer post-project support, updates and maintenance services for software created and other data solutions."
+    }
   }
 ]

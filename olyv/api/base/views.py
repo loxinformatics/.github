@@ -6,8 +6,23 @@ from django.template.loader import render_to_string
 from rest_framework import response, status, viewsets
 from rest_framework.decorators import action
 
-from .models import ContactInfo, Metadata
-from .serializers import MailSerializer
+from .models import (
+    AboutSection,
+    CallToActionSection,
+    ContactInfo,
+    ContactSection,
+    HeaderHeroSection,
+    ListSection,
+    Metadata,
+)
+from .serializers import (
+    AboutSerializer,
+    ContactSerializer,
+    CTASerializer,
+    HeaderHeroSerializer,
+    ListDescriptionsSerializer,
+    MailSerializer,
+)
 
 
 class BaseViewSet(viewsets.ViewSet):
@@ -250,3 +265,28 @@ class MailViewSet(viewsets.ViewSet):
             return response.Response(
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST
             )
+
+
+class HeaderHeroViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = HeaderHeroSection.objects.all()
+    serializer_class = HeaderHeroSerializer
+
+
+class AboutViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = AboutSection.objects.all()
+    serializer_class = AboutSerializer
+
+
+class CTAViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = CallToActionSection.objects.all()
+    serializer_class = CTASerializer
+
+
+class ContactViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = ContactSection.objects.all()
+    serializer_class = ContactSerializer
+
+
+class ListDescriptionsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = ListSection.objects.all()
+    serializer_class = ListDescriptionsSerializer

@@ -12,7 +12,7 @@ import {
   privateRoutes,
   publicRoutes,
 } from "../utils/auth";
-import { homeURL } from "../utils/core";
+import { homeURL } from "../utils/base";
 
 export async function AuthMiddleware(
   request: NextRequest

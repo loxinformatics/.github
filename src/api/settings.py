@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "src.api",
     "olyv.api.base",
-    "olyv.api.core",
 ]
 
 MIDDLEWARE = [

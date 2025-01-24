@@ -1,7 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import type { DecodedToken } from "../types/auth";
-import { apiURL } from "./base";
-import { homeURL } from "./core";
+import { apiURL, homeURL } from "./base";
 
 export const authApiURL = `${apiURL}/auth`;
 export const loginURL = process.env.NEXT_PUBLIC_LOGIN_URL || "/auth/login";
