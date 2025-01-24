@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef } from "react";
-import { useBase } from "../context";
+import { useBase } from "../../../../context/base";
 import styles from "./styles.module.css";
 
 export default function SidebarToggler() {
@@ -36,7 +36,6 @@ export default function SidebarToggler() {
         toggleSidebarClass(false, isMobile);
       }
     };
-
 
     window.addEventListener("resize", toggleSidebar);
     toggleSidebar();

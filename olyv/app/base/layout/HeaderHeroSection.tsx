@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useBase } from "../../../context/base";
 import type {
   HeaderHeroProps,
   HeaderNavProps,
@@ -12,16 +13,15 @@ import type {
   NavLink,
 } from "../../../types/base";
 import { createNavLinks } from "../../../utils/base";
-import { useBase } from "../context";
-import Anchor from "../widgets/Anchor";
-import Btn from "../widgets/Btn";
-import Heading from "../widgets/Heading";
-import Logo from "../widgets/Logo";
-import Modal from "../widgets/Modal";
-import Nav from "../widgets/Nav";
-import Section from "../widgets/Section";
-import SidebarToggler from "../widgets/SidebarToggler";
-import ThemeToggler from "../widgets/ThemeToggler";
+import Btn from "../widgets/buttons/Btn";
+import SidebarToggler from "../widgets/buttons/SidebarToggler";
+import ThemeToggler from "../widgets/buttons/ThemeToggler";
+import Anchor from "../widgets/links/Anchor";
+import Logo from "../widgets/links/Logo";
+import Nav from "../widgets/links/Nav";
+import Modal from "../widgets/modals/Modal";
+import Section from "../widgets/sections/Section";
+import Heading from "../widgets/text/Heading";
 import baseStyles from "./styles.module.css";
 
 export default function HeaderHeroSection({

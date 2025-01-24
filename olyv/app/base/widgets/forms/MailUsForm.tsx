@@ -1,10 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { mail } from "../../../api/base";
-import { baseApiURL } from "../../../utils/base";
-import Btn from "./Btn";
-import FormStatus from "./Form";
+import { mail } from "../../../../api/base";
+import { baseApiURL } from "../../../../utils/base";
+import Btn from "../buttons/Btn";
+import { Control, Feedback, Form } from "./Form";
 import styles from "./styles.module.css";
 
 export default function MailUsForm() {
@@ -13,8 +13,8 @@ export default function MailUsForm() {
   const [subject, setSubject] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
 
   const endpoint = `${baseApiURL}/mail/us/`;
 
@@ -28,18 +28,26 @@ export default function MailUsForm() {
     e.preventDefault();
     const form = e.currentTarget;
 
+    // Refs and their associated error keys
+    const fieldRefs = [
+      { ref: nameRef, key: "name" },
+      { ref: emailRef, key: "email" },
+      { ref: subjectRef, key: "subject" },
+      { ref: messageRef, key: "message" },
+    ];
+
     // Remove is-invalid class from all fields initially
-    [nameRef, emailRef, subjectRef, messageRef].forEach((ref) => {
-      ref.current?.classList.remove("is-invalid");
+    fieldRefs.forEach(({ ref }) => {
+      ref.current?.classList.remove(styles["is-invalid"]);
     });
 
     // Clear previous form states
-    setError(null);
-    setSuccess(null);
+    setError("");
+    setSuccess("");
 
     if (!form.checkValidity()) {
       e.stopPropagation();
-      form.classList.add("was-validated");
+      form.classList.add(styles["was-validated"]);
     } else {
       setLoading(true);
 
@@ -59,93 +67,100 @@ export default function MailUsForm() {
           setMessage("");
           setSuccess(result.message);
         } else {
-          result.error.includes("name") &&
-            nameRef.current?.classList.add("is-invalid");
-          result.error.includes("email") &&
-            emailRef.current?.classList.add("is-invalid");
-          result.error.includes("subject") &&
-            subjectRef.current?.classList.add("is-invalid");
-          result.error.includes("message") &&
-            messageRef.current?.classList.add("is-invalid");
+          // Add is-invalid class to fields with errors
+          fieldRefs.forEach(({ ref, key }) => {
+            if (result.error.includes(key)) {
+              ref.current?.classList.add(styles["is-invalid"]);
+            }
+          });
           setError(result.message);
           throw new Error(result.error);
         }
       } catch (error) {
         console.error("Error sending email:", error);
       } finally {
-        form.classList.remove("was-validated");
+        form.classList.remove(styles["was-validated"]);
         setLoading(false);
       }
     }
   };
 
   return (
-    <form
-      noValidate
+    <Form
       onSubmit={handleSubmit}
       method="post"
       id="mailusform"
       className={styles.mailusform}
+      success={success}
+      error={error}
+      loading={loading}
     >
       <div className="flex flex-col gap-y-6">
-        <FormStatus success={success} error={error} loading={loading} />
-
         <div className="flex gap-x-3">
           <div className="basis-1/2">
-            <input
+            <Control
               type="text"
               className={`form-control ${styles.input}`}
               id="mail-us-name"
               ref={nameRef}
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setName(e.target.value)
+              }
               placeholder="Your Name"
               required
             />
-            <div className="invalid-feedback">Enter your name.</div>
+            <Feedback type="invalid">Enter your name.</Feedback>
           </div>
 
           <div className="basis-1/2">
-            <input
+            <Control
               type="email"
               className={`form-control ${styles.input}`}
               id="mail-us-email"
               ref={emailRef}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
               placeholder="Your Email"
               required
             />
-            <div className="invalid-feedback">Enter a valid email.</div>
+            <Feedback type="invalid">Enter a valid email.</Feedback>
           </div>
         </div>
 
         <div>
-          <input
+          <Control
             type="text"
             className={`form-control ${styles.input}`}
             id="mail-us-subject"
             ref={subjectRef}
             value={subject}
-            onChange={(e) => setSubject(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setSubject(e.target.value)
+            }
             placeholder="Subject"
             required
           />
-          <div className="invalid-feedback">Enter a subject.</div>
+          <Feedback type="invalid">Enter a subject.</Feedback>
         </div>
 
         <div className="mb-4">
-          <textarea
+          <Control
+            variant="textarea"
             className={`form-control ${styles.textarea}`}
             id="mail-us-message"
             ref={messageRef}
             rows={6}
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              setMessage(e.target.value)
+            }
             placeholder="Message"
             required
-          ></textarea>
-          <div className="invalid-feedback">Enter a message.</div>
+          />
+          <Feedback type="invalid">Enter a message.</Feedback>
         </div>
 
         <div className="flex justify-center">
@@ -154,6 +169,6 @@ export default function MailUsForm() {
           </Btn>
         </div>
       </div>
-    </form>
+    </Form>
   );
 }

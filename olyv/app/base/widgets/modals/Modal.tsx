@@ -1,6 +1,6 @@
 "use client";
 
-import type { ModalProps } from "../../../types/base";
+import type { ModalProps } from "./types";
 
 export default function Modal({
   id,

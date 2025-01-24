@@ -2,8 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import type { NavLink, NavLinksProps } from "../../../types/base";
-import { useAuth } from "../../auth/context";
+import { useAuth } from "../../../../context/auth";
+import type { NavLink } from "../../../../types/base";
+import type { NavLinksProps } from "./types";
 
 export default function Nav({
   links,

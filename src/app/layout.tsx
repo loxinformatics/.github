@@ -1,11 +1,12 @@
 import { fetchAuth } from "@/olyv/api/auth";
 import { fetchBase } from "@/olyv/api/base";
-import { AuthProvider } from "@/olyv/app/auth/context";
-import { BaseProvider } from "@/olyv/app/base/context";
+import ScrollTop from "@/olyv/app/base/widgets/buttons/ScrollTop";
+import { AuthProvider } from "@/olyv/context/auth";
+import { BaseProvider } from "@/olyv/context/base";
 import type { AuthReponse } from "@/olyv/types/auth";
 import type { BaseResponse, MetadataResponse } from "@/olyv/types/base";
 import type { Metadata } from "next";
-import "./glob.css";
+import "./global.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta: MetadataResponse = await fetchBase("metadata");
@@ -60,6 +61,7 @@ export default async function RootLayout({
   return (
     <BaseProvider {...baseData}>
       <AuthProvider {...authData}>{children}</AuthProvider>
+      <ScrollTop />
     </BaseProvider>
   );
 }

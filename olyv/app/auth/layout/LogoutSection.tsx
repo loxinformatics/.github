@@ -3,8 +3,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import { logout } from "../../../api/auth";
-import Preloader from "../../base/widgets/Preloader";
-import { useAuth } from "../context";
+import { useAuth } from "../../../context/auth";
+import Preloader from "../../base/widgets/loaders/Preloader";
 
 export default function LogoutSection() {
   const SignoutInner = () => {

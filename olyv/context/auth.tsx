@@ -1,20 +1,20 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { login } from "../../api/auth";
+import { login } from "../api/auth";
 import type {
   AuthContext,
   AuthProps,
   IsAuthorizedProps,
   User,
-} from "../../types/auth";
+} from "../types/auth";
 import {
   loginRedirectURL,
   loginURL,
   logoutRedirectURL,
   logoutURL,
   privateRoutes,
-} from "../../utils/auth";
+} from "../utils/auth";
 
 const Auth = createContext<AuthContext | undefined>(undefined);
 

@@ -2,9 +2,9 @@
 
 import { Suspense } from "react";
 import type { LoginSignupProps } from "../../../types/auth";
-import Preloader from "../../base/widgets/Preloader";
-import Section from "../../base/widgets/Section";
-import { LoginForm, SignupForm } from "../widgets/LoginSignupForm";
+import Preloader from "../../base/widgets/loaders/Preloader";
+import Section from "../../base/widgets/sections/Section";
+import { LoginForm, SignupForm } from "../widgets/forms/LoginSignupForm";
 
 export default function LoginSignupSection({ component }: LoginSignupProps) {
   switch (component) {

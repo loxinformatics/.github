@@ -1,9 +1,9 @@
 "use client";
 
-import { useAuth } from "../../auth/context";
-import { useBase } from "../context";
+import { useAuth } from "../../../../context/auth";
+import { useBase } from "../../../../context/base";
+import Heading from "../text/Heading";
 import Anchor from "./Anchor";
-import Heading from "./Heading";
 import styles from "./styles.module.css";
 
 export function DropdownNavLink({

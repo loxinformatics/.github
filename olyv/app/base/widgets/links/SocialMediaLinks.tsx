@@ -1,8 +1,8 @@
 "use client";
 
-import type { SocialMediaLinkProps } from "../../../types/base";
-import { useBase } from "../context";
+import { useBase } from "../../../../context/base";
 import styles from "./styles.module.css";
+import type { SocialMediaLinkProps } from "./types";
 
 export default function SocialMediaLinks() {
   const {

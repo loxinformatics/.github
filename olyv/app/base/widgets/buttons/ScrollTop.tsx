@@ -1,6 +1,6 @@
 "use client";
 
-import { useBase } from "@/olyv/app/base/context";
+import { useBase } from "@/olyv/context/base";
 import { useEffect, useState } from "react";
 import Btn from "./Btn";
 

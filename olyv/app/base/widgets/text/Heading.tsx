@@ -1,7 +1,7 @@
 "use client";
 
 import { createElement } from "react";
-import type { HeadingProps } from "../../../types/base";
+import type { HeadingProps } from "./types";
 
 export default function Heading({
   variant = "h1",

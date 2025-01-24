@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import type { LogoProps } from "../../../types/base";
-import { homeURL } from "../../../utils/base";
-import { useBase } from "../context";
+import { useBase } from "../../../../context/base";
+import { homeURL } from "../../../../utils/base";
 import Anchor from "./Anchor";
+import type { LogoProps } from "./types";
 
 export default function Logo({ logoVersion, textColor }: LogoProps) {
   const { coloredLogoFullImage, fullName, shortName, textPrimary } = useBase();

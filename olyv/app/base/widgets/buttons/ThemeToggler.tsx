@@ -2,8 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import type { ThemeTogglerProps } from "../../../types/base";
-import { useBase } from "../context";
+import { useBase } from "../../../../context/base";
+import type { ThemeTogglerProps } from "./types";
 
 export default function ThemeToggler({ toggleColor }: ThemeTogglerProps) {
   const [icon, setIcon] = useState<"moon" | "sun">("moon");

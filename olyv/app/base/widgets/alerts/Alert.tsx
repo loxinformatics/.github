@@ -1,6 +1,6 @@
 "use client";
 
-import type { AlertProps } from "../../../types/base";
+import type { AlertProps } from "./types";
 
 export default function Alert({ children, status }: AlertProps) {
   let border;

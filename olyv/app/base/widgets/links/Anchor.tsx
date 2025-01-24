@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import type { AnchorProps } from "../../../types/base";
-import { useAuth } from "../../auth/context";
-import { useBase } from "../context";
+import { useAuth } from "../../../../context/auth";
+import { useBase } from "../../../../context/base";
+import type { AnchorProps } from "./types";
 
 export default function Anchor({ href, id, className, children }: AnchorProps) {
   const pathname = usePathname();

@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useBase } from "../../../context/base";
 import type { CallToActionProps } from "../../../types/base";
-import { useBase } from "../context";
-import Btn from "../widgets/Btn";
-import Heading from "../widgets/Heading";
-import Section from "../widgets/Section";
+import Btn from "../widgets/buttons/Btn";
+import Section from "../widgets/sections/Section";
+import Heading from "../widgets/text/Heading";
 import baseStyles from "./styles.module.css";
 
 export default function CallToActionSection({

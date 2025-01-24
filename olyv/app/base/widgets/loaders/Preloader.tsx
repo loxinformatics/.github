@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { PreloaderProps } from "../../../types/base";
-import { useBase } from "../context";
+import { useBase } from "../../../../context/base";
 import styles from "./styles.module.css";
+import type { PreloaderProps } from "./types";
 
 export default function Preloader({
   version = "V3",

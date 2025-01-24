@@ -2,16 +2,17 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
-import { authenticate, login } from "../../../api/auth";
-import { authApiURL } from "../../../utils/auth";
-import { homeURL } from "../../../utils/base";
-import { useBase } from "../../base/context";
-import Anchor from "../../base/widgets/Anchor";
-import Btn from "../../base/widgets/Btn";
-import FormStatus from "../../base/widgets/Form";
-import Heading from "../../base/widgets/Heading";
-import { useAuth } from "../context";
+import { authenticate, login } from "../../../../api/auth";
+import { useAuth } from "../../../../context/auth";
+import { useBase } from "../../../../context/base";
+import { authApiURL } from "../../../../utils/auth";
+import { homeURL } from "../../../../utils/base";
+import Btn from "../../../base/widgets/buttons/Btn";
+import { Form, Control } from "../../../base/widgets/forms/Form";
+import Anchor from "../../../base/widgets/links/Anchor";
+import Heading from "../../../base/widgets/text/Heading";
 import styles from "./styles.module.css";
+import baseStyles from "../../../base/widgets/forms/styles.module.css"
 
 export function LoginForm() {
   const router = useRouter();
@@ -19,8 +20,8 @@ export function LoginForm() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
 
   const { borderPrimaryFocus } = useBase();
   const { setUser, loginRedirectURL } = useAuth();
@@ -34,10 +35,10 @@ export function LoginForm() {
 
     // Clear previous status messages and remove validation classes
     [usernameRef, passwordRef].forEach((ref) => {
-      ref.current?.classList.remove("is-valid", "is-invalid");
+      ref.current?.classList.remove(baseStyles["is-valid"], baseStyles["is-invalid"]);
     });
-    setError(null);
-    setSuccess(null);
+    setError("");
+    setSuccess("");
 
     try {
       setLoading(true);
@@ -91,7 +92,7 @@ export function LoginForm() {
   const callbackUrl = searchParams.get("callbackUrl") || homeURL;
 
   return (
-    <form
+    <Form
       id="loginform"
       className={`
             ${styles.authform} w-full flex flex-col gap-4 p-6 
@@ -99,7 +100,10 @@ export function LoginForm() {
             shadow-2xl dark:shadow-reverse
           `}
       onSubmit={handleSubmit}
-      noValidate
+      success={success}
+      error={error}
+      loading={loading}
+      method="post"
     >
       <div className="text-center">
         <Heading variant="h5" className="mb-3">
@@ -108,14 +112,12 @@ export function LoginForm() {
         <p>Enter your username & password to login</p>
       </div>
 
-      <FormStatus success={success} error={error} loading={loading} />
-
       {/* Username */}
       <div>
-        <div className="form-floating">
-          <input
+        <div className={`baseStyles["form-floating"]`}>
+          <Control
             type="text"
-            className={`form-control ${styles.input} ${borderPrimaryFocus}`}
+            className={`${styles.input} ${borderPrimaryFocus}`}
             id="login_username"
             name="username"
             placeholder="Your Username"
@@ -133,8 +135,8 @@ export function LoginForm() {
 
       {/* Password */}
       <div>
-        <div className="form-floating">
-          <input
+        <div className={`baseStyles["form-floating"]`}>
+          <Control
             type="password"
             className={`form-control ${styles.input} ${borderPrimaryFocus}`}
             id="login_password"
@@ -170,7 +172,7 @@ export function LoginForm() {
           </Btn>
         )}
       </div>
-    </form>
+    </Form>
   );
 }
 
@@ -181,8 +183,8 @@ export function SignupForm() {
   const [password, setPassword] = useState<string>("");
   const [has_agreed, setHasAgreed] = useState<boolean | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
   const { borderPrimaryFocus, borderPrimaryChecked, bgPrimaryChecked } =
     useBase();
 
@@ -190,8 +192,8 @@ export function SignupForm() {
     e.preventDefault();
     const form = e.currentTarget;
 
-    setError(null); // clear previous
-    setSuccess(null); // clear previous
+    setError(""); // clear previous
+    setSuccess(""); // clear previous
 
     if (!form.checkValidity()) {
       e.stopPropagation();
@@ -241,12 +243,14 @@ export function SignupForm() {
   };
 
   return (
-    <form
+    <Form
       id="signupform"
       className={`row ${styles.authform}`}
       onSubmit={handleSubmit}
       method="post"
-      noValidate
+      success={success}
+      error={error}
+      loading={loading}
     >
       <div className="text-center">
         <Heading variant="h5" className="mb-3">
@@ -254,8 +258,6 @@ export function SignupForm() {
         </Heading>
         <p>Enter your personal details to create an account</p>
       </div>
-
-      <FormStatus success={success} error={error} loading={loading} />
 
       {/* Full Name */}
 
@@ -377,6 +379,6 @@ export function SignupForm() {
           </span>
         </div>
       </div> */}
-    </form>
+    </Form>
   );
 }

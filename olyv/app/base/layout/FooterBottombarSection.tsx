@@ -1,5 +1,6 @@
 "use client";
 
+import { useBase } from "../../../context/base";
 import type {
   BottombarProps,
   FooterBottombarProps,
@@ -7,13 +8,12 @@ import type {
   NavLink,
 } from "../../../types/base";
 import { createNavLinks } from "../../../utils/base";
-import { useBase } from "../context";
-import Anchor from "../widgets/Anchor";
-import Container from "../widgets/Container";
-import Heading from "../widgets/Heading";
-import Section from "../widgets/Section";
-import SocialMediaLinks from "../widgets/SocialMediaLinks";
-import ThemeToggler from "../widgets/ThemeToggler";
+import ThemeToggler from "../widgets/buttons/ThemeToggler";
+import Anchor from "../widgets/links/Anchor";
+import SocialMediaLinks from "../widgets/links/SocialMediaLinks";
+import Container from "../widgets/sections/Container";
+import Section from "../widgets/sections/Section";
+import Heading from "../widgets/text/Heading";
 import baseStyles from "./styles.module.css";
 
 export default function FooterBottombarSection({

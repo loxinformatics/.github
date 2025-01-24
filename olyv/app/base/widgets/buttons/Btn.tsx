@@ -1,8 +1,8 @@
 "use client";
 
-import type { ButtonProps } from "../../../types/base";
-import { useBase } from "../context";
-import Anchor from "./Anchor";
+import { useBase } from "../../../../context/base";
+import Anchor from "../links/Anchor";
+import type { ButtonProps } from "./types";
 
 export default function Btn({
   id,

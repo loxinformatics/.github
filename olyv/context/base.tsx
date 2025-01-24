@@ -6,9 +6,8 @@ import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
 import { createContext, useContext, useEffect, useState } from "react";
-import type { BaseContext, BaseProps, ThemeColorKey } from "../../types/base";
+import type { BaseContext, BaseProps, ThemeColorKey } from "../types/base";
 import navLinksMap from "./navigation";
-import ScrollTop from "./widgets/ScrollTop";
 
 const Base = createContext<BaseContext | undefined>(undefined);
 
@@ -235,10 +234,7 @@ export function BaseProvider({
             `}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Base.Provider value={context}>
-            {children}
-            <ScrollTop />
-          </Base.Provider>
+          <Base.Provider value={context}>{children}</Base.Provider>
         </ThemeProvider>
       </body>
     </html>

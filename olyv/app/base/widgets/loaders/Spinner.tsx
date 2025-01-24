@@ -1,7 +1,7 @@
 "use client";
 
-import type { SpinnerProps } from "../../../types/base";
-import { useBase } from "../context";
+import { useBase } from "../../../../context/base";
+import type { SpinnerProps } from "./types";
 
 export default function Spinner({ borderSize, borderColor }: SpinnerProps) {
   const { borderPrimary } = useBase();

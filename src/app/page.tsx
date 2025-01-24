@@ -13,7 +13,7 @@ import {
   HeaderHeroSection,
   ListSection,
 } from "@/olyv/app/base/layout";
-import { Preloader } from "@/olyv/app/base/widgets";
+import Preloader from "@/olyv/app/base/widgets/loaders/Preloader";
 import type {
   AboutResponse,
   CallToActionResponse,
