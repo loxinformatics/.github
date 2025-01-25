@@ -5,14 +5,12 @@ import { FormEvent, useRef, useState } from "react";
 import { authenticate, login } from "../../../../api/auth";
 import { useAuth } from "../../../../context/auth";
 import { useBase } from "../../../../context/base";
-import { authApiURL } from "../../../../utils/auth";
 import { homeURL } from "../../../../utils/base";
 import Btn from "../../../base/widgets/buttons/Btn";
-import { Form, Control } from "../../../base/widgets/forms/Form";
-import Anchor from "../../../base/widgets/links/Anchor";
+import { Control, Form } from "../../../base/widgets/forms/Form";
+import baseStyles from "../../../base/widgets/forms/styles.module.css";
 import Heading from "../../../base/widgets/text/Heading";
 import styles from "./styles.module.css";
-import baseStyles from "../../../base/widgets/forms/styles.module.css"
 
 export function LoginForm() {
   const router = useRouter();
@@ -35,7 +33,10 @@ export function LoginForm() {
 
     // Clear previous status messages and remove validation classes
     [usernameRef, passwordRef].forEach((ref) => {
-      ref.current?.classList.remove(baseStyles["is-valid"], baseStyles["is-invalid"]);
+      ref.current?.classList.remove(
+        baseStyles["is-valid"],
+        baseStyles["is-invalid"]
+      );
     });
     setError("");
     setSuccess("");
@@ -113,44 +114,30 @@ export function LoginForm() {
       </div>
 
       {/* Username */}
-      <div>
-        <div className={`baseStyles["form-floating"]`}>
-          <Control
-            type="text"
-            className={`${styles.input} ${borderPrimaryFocus}`}
-            id="login_username"
-            name="username"
-            placeholder="Your Username"
-            required
-            ref={usernameRef}
-            value={username}
-            disabled={loading || !!success}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <label htmlFor="login_username" className={styles.label}>
-            Your Username
-          </label>
-        </div>
-      </div>
+      <Control
+        type="text"
+        className={`${styles.input} ${borderPrimaryFocus}`}
+        id="login_username"
+        name="username"
+        placeholder="Your Username"
+        required
+        ref={usernameRef}
+        value={username}
+        disabled={loading || !!success}
+        onChange={(e) => setUsername(e.target.value)}
+      />
 
       {/* Password */}
-      <div>
-        <div className={`baseStyles["form-floating"]`}>
-          <Control
-            type="password"
-            className={`form-control ${styles.input} ${borderPrimaryFocus}`}
-            id="login_password"
-            placeholder="Your Password"
-            ref={passwordRef}
-            value={password}
-            disabled={loading || !!success}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label htmlFor="login_password" className={styles.label}>
-            Your Password
-          </label>
-        </div>
-      </div>
+      <Control
+        type="password"
+        className={`${styles.input} ${borderPrimaryFocus}`}
+        id="login_password"
+        placeholder="Your Password"
+        ref={passwordRef}
+        value={password}
+        disabled={loading || !!success}
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
       {/* Login and Back Buttons */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
@@ -176,209 +163,209 @@ export function LoginForm() {
   );
 }
 
-export function SignupForm() {
-  const [full_name, setFullName] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [has_agreed, setHasAgreed] = useState<boolean | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
-  const { borderPrimaryFocus, borderPrimaryChecked, bgPrimaryChecked } =
-    useBase();
+// export function SignupForm() {
+//   const [full_name, setFullName] = useState<string>("");
+//   const [username, setUsername] = useState<string>("");
+//   const [email, setEmail] = useState<string>("");
+//   const [password, setPassword] = useState<string>("");
+//   const [has_agreed, setHasAgreed] = useState<boolean | null>(null);
+//   const [loading, setLoading] = useState<boolean>(false);
+//   const [error, setError] = useState<string>("");
+//   const [success, setSuccess] = useState<string>("");
+//   const { borderPrimaryFocus, borderPrimaryChecked, bgPrimaryChecked } =
+//     useBase();
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
+//   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+//     e.preventDefault();
+//     const form = e.currentTarget;
 
-    setError(""); // clear previous
-    setSuccess(""); // clear previous
+//     setError(""); // clear previous
+//     setSuccess(""); // clear previous
 
-    if (!form.checkValidity()) {
-      e.stopPropagation();
-      form.classList.add("was-validated");
-    } else {
-      try {
-        setLoading(true);
+//     if (!form.checkValidity()) {
+//       e.stopPropagation();
+//       form.classList.add("was-validated");
+//     } else {
+//       try {
+//         setLoading(true);
 
-        // Prepare form data
-        const formData = new FormData();
-        formData.append("full_name", full_name);
-        formData.append("email", email);
-        formData.append("username", username);
-        formData.append("password", password);
+//         // Prepare form data
+//         const formData = new FormData();
+//         formData.append("full_name", full_name);
+//         formData.append("email", email);
+//         formData.append("username", username);
+//         formData.append("password", password);
 
-        // Send form data to backend
-        const signupResponse = await fetch(`${authApiURL}/signup/`, {
-          method: "POST",
-          body: formData,
-        });
-        const responseData = await signupResponse.json();
+//         // Send form data to backend
+//         const signupResponse = await fetch(`${authApiURL}/signup/`, {
+//           method: "POST",
+//           body: formData,
+//         });
+//         const responseData = await signupResponse.json();
 
-        if (responseData.message) {
-          setSuccess(responseData.message); // Handle success
+//         if (responseData.message) {
+//           setSuccess(responseData.message); // Handle success
 
-          // Reset form fields
-          setFullName("");
-          setEmail("");
-          setUsername("");
-          setPassword("");
-          setHasAgreed(null);
+//           // Reset form fields
+//           setFullName("");
+//           setEmail("");
+//           setUsername("");
+//           setPassword("");
+//           setHasAgreed(null);
 
-          form.classList.remove("was-validated");
-        } else if (responseData.errors) {
-          setError(responseData.errors.email[0].message); // Handle error
-          form.classList.add("was-validated");
-        } else {
-          throw new Error("Failed to read 'message' or 'errors' field");
-        }
+//           form.classList.remove("was-validated");
+//         } else if (responseData.errors) {
+//           setError(responseData.errors.email[0].message); // Handle error
+//           form.classList.add("was-validated");
+//         } else {
+//           throw new Error("Failed to read 'message' or 'errors' field");
+//         }
 
-        setLoading(false);
-      } catch (error) {
-        setError("Failed to send email");
-        console.error("Error sending email:", error);
-      }
-    }
-  };
+//         setLoading(false);
+//       } catch (error) {
+//         setError("Failed to send email");
+//         console.error("Error sending email:", error);
+//       }
+//     }
+//   };
 
-  return (
-    <Form
-      id="signupform"
-      className={`row ${styles.authform}`}
-      onSubmit={handleSubmit}
-      method="post"
-      success={success}
-      error={error}
-      loading={loading}
-    >
-      <div className="text-center">
-        <Heading variant="h5" className="mb-3">
-          Create an account
-        </Heading>
-        <p>Enter your personal details to create an account</p>
-      </div>
+//   return (
+//     <Form
+//       id="signupform"
+//       className={`row ${styles.authform}`}
+//       onSubmit={handleSubmit}
+//       method="post"
+//       success={success}
+//       error={error}
+//       loading={loading}
+//     >
+//       <div className="text-center">
+//         <Heading variant="h5" className="mb-3">
+//           Create an account
+//         </Heading>
+//         <p>Enter your personal details to create an account</p>
+//       </div>
 
-      {/* Full Name */}
+//       {/* Full Name */}
 
-      <div className="col-6 mb-4">
-        <label
-          htmlFor="signup_full_name"
-          className={`forlabel ${styles.label}`}
-        >
-          Your Name
-        </label>
+//       <div className="col-6 mb-4">
+//         <label
+//           htmlFor="signup_full_name"
+//           className={`forlabel ${styles.label}`}
+//         >
+//           Your Name
+//         </label>
 
-        <input
-          type="text"
-          id="signup_full_name"
-          value={full_name}
-          onChange={(e) => setFullName(e.target.value)}
-          className={`forcontrol ${styles.input} ${borderPrimaryFocus}`}
-          required
-        />
+//         <input
+//           type="text"
+//           id="signup_full_name"
+//           value={full_name}
+//           onChange={(e) => setFullName(e.target.value)}
+//           className={`forcontrol ${styles.input} ${borderPrimaryFocus}`}
+//           required
+//         />
 
-        <div className="invalid-feedback">Please enter your full name!</div>
-      </div>
+//         <div className="invalid-feedback">Please enter your full name!</div>
+//       </div>
 
-      {/* Email */}
+//       {/* Email */}
 
-      <div className="col-6 mb-4">
-        <label htmlFor="signup_email" className={`forlabel ${styles.label}`}>
-          Your Email
-        </label>
+//       <div className="col-6 mb-4">
+//         <label htmlFor="signup_email" className={`forlabel ${styles.label}`}>
+//           Your Email
+//         </label>
 
-        <input
-          type="email"
-          id="signup_email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className={`forcontrol ${styles.input} ${borderPrimaryFocus}`}
-          required
-        />
+//         <input
+//           type="email"
+//           id="signup_email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//           className={`forcontrol ${styles.input} ${borderPrimaryFocus}`}
+//           required
+//         />
 
-        <div className="invalid-feedback">
-          Please enter a valid Email address!
-        </div>
-      </div>
+//         <div className="invalid-feedback">
+//           Please enter a valid Email address!
+//         </div>
+//       </div>
 
-      {/* Username */}
+//       {/* Username */}
 
-      <div className="col-6 mb-4">
-        <label htmlFor="signup_username" className={`forlabel ${styles.label}`}>
-          Username
-        </label>
+//       <div className="col-6 mb-4">
+//         <label htmlFor="signup_username" className={`forlabel ${styles.label}`}>
+//           Username
+//         </label>
 
-        <input
-          type="text"
-          id="signup_username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className={`forcontrol ${styles.input} ${borderPrimaryFocus}`}
-          required
-        />
+//         <input
+//           type="text"
+//           id="signup_username"
+//           value={username}
+//           onChange={(e) => setUsername(e.target.value)}
+//           className={`forcontrol ${styles.input} ${borderPrimaryFocus}`}
+//           required
+//         />
 
-        <div className="invalid-feedback">Please choose a username.</div>
-      </div>
+//         <div className="invalid-feedback">Please choose a username.</div>
+//       </div>
 
-      {/* Password */}
+//       {/* Password */}
 
-      <div className="col-6 mb-4">
-        <label htmlFor="signup_password" className={`forlabel ${styles.label}`}>
-          Password
-        </label>
+//       <div className="col-6 mb-4">
+//         <label htmlFor="signup_password" className={`forlabel ${styles.label}`}>
+//           Password
+//         </label>
 
-        <input
-          type="password"
-          id="signup_password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={`forcontrol ${styles.input} ${borderPrimaryFocus}`}
-          required
-        />
+//         <input
+//           type="password"
+//           id="signup_password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           className={`forcontrol ${styles.input} ${borderPrimaryFocus}`}
+//           required
+//         />
 
-        <div className="invalid-feedback">Please enter your password!</div>
-      </div>
+//         <div className="invalid-feedback">Please enter your password!</div>
+//       </div>
 
-      {/* Has Agreed */}
+//       {/* Has Agreed */}
 
-      <div className="col-12 mb-4">
-        <div className="forcheck">
-          <input
-            type="checkbox"
-            id="signup_agreeterms"
-            checked={has_agreed || false}
-            onChange={(e) => setHasAgreed(e.target.checked)}
-            className={`forcheck-input ${styles.checkInput} ${borderPrimaryFocus} ${borderPrimaryChecked} ${bgPrimaryChecked}`}
-            required
-          />
+//       <div className="col-12 mb-4">
+//         <div className="forcheck">
+//           <input
+//             type="checkbox"
+//             id="signup_agreeterms"
+//             checked={has_agreed || false}
+//             onChange={(e) => setHasAgreed(e.target.checked)}
+//             className={`forcheck-input ${styles.checkInput} ${borderPrimaryFocus} ${borderPrimaryChecked} ${bgPrimaryChecked}`}
+//             required
+//           />
 
-          <label
-            className={`forcheck-label ms-3 ${styles.label}`}
-            htmlFor="signup_agreeterms"
-          >
-            I agree and accept the{" "}
-            <Anchor href="#">terms and conditions</Anchor>
-          </label>
+//           <label
+//             className={`forcheck-label ms-3 ${styles.label}`}
+//             htmlFor="signup_agreeterms"
+//           >
+//             I agree and accept the{" "}
+//             <Anchor href="#">terms and conditions</Anchor>
+//           </label>
 
-          <div className="invalid-feedback">
-            You must agree before submitting.
-          </div>
-        </div>
-      </div>
+//           <div className="invalid-feedback">
+//             You must agree before submitting.
+//           </div>
+//         </div>
+//       </div>
 
-      {/* Submit */}
+//       {/* Submit */}
 
-      {/* <div className="col-12 d-stable text-center">
-        <div className="d-stable-cell border-r">
-          <span className="fortext">
-            Already have an account?{" "}
-            <Anchor className={styles.link} href="/auth/login">
-              Login here
-            </Anchor>
-          </span>
-        </div>
-      </div> */}
-    </Form>
-  );
-}
+//       {/* <div className="col-12 d-stable text-center">
+//         <div className="d-stable-cell border-r">
+//           <span className="fortext">
+//             Already have an account?{" "}
+//             <Anchor className={styles.link} href="/auth/login">
+//               Login here
+//             </Anchor>
+//           </span>
+//         </div>
+//       </div> */}
+//     </Form>
+//   );
+// }

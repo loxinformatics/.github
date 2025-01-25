@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import type { LoginSignupProps } from "../../../types/auth";
 import Preloader from "../../base/widgets/loaders/Preloader";
 import Section from "../../base/widgets/sections/Section";
-import { LoginForm, SignupForm } from "../widgets/forms/LoginSignupForm";
+import { LoginForm } from "../widgets/forms/LoginSignupForm";
 
 export default function LoginSignupSection({ component }: LoginSignupProps) {
   switch (component) {
@@ -12,8 +12,8 @@ export default function LoginSignupSection({ component }: LoginSignupProps) {
     default:
       return <Login />;
 
-    case "signup":
-      return <Signup />;
+    // case "signup":
+    //   return <Signup />;
   }
 }
 
@@ -31,10 +31,10 @@ function Login() {
   );
 }
 
-function Signup() {
-  return (
-    <Section id="signup">
-      <SignupForm />
-    </Section>
-  );
-}
+// function Signup() {
+//   return (
+//     <Section id="signup">
+//       <SignupForm />
+//     </Section>
+//   );
+// }

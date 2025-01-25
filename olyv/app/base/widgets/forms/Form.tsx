@@ -26,12 +26,15 @@ export const Control = forwardRef<
     },
     ref
   ) => {
-    const baseClass = `${styles["form-control"]} block text-sm w-full rounded text-color dark:text-color-reverse 
+    const baseClass = `
+      ${styles["form-control"]} block w-full rounded
+      text-color dark:text-color-reverse 
       bg-body dark:bg-body-reverse disabled:bg-body-secondary dark:disabled:bg-body-secondary-reverse 
       bg-clip-padding appearance-none border border-color-tertiary dark:border-color-tertiary-reverse 
       focus:border-primary-reverse focus:outline-none focus:ring-0 focus:ring-primary/25 
       dark:focus:ring-primary-reverse/25 py-[0.375rem] px-3 transition-all ease-in-out duration-150 
-      disabled:cursor-not-allowed`;
+      disabled:cursor-not-allowed
+    `;
 
     return createElement(variant, {
       type: variant === "input" ? type : undefined,
@@ -44,22 +47,16 @@ export const Control = forwardRef<
       required,
       disabled,
       rows: variant === "textarea" ? rows : undefined,
-      className: `${baseClass} ${className}`.trim(),
+      className: `
+        ${variant === "input" ? "h-11" : ""}
+        ${baseClass}
+        ${className}
+      `.trim(),
     });
   }
 );
 
 Control.displayName = "Control";
-
-
-export function Floating(){
-
-  return (
-    <div className={`${styles["form-floating" ]}`}>
-
-    </div>
-  );
-}
 
 export function Feedback({ type, children }: FeedbackProps) {
   const feedbackClass =

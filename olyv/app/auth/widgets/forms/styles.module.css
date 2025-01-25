@@ -5,14 +5,8 @@ app - LoginSignup
   font-size: 14px;
 }
 
-.authform .label {
-  margin-left: 0.5rem;
-}
-
 .authform .input {
-  border-radius: 0;
   box-shadow: none;
-  font-size: 14px;
   border-radius: 0;
 }
 
