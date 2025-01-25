@@ -114,30 +114,38 @@ export function LoginForm() {
       </div>
 
       {/* Username */}
-      <Control
-        type="text"
-        className={`${styles.input} ${borderPrimaryFocus}`}
-        id="login_username"
-        name="username"
-        placeholder="Your Username"
-        required
-        ref={usernameRef}
-        value={username}
-        disabled={loading || !!success}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+      <div>
+        <label className="mb-1 block" htmlFor="login_username">
+          Enter your Username:
+        </label>
+        <Control
+          type="text"
+          className={`${styles.input} ${borderPrimaryFocus}`}
+          id="login_username"
+          name="username"
+          required
+          ref={usernameRef}
+          value={username}
+          disabled={loading || !!success}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
 
       {/* Password */}
-      <Control
-        type="password"
-        className={`${styles.input} ${borderPrimaryFocus}`}
-        id="login_password"
-        placeholder="Your Password"
-        ref={passwordRef}
-        value={password}
-        disabled={loading || !!success}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <div>
+        <label className="mb-1 block" htmlFor="login_password">
+          Enter your Password:
+        </label>
+        <Control
+          type="password"
+          className={`${styles.input} ${borderPrimaryFocus}`}
+          id="login_password"
+          ref={passwordRef}
+          value={password}
+          disabled={loading || !!success}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
 
       {/* Login and Back Buttons */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4">

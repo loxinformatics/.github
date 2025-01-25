@@ -34,6 +34,7 @@ export const Control = forwardRef<
       focus:border-primary-reverse focus:outline-none focus:ring-0 focus:ring-primary/25 
       dark:focus:ring-primary-reverse/25 py-[0.375rem] px-3 transition-all ease-in-out duration-150 
       disabled:cursor-not-allowed
+      ${type === "password" ? "text-xl" : ""}
     `;
 
     return createElement(variant, {
