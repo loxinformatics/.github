@@ -1,22 +1,27 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Documentation: https://help.github.com/articles/ignoring-files/
 
-# web
+# ─── Next.js ────────────────────────────────────────────────────────
 node_modules/
 .next/
 next-env.d.ts
+navigation.ts
+!/app/navigation.ts
 
-# backend
+# ─── Django ─────────────────────────────────────────────────────────
 .venv/
-*__pycache__/
-*sqlite*
-public/api/
+__pycache__/
+*.sqlite*
+public/static/
+public/media/
+# Since fixtures contain site data, allow them only in 'app' and not in 'components' folder
+components/**/fixtures/
 
-# misc
-.vscode/
-.backup/
-*test/
+# ─── Environment Variables ──────────────────────────────────────────
 *.env*
 
-# olyv
-navigation.ts
-!/src/app/navigation.ts
+# ─── Testing ───────────────────────────────────────────────────────
+*test/
+
+# ─── IDE and Miscellaneous Configurations ──────────────────────────
+.vscode/
+.backup/
