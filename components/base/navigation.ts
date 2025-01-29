@@ -2,20 +2,6 @@ import type { NavLinksMap } from "@/components/base/types";
 import { createNavDropdown } from "@/components/base/utils";
 
 const navLinksMap: NavLinksMap = {
-  header: [
-    { text: "Home", icon: "bi bi-house-door", href: "/#hero_page_1" },
-    {
-      text: "About",
-      icon: "bi bi-info-circle",
-      href: "/#about_page_1",
-    },
-    {
-      text: "Services",
-      icon: "bi bi-briefcase",
-      href: "/#list_page_1",
-    },
-    { text: "Contact", icon: "bi bi-envelope", href: "/#contact_page_1" },
-  ],
   footer_1: [
     { text: "Useful Links", type: "heading" },
     { text: "Home", href: "/#hero_page_1" },
@@ -25,7 +11,7 @@ const navLinksMap: NavLinksMap = {
     { text: "Privacy policy", href: "#" },
   ],
   footer_2: [],
-  aside: [
+  sidebar: [
     {
       type: "dropdown",
       text: "Schools",

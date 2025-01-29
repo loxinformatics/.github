@@ -11,17 +11,20 @@ from .forms import (
     CTAChangeForm,
     HeaderHeroAddForm,
     HeaderHeroChangeForm,
-    ListDescriptionsAddForm,
-    ListDescriptionsChangeForm,
+    ListSectionAddForm,
+    ListSectionChangeForm,
 )
 from .models import (
     AboutSection,
     Base,
     CallToActionSection,
     ContactSection,
+    FooterBottombarSection,
     HeaderHeroSection,
-    ItemDescription,
+    ListItem,
     ListSection,
+    NavigationItem,
+    SidebarSection,
 )
 
 
@@ -149,11 +152,33 @@ class SectionAdmin(admin.ModelAdmin):
         return super().get_form(request, obj, **kwargs)
 
 
+class NavigationItemInline(admin.StackedInline):
+    model = NavigationItem
+    extra = 1
+    fields = ["text", "icon", "href", "type", "parent", "authorized", "order"]
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if isinstance(self.parent_model, HeaderHeroSection):
+            return qs.filter(section_type="header")
+        elif isinstance(self.parent_model, FooterBottombarSection):
+            return qs.filter(section_type="footer")
+        elif isinstance(self.parent_model, SidebarSection):
+            return qs.filter(section_type="sidebar")
+        return qs
+
+
+class ListItemInline(admin.StackedInline):
+    model = ListItem
+    extra = 1
+
+
 @admin.register(HeaderHeroSection)
 class HeaderHeroAdmin(SectionAdmin):
     add_form = HeaderHeroAddForm
     form = HeaderHeroChangeForm
     model = HeaderHeroSection
+    inlines = [NavigationItemInline]
 
     fieldsets = [
         (None, {"fields": ["section_instance", "section_version"]}),
@@ -163,7 +188,6 @@ class HeaderHeroAdmin(SectionAdmin):
                 "fields": [
                     "header_background",
                     "logo_version",
-                    "header_nav",
                     "theme_toggler",
                 ]
             },
@@ -237,19 +261,26 @@ class ContactAdmin(SectionAdmin):
     ]
 
 
-class ItemDescriptionInline(admin.StackedInline):
-    model = ItemDescription
-    extra = 1
-
-
 @admin.register(ListSection)
-class ListDescriptionsAdmin(SectionAdmin):
-    add_form = ListDescriptionsAddForm
-    form = ListDescriptionsChangeForm
+class ListSectionAdmin(SectionAdmin):
+    add_form = ListSectionAddForm
+    form = ListSectionChangeForm
     model = ListSection
-    inlines = [ItemDescriptionInline]
+    inlines = [ListItemInline]
 
     fieldsets = [
         (None, {"fields": ["section_instance", "section_version"]}),
         ("TITLE", {"fields": model.TITLE_FIELDS}),
     ]
+
+
+@admin.register(FooterBottombarSection)
+class FooterBottombarAdmin(SectionAdmin):
+    inlines = [NavigationItemInline]
+    model = FooterBottombarSection
+
+
+@admin.register(SidebarSection)
+class SidebarAdmin(SectionAdmin):
+    inlines = [NavigationItemInline]
+    model = SidebarSection

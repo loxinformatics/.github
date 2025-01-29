@@ -2,25 +2,15 @@
 
 import { useLayoutEffect, useState } from "react";
 import { useBase } from "../../context";
-import type { NavLink } from "../../types";
 import { createNavLinks } from "../../utils";
 import Nav from "../../widgets/links/Nav";
-import {
-  DropdownNavLink,
-  HeadingNavLink,
-  LoginLogoutNavLink,
-  LoginNavLink,
-  LogoutNavLink,
-  PageNavLink,
-} from "../../widgets/links/SidebarLinks";
+
 import baseStyles from "./styles.module.css";
 
 export default function SidebarSection() {
   const [top, setTop] = useState<number>(0);
-
   const { setAsideExists, navLinksMap } = useBase();
-
-  const navLinks = createNavLinks(navLinksMap.aside);
+  const navLinks = createNavLinks(navLinksMap.sidebar);
 
   useLayoutEffect(() => {
     setAsideExists(true);
@@ -32,50 +22,6 @@ export default function SidebarSection() {
       setAsideExists(false);
     };
   }, []);
-
-  const renderLink = (
-    link: NavLink,
-    index: number,
-    {
-      shouldRenderLink,
-      openDropdowns,
-      handleDropdownClick,
-      pathname,
-      user,
-    }: any
-  ) => {
-    switch (link.type) {
-      case "dropdown":
-        return (
-          <DropdownNavLink
-            key={index}
-            link={link}
-            index={index}
-            shouldRenderLink={shouldRenderLink}
-            pathname={pathname}
-            openDropdowns={openDropdowns}
-            handleDropdownClick={handleDropdownClick}
-          />
-        );
-      case "heading":
-        return <HeadingNavLink key={index} link={link} />;
-      case "login":
-        return <LoginNavLink key={index} link={link} pathname={pathname} />;
-      case "logout":
-        return <LogoutNavLink key={index} link={link} pathname={pathname} />;
-      case "login/logout":
-        return (
-          <LoginLogoutNavLink
-            key={index}
-            user={user}
-            link={link}
-            pathname={pathname}
-          />
-        );
-      default:
-        return <PageNavLink key={index} link={link} pathname={pathname} />;
-    }
-  };
 
   return (
     <aside
@@ -90,10 +36,9 @@ export default function SidebarSection() {
     >
       <Nav
         id="aside-nav"
+        layout="sidebar"
         className={`text-sm tracking-wider ${baseStyles.aside_nav}`}
-        links={navLinks}
-        layout="aside"
-        renderLink={renderLink}
+        navlinks={navLinks}
       />
     </aside>
   );

@@ -5,9 +5,12 @@ from .models import (
     AboutSection,
     CallToActionSection,
     ContactSection,
+    FooterBottombarSection,
     HeaderHeroSection,
-    ItemDescription,
+    ListItem,
     ListSection,
+    NavigationItem,
+    SidebarSection,
 )
 
 
@@ -24,37 +27,73 @@ class MailSerializer(serializers.Serializer):
         return data
 
 
-class HeaderHeroSerializer(serializers.ModelSerializer):
+class NavigationItemSerializer(serializers.ModelSerializer):
+    children = serializers.SerializerMethodField()
+
+    class Meta:
+        model = NavigationItem
+        exclude = [
+            "header_section",
+            "footer_section",
+            "sidebar_section",
+            "section_type",
+        ]
+
+    def get_children(self, obj):
+        if obj.children.exists():
+            return NavigationItemSerializer(obj.children.all(), many=True).data
+        return None
+
+
+class ItemDescriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ListItem
+        exclude = ("list_section",)
+
+
+class HeaderHeroSectionSerializer(serializers.ModelSerializer):
+    navigation_items = NavigationItemSerializer(many=True, read_only=True)
+
     class Meta:
         model = HeaderHeroSection
         exclude = model.TITLE_FIELDS
 
 
-class AboutSerializer(serializers.ModelSerializer):
+class FooterBottombarSectionSerializer(serializers.ModelSerializer):
+    navigation_items = NavigationItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = FooterBottombarSection
+        fields = "__all__"
+
+
+class SidebarSectionSerializer(serializers.ModelSerializer):
+    navigation_items = NavigationItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = SidebarSection
+        fields = "__all__"
+
+
+class AboutSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = AboutSection
         fields = "__all__"
 
 
-class CTASerializer(serializers.ModelSerializer):
+class CTASectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CallToActionSection
         exclude = model.TITLE_FIELDS
 
 
-class ContactSerializer(serializers.ModelSerializer):
+class ContactSectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = ContactSection
         fields = "__all__"
 
 
-class ItemDescriptionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ItemDescription
-        exclude = ("list_description",)
-
-
-class ListSerializer(serializers.ModelSerializer):
+class ListSectionSerializer(serializers.ModelSerializer):
     items = ItemDescriptionSerializer(many=True, read_only=True)
 
     class Meta:

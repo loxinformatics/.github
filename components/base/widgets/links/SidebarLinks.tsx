@@ -1,6 +1,5 @@
 "use client";
 
-import { useAuth } from "../../../auth/context";
 import { useBase } from "../../context";
 import Heading from "../text/Heading";
 import Anchor from "./Anchor";

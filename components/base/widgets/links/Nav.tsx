@@ -4,14 +4,24 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../auth/context";
 import type { NavLink } from "../../types";
-import type { NavLinksProps } from "./types";
+import Anchor from "./Anchor";
+import {
+  DropdownNavLink,
+  HeadingNavLink,
+  LoginLogoutNavLink,
+  LoginNavLink,
+  LogoutNavLink,
+  PageNavLink,
+} from "./SidebarLinks";
+import type { NavLinksProps, NavigationItem } from "./types";
 
 export default function Nav({
-  links,
+  navlinks,
   layout,
-  renderLink,
   className,
   id,
+  navLinkIconClass,
+  navLinkClass,
 }: NavLinksProps) {
   const pathname = usePathname();
   const { user } = useAuth();
@@ -39,9 +49,81 @@ export default function Nav({
     return !link.authorized;
   };
 
+  const renderLink = (
+    link: NavigationItem,
+    index: number,
+    {
+      shouldRenderLink,
+      openDropdowns,
+      handleDropdownClick,
+      pathname,
+      user,
+    }: any
+  ) => {
+    switch (layout) {
+      case "header":
+        return (
+          <li key={`navbar-link-${index}`}>
+            <Anchor className={navLinkClass} href={link.href || "#"}>
+              {link.icon && (
+                <i className={`${link.icon} ${navLinkIconClass}`}></i>
+              )}
+              {link.text}
+            </Anchor>
+          </li>
+        );
+
+      case "sidebar":
+        switch (link.type) {
+          case "dropdown":
+            return (
+              <DropdownNavLink
+                key={index}
+                link={link}
+                index={index}
+                shouldRenderLink={shouldRenderLink}
+                pathname={pathname}
+                openDropdowns={openDropdowns}
+                handleDropdownClick={handleDropdownClick}
+              />
+            );
+          case "heading":
+            return <HeadingNavLink key={index} link={link} />;
+          case "login":
+            return <LoginNavLink key={index} link={link} pathname={pathname} />;
+          case "logout":
+            return (
+              <LogoutNavLink key={index} link={link} pathname={pathname} />
+            );
+          case "login/logout":
+            return (
+              <LoginLogoutNavLink
+                key={index}
+                user={user}
+                link={link}
+                pathname={pathname}
+              />
+            );
+          default:
+            return <PageNavLink key={index} link={link} pathname={pathname} />;
+        }
+      case "modal":
+        return (
+          <li key={`modal-link-${index}`}>
+            <Anchor className={navLinkClass} href={link.href || "#"}>
+              {link.icon && (
+                <i className={`${link.icon} ${navLinkIconClass}`}></i>
+              )}{" "}
+              {link.text}
+            </Anchor>
+          </li>
+        );
+    }
+  };
+
   useEffect(() => {
     const initialOpenDropdowns: { [key: string]: boolean } = {};
-    links?.forEach((link, index) => {
+    navlinks?.forEach((link, index) => {
       if (link.type === "dropdown") {
         link.children?.forEach((child: NavLink) => {
           if (child.href && pathname === child.href) {
@@ -51,7 +133,7 @@ export default function Nav({
       }
     });
     setOpenDropdowns(initialOpenDropdowns);
-  }, [links, pathname]);
+  }, [navlinks, pathname]);
 
   return (
     <nav
@@ -59,7 +141,7 @@ export default function Nav({
       className={`${layout === "header" ? "hidden lg:block" : ""} ${className}`}
     >
       <ul className={layout === "header" ? "flex items-center" : ""}>
-        {links?.map((link, index) => {
+        {navlinks?.map((link, index) => {
           if (!shouldRenderLink(link)) return null;
           return renderLink(link, index, {
             shouldRenderLink,

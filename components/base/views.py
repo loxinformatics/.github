@@ -15,11 +15,11 @@ from .models import (
     ListSection,
 )
 from .serializers import (
-    AboutSerializer,
-    ContactSerializer,
-    CTASerializer,
-    HeaderHeroSerializer,
-    ListSerializer,
+    AboutSectionSerializer,
+    ContactSectionSerializer,
+    CTASectionSerializer,
+    HeaderHeroSectionSerializer,
+    ListSectionSerializer,
     MailSerializer,
 )
 
@@ -261,24 +261,24 @@ class MailViewSet(viewsets.ViewSet):
 
 class HeaderHeroViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = HeaderHeroSection.objects.all()
-    serializer_class = HeaderHeroSerializer
+    serializer_class = HeaderHeroSectionSerializer
 
 
 class AboutViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = AboutSection.objects.all()
-    serializer_class = AboutSerializer
+    serializer_class = AboutSectionSerializer
 
 
 class CTAViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = CallToActionSection.objects.all()
-    serializer_class = CTASerializer
+    serializer_class = CTASectionSerializer
 
 
 class ContactViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = ContactSection.objects.all()
-    serializer_class = ContactSerializer
+    serializer_class = ContactSectionSerializer
 
 
 class ListViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = ListSection.objects.all()
-    serializer_class = ListSerializer
+    serializer_class = ListSectionSerializer

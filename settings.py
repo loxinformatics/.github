@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",  # Docs: https://django-rest-framework-simplejwt.readthedocs.io/
     "corsheaders",  # Docs: https://pypi.org/project/django-cors-headers/
     # Local apps
-    "app",
     "components.base",
 ]
 

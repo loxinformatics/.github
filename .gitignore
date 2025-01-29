@@ -4,8 +4,6 @@
 node_modules/
 .next/
 next-env.d.ts
-navigation.ts
-!/app/navigation.ts
 
 # ─── Django ─────────────────────────────────────────────────────────
 .venv/
@@ -13,7 +11,6 @@ __pycache__/
 *.sqlite*
 public/static/
 public/media/
-# Since fixtures contain site data, allow them only in 'app' and not in 'components' folder
 components/**/fixtures/
 
 # ─── Environment Variables ──────────────────────────────────────────

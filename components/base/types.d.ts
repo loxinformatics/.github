@@ -104,6 +104,8 @@ export interface SectionResponse {
   title_version?: "V1" | "V2" | "V3";
 }
 
+export interface NavigationResponse {}
+
 export interface AboutResponse extends SectionResponse {
   section_instance?: string;
   section_version?: "V1";
@@ -130,20 +132,6 @@ export interface ContactResponse extends SectionResponse {
   open_days?: string;
   open_hours?: string;
   map_URL?: string;
-}
-
-export interface HeaderHeroResponse {
-  section_instance?: string;
-  header_background?: "body" | "dark";
-  logo_version?: LogoProps["logoVersion"];
-  header_nav?: boolean;
-  theme_toggler?: boolean;
-  hero_heading?: string;
-  hero_sub_heading?: string;
-  hero_paragraph?: string;
-  hero_image?: string;
-  hero_button_text?: string;
-  hero_button_href?: string;
 }
 
 interface Item {
@@ -241,26 +229,5 @@ export interface BottombarProps {
 export interface FooterBottombarProps extends BottombarProps {
   component?: "footerbottombar" | "footer" | "bottombar";
 }
-export interface HeaderHeroProps extends HeaderHeroResponse {
-  component?: "headerhero" | "header" | "hero";
-}
-
-export interface HeaderProps extends HeaderHeroResponse {
-  headerPosition?: "fixed" | "sticky";
-  headerBorder?: boolean;
-}
-
-export interface HeaderNavProps {
-  linkColor?: string;
-}
-
-export interface ModalNavProps {
-  toggleColor?: string;
-}
-
-export interface HeroProps extends HeaderHeroResponse {}
 
 export interface ListDescriptionsProps extends ListResponse {}
-
-
-

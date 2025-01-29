@@ -150,11 +150,11 @@ class ContactChangeForm(BaseChangeForm):
         model = ContactSection
 
 
-class ListDescriptionsAddForm(BaseAddForm):
+class ListSectionAddForm(BaseAddForm):
     class Meta(BaseAddForm.Meta):
         model = ListSection
 
 
-class ListDescriptionsChangeForm(BaseChangeForm):
+class ListSectionChangeForm(BaseChangeForm):
     class Meta(BaseChangeForm.Meta):
         model = ListSection

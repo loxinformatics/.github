@@ -10,12 +10,22 @@ export interface LogoProps {
   textColor?: string;
 }
 
+export interface NavigationItem {
+  text: string;
+  icon?: string;
+  href: string;
+  type?: string;
+  authorized?: string[];
+  children?: NavigationItem[];
+}
+
 export interface NavLinksProps {
-  links?: NavLink[];
-  layout: "header" | "aside" | "modal";
-  renderLink: (link: NavLink, index: number, sharedProps: any) => ReactNode;
+  navlinks?: NavLink[];
+  layout: "header" | "sidebar" | "modal";
   className?: any;
   id?: string;
+  navLinkClass?: string;
+  navLinkIconClass?: string;
 }
 
 export interface SocialMediaLinkProps {

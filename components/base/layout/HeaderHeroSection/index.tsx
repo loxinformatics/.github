@@ -2,27 +2,24 @@
 
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useBase } from "../../context";
-import type {
-  HeaderHeroProps,
-  HeaderNavProps,
-  HeaderProps,
-  HeroProps,
-  ModalNavProps,
-  NavLink,
-} from "../../types";
-import { createNavLinks } from "../../utils";
 import Btn from "../../widgets/buttons/Button";
 import SidebarToggler from "../../widgets/buttons/SidebarToggler";
 import ThemeToggler from "../../widgets/buttons/ThemeToggler";
-import Anchor from "../../widgets/links/Anchor";
 import Logo from "../../widgets/links/Logo";
 import Nav from "../../widgets/links/Nav";
 import Modal from "../../widgets/modals/Modal";
 import Section from "../../widgets/sections/Section";
 import Heading from "../../widgets/text/Heading";
 import baseStyles from "./styles.module.css";
+import type {
+  HeaderHeroProps,
+  HeaderNavProps,
+  HeaderProps,
+  HeroProps,
+  ModalNavProps,
+} from "./types";
 
 export default function HeaderHeroSection({
   component,
@@ -37,6 +34,7 @@ export default function HeaderHeroSection({
   hero_image,
   hero_button_text,
   hero_button_href,
+  navigation_items,
 }: HeaderHeroProps) {
   const headerProps = {
     section_instance,
@@ -46,6 +44,7 @@ export default function HeaderHeroSection({
     theme_toggler,
     hero_button_text,
     hero_button_href,
+    navigation_items,
   };
 
   const heroProps = {
@@ -90,6 +89,7 @@ function Header({
   hero_button_text,
   hero_button_href,
   section_instance,
+  navigation_items,
 }: HeaderProps) {
   const sectionId = section_instance || "";
   const position = headerPosition || "sticky";
@@ -118,12 +118,16 @@ function Header({
         <div className="w-1/4 flex justify-start items-center">
           <Logo logoVersion={logo_version} textColor={color} />
           <div className="ml-3" />
-          {headerNav && <ModalNav toggleColor={color} />}
+          {headerNav && (
+            <ModalNav toggleColor={color} navigation_items={navigation_items} />
+          )}
           <SidebarToggler />
         </div>
 
         <div className="w-1/2 flex justify-center items-center">
-          {headerNav && <HeaderNav linkColor={color} />}
+          {headerNav && (
+            <HeaderNav linkColor={color} navigation_items={navigation_items} />
+          )}
         </div>
 
         <div className="w-1/4 flex justify-end items-center">
@@ -151,50 +155,45 @@ function Header({
   );
 }
 
-function HeaderNav({ linkColor }: HeaderNavProps) {
-  const { textColorHover, navLinksMap } = useBase();
+function HeaderNav({ linkColor, navigation_items }: HeaderNavProps) {
+  const { textColorHover } = useBase();
+  const filteredNavItems = useMemo(
+    () =>
+      navigation_items?.filter(
+        (item) => !item.type || item.type === "normal"
+      ) ?? [],
+    [navigation_items]
+  );
 
-  const navLinks = createNavLinks(navLinksMap.header);
   const navLinks_color = linkColor || "text-color-reverse dark:text-color";
-
-  const renderLink = (link: NavLink, index: number) => {
-    const Icon = link?.icon;
-    return (
-      <li key={`navbar-link-${index}`}>
-        <Anchor
-          className={`${navLinks_color} ${baseStyles.header_navlink} ${textColorHover}`}
-          href={link.href || "#"}
-        >
-          {Icon && (
-            <i className={`${Icon} ${baseStyles.header_navlink_icon}`}></i>
-          )}
-          {link?.text}
-        </Anchor>
-      </li>
-    );
-  };
 
   return (
     <Nav
-      className={`text-sm tracking-wider ${baseStyles.header_nav}`}
-      links={navLinks}
       layout="header"
-      renderLink={renderLink}
+      className={`text-sm tracking-wider ${baseStyles.header_nav}`}
+      navlinks={filteredNavItems}
+      navLinkClass={`${navLinks_color} ${baseStyles.header_navlink} ${textColorHover}`}
+      navLinkIconClass={baseStyles.header_navlink_icon}
     />
   );
 }
 
-function ModalNav({ toggleColor }: ModalNavProps) {
+function ModalNav({ toggleColor, navigation_items }: ModalNavProps) {
   const {
     bgBodyHover,
-    navLinksMap,
     setAsideExists,
     asideExists,
     isNavModalOpen,
     setIsNavModalOpen,
   } = useBase();
 
-  const navLinks = createNavLinks(navLinksMap.header);
+  const filteredNavItems = useMemo(
+    () =>
+      navigation_items?.filter(
+        (item) => !item.type || item.type === "normal"
+      ) ?? [],
+    [navigation_items]
+  );
 
   const toggleMobileNavModal = () => {
     setIsNavModalOpen(!isNavModalOpen);
@@ -203,21 +202,6 @@ function ModalNav({ toggleColor }: ModalNavProps) {
   useEffect(() => {
     setAsideExists(!!document.querySelector("aside"));
   }, []);
-
-  const renderLink = (link: NavLink, index: number) => {
-    const Icon = link?.icon;
-    return (
-      <li key={`modal-link-${index}`}>
-        <Anchor
-          className={`${baseStyles.navLink} block px-4 py-2 transition-all ease-in-out duration-150 text-color dark:text-color-reverse ${bgBodyHover}`}
-          href={link?.href || "#"}
-        >
-          {Icon && <i className={`${Icon} ${baseStyles.navLinkIcon}`}></i>}{" "}
-          {link?.text}
-        </Anchor>
-      </li>
-    );
-  };
 
   return (
     !asideExists && (
@@ -228,10 +212,11 @@ function ModalNav({ toggleColor }: ModalNavProps) {
         toggleModal={toggleMobileNavModal}
       >
         <Nav
-          className={baseStyles.modal_nav}
-          links={navLinks}
           layout="modal"
-          renderLink={renderLink}
+          className={baseStyles.modal_nav}
+          navlinks={filteredNavItems}
+          navLinkClass={`${baseStyles.navLink} block px-4 py-2 transition-all ease-in-out duration-150 text-color dark:text-color-reverse ${bgBodyHover}`}
+          navLinkIconClass={baseStyles.navLinkIcon}
         />
       </Modal>
     )
