@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useBase } from "../context";
-import type { ListDescriptionsProps } from "../types";
-import Anchor from "../widgets/links/Anchor";
-import Section from "../widgets/sections/Section";
-import Heading from "../widgets/text/Heading";
+import { useBase } from "../../context";
+import type { ListDescriptionsProps } from "../../types";
+import Anchor from "../../widgets/links/Anchor";
+import Section from "../../widgets/sections/Section";
+import Heading from "../../widgets/text/Heading";
 import baseStyles from "./styles.module.css";
 
 export default function ListSection({

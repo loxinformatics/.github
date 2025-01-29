@@ -1,5 +1,5 @@
 import type { NavLinksMap } from "@/components/base/types";
-import { apiURL, createNavDropdown, homeURL } from "@/components/base/utils";
+import { createNavDropdown } from "@/components/base/utils";
 
 const navLinksMap: NavLinksMap = {
   header: [
@@ -44,11 +44,11 @@ const navLinksMap: NavLinksMap = {
       ]),
     },
     { type: "heading", text: "Pages", href: "" },
-    { text: "Home", icon: "bi bi-house", href: homeURL },
+    { text: "Home", icon: "bi bi-house", href: "/" },
     {
       text: "Admin",
       icon: "bi bi-shield-lock",
-      href: `${apiURL}/admin`,
+      href: `${process.env.REST_URL}/admin`,
       authorized: ["STAFF"],
     },
     { text: "Profile", href: "#", authorized: ["USER"], icon: "bi bi-person" },

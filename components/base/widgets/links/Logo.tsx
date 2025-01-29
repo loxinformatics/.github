@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useBase } from "../../context";
-import { homeURL } from "../../utils";
 import Anchor from "./Anchor";
 import type { LogoProps } from "./types";
 
@@ -12,7 +11,7 @@ export default function Logo({ logoVersion, textColor }: LogoProps) {
   const color = textColor || "text-color dark:text-color-reverse";
 
   return (
-    <Anchor href={homeURL} id="logo" className="py-2">
+    <Anchor href="/" id="logo" className="py-2">
       {version === "logo_image" ? (
         // TODO: Have an option for choosing whether to either differentiate which images should be showing based on screen size or theme is dark, or if just one image should be used irrespective of screen size or theme.
         <Image

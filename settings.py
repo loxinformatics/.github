@@ -38,15 +38,17 @@ INSTALLED_APPS = [
     "components.base",
 ]
 
-APP_DIR = BASE_DIR / "app"  # Directory for the main application
+APP_DIR = BASE_DIR / "app"  # Nextjs 'app' folder
 
 ROOT_URLCONF = "app.urls"
 
-API_PATH = config("NEXT_PUBLIC_API_PATH", default="api")  # Base path for APIs
+REST_PATH = config("REST_PATH", default="api")  # Base path for APIs
 
-NEXTJS_PROTOCOL = config("NEXTJS_PROTOCOL", default="http")
-NEXTJS_HOST = str(config("NEXTJS_HOST", default="localhost")).strip("/")
-NEXTJS_PORT = config("NEXTJS_PORT", default="")
+NEXTJS_URL = (
+    f"{config('NEXTJS_PROTOCOL', default='http')}://"
+    f"{str(config('NEXTJS_HOST', default='localhost')).strip('/')}"
+    f"{':' + config('NEXTJS_PORT', default='') if config('NEXTJS_PORT', default='') else ''}"
+)
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -156,7 +158,7 @@ else:
 
 # TODO: Add Csrf Protection Capability
 CSRF_TRUSTED_ORIGINS = [
-    f"{NEXTJS_PROTOCOL}://{NEXTJS_HOST}{':' + NEXTJS_PORT if NEXTJS_PORT else ''}",
+    NEXTJS_URL,
     "https://localhost:8000",  # for GitHub Codespaces
 ]
 

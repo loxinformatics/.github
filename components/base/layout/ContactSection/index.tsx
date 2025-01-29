@@ -1,10 +1,10 @@
 "use client";
 
-import { useBase } from "../context";
-import type { ContactItemProps, ContactProps } from "../types";
-import MailUsForm from "../widgets/forms/MailUsForm";
-import Section from "../widgets/sections/Section";
-import Heading from "../widgets/text/Heading";
+import { useBase } from "../../context";
+import type { ContactItemProps, ContactProps } from "../../types";
+import MailUsForm from "../../widgets/forms/MailUsForm";
+import Section from "../../widgets/sections/Section";
+import Heading from "../../widgets/text/Heading";
 import baseStyles from "./styles.module.css";
 
 export default function ContactSection({

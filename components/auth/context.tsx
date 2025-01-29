@@ -3,13 +3,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { login } from "./actions";
 import type { AuthContext, AuthProps, IsAuthorizedProps, User } from "./types";
-import {
-  loginRedirectURL,
-  loginURL,
-  logoutRedirectURL,
-  logoutURL,
-  privateRoutes,
-} from "./utils";
+import { loginRedirectURL, logoutRedirectURL, privateRoutes } from "./utils";
 
 const Auth = createContext<AuthContext | undefined>(undefined);
 
@@ -41,9 +35,7 @@ export function AuthProvider({ groups, children }: AuthProps) {
     setUser,
     isAuthorized,
     setIsAuthorized,
-    loginURL,
     loginRedirectURL,
-    logoutURL,
     logoutRedirectURL,
     privateRoutes,
   };

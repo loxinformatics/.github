@@ -82,13 +82,12 @@ export function HeadingNavLink({ link, index }: any) {
 
 export function LoginNavLink({ link, pathname }: any) {
   const { textColorHover, textColorGroupHover } = useBase();
-  const { loginURL } = useAuth();
   const nextUrl = encodeURIComponent(pathname);
 
   return (
     <li className={styles.sidebarlink}>
       <Anchor
-        href={`${loginURL}/?nextUrl=${nextUrl}&callbackUrl=${pathname}`}
+        href={`/auth/login/?nextUrl=${nextUrl}&callbackUrl=${pathname}`}
         className={`group ${styles.nav_link} bg-body-secondary dark:bg-body-secondary-reverse ${textColorHover} hover:bg-body-tertiary dark:hover:bg-body-tertiary-reverse`}
       >
         {link.icon && <i className={`${link.icon} ${textColorGroupHover}`}></i>}
@@ -105,12 +104,11 @@ export function LoginNavLink({ link, pathname }: any) {
 
 export function LogoutNavLink({ link, pathname }: any) {
   const { textColorHover, textColorGroupHover } = useBase();
-  const { logoutURL } = useAuth();
 
   return (
     <li className={styles.sidebarlink}>
       <Anchor
-        href={`${logoutURL}?callbackUrl=${pathname}`}
+        href={`/auth/logout?callbackUrl=${pathname}`}
         className={`group ${styles.nav_link} bg-body-secondary dark:bg-body-secondary-reverse ${textColorHover} hover:bg-body-tertiary dark:hover:bg-body-tertiary-reverse`}
       >
         {link.icon && <i className={`${link.icon} ${textColorGroupHover}`}></i>}

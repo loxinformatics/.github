@@ -1,10 +1,10 @@
 "use client";
 
 import { useLayoutEffect, useState } from "react";
-import { useBase } from "../context";
-import type { NavLink } from "../types";
-import { createNavLinks } from "../utils";
-import Nav from "../widgets/links/Nav";
+import { useBase } from "../../context";
+import type { NavLink } from "../../types";
+import { createNavLinks } from "../../utils";
+import Nav from "../../widgets/links/Nav";
 import {
   DropdownNavLink,
   HeadingNavLink,
@@ -12,7 +12,7 @@ import {
   LoginNavLink,
   LogoutNavLink,
   PageNavLink,
-} from "../widgets/links/SidebarLinks";
+} from "../../widgets/links/SidebarLinks";
 import baseStyles from "./styles.module.css";
 
 export default function SidebarSection() {

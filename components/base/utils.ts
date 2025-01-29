@@ -1,21 +1,6 @@
 import type { NavLink, NavLinkType } from "./types";
 
-export const apiURL =
-  `${process.env.NEXT_PUBLIC_API_PROTOCOL || "http"}://` +
-  `${process.env.NEXT_PUBLIC_API_HOST?.replace(/\/+$/, "") || "localhost"}` +
-  `${
-    process.env.NEXT_PUBLIC_API_PORT
-      ? ":" + process.env.NEXT_PUBLIC_API_PORT
-      : ""
-  }` +
-  `${
-    !!process.env.NEXT_PUBLIC_API_PATH
-      ? "/" + process.env.NEXT_PUBLIC_API_PATH.replace(/^\/+|\/+$/g, "")
-      : ""
-  }`;
-
-export const baseApiURL = `${apiURL}/base`;
-export const homeURL = process.env.NEXT_PUBLIC_HOME_URL || "/";
+export const baseApiURL = `${process.env.REST_URL}/base`;
 
 export const createNavDropdown = (children: NavLink[]): NavLink[] => {
   return children.filter((child) => {

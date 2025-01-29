@@ -5,7 +5,6 @@ import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { fetchData } from "../base/actions";
 import type { FormResponse } from "../base/types";
-import { homeURL } from "../base/utils";
 import type { AuthReponse, DecodedToken, TokenResponse, User } from "./types";
 import { authApiURL, isTokenExpired } from "./utils";
 
@@ -124,7 +123,7 @@ export async function login({
     const decodedRefreshToken = jwtDecode<DecodedToken>(refreshToken);
 
     cookieStore.set("accessToken", accessToken, {
-      path: homeURL,
+      path: "/",
       expires: new Date(decodedAccessToken.exp * 1000),
       httpOnly: true,
       secure: process.env.ENVIRONMENT === "production",
@@ -132,7 +131,7 @@ export async function login({
     });
 
     cookieStore.set("refreshToken", refreshToken, {
-      path: homeURL,
+      path: "/",
       expires: new Date(decodedRefreshToken.exp * 1000),
       httpOnly: true,
       secure: process.env.ENVIRONMENT === "production",

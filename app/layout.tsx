@@ -2,7 +2,7 @@ import { fetchAuth } from "@/components/auth/actions";
 import { AuthProvider } from "@/components/auth/context";
 import type { AuthReponse } from "@/components/auth/types";
 import { fetchBase, fetchMetadata } from "@/components/base/actions";
-import { BaseProvider } from "@/components/base/context";
+import { BaseFont, BaseProvider } from "@/components/base/context";
 import type { BaseResponse, MetadataResponse } from "@/components/base/types";
 import ScrollTop from "@/components/base/widgets/buttons/ScrollTop";
 import type { Metadata } from "next";
@@ -61,9 +61,18 @@ export default async function RootLayout({
   const authData: AuthReponse = await fetchAuth();
 
   return (
-    <BaseProvider {...baseData}>
-      <AuthProvider {...authData}>{children}</AuthProvider>
-      <ScrollTop />
-    </BaseProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`
+              bg-body dark:bg-body-reverse
+              ${BaseFont.className} antialiased
+            `}
+      >
+        <BaseProvider {...baseData}>
+          <AuthProvider {...authData}>{children}</AuthProvider>
+          <ScrollTop />
+        </BaseProvider>
+      </body>
+    </html>
   );
 }

@@ -10,11 +10,11 @@ export default function LogoutSection() {
   const SignoutInner = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const { loginURL, logoutRedirectURL, setUser, setIsAuthorized } = useAuth();
+    const { logoutRedirectURL, setUser, setIsAuthorized } = useAuth();
 
     const encodedHrefParam = searchParams.get("callbackUrl");
     const nextUrl =
-      logoutRedirectURL === loginURL && encodedHrefParam
+      logoutRedirectURL === "/auth/login" && encodedHrefParam
         ? `${logoutRedirectURL}/?nextUrl=${encodedHrefParam}`
         : logoutRedirectURL;
 

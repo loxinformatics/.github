@@ -1,19 +1,19 @@
 "use client";
 
-import { useBase } from "../context";
+import { useBase } from "../../context";
 import type {
   BottombarProps,
   FooterBottombarProps,
   FooterNavProps,
   NavLink,
-} from "../types";
-import { createNavLinks } from "../utils";
-import ThemeToggler from "../widgets/buttons/ThemeToggler";
-import Anchor from "../widgets/links/Anchor";
-import SocialMediaLinks from "../widgets/links/SocialMediaLinks";
-import Container from "../widgets/sections/Container";
-import Section from "../widgets/sections/Section";
-import Heading from "../widgets/text/Heading";
+} from "../../types";
+import { createNavLinks } from "../../utils";
+import ThemeToggler from "../../widgets/buttons/ThemeToggler";
+import Anchor from "../../widgets/links/Anchor";
+import SocialMediaLinks from "../../widgets/links/SocialMediaLinks";
+import Container from "../../widgets/sections/Container";
+import Section from "../../widgets/sections/Section";
+import Heading from "../../widgets/text/Heading";
 import baseStyles from "./styles.module.css";
 
 export default function FooterBottombarSection({

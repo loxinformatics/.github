@@ -3,13 +3,11 @@
 import { jwtDecode } from "jwt-decode";
 import type { NextRequest, NextResponse } from "next/server";
 import { NextResponse as Response } from "next/server";
-import { homeURL } from "../base/utils";
 import { refresh } from "./actions";
 import type { DecodedToken } from "./types";
 import {
   isTokenExpired,
   loginRedirectURL,
-  loginURL,
   privateRoutes,
   publicRoutes,
 } from "./utils";
@@ -30,14 +28,14 @@ export async function AuthMiddleware(
     response.cookies.set("accessToken", accessToken, {
       httpOnly: true,
       secure: process.env.ENVIRONMENT === "production",
-      path: homeURL,
+      path: "/",
       sameSite: "strict",
       expires: new Date(decodedAccessToken.exp * 1000),
     });
     response.cookies.set("refreshToken", refreshToken, {
       httpOnly: true,
       secure: process.env.ENVIRONMENT === "production",
-      path: homeURL,
+      path: "/",
       sameSite: "strict",
       expires: new Date(decodedRefreshToken.exp * 1000),
     });
@@ -80,7 +78,7 @@ export async function AuthMiddleware(
     refreshToken: string | undefined
   ): Promise<NextResponse> => {
     if (!accessToken || isTokenExpired(accessToken)) {
-      const nextUrl = new URL(loginURL, request.url);
+      const nextUrl = new URL("/auth/login", request.url);
       nextUrl.searchParams.set("nextUrl", pathname);
       callbackUrl && nextUrl.searchParams.set("callbackUrl", callbackUrl);
 
@@ -115,7 +113,9 @@ export async function AuthMiddleware(
 
   const { accessToken, refreshToken } = await getCookies(request, 3, 100);
 
-  const mergedPublicRoutes = Array.from(new Set([loginURL, ...publicRoutes]));
+  const mergedPublicRoutes = Array.from(
+    new Set(["/auth/login", ...publicRoutes])
+  );
 
   if (privateRoutes.some((route: string) => pathname.startsWith(route))) {
     const callbackUrl = searchParams.get("callbackUrl") || undefined;

@@ -43,9 +43,7 @@ export interface AuthContext {
   setUser: React.Dispatch<React.SetStateAction<any>>;
   isAuthorized: boolean;
   setIsAuthorized: React.Dispatch<React.SetStateAction<boolean>>;
-  loginURL: string;
   loginRedirectURL: string;
-  logoutURL: string;
   logoutRedirectURL: string;
   privateRoutes: string[];
 }

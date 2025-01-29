@@ -20,8 +20,12 @@ export async function middleware(request: NextRequest) {
 function AssetsMiddleware(request: NextRequest) {
   const url = request.nextUrl;
 
-  // Block access to paths starting with /static or /media.
-  // These folders are part of the public directory and handled by Django.
+  // * Block access to paths starting with '/static' or '/media'.
+  // * Django stores its static and media in the public folder
+  // * accessing them via '/public/static' and '/public/media' respectively as defined in settings.py.
+  // * Hence there is no need for Nextjs to have access to these files via '/static' and '/media'
+  // * Ensure no files accessible from Nextjs are saved in those two folders.
+
   if (url.pathname.startsWith("/static") || url.pathname.startsWith("/media")) {
     // Respond with a 403 Forbidden error to prevent Next.js access to static and media assets.
     return new NextResponse("Access Denied", {

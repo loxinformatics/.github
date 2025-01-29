@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import type { AboutProps } from "../types";
-import Section from "../widgets/sections/Section";
+import type { AboutProps } from "../../types";
+import Section from "../../widgets/sections/Section";
 import baseStyles from "./styles.module.css";
 
 export default function AboutSection({

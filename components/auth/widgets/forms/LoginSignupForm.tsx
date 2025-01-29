@@ -3,7 +3,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
 import { useBase } from "../../../base/context";
-import { homeURL } from "../../../base/utils";
 import Btn from "../../../base/widgets/buttons/Button";
 import { Control, Form } from "../../../base/widgets/forms/Form";
 import baseStyles from "../../../base/widgets/forms/styles.module.css";
@@ -59,8 +58,7 @@ export function LoginForm() {
 
         // Redirect
         const nextUrl = searchParams.get("nextUrl");
-        const redirectUrl = nextUrl || loginRedirectURL;
-        router.replace(redirectUrl);
+        router.replace(nextUrl || loginRedirectURL);
       } else {
         // Handle form field errors
         const usernameValidity = result.error.includes("username")
@@ -90,7 +88,7 @@ export function LoginForm() {
     }
   };
 
-  const callbackUrl = searchParams.get("callbackUrl") || homeURL;
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   return (
     <Form
@@ -159,11 +157,11 @@ export function LoginForm() {
 
         {loading || success ? (
           <Btn className="w-full sm:w-1/2" disabled>
-            {callbackUrl === homeURL ? "Home" : "Back"}
+            {callbackUrl === "/" ? "Home" : "Back"}
           </Btn>
         ) : (
           <Btn className="w-full sm:w-1/2" href={callbackUrl}>
-            {callbackUrl === homeURL ? "Home" : "Back"}
+            {callbackUrl === "/" ? "Home" : "Back"}
           </Btn>
         )}
       </div>

@@ -11,7 +11,7 @@ import type { BaseContext, BaseProps, ThemeColorKey } from "./types";
 
 const Base = createContext<BaseContext | undefined>(undefined);
 
-const Preloslab = localFont({
+export const BaseFont = localFont({
   src: [
     {
       path: "./static/base/preloslab-book.otf",
@@ -217,18 +217,9 @@ export function BaseProvider({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`
-              bg-body dark:bg-body-reverse
-              ${Preloslab.className} antialiased
-            `}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Base.Provider value={context}>{children}</Base.Provider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <Base.Provider value={context}>{children}</Base.Provider>
+    </ThemeProvider>
   );
 }
 

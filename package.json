@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "setup": "node ./components/scripts/next-setup.mjs",
-    "dev": "pnpm run setup && next dev",
-    "build": "pnpm run setup && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start -p 7000",
     "lint": "next lint",
     "update": "npx npm-check-updates -u && pnpm install"
