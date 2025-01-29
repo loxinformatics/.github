@@ -4,28 +4,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { ThemeProvider } from "next-themes";
-import localFont from "next/font/local";
 import { createContext, useContext, useEffect, useState } from "react";
 import navLinksMap from "./navigation";
 import type { BaseContext, BaseProps, ThemeColorKey } from "./types";
 
 const Base = createContext<BaseContext | undefined>(undefined);
-
-export const BaseFont = localFont({
-  src: [
-    {
-      path: "./static/base/preloslab-book.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./static/base/preloslab-bold.otf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  display: "swap",
-});
 
 export function BaseProvider({
   csrf_token,

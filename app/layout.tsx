@@ -2,11 +2,29 @@ import { fetchAuth } from "@/components/auth/actions";
 import { AuthProvider } from "@/components/auth/context";
 import type { AuthReponse } from "@/components/auth/types";
 import { fetchBase, fetchMetadata } from "@/components/base/actions";
-import { BaseFont, BaseProvider } from "@/components/base/context";
+import { BaseProvider } from "@/components/base/context";
 import type { BaseResponse, MetadataResponse } from "@/components/base/types";
 import ScrollTop from "@/components/base/widgets/buttons/ScrollTop";
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./global.css";
+
+const PreloSlab = localFont({
+  src: [
+    {
+      path: "../public/fonts/preloslab-book.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/preloslab-bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-base",
+  display: "swap",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const meta: MetadataResponse = await fetchMetadata();
@@ -65,7 +83,7 @@ export default async function RootLayout({
       <body
         className={`
               bg-body dark:bg-body-reverse
-              ${BaseFont.className} antialiased
+              ${PreloSlab.className} antialiased
             `}
       >
         <BaseProvider {...baseData}>
