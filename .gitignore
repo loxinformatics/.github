@@ -11,7 +11,7 @@ __pycache__/
 *.sqlite*
 public/static/
 public/media/
-components/**/fixtures/
+src/**/fixtures/
 
 # ─── Environment Variables ──────────────────────────────────────────
 *.env*

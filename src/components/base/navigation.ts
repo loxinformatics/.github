@@ -1,5 +1,5 @@
-import type { NavLinksMap } from "@/components/base/types";
-import { createNavDropdown } from "@/components/base/utils";
+import type { NavLinksMap } from "@/src/components/base/types";
+import { createNavDropdown } from "@/src/components/base/utils";
 
 const navLinksMap: NavLinksMap = {
   footer_1: [

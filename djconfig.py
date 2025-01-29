@@ -34,12 +34,12 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",  # Docs: https://django-rest-framework-simplejwt.readthedocs.io/
     "corsheaders",  # Docs: https://pypi.org/project/django-cors-headers/
     # Local apps
-    "components.base",
+    "src.components.base",
 ]
 
-APP_DIR = BASE_DIR / "app"  # Nextjs 'app' folder
+APP_DIR = BASE_DIR / "src" /"app"  # Nextjs 'app' folder
 
-ROOT_URLCONF = "app.urls"
+ROOT_URLCONF = "src.app.urls"
 
 REST_PATH = config("REST_PATH", default="api")  # Base path for APIs
 

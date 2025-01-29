@@ -1,5 +1,5 @@
-import { fetchManifest } from "@/components/base/actions";
-import type { ManifestResponse } from "@/components/base/types";
+import { fetchManifest } from "@/src/components/base/actions";
+import type { ManifestResponse } from "@/src/components/base/types";
 import type { MetadataRoute } from "next";
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
@@ -26,7 +26,7 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
         purpose: "any",
       },
       {
-        src: manifest?.apple_image|| "/apple.png",
+        src: manifest?.apple_image || "/apple.png",
         sizes: "180x180",
         type: "image/png",
         purpose: "any",

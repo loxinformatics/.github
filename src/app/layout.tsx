@@ -1,10 +1,13 @@
-import { fetchAuth } from "@/components/auth/actions";
-import { AuthProvider } from "@/components/auth/context";
-import type { AuthReponse } from "@/components/auth/types";
-import { fetchBase, fetchMetadata } from "@/components/base/actions";
-import { BaseProvider } from "@/components/base/context";
-import type { BaseResponse, MetadataResponse } from "@/components/base/types";
-import ScrollTop from "@/components/base/widgets/buttons/ScrollTop";
+import { fetchAuth } from "@/src/components/auth/actions";
+import { AuthProvider } from "@/src/components/auth/context";
+import type { AuthReponse } from "@/src/components/auth/types";
+import { fetchBase, fetchMetadata } from "@/src/components/base/actions";
+import { BaseProvider } from "@/src/components/base/context";
+import type {
+  BaseResponse,
+  MetadataResponse,
+} from "@/src/components/base/types";
+import ScrollTop from "@/src/components/base/widgets/buttons/ScrollTop";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./global.css";
@@ -12,12 +15,12 @@ import "./global.css";
 const PreloSlab = localFont({
   src: [
     {
-      path: "../public/fonts/preloslab-book.otf",
+      path: "./ui/fonts/preloslab-book.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/preloslab-bold.otf",
+      path: "./ui/fonts/preloslab-bold.otf",
       weight: "700",
       style: "normal",
     },
