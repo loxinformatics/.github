@@ -15,5 +15,8 @@ djangorestframework-simplejwt = "*"
 django-cors-headers = "*"
 django-ckeditor-5 = "*"
 
+[dev-packages]
+termcolor = "*"
+
 [requires]
 python_version = "3.12"

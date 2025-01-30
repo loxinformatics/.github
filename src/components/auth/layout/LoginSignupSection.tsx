@@ -1,8 +1,8 @@
 "use client";
 
 import { Suspense } from "react";
-import Preloader from "../../widgets/loaders/Preloader";
-import Section from "../../widgets/sections/Section";
+import Preloader from "../../base/widgets/loaders/Preloader";
+import Section from "../../base/widgets/section/Section";
 import type { LoginSignupProps } from "../types";
 import { LoginForm } from "../widgets/forms/LoginSignupForm";
 

@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .models import Base, NavigationItem, SidebarSection
+from .models import Base, NavigationItem
+from .utils import recursive_import
 
 
 class SingletonAdmin(admin.ModelAdmin):
@@ -120,28 +121,10 @@ class BaseAdmin(SingletonAdmin):
     )
 
 
-class SectionAdmin(admin.ModelAdmin):
-    """Base admin class for section models with customized form handling."""
-
-    def get_form(self, request, obj=None, **kwargs):
-        if obj is None:
-            return self.add_form
-        return super().get_form(request, obj, **kwargs)
-
-
 class NavigationItemInline(admin.StackedInline):
     model = NavigationItem
     extra = 1
     fields = ["text", "icon", "href", "type", "parent", "authorized", "order"]
 
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        if isinstance(self.parent_model, SidebarSection):
-            return qs.filter(section_type="sidebar")
-        return qs
 
-
-@admin.register(SidebarSection)
-class SidebarAdmin(SectionAdmin):
-    inlines = [NavigationItemInline]
-    model = SidebarSection
+recursive_import("admin.py")

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .forms import MailForm
-from .models import NavigationItem, SidebarSection
+from .models import NavigationItem
 
 
 class MailSerializer(serializers.Serializer):
@@ -33,11 +33,3 @@ class NavigationItemSerializer(serializers.ModelSerializer):
         if obj.children.exists():
             return NavigationItemSerializer(obj.children.all(), many=True).data
         return None
-
-
-class SidebarSectionSerializer(serializers.ModelSerializer):
-    navigation_items = NavigationItemSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = SidebarSection
-        fields = "__all__"
