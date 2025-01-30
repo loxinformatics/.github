@@ -1,7 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import type { DecodedToken } from "./types";
 
-export const authApiURL = `${process.env.REST_URL}/auth`;
+export const authApiURL = `${process.env.DJANGO_URL}/auth`;
 export const loginRedirectURL = process.env.LOGIN_REDIRECT_URL ?? "/";
 export const logoutRedirectURL =
   process.env.LOGOUT_REDIRECT_URL ?? "/auth/login";

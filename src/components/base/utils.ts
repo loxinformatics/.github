@@ -1,6 +1,6 @@
 import type { NavLink, NavLinkType } from "./types";
 
-export const baseApiURL = `${process.env.REST_URL}/base`;
+export const baseApiURL = `${process.env.DJANGO_URL}/base`;
 
 export const createNavDropdown = (children: NavLink[]): NavLink[] => {
   return children.filter((child) => {

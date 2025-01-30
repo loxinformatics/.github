@@ -34,7 +34,7 @@ const navLinksMap: NavLinksMap = {
     {
       text: "Admin",
       icon: "bi bi-shield-lock",
-      href: `${process.env.REST_URL}/admin`,
+      href: `${process.env.DJANGO_URL}/admin`,
       authorized: ["STAFF"],
     },
     { text: "Profile", href: "#", authorized: ["USER"], icon: "bi bi-person" },

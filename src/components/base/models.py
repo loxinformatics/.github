@@ -235,12 +235,12 @@ class Section(models.Model):
         """Helper method to process files and find component instances."""
 
         for pattern in patterns:
-            for file in settings.APP_DIR.rglob(pattern):
+            for file in settings.NEXT_APP_DIR.rglob(pattern):
                 content = file.read_text(encoding="utf-8")
                 component_count = content.count(f"<{component}")
 
                 if component_count > 0:
-                    parts = file.relative_to(settings.APP_DIR).parts
+                    parts = file.relative_to(settings.NEXT_APP_DIR).parts
                     path = "/" + "/".join(parts[:-1]) if len(parts) > 1 else "/"
                     safe_path = path.replace("/", "_").replace("-", "_").strip("_")
 
@@ -416,11 +416,11 @@ class NavigationItem(Navigation):
     def save(self, *args, **kwargs):
         # Automatically set section_type based on which section is set
         if self.header_section:
-            self.section_type = 'header'
+            self.section_type = "header"
         elif self.footer_section:
-            self.section_type = 'footer'
+            self.section_type = "footer"
         elif self.sidebar_section:
-            self.section_type = 'sidebar'
+            self.section_type = "sidebar"
         super().save(*args, **kwargs)
 
 

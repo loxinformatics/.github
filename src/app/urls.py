@@ -6,9 +6,9 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path(f"{settings.REST_PATH}/admin/", admin.site.urls),
-    path(f"{settings.REST_PATH}/base/", include("src.components.base.urls")),
-    path(f"{settings.REST_PATH}/auth/", include("src.components.auth.urls")),
+    path(f"{settings.URLPATH}/admin/", admin.site.urls),
+    path(f"{settings.URLPATH}/base/", include("src.components.base.urls")),
+    path(f"{settings.URLPATH}/auth/", include("src.components.auth.urls")),
 ]
 
 
@@ -20,7 +20,7 @@ if settings.DEBUG:
 def adminsite_site_url(path: str = ""):
     path = path.strip("/")
 
-    admin.site.site_url = f"{settings.NEXTJS_URL}{'/' + path if path else ''}/"
+    admin.site.site_url = f"{settings.NEXT_URL}{'/' + path if path else ''}/"
 
 
 # Call the function to set the admin panel site URL, optionally passing a path
