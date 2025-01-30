@@ -1,0 +1,36 @@
+/* Navbar */
+.navbar .navlink,
+.navbar .navlink:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 30px;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.navbar .navlinkIcon,
+.navbar .navlinkIcon:focus {
+  margin-right: 0.5rem;
+  line-height: 0;
+  margin-left: 5px;
+}
+
+/* Navmodal */
+@media (prefers-reduced-motion: reduce) {
+  .navmodal .navlink {
+    transition: none;
+  }
+}
+
+.navmodal .navlink,
+.navmodal .navlink:focus {
+  padding: 10px 20px !important;
+}
+
+.navmodal .navlinkIcon,
+.navmodal .navlinkIcon:focus {
+  margin-right: 0.5rem;
+  line-height: 0;
+  margin-left: 5px;
+}

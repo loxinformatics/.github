@@ -1,5 +1,5 @@
-import { fetchManifest } from "@/src/components/base/actions";
-import type { ManifestResponse } from "@/src/components/base/types";
+import { fetchManifest } from "@/components/base/management/actions";
+import type { ManifestResponse } from "@/components/base/management/types";
 import type { MetadataRoute } from "next";
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {

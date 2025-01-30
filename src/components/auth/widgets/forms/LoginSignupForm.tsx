@@ -2,11 +2,11 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
-import { useBase } from "../../../base/context";
-import Btn from "../../../base/widgets/buttons/Button";
-import { Control, Form } from "../../../base/widgets/forms/Form";
+import { useBase } from "../../../base/management/context";
 import baseStyles from "../../../base/widgets/forms/styles.module.css";
-import Heading from "../../../base/widgets/text/Heading";
+import Btn from "../../../widgets/buttons/Button";
+import { Control, Form } from "../../../widgets/forms/Form";
+import Heading from "../../../widgets/text/Heading";
 import { authenticate, login } from "../../actions";
 import { useAuth } from "../../context";
 import styles from "./styles.module.css";

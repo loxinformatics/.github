@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
       `${process.env.DJANGO_HOST?.replace(/\/+$/, "") || "localhost"}` +
       `${process.env.DJANGO_PORT ? ":" + process.env.DJANGO_PORT : ""}` +
       `${
-        !!process.env.DJANGO_URLPATH
-          ? "/" + process.env.DJANGO_URLPATH.replace(/^\/+|\/+$/g, "")
+        !!process.env.DJANGO_BASE_URLPATH
+          ? "/" + process.env.DJANGO_BASE_URLPATH.replace(/^\/+|\/+$/g, "")
           : ""
       }`,
   },

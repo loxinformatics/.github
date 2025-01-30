@@ -1,26 +1,26 @@
 import {
-  fetchAbout,
-  fetchCallToAction,
-  fetchContact,
-  fetchHeaderHero,
-  fetchList,
-} from "@/src/components/base/actions";
-import {
   AboutSection,
   CallToActionSection,
   ContactSection,
   FooterBottombarSection,
   HeaderHeroSection,
   ListSection,
-} from "@/src/components/base/layout";
+} from "@/components/base";
+import {
+  fetchAbout,
+  fetchCallToAction,
+  fetchContact,
+  fetchHeaderHero,
+  fetchList,
+} from "@/components/base/management/actions";
 import type {
   AboutResponse,
   CallToActionResponse,
   ContactResponse,
   HeaderHeroResponse,
   ListResponse,
-} from "@/src/components/base/types";
-import Preloader from "@/src/components/base/widgets/loaders/Preloader";
+} from "@/components/base/management/types";
+import Preloader from "@/components/widgets/loaders/Preloader";
 
 export default async function Page() {
   const headerHero: HeaderHeroResponse = await fetchHeaderHero("page_1");

@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
-import Preloader from "../../base/widgets/loaders/Preloader";
+import Preloader from "../../widgets/loaders/Preloader";
 import { logout } from "../actions";
 import { useAuth } from "../context";
 

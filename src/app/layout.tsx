@@ -1,13 +1,13 @@
-import { fetchAuth } from "@/src/components/auth/actions";
-import { AuthProvider } from "@/src/components/auth/context";
-import type { AuthReponse } from "@/src/components/auth/types";
-import { fetchBase, fetchMetadata } from "@/src/components/base/actions";
-import { BaseProvider } from "@/src/components/base/context";
+import { fetchAuth } from "@/components/auth/actions";
+import { AuthProvider } from "@/components/auth/context";
+import type { AuthReponse } from "@/components/auth/types";
+import { fetchBase, fetchMetadata } from "@/components/base/management/actions";
+import { BaseProvider } from "@/components/base/management/context";
 import type {
   BaseResponse,
   MetadataResponse,
-} from "@/src/components/base/types";
-import ScrollTop from "@/src/components/base/widgets/buttons/ScrollTop";
+} from "@/components/base/management/types";
+import ScrollTop from "@/components/widgets/buttons/ScrollTop";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./global.css";
@@ -25,7 +25,6 @@ const PreloSlab = localFont({
       style: "normal",
     },
   ],
-  variable: "--font-base",
   display: "swap",
 });
 

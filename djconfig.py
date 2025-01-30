@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     "src.components.base",
 ]
 
-NEXT_APP_DIR = BASE_DIR / "src" / "app"  # Nextjs 'app' folder
+APP_DIR = BASE_DIR / "src" / "app"
 ROOT_URLCONF = "src.app.urls"
-URLPATH = config("DJANGO_URLPATH", default="api")  # Base path for Django
+BASE_URLPATH = config("DJANGO_BASE_URLPATH", default="api")
 
 NEXT_URL = (
     f"{config('NEXT_PROTOCOL', default='http')}://"
@@ -156,25 +156,10 @@ else:
 # TODO: Add Csrf Protection Capability
 CSRF_TRUSTED_ORIGINS = [
     NEXT_URL,
-    "https://localhost:8000",  # for GitHub Codespaces
+    # for GitHub Codespaces
+    f"https://localhost"
+    f"{':' + config('DJANGO_PORT', default='') if config('DJANGO_PORT', default='') else ''}",
 ]
-
-# --------------------------------------------------------------------
-# EMAIL SETTINGS
-# --------------------------------------------------------------------
-# Docs: https://docs.djangoproject.com/en/stable/topics/email/
-
-EMAIL_BACKEND = (
-    "django.core.mail.backends.console.EmailBackend"
-    if DEBUG
-    else config("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
-)
-EMAIL_HOST = config("EMAIL_HOST", default="")
-EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
-EMAIL_USE_SSL = config("EMAIL_USE_SSL", default=False, cast=bool)
-EMAIL_PORT = config("EMAIL_PORT", default="587")
-EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 
 # --------------------------------------------------------------------
 # STATIC FILES SETTINGS
@@ -201,6 +186,23 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Africa/Nairobi"
 USE_I18N = True
 USE_TZ = True
+
+# --------------------------------------------------------------------
+# EMAIL SETTINGS
+# --------------------------------------------------------------------
+# Docs: https://docs.djangoproject.com/en/stable/topics/email/
+
+EMAIL_BACKEND = (
+    "django.core.mail.backends.console.EmailBackend"
+    if DEBUG
+    else config("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
+)
+EMAIL_HOST = config("EMAIL_HOST", default="")
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
+EMAIL_USE_SSL = config("EMAIL_USE_SSL", default=False, cast=bool)
+EMAIL_PORT = config("EMAIL_PORT", default="587")
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 
 # --------------------------------------------------------------------
 # DEFAULT PRIMARY KEY FIELD TYPE
