@@ -1,9 +1,9 @@
-import type { ManifestResponse } from "@/components/base/management/types";
-import { fetchBase } from "@/components/base/server";
+import type { ManifestData } from "@/components/base/app/base/types";
+import { fetchBase } from "@/components/base/app/server";
 import type { MetadataRoute } from "next";
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
-  const manifest: ManifestResponse = await fetchBase("manifest");
+  const manifest: ManifestData = await fetchBase("manifest");
 
   return {
     name: manifest?.full_name,

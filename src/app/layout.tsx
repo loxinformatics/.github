@@ -1,12 +1,8 @@
 import { fetchAuth } from "@/components/auth/actions";
 import { AuthProvider } from "@/components/auth/context";
 import type { AuthReponse } from "@/components/auth/types";
-import { Base } from "@/components/base";
-import type {
-  BaseResponse,
-  MetadataResponse,
-} from "@/components/base/management/types";
-import { fetchBase } from "@/components/base/server";
+import { Base } from "@/components/base/app";
+import { fetchBase } from "@/components/base/app/server";
 import ScrollTop from "@/components/base/widgets/buttons/ScrollTop";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -29,7 +25,7 @@ const PreloSlab = localFont({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const meta: MetadataResponse = await fetchBase("metadata");
+  const meta = await fetchBase("metadata");
 
   return {
     title: meta?.full_name,
@@ -77,7 +73,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const baseData: BaseResponse = await fetchBase();
+  const baseData = await fetchBase();
   const authData: AuthReponse = await fetchAuth();
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useBase } from "../../management";
+import { useBase } from "../../app/base";
 import Anchor from "../links/Anchor";
 import Heading from "../text/Heading";
 import styles from "./styles.module.css";

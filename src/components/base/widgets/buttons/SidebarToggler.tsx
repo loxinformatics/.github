@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef } from "react";
-import { useBase } from "../../management";
+import { useBase } from "../../app/base";
 import styles from "./styles.module.css";
 
 export default function SidebarToggler() {

@@ -1,4 +1,4 @@
-import type { NavLinksMap } from "@/components/base/management/types";
+import type { NavLinksMap } from "@/components/base/app/base/types";
 import { createNavDropdown } from "@/components/base/utils";
 
 const navLinksMap: NavLinksMap = {

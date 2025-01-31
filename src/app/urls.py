@@ -7,8 +7,8 @@ from django.urls import include, path
 
 urlpatterns = [
     path(f"{settings.BASE_URLPATH}/admin/", admin.site.urls),
-    path(f"{settings.BASE_URLPATH}/", include("src.components.base.management.urls")),
-    path(f"{settings.BASE_URLPATH}/auth/", include("src.components.auth.urls")),
+    path(f"{settings.BASE_URLPATH}/", include("src.components.base.urls")),
+    # path(f"{settings.BASE_URLPATH}/auth/", include("src.components.auth.urls")),
 ]
 
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useBase } from "../../management";
+import { useBase } from "../../app/base";
 import Anchor from "../links/Anchor";
 import type { ButtonProps } from "./types";
 

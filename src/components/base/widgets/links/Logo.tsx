@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useBase } from "../../management";
+import { useBase } from "../../app/base";
 import Anchor from "./Anchor";
 import type { LogoProps } from "./types";
 

@@ -3,8 +3,8 @@
 import chalk from "chalk";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
-import { fetchData } from "../base/management/server";
-import type { FormResponse } from "../base/management/types";
+import { fetchData } from "../base/utils";
+import type { FormResponse } from "../base/widgets/forms/types";
 import type { AuthReponse, DecodedToken, TokenResponse, User } from "./types";
 import { authApiURL, isTokenExpired } from "./utils";
 

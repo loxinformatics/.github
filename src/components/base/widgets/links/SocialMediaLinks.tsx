@@ -1,6 +1,6 @@
 "use client";
 
-import { useBase } from "../../management";
+import { useBase } from "../../app/base";
 import styles from "./styles.module.css";
 import type { SocialMediaLinkProps } from "./types";
 

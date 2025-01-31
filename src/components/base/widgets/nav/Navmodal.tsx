@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
-import { useBase } from "../../management";
+import { useBase } from "../../app/base";
 import Modal from "../modals/Modal";
 import Nav from "./Nav";
 import styles from "./styles.module.css";

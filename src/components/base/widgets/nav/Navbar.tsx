@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useBase } from "../../management";
+import { useBase } from "../../app/base";
 import Nav from "./Nav";
 import styles from "./styles.module.css";
 import type { NavbarProps } from "./types";

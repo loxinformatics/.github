@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "../../../auth/context";
-import { useBase } from "../../management";
+import { useBase } from "../../app/base";
 import type { AnchorProps } from "./types";
 
 export default function Anchor({ href, id, className, children }: AnchorProps) {

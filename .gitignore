@@ -17,7 +17,7 @@ src/**/fixtures/
 *.env*
 
 # ─── Testing ───────────────────────────────────────────────────────
-*test/
+*test*
 
 # ─── IDE and Miscellaneous Configurations ──────────────────────────
 .vscode/

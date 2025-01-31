@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";
-import { useBase } from "../../../base/management";
+import { useBase } from "../../../base/app/base";
 import Btn from "../../../base/widgets/buttons/Button";
 import { Control, Form } from "../../../base/widgets/forms/Form";
 import baseStyles from "../../../base/widgets/forms/styles.module.css";

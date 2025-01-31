@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../auth/context";
-import type { NavLink } from "../../management/types";
+import type { NavLink } from "../../app/base/types";
 import Anchor from "../links/Anchor";
 import {
   DropdownNavLink,

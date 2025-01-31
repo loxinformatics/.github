@@ -1,6 +1,6 @@
 "use client";
 
-import { useBase } from "@/components/base/management";
+import { useBase } from "@/components/base/app/base";
 import { useEffect, useState } from "react";
 import Btn from "./Button";
 

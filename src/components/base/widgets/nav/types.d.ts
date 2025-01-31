@@ -1,6 +1,5 @@
 import type { NavigationItem } from "../links/types";
 
-
 export type NavLinkType =
   | "dropdown"
   | "heading"

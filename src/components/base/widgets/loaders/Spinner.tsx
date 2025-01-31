@@ -1,6 +1,6 @@
 "use client";
 
-import { useBase } from "../../management";
+import { useBase } from "../../app/base";
 import type { SpinnerProps } from "./types";
 
 export default function Spinner({ borderSize, borderColor }: SpinnerProps) {
