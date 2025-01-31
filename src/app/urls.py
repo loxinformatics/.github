@@ -2,25 +2,19 @@
 
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib import admin
 from django.urls import include, path
 
+from src.olyv.base.management.utils import adminsite_site_url
+
 urlpatterns = [
-    path(f"{settings.BASE_URLPATH}/admin/", admin.site.urls),
-    path(f"{settings.BASE_URLPATH}/", include("src.components.base.urls")),
-    # path(f"{settings.BASE_URLPATH}/auth/", include("src.components.auth.urls")),
+    path("olyv/", include("src.olyv.base.urls")),
+    # path("olyv/auth/", include("src.olyv.auth.urls")),
 ]
 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-
-def adminsite_site_url(path: str = ""):
-    path = path.strip("/")
-
-    admin.site.site_url = f"{settings.NEXT_URL}{'/' + path if path else ''}/"
 
 
 # Call the function to set the admin panel site URL, optionally passing a path

@@ -1,12 +1,12 @@
 # robots.txt for example.com
 # https://www.robotstxt.org/robotstxt.html
-# Last updated: 2025-01-23
+# Last updated: 2025-01-31
 
 User-agent: *
 
-# Block API endpoints
-Disallow: /api/
-Disallow: /api
+# Block Olyv API endpoints
+Disallow: /olyv/
+Disallow: /olyv
 
 # Block test pages
 Disallow: /test/

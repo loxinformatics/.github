@@ -5,22 +5,34 @@ import {
   FooterBottombar,
   HeaderHero,
   ListDescriptions,
-} from "@/components/base/app";
+} from "@/olyv/base/app";
+
 import {
   fetchAbout,
-  fetchCallToAction,
+  fetchCTA,
   fetchContact,
   fetchHeaderHero,
-  fetchList,
-} from "@/components/base/app/server";
-import Preloader from "@/components/base/widgets/loaders/Preloader";
+  fetchListDescriptions,
+} from "@/olyv/base/app/server";
+
+import {
+  AboutData,
+  CTAData,
+  ContactData,
+  HeaderHeroData,
+  ListDescriptionsData,
+} from "@/olyv/base/app/types";
+
+import Preloader from "@/olyv/base/widgets/loaders/Preloader";
 
 export default async function Page() {
-  const headerHero = await fetchHeaderHero("page_1");
-  const about = await fetchAbout("page_1");
-  const cta = await fetchCallToAction("page_1");
-  const contact = await fetchContact("page_1");
-  const listdescriptions = await fetchList("page_1");
+  const headerHero: HeaderHeroData = await fetchHeaderHero("page_1");
+  const about: AboutData = await fetchAbout("page_1");
+  const cta: CTAData = await fetchCTA("page_1");
+  const contact: ContactData = await fetchContact("page_1");
+  const listdescriptions: ListDescriptionsData = await fetchListDescriptions(
+    "page_1"
+  );
 
   return (
     <>

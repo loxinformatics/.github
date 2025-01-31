@@ -34,12 +34,11 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",  # Docs: https://django-rest-framework-simplejwt.readthedocs.io/
     "corsheaders",  # Docs: https://pypi.org/project/django-cors-headers/
     # Local apps
-    "src.components.base",
+    "src.olyv.base",
 ]
 
 APP_DIR = BASE_DIR / "src" / "app"
 ROOT_URLCONF = "src.app.urls"
-BASE_URLPATH = config("DJANGO_BASE_URLPATH", default="api")
 
 NEXT_URL = (
     f"{config('NEXT_PROTOCOL', default='http')}://"

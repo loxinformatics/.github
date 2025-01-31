@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start -p 7000",
     "lint": "next lint",
-    "update": "npx npm-check-updates -u && pnpm install"
+    "olyv:update": "npx npm-check-updates -u && pnpm install"
   },
   "dependencies": {
     "aos": "^2.3.4",

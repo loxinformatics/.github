@@ -2,15 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   env: {
+    DEBUG: (process.env.ENVIRONMENT !== "production").toString(),
     DJANGO_URL:
       `${(process.env.DJANGO_PROTOCOL as "http" | "https") || "http"}://` +
       `${process.env.DJANGO_HOST?.replace(/\/+$/, "") || "localhost"}` +
       `${process.env.DJANGO_PORT ? ":" + process.env.DJANGO_PORT : ""}` +
-      `${
-        !!process.env.DJANGO_BASE_URLPATH
-          ? "/" + process.env.DJANGO_BASE_URLPATH.replace(/^\/+|\/+$/g, "")
-          : ""
-      }`,
+      "/olyv",
   },
   images: {
     remotePatterns: [

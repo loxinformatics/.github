@@ -1,10 +1,13 @@
-import { fetchAuth } from "@/components/auth/actions";
-import { AuthProvider } from "@/components/auth/context";
-import type { AuthReponse } from "@/components/auth/types";
-import { Base } from "@/components/base/app";
-import { fetchBase } from "@/components/base/app/server";
-import ScrollTop from "@/components/base/widgets/buttons/ScrollTop";
+import { Auth } from "@/olyv/auth/app";
+import { Base } from "@/olyv/base/app";
+
+import { fetchAuth } from "@/olyv/auth/app/server";
+import { fetchBase } from "@/olyv/base/app/server";
+
+import type { AuthReponse } from "@/olyv/auth/types";
+import type { BaseData, MetaData } from "@/olyv/base/app/types";
 import type { Metadata } from "next";
+
 import localFont from "next/font/local";
 import "./global.css";
 
@@ -25,7 +28,7 @@ const PreloSlab = localFont({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const meta = await fetchBase("metadata");
+  const meta: MetaData = await fetchBase("metadata");
 
   return {
     title: meta?.full_name,
@@ -73,7 +76,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const baseData = await fetchBase();
+  const baseData: BaseData = await fetchBase();
   const authData: AuthReponse = await fetchAuth();
 
   return (
@@ -85,8 +88,7 @@ export default async function RootLayout({
             `}
       >
         <Base {...baseData}>
-          <AuthProvider {...authData}>{children}</AuthProvider>
-          <ScrollTop />
+          <Auth {...authData}>{children}</Auth>
         </Base>
       </body>
     </html>
