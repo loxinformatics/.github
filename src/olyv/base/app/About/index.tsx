@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Section } from "../../widgets/section";
-import baseStyles from "./styles.module.css";
-import type { AboutData } from "./types";
+import { Section } from "../../widgets/layout";
+import styles from "./styles.module.css";
+import type { AboutResponse } from "./types";
 
 export default function About({
   section_instance,
@@ -16,7 +16,7 @@ export default function About({
   about_image,
   about_video,
   about_alt,
-}: AboutData) {
+}: AboutResponse) {
   const sectionId = section_instance || "";
   const sectionVersion = section_version || "V1";
   const titleVersion = title_version;
@@ -38,7 +38,7 @@ export default function About({
         title_h2={titleH2}
         title_h3={titleH3}
         title_p={titleP}
-        className={baseStyles.about}
+        className={styles.about}
       >
         {/* V1 */}
         {sectionVersion === "V1" && (
@@ -69,7 +69,7 @@ export default function About({
               data-aos-delay="200"
             >
               <div
-                className={baseStyles["about-content"]}
+                className={styles["about-content"]}
                 dangerouslySetInnerHTML={{ __html: aboutContent }}
               />
             </div>

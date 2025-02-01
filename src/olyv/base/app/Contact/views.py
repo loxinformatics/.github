@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 
 from ...widgets.forms.MailForm.serializers import MailFormSerializer
 from ...widgets.forms.MailForm.views import MailFormViewSet
-from ..base.models import Base
+from ..Base.models import Base
 from .models import Contact
 from .serializers import ContactSerializer
 

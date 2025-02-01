@@ -4,6 +4,6 @@ from .views import ContactUsFormViewSet, ContactViewSet
 
 router = DefaultRouter()
 router.register(r"contact", ContactViewSet)
-router.register(r"contact_us", ContactUsFormViewSet, basename="contact_us")
+router.register(r"mail/us", ContactUsFormViewSet, basename="mail_us")
 
 urlpatterns = router.urls

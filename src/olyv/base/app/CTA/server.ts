@@ -1,13 +1,13 @@
 "use server";
 
-import { fetchData } from "../../management/utils";
-import type { CTAData } from "./types";
+import { BaseDjangoURL, fetchData } from "../../management/utils";
+import type { CTAResponse } from "./types";
 
-export default async function fetchCTA(detail: string): Promise<CTAData> {
-  const data = await fetchData<CTAData>({
-    endpoint: `${process.env.DJANGO_URL}/cta/`,
+export default async function fetchCTA(detail: string): Promise<CTAResponse> {
+  const data = await fetchData<CTAResponse>({
+    endpoint: `${BaseDjangoURL}/cta/`,
     extra_action: detail,
   });
 
-  return data as CTAData;
+  return data as CTAResponse;
 }

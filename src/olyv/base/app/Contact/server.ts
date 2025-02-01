@@ -1,15 +1,15 @@
 "use server";
 
-import { fetchData } from "../../management/utils";
-import type { ContactData } from "./types";
+import { BaseDjangoURL, fetchData } from "../../management/utils";
+import type { ContactResponse } from "./types";
 
 export default async function fetchContact(
   detail: string
-): Promise<ContactData> {
-  const data = await fetchData<ContactData>({
-    endpoint: `${process.env.DJANGO_URL}/contact/`,
+): Promise<ContactResponse> {
+  const data = await fetchData<ContactResponse>({
+    endpoint: `${BaseDjangoURL}/contact/`,
     extra_action: detail,
   });
 
-  return data as ContactData;
+  return data as ContactResponse;
 }

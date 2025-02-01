@@ -2,9 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../auth/app/auth";
-import type { NavLink } from "../../app/base/types";
-import Link from "../links/Link";
+import { useAuth } from "../../../authentication/app/Auth";
+import { Link } from "../links";
 import {
   DropdownNavLink,
   HeadingNavLink,
@@ -13,7 +12,7 @@ import {
   LogoutNavLink,
   PageNavLink,
 } from "../links/Navlinks";
-import type { NavigationItem } from "../links/Navlinks/types";
+import type { NavlinkDetails } from "../links/types";
 import type { NavProps } from "./types";
 
 export default function Nav({
@@ -35,7 +34,7 @@ export default function Nav({
     setOpenDropdowns((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-  const shouldRenderLink = (link: NavLink) => {
+  const shouldRenderLink = (link: NavlinkDetails) => {
     if (user) {
       if (link.authorized) {
         const isUserOnly =
@@ -51,7 +50,7 @@ export default function Nav({
   };
 
   const renderLink = (
-    link: NavigationItem,
+    link: NavlinkDetails,
     index: number,
     {
       shouldRenderLink,
@@ -126,7 +125,7 @@ export default function Nav({
     const initialOpenDropdowns: { [key: string]: boolean } = {};
     navlinks?.forEach((link, index) => {
       if (link.type === "dropdown") {
-        link.children?.forEach((child: NavLink) => {
+        link.children?.forEach((child: NavlinkDetails) => {
           if (child.href && pathname === child.href) {
             initialOpenDropdowns[index] = true;
           }

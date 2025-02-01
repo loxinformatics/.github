@@ -2,7 +2,7 @@
 
 import { default as NextLink } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useAuth } from "../../../../auth/app/auth";
+import { useAuth } from "../../../../authentication/app/Auth";
 import { useBase } from "../../../app";
 
 export default function Link({

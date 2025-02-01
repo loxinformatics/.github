@@ -29,22 +29,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Third-party apps
+    # Vendor apps
     "rest_framework",  # Docs: https://www.django-rest-framework.org/
     "rest_framework_simplejwt",  # Docs: https://django-rest-framework-simplejwt.readthedocs.io/
     "corsheaders",  # Docs: https://pypi.org/project/django-cors-headers/
-    # Local apps
+    # Olyv apps
     "src.olyv.base",
+    "src.olyv.authentication",
 ]
-
-APP_DIR = BASE_DIR / "src" / "app"
-ROOT_URLCONF = "src.app.urls"
-
-NEXT_URL = (
-    f"{config('NEXT_PROTOCOL', default='http')}://"
-    f"{str(config('NEXT_HOST', default='localhost')).strip('/')}"
-    f"{':' + config('NEXT_PORT', default='') if config('NEXT_PORT', default='') else ''}"
-)
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -57,6 +49,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+NEXT_URL = (
+    f"{config('NEXT_PROTOCOL', default='http')}://"
+    f"{str(config('NEXT_HOST', default='localhost')).strip('/')}"
+    f"{':' + config('NEXT_PORT', default='') if config('NEXT_PORT', default='') else ''}"
+)
+
+APP_DIR = BASE_DIR / "src" / "app"
+ROOT_URLCONF = "src.app.urls"
 WSGI_APPLICATION = "wsgi.application"
 
 # --------------------------------------------------------------------

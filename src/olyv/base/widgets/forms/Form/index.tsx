@@ -2,7 +2,7 @@
 
 import { createElement, forwardRef } from "react";
 import { Alert } from "../../alerts";
-import Spinner from "../../loaders/Spinner";
+import { Spinner } from "../../spinners";
 import styles from "./styles.module.css";
 
 export const Control = forwardRef<

@@ -1,6 +1,6 @@
 from django.db import models
 
-from ...widgets.section.models import Section
+from ...widgets.layout.Section.models import Section
 
 
 class HeaderHero(Section):

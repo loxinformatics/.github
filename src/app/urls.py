@@ -2,13 +2,15 @@
 
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.urls import include, path
 
 from src.olyv.base.management.utils import adminsite_site_url
 
 urlpatterns = [
-    path("olyv/", include("src.olyv.base.urls")),
-    # path("olyv/auth/", include("src.olyv.auth.urls")),
+    path("olyv/admin/", admin.site.urls),
+    path("olyv/base/", include("src.olyv.base.urls")),
+    path("olyv/auth/", include("src.olyv.authentication.urls")),
 ]
 
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import { useBase } from "../../app";
-import Modal from "../modal";
+import {Modal} from "../modals";
 import Nav from "./Nav";
 import styles from "./styles.module.css";
 import type { NavmodalProps } from "./types";

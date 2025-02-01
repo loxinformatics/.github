@@ -1,8 +1,8 @@
 "use server";
 
-import type { FormResponse } from "../Form/types";
+import type { FormResponse } from "../types";
 
-export default async function sendMail({
+export default async function postMail({
   name,
   email,
   subject,
@@ -13,10 +13,10 @@ export default async function sendMail({
   email: string;
   subject: string;
   message: string;
-  endpoint: string;
+  endpoint: URL;
 }): Promise<FormResponse> {
   try {
-    const response = await fetch(`${process.env.DJANGO_URL}/${endpoint}/`, {
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

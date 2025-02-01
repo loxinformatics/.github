@@ -1,4 +1,4 @@
-import type { NavigationItem } from "../links/Navlinks/types";
+import type { NavlinkDetails } from "../links/types";
 
 export type NavLinkType =
   | "dropdown"
@@ -10,11 +10,11 @@ export type NavLinkType =
   | "";
 
 export interface NavLinksMap {
-  [key: string]: NavigationItem[];
+  [key: string]: NavlinkDetails[];
 }
 
 export interface NavProps {
-  navlinks?: NavigationItem[];
+  navlinks?: NavlinkDetails[];
   variant: "Navbar" | "Sidebar" | "Navmodal";
   className?: any;
   id?: string;
@@ -24,14 +24,14 @@ export interface NavProps {
 
 export interface NavmodalProps {
   toggleColor?: string;
-  navigation_items?: NavigationItem[];
+  navigation_items?: NavlinkDetails[];
 }
 
 export interface NavbarProps {
   linkColor?: string;
-  navigation_items?: NavigationItem[];
+  navigation_items?: NavlinkDetails[];
 }
 
 export interface FooterNavProps {
-  links?: NavigationItem[];
+  links?: NavlinkDetails[];
 }

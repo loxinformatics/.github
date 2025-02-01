@@ -1,6 +1,6 @@
 // utils
 
-export interface BaseData {
+export interface BaseResponse {
   csrf_token?: string;
   full_name?: string;
   short_name?: string;
@@ -27,7 +27,7 @@ export interface BaseData {
   spotify_URL?: string;
 }
 
-export interface MetaData {
+export interface MetadataResponse {
   full_name?: string;
   motto_description?: string;
   website_URL?: string;
@@ -37,7 +37,7 @@ export interface MetaData {
   X_image?: string;
 }
 
-export interface ManifestData {
+export interface ManifestResponse {
   full_name?: string;
   short_name?: string;
   motto_description?: string;
@@ -49,11 +49,11 @@ export interface ManifestData {
 export type ThemeColorKey = "#e84545";
 
 export interface BaseContext {
-  csrfToken: BaseData["csrf_token"];
-  fullName: BaseData["full_name"];
-  shortName: BaseData["short_name"];
-  motto: BaseData["motto_description"];
-  primaryColor: BaseData["primary_color"];
+  csrfToken: BaseResponse["csrf_token"];
+  fullName: BaseResponse["full_name"];
+  shortName: BaseResponse["short_name"];
+  motto: BaseResponse["motto_description"];
+  primaryColor: BaseResponse["primary_color"];
   textColorHover: string;
   textColorGroupHover: string;
   textPrimary: string;
@@ -74,25 +74,25 @@ export interface BaseContext {
   borderPrimaryChecked: string;
   borderPrimaryBefore: string;
   borderPrimaryAfter: string;
-  coloredLogoFullImage: BaseData["colored_logo_full_image"];
-  coloredLogoMiniImage: BaseData["colored_logo_mini_image"];
-  lightLogoFullImage: BaseData["light_logo_full_image"];
-  lightLogoMiniImage: BaseData["light_logo_mini_image"];
-  darkLogoFullImage: BaseData["dark_logo_full_image"];
-  darkLogoMiniImage: BaseData["dark_logo_mini_image"];
-  primaryPhone: BaseData["primary_phone"];
-  secondaryPhone: BaseData["secondary_phone"];
-  primaryEmail: BaseData["primary_email"];
-  secondaryEmail: BaseData["secondary_email"];
-  cityName: BaseData["city_name"];
-  POBox: BaseData["PO_box"];
-  street: BaseData["street_address"];
-  socialMediaLinksVersion: BaseData["social_media_links_version"];
-  facebook: BaseData["facebook_URL"];
-  instagram: BaseData["instagram_URL"];
-  twitterX: BaseData["X_URL"];
-  linkedin: BaseData["linkedin_URL"];
-  spotify: BaseData["spotify_URL"];
+  coloredLogoFullImage: BaseResponse["colored_logo_full_image"];
+  coloredLogoMiniImage: BaseResponse["colored_logo_mini_image"];
+  lightLogoFullImage: BaseResponse["light_logo_full_image"];
+  lightLogoMiniImage: BaseResponse["light_logo_mini_image"];
+  darkLogoFullImage: BaseResponse["dark_logo_full_image"];
+  darkLogoMiniImage: BaseResponse["dark_logo_mini_image"];
+  primaryPhone: BaseResponse["primary_phone"];
+  secondaryPhone: BaseResponse["secondary_phone"];
+  primaryEmail: BaseResponse["primary_email"];
+  secondaryEmail: BaseResponse["secondary_email"];
+  cityName: BaseResponse["city_name"];
+  POBox: BaseResponse["PO_box"];
+  street: BaseResponse["street_address"];
+  socialMediaLinksVersion: BaseResponse["social_media_links_version"];
+  facebook: BaseResponse["facebook_URL"];
+  instagram: BaseResponse["instagram_URL"];
+  twitterX: BaseResponse["X_URL"];
+  linkedin: BaseResponse["linkedin_URL"];
+  spotify: BaseResponse["spotify_URL"];
   asideExists: boolean;
   setAsideExists: (asideExists: boolean) => void;
   isNavModalOpen: boolean;

@@ -1,11 +1,11 @@
-import { Auth } from "@/olyv/auth/app";
+import { Auth } from "@/olyv/authentication/app";
 import { Base } from "@/olyv/base/app";
 
-import { fetchAuth } from "@/olyv/auth/app/server";
+import { fetchAuth } from "@/olyv/authentication/app/server";
 import { fetchBase } from "@/olyv/base/app/server";
 
-import type { AuthReponse } from "@/olyv/auth/types";
-import type { BaseData, MetaData } from "@/olyv/base/app/types";
+import type { AuthResponse } from "@/olyv/authentication/app/types";
+import type { BaseResponse, MetadataResponse } from "@/olyv/base/app/types";
 import type { Metadata } from "next";
 
 import localFont from "next/font/local";
@@ -28,7 +28,7 @@ const PreloSlab = localFont({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const meta: MetaData = await fetchBase("metadata");
+  const meta: MetadataResponse = await fetchBase("metadata");
 
   return {
     title: meta?.full_name,
@@ -76,8 +76,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const baseData: BaseData = await fetchBase();
-  const authData: AuthReponse = await fetchAuth();
+  const baseData: BaseResponse = await fetchBase();
+  const authData: AuthResponse = await fetchAuth();
 
   return (
     <html lang="en" suppressHydrationWarning>

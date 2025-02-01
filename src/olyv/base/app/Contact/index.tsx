@@ -1,11 +1,12 @@
 "use client";
 
 import { useBase } from "..";
-import { MailForm } from "../../widgets/forms/MailForm";
-import { Section } from "../../widgets/section";
-import Heading from "../../widgets/text/Heading";
-import baseStyles from "./styles.module.css";
-import type { ContactData } from "./types";
+import { BaseDjangoURL } from "../../management/utils";
+import { MailForm } from "../../widgets/forms";
+import { Section } from "../../widgets/layout";
+import { Heading } from "../../widgets/text";
+import styles from "./styles.module.css";
+import type { ContactResponse } from "./types";
 
 export default function Contact({
   section_instance,
@@ -17,7 +18,7 @@ export default function Contact({
   map_URL,
   open_days,
   open_hours,
-}: ContactData) {
+}: ContactResponse) {
   const {
     cityName,
     primaryPhone,
@@ -40,6 +41,8 @@ export default function Contact({
   const openDays = open_days || "";
   const openHours = open_hours || "";
   const map = map_URL || "";
+
+  const mailEndpoint = new URL(`${BaseDjangoURL}/mail/us/`);
 
   const render =
     !!cityName && !!primaryPhone && !!primaryEmail && !!openDays && !!openHours;
@@ -68,7 +71,7 @@ export default function Contact({
           }   
         `}
       ></i>
-      <Heading variant="h5" className={`${baseStyles.heading} `}>
+      <Heading variant="h5" className={`${styles.heading} `}>
         {title[`${sectionVersion}` as keyof typeof title]}
       </Heading>
       {lines.filter(Boolean).map((line, index) => (
@@ -126,15 +129,11 @@ export default function Contact({
         title_h2={titleH2}
         title_h3={titleH3}
         title_p={titleP}
-        className={baseStyles.contact}
+        className={styles.contact}
       >
         {map && (
           <div className="mb-12 mt-4">
-            <iframe
-              className={baseStyles.map}
-              src={map}
-              allowFullScreen
-            ></iframe>
+            <iframe className={styles.map} src={map} allowFullScreen></iframe>
           </div>
         )}
 
@@ -144,7 +143,7 @@ export default function Contact({
             <div className="lg:basis-1/2">
               <div className="grid gap-6 md:grid-cols-2">
                 <div
-                  className={`${baseStyles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
+                  className={`${styles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
                   data-aos="fade"
                   data-aos-delay="50"
                 >
@@ -152,7 +151,7 @@ export default function Contact({
                 </div>
 
                 <div
-                  className={`${baseStyles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
+                  className={`${styles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
                   data-aos="fade"
                   data-aos-delay="100"
                 >
@@ -160,7 +159,7 @@ export default function Contact({
                 </div>
 
                 <div
-                  className={`${baseStyles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
+                  className={`${styles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
                   data-aos="fade"
                   data-aos-delay="150"
                 >
@@ -168,7 +167,7 @@ export default function Contact({
                 </div>
 
                 <div
-                  className={`${baseStyles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
+                  className={`${styles.V1} bg-color/[0.03] dark:bg-color-reverse/[0.03]`}
                   data-aos="fade"
                   data-aos-delay="200"
                 >
@@ -177,7 +176,7 @@ export default function Contact({
               </div>
             </div>
             <div className="lg:basis-1/2">
-              <MailForm endpoint="contact_us" />
+              <MailForm endpoint={mailEndpoint} />
             </div>
           </div>
         )}
@@ -189,7 +188,7 @@ export default function Contact({
               <div className="flex flex-col md:flex-row xl:flex-1 gap-6">
                 <div className="flex-1" data-aos="fade-up">
                   <div
-                    className={`${baseStyles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5 rounded`}
+                    className={`${styles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5 rounded`}
                   >
                     <Address />
                   </div>
@@ -197,7 +196,7 @@ export default function Contact({
 
                 <div className="flex-1" data-aos="fade-up" data-aos-delay="50">
                   <div
-                    className={`${baseStyles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5  rounded`}
+                    className={`${styles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5  rounded`}
                   >
                     <EmailDetails />
                   </div>
@@ -207,7 +206,7 @@ export default function Contact({
               <div className="flex flex-col md:flex-row xl:flex-1 gap-6">
                 <div className="flex-1" data-aos="fade-up" data-aos-delay="100">
                   <div
-                    className={`${baseStyles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5 rounded`}
+                    className={`${styles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5 rounded`}
                   >
                     <CallDetails />
                   </div>
@@ -215,7 +214,7 @@ export default function Contact({
 
                 <div className="flex-1" data-aos="fade-up" data-aos-delay="150">
                   <div
-                    className={`${baseStyles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5 rounded`}
+                    className={`${styles.V2} text-color dark:text-color-reverse shadow-lg shadow-color-secondary/20 dark:shadow-color-secondary-reverse/20 p-5 rounded`}
                   >
                     <OpenDaysAndHours />
                   </div>
@@ -229,7 +228,7 @@ export default function Contact({
               data-aos-delay="150"
             >
               <div className="basis-full xl:basis-3/4 mt-6">
-                <MailForm endpoint="contact_us" />
+                <MailForm endpoint={mailEndpoint} />
               </div>
             </div>
           </>
@@ -239,27 +238,27 @@ export default function Contact({
         {sectionVersion === "V3" && (
           <div className="flex flex-wrap items-center">
             <div className="w-full lg:w-1/3">
-              <div className={`${baseStyles.V3} w-full`}>
-                <div className={baseStyles.address}>
+              <div className={`${styles.V3} w-full`}>
+                <div className={styles.address}>
                   <Address />
                 </div>
 
-                <div className={baseStyles.email}>
+                <div className={styles.email}>
                   <EmailDetails />
                 </div>
 
-                <div className={baseStyles.phone}>
+                <div className={styles.phone}>
                   <CallDetails />
                 </div>
 
-                <div className={baseStyles.phone}>
+                <div className={styles.phone}>
                   <OpenDaysAndHours />
                 </div>
               </div>
             </div>
 
             <div className="w-full lg:w-2/3 mt-12 lg:mt-0">
-              <MailForm endpoint="contact_us" />
+              <MailForm endpoint={mailEndpoint} />
             </div>
           </div>
         )}

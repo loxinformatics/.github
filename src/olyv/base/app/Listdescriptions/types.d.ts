@@ -1,14 +1,14 @@
-import type { SectionData } from "../../widgets/section/types";
+import type { SectionResponse } from "../../widgets/layout/types";
 
-interface ItemDescriptionData {
+interface ItemDescription {
   image?: string | null;
   icon?: string;
   title?: string;
   description?: string;
 }
 
-export interface ListDescriptionsData extends SectionData {
+export interface ListDescriptionsResponse extends SectionResponse {
   section_instance?: string;
   section_version?: "V1" | "V2" | "V3";
-  items?: ItemDescriptionData[];
+  items?: ItemDescription[];
 }

@@ -30,3 +30,5 @@ export async function fetchData<T>(options: {
     return null;
   }
 }
+
+export const BaseDjangoURL = `${process.env.DJANGO_URL}/base`;

@@ -1,9 +1,9 @@
 "use client";
 
 import { useBase } from "../../../app";
-import Link from "../../links/Link";
+import { Link } from "../../links";
 
-export default function Btn({
+export default function Button({
   id,
   className,
   disabled = false,

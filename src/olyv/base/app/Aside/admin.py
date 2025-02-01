@@ -1,7 +1,7 @@
 from django.contrib import admin
 
+from ...widgets.layout.Section.admin import SectionAdmin
 from ...widgets.nav.admin import NavigationItemInline
-from ...widgets.section.admin import SectionAdmin
 from .models import Aside
 
 

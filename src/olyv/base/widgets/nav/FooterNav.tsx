@@ -1,8 +1,8 @@
 "use client";
 
 import { useBase } from "../../app";
-import Link from "../links/Link";
-import Heading from "../text/Heading";
+import { Link } from "../links";
+import { Heading } from "../text";
 import styles from "./styles.module.css";
 import type { FooterNavProps } from "./types";
 

@@ -1,4 +1,4 @@
-from ...widgets.section.forms import SectionAddForm, SectionChangeForm
+from ...widgets.layout.Section.forms import SectionAddForm, SectionChangeForm
 from .models import ListDescriptions
 
 

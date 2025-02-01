@@ -1,13 +1,12 @@
 "use client";
 
 import { useBase } from "..";
-import ThemeToggler from "../../widgets/buttons/ThemeToggler";
-import SocialMediaLinks from "../../widgets/links/SocialMediaLinks";
+import { ThemeToggler } from "../../widgets/buttons";
+import { Container, Section } from "../../widgets/layout";
+import { SocialMediaLinks } from "../../widgets/links";
 import { FooterNav } from "../../widgets/nav";
 import { createNavLinks } from "../../widgets/nav/utils";
-import { Section } from "../../widgets/section";
-import { Container } from "../../widgets/section/Container";
-import Heading from "../../widgets/text/Heading";
+import { Heading } from "../../widgets/text";
 import baseStyles from "./styles.module.css";
 
 export default function FooterBottombar({

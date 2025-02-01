@@ -1,7 +1,7 @@
 // rest api
 import type { NavbarProps, NavmodalProps } from "../../widgets/nav/types";
 
-export interface HeaderHeroData {
+export interface HeaderHeroResponse {
   section_instance?: string;
   header_background?: "body" | "dark";
   logo_version?: LogoProps["logoVersion"];

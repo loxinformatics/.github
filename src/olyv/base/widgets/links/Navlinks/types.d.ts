@@ -1,8 +1,8 @@
-export interface NavigationItem {
+export interface NavlinkDetails {
   text: string;
   icon?: string;
   href: string;
   type?: string;
   authorized?: string[];
-  children?: NavigationItem[];
+  children?: NavlinkDetails[];
 }

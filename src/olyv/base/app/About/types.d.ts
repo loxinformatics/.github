@@ -1,6 +1,6 @@
-import type { SectionData } from "../../widgets/section/types";
+import type { SectionResponse } from "../../widgets/layout/types";
 
-export interface AboutData extends SectionData {
+export interface AboutResponse extends SectionResponse {
   section_instance?: string;
   section_version?: "V1";
   about_content?: string;

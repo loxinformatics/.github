@@ -1,4 +1,4 @@
-export interface CTAData {
+export interface CTAResponse {
   section_instance?: string;
   section_version?: "V1" | "V2";
   cta_heading?: string;

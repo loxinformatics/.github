@@ -16,23 +16,22 @@ import {
 } from "@/olyv/base/app/server";
 
 import {
-  AboutData,
-  CTAData,
-  ContactData,
-  HeaderHeroData,
-  ListDescriptionsData,
+  AboutResponse,
+  CTAResponse,
+  ContactResponse,
+  HeaderHeroResponse,
+  ListDescriptionsResponse,
 } from "@/olyv/base/app/types";
 
-import Preloader from "@/olyv/base/widgets/loaders/Preloader";
+import { Preloader } from "@/olyv/base/widgets/spinners";
 
 export default async function Page() {
-  const headerHero: HeaderHeroData = await fetchHeaderHero("page_1");
-  const about: AboutData = await fetchAbout("page_1");
-  const cta: CTAData = await fetchCTA("page_1");
-  const contact: ContactData = await fetchContact("page_1");
-  const listdescriptions: ListDescriptionsData = await fetchListDescriptions(
-    "page_1"
-  );
+  const headerHero: HeaderHeroResponse = await fetchHeaderHero("page_1");
+  const about: AboutResponse = await fetchAbout("page_1");
+  const cta: CTAResponse = await fetchCTA("page_1");
+  const contact: ContactResponse = await fetchContact("page_1");
+  const listdescriptions: ListDescriptionsResponse =
+    await fetchListDescriptions("page_1");
 
   return (
     <>

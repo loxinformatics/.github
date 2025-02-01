@@ -1,8 +1,8 @@
 "use client";
 
+import { Link } from "..";
 import { useBase } from "../../../app";
-import Heading from "../../text/Heading";
-import Link from "../Link";
+import { Heading } from "../../text";
 import styles from "./styles.module.css";
 
 export function DropdownNavLink({

@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { Link } from "..";
 import { useBase } from "../../../app";
-import Link from "../Link";
 
 export default function Logo({
   logoVersion,

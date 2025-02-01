@@ -1,4 +1,4 @@
-from ...widgets.section.models import Section
+from ...widgets.layout.Section.models import Section
 
 
 class Aside(Section):

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from ...widgets.section.admin import SectionAdmin
+from ...widgets.layout.Section.admin import SectionAdmin
 from .forms import AboutAddForm, AboutChangeForm
 from .models import About
 

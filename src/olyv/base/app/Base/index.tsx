@@ -5,9 +5,9 @@ import "aos/dist/aos.css";
 import "bootstrap-icons/font/bootstrap-icons.min.css";
 import { ThemeProvider } from "next-themes";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import ScrollTop from "../../widgets/buttons/ScrollTop";
+import { ScrollTop } from "../../widgets/buttons";
 import navLinksMap from "../../widgets/nav/navigation";
-import type { BaseContext, BaseData, ThemeColorKey } from "./types";
+import type { BaseContext, BaseResponse, ThemeColorKey } from "./types";
 
 const baseContext = createContext<BaseContext | undefined>(undefined);
 
@@ -37,7 +37,7 @@ export default function Base({
   linkedin_URL,
   spotify_URL,
   children,
-}: BaseData & { children: React.ReactNode }) {
+}: BaseResponse & { children: React.ReactNode }) {
   const [asideExists, setAsideExists] = useState<boolean>(false);
   const [isAsideOpen, setIsAsideOpen] = useState<boolean>(false);
   const [isNavModalOpen, setIsNavModalOpen] = useState<boolean>(false);

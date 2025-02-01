@@ -1,15 +1,17 @@
 "use server";
 
-import { fetchData } from "../../management/utils";
-import type { BaseData, ManifestData, MetaData } from "./types";
+import { BaseDjangoURL, fetchData } from "../../management/utils";
+import type { BaseResponse, ManifestResponse, MetadataResponse } from "./types";
 
-export default async function FetchBase(
+export default async function fetchBase(
   extra_action?: "metadata" | "manifest"
-): Promise<BaseData | MetaData | ManifestData> {
-  const data = await fetchData<BaseData | MetaData | ManifestData>({
-    endpoint: `${process.env.DJANGO_URL}/`,
+): Promise<BaseResponse | MetadataResponse | ManifestResponse> {
+  const data = await fetchData<
+    BaseResponse | MetadataResponse | ManifestResponse
+  >({
+    endpoint: `${BaseDjangoURL}/`,
     extra_action,
   });
 
-  return data as BaseData | MetaData | ManifestData;
+  return data as BaseResponse | MetadataResponse | ManifestResponse;
 }

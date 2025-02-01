@@ -3,15 +3,13 @@
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useLayoutEffect, useRef, useState } from "react";
-import Btn from "../../widgets/buttons/Button";
-import AsideToggler from "../../widgets/buttons/SidebarToggler";
-import ThemeToggler from "../../widgets/buttons/ThemeToggler";
-import Logo from "../../widgets/links/Logo";
+import { AsideToggler, Button, ThemeToggler } from "../../widgets/buttons";
+import { Section } from "../../widgets/layout";
+import { Logo } from "../../widgets/links";
 import { Navbar, Navmodal } from "../../widgets/nav";
-import { Section } from "../../widgets/section";
-import Heading from "../../widgets/text/Heading";
+import { Heading } from "../../widgets/text";
 import styles from "./styles.module.css";
-import type { HeaderHeroData } from "./types";
+import type { HeaderHeroResponse } from "./types";
 
 export default function HeaderHero({
   section_instance,
@@ -26,7 +24,7 @@ export default function HeaderHero({
   hero_button_href,
   navigation_items,
   component,
-}: HeaderHeroData & {
+}: HeaderHeroResponse & {
   component?: "headerhero" | "header" | "hero";
 }) {
   const headerProps = {
@@ -81,7 +79,7 @@ function Header({
   navigation_items,
   headerPosition,
   headerBorder,
-}: HeaderHeroData & {
+}: HeaderHeroResponse & {
   headerPosition?: "fixed" | "sticky";
   headerBorder?: boolean;
 }) {
@@ -126,14 +124,14 @@ function Header({
             // * Note that this forward / redirect button is dependent on the presence of the hero button
             // * It will show only if the hero component, and therefore the hero button, is present
             // * This will only happen if the HeaderHero component is used in a page
-            <Btn
+            <Button
               href={heroButtonHref}
               className={`${styles.redirectButton} ${
                 showForwardButton && styles.visible
               }`}
             >
               {heroButtonText}
-            </Btn>
+            </Button>
           }
           {themeToggler && (
             <div className="ml-2">
@@ -228,7 +226,7 @@ function Hero({
   hero_image,
   hero_button_text,
   hero_button_href,
-}: HeaderHeroData) {
+}: HeaderHeroResponse) {
   const heroRef = useRef<HTMLDivElement | null>(null);
   const [heroHeight, setHeroHeight] = useState<string>("100vh");
 
@@ -312,7 +310,7 @@ function Hero({
           />
         )}
         {heroButtonHref && (
-          <Btn
+          <Button
             id={`hero_button_${sectionId}`}
             className={`uppercase`}
             href={heroButtonHref}
@@ -320,7 +318,7 @@ function Hero({
             size="lg"
           >
             {heroButtonText}
-          </Btn>
+          </Button>
         )}
       </div>
     </Section>

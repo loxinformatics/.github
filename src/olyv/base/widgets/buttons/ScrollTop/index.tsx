@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Button } from "..";
 import { useBase } from "../../../app";
-import Btn from "../Button";
 
 export default function ScrollTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,7 +33,7 @@ export default function ScrollTop() {
 
   return (
     !isNavModalOpen && (
-      <Btn
+      <Button
         id="scroll-top"
         className={`fixed end-4 bottom-4 z-20 w-10 h-10
         ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-0"}
@@ -41,7 +41,7 @@ export default function ScrollTop() {
         onClick={scroll}
       >
         <i className="bi bi-arrow-up-short text-2xl"></i>
-      </Btn>
+      </Button>
     )
   );
 }

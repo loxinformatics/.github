@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { useBase } from "..";
-import Link from "../../widgets/links/Link";
-import { Section } from "../../widgets/section";
-import Heading from "../../widgets/text/Heading";
+import { Section } from "../../widgets/layout";
+import { Link } from "../../widgets/links";
+import { Heading } from "../../widgets/text";
 import styles from "./styles.module.css";
-import type { ListDescriptionsData } from "./types";
+import type { ListDescriptionsResponse } from "./types";
 
 export default function ListDescriptions({
   section_instance,
@@ -16,7 +16,7 @@ export default function ListDescriptions({
   title_h3,
   title_p,
   items,
-}: ListDescriptionsData) {
+}: ListDescriptionsResponse) {
   const {
     borderColorHover,
     bgPrimary,

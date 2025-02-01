@@ -1,7 +1,5 @@
-import type { NavigationItem as NavLink } from "../links/Navlinks/types";
+import type { NavlinkDetails as NavLink } from "../links/types";
 import type { NavLinkType } from "./types";
-
-export const baseApiURL = `${process.env.DJANGO_URL}/base`;
 
 export const createNavDropdown = (children: NavLink[]): NavLink[] => {
   return children.filter((child) => {

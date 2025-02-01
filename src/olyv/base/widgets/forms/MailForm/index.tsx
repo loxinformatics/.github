@@ -1,12 +1,12 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Btn from "../../buttons/Button";
+import { Button } from "../../buttons";
 import { Control, Feedback, Form } from "../Form";
-import sendMail from "./server";
+import postMail from "./server";
 import styles from "./styles.module.css";
 
-export function MailForm({ endpoint }: { endpoint: string }) {
+export default function MailForm({ endpoint }: { endpoint: URL }) {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [subject, setSubject] = useState<string>("");
@@ -14,8 +14,6 @@ export function MailForm({ endpoint }: { endpoint: string }) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
-
-  // const endpoint = `${process.env.DJANGO_URL}/mail/us/`;
 
   // Refs for form fields
   const nameRef = useRef<HTMLInputElement>(null);
@@ -51,7 +49,7 @@ export function MailForm({ endpoint }: { endpoint: string }) {
       setLoading(true);
 
       try {
-        const result = await sendMail({
+        const result = await postMail({
           name,
           email,
           subject,
@@ -163,9 +161,9 @@ export function MailForm({ endpoint }: { endpoint: string }) {
         </div>
 
         <div className="flex justify-center">
-          <Btn type="submit" disabled={loading}>
+          <Button type="submit" disabled={loading}>
             Send Message
-          </Btn>
+          </Button>
         </div>
       </div>
     </Form>

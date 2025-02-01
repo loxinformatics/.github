@@ -1,13 +1,15 @@
 "use server";
 
-import { fetchData } from "../../management/utils";
-import type { AboutData } from "./types";
+import { BaseDjangoURL, fetchData } from "../../management/utils";
+import type { AboutResponse } from "./types";
 
-export default async function fetchAbout(detail: string): Promise<AboutData> {
-  const data = await fetchData<AboutData>({
-    endpoint: `${process.env.DJANGO_URL}/about/`,
+export default async function fetchAbout(
+  detail: string
+): Promise<AboutResponse> {
+  const data = await fetchData<AboutResponse>({
+    endpoint: `${BaseDjangoURL}/about/`,
     extra_action: detail,
   });
 
-  return data as AboutData;
+  return data as AboutResponse;
 }

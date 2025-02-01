@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import { useBase } from "..";
-import Btn from "../../widgets/buttons/Button";
-import { Section } from "../../widgets/section";
-import Heading from "../../widgets/text/Heading";
+import { Button } from "../../widgets/buttons";
+import { Section } from "../../widgets/layout";
+import { Heading } from "../../widgets/text";
 import baseStyles from "./styles.module.css";
-import type { CTAData } from "./types";
+import type { CTAResponse } from "./types";
 
 export default function CTA({
   section_instance,
@@ -17,7 +17,7 @@ export default function CTA({
   cta_button_href,
   cta_button_icon,
   cta_image,
-}: CTAData) {
+}: CTAResponse) {
   const { bgPrimaryAfter50 } = useBase();
 
   const sectionId = section_instance || "";
@@ -82,7 +82,7 @@ export default function CTA({
                         __html: ctaParagraph,
                       }}
                     />
-                    <Btn
+                    <Button
                       className="mt-4 mb-1"
                       href={ctaButtonHref}
                       size="lg"
@@ -92,7 +92,7 @@ export default function CTA({
                       {ctaButtonIcon && (
                         <i className={`${ctaButtonIcon} ml-2`}></i>
                       )}
-                    </Btn>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -126,12 +126,16 @@ export default function CTA({
                     __html: ctaParagraph,
                   }}
                 />
-                <Btn className="self-start mt-4" href={ctaButtonHref} size="lg">
+                <Button
+                  className="self-start mt-4"
+                  href={ctaButtonHref}
+                  size="lg"
+                >
                   <span>{ctaButtonText}</span>
                   {ctaButtonIcon && (
                     <i className={`${ctaButtonIcon} ms-2 text-white`}></i>
                   )}
-                </Btn>
+                </Button>
               </div>
 
               <div className="md:basis-1/2 lg:basis-2/3 order-first md:order-last flex items-center">
