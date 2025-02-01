@@ -1,12 +1,12 @@
-import { Auth } from "@/olyv/authentication/app";
-import { Base } from "@/olyv/base/app";
+import { Auth } from "../../olyv/authentication/app";
+import { Base } from "../../olyv/base/app";
 
-import { fetchAuth } from "@/olyv/authentication/app/server";
-import { fetchBase } from "@/olyv/base/app/server";
+import { fetchAuth } from "../../olyv/authentication/app/server";
+import { fetchBase } from "../../olyv/base/app/server";
 
-import type { AuthResponse } from "@/olyv/authentication/app/types";
-import type { BaseResponse, MetadataResponse } from "@/olyv/base/app/types";
 import type { Metadata } from "next";
+import type { AuthResponse } from "../../olyv/authentication/app/types";
+import type { BaseResponse, MetadataResponse } from "../../olyv/base/app/types";
 
 import localFont from "next/font/local";
 import "./global.css";

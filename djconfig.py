@@ -1,25 +1,22 @@
 from datetime import timedelta
 from pathlib import Path
 
-from decouple import Csv, config
+from olyv.config import olyv_config
 
 # --------------------------------------------------------------------
-# BASE DIRECTORY
+# BASE / PROJECT DIRECTORY
 # --------------------------------------------------------------------
 
 BASE_DIR = Path(__file__).resolve().parent
 
-# --------------------------------------------------------------------
-# QUICK START SETTINGS
-# --------------------------------------------------------------------
-
-SECRET_KEY = config("SECRET_KEY")  # * Keep the secret key used in production secret!
-DEBUG = config("ENVIRONMENT", default="development") != "production"
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
 # --------------------------------------------------------------------
 # APPLICATION DEFINITION
 # --------------------------------------------------------------------
+
+APP_DIR = BASE_DIR / "src" / "app"
+
+ROOT_URLCONF = "src.urls"
 
 INSTALLED_APPS = [
     # Django default apps
@@ -34,8 +31,8 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",  # Docs: https://django-rest-framework-simplejwt.readthedocs.io/
     "corsheaders",  # Docs: https://pypi.org/project/django-cors-headers/
     # Olyv apps
-    "src.olyv.base",
-    "src.olyv.authentication",
+    "olyv.base",
+    "olyv.authentication",
 ]
 
 MIDDLEWARE = [
@@ -49,15 +46,17 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-NEXT_URL = (
-    f"{config('NEXT_PROTOCOL', default='http')}://"
-    f"{str(config('NEXT_HOST', default='localhost')).strip('/')}"
-    f"{':' + config('NEXT_PORT', default='') if config('NEXT_PORT', default='') else ''}"
-)
-
-APP_DIR = BASE_DIR / "src" / "app"
-ROOT_URLCONF = "src.app.urls"
 WSGI_APPLICATION = "wsgi.application"
+
+
+# --------------------------------------------------------------------
+# QUICK START SETTINGS
+# --------------------------------------------------------------------
+
+DEBUG = olyv_config.debug
+SECRET_KEY = olyv_config.secret_key
+ALLOWED_HOSTS = olyv_config.allowed_hosts
+
 
 # --------------------------------------------------------------------
 # DATABASE CONFIGURATION
@@ -66,14 +65,70 @@ WSGI_APPLICATION = "wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": config("DB_ENGINE", default="django.db.backends.sqlite3"),
-        "NAME": config("DB_NAME", default="db.sqlite3"),
-        "USER": config("DB_USER", default=""),
-        "PASSWORD": config("DB_PASSWORD", default=""),
-        "HOST": config("DB_HOST", default=""),
-        "PORT": config("DB_PORT", default=""),
+        "ENGINE": olyv_config.db.engine,
+        "NAME": olyv_config.db.name,
+        "USER": olyv_config.db.user,
+        "PASSWORD": olyv_config.db.password,
+        "HOST": olyv_config.db.host,
+        "PORT": olyv_config.db.port,
     }
 }
+
+
+# --------------------------------------------------------------------
+# EMAIL SETTINGS
+# --------------------------------------------------------------------
+# Docs: https://docs.djangoproject.com/en/stable/topics/email/
+
+EMAIL_BACKEND = (
+    "django.core.mail.backends.console.EmailBackend"
+    if DEBUG
+    else olyv_config.email.backend
+)
+EMAIL_HOST = olyv_config.email.host
+EMAIL_USE_TLS = olyv_config.email.use_tls
+EMAIL_USE_SSL = olyv_config.email.use_ssl
+EMAIL_PORT = olyv_config.email.port
+EMAIL_HOST_USER = olyv_config.email.host_user
+EMAIL_HOST_PASSWORD = olyv_config.email.host_password
+
+
+# --------------------------------------------------------------------
+# STATIC FILES SETTINGS
+# --------------------------------------------------------------------
+# Docs: https://docs.djangoproject.com/en/stable/howto/static-files/
+
+STATIC_URL = "public/static/"
+STATIC_ROOT = BASE_DIR / "public" / "static"
+
+
+# --------------------------------------------------------------------
+# MEDIA FILES SETTINGS
+# --------------------------------------------------------------------
+# Docs: https://docs.djangoproject.com/en/stable/ref/settings/#media-root
+
+MEDIA_URL = "public/media/"
+MEDIA_ROOT = BASE_DIR / "public" / "media"
+
+
+# --------------------------------------------------------------------
+# INTERNATIONALIZATION
+# --------------------------------------------------------------------
+# Docs: https://docs.djangoproject.com/en/stable/topics/i18n/
+
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "Africa/Nairobi"
+USE_I18N = True
+USE_TZ = True
+
+
+# --------------------------------------------------------------------
+# DEFAULT PRIMARY KEY FIELD TYPE
+# --------------------------------------------------------------------
+# Docs: https://docs.djangoproject.com/en/stable/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 
 # --------------------------------------------------------------------
 # TEMPLATES
@@ -96,6 +151,7 @@ TEMPLATES = [
     },
 ]
 
+
 # --------------------------------------------------------------------
 # PASSWORD VALIDATION
 # --------------------------------------------------------------------
@@ -110,6 +166,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+
 # --------------------------------------------------------------------
 # DJANGO REST FRAMEWORK SETTINGS
 # --------------------------------------------------------------------
@@ -121,6 +178,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
     ),
 }
+
 
 # --------------------------------------------------------------------
 # SIMPLE JWT SETTINGS
@@ -135,6 +193,7 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": False,
 }
 
+
 # --------------------------------------------------------------------
 # CORSHEADERS SETTINGS
 # --------------------------------------------------------------------
@@ -146,66 +205,3 @@ if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     CORS_ALLOWED_ORIGINS = []
-
-# --------------------------------------------------------------------
-# CSRF SETTINGS
-# --------------------------------------------------------------------
-# Docs: https://docs.djangoproject.com/en/stable/ref/csrf/
-
-# TODO: Add Csrf Protection Capability
-CSRF_TRUSTED_ORIGINS = [
-    NEXT_URL,
-    # for GitHub Codespaces
-    f"https://localhost"
-    f"{':' + config('DJANGO_PORT', default='') if config('DJANGO_PORT', default='') else ''}",
-]
-
-# --------------------------------------------------------------------
-# STATIC FILES SETTINGS
-# --------------------------------------------------------------------
-# Docs: https://docs.djangoproject.com/en/stable/howto/static-files/
-
-STATIC_URL = "public/static/"
-STATIC_ROOT = BASE_DIR / "public" / "static"
-
-# --------------------------------------------------------------------
-# MEDIA FILES SETTINGS
-# --------------------------------------------------------------------
-# Docs: https://docs.djangoproject.com/en/stable/ref/settings/#media-root
-
-MEDIA_URL = "public/media/"
-MEDIA_ROOT = BASE_DIR / "public" / "media"
-
-# --------------------------------------------------------------------
-# INTERNATIONALIZATION
-# --------------------------------------------------------------------
-# Docs: https://docs.djangoproject.com/en/stable/topics/i18n/
-
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "Africa/Nairobi"
-USE_I18N = True
-USE_TZ = True
-
-# --------------------------------------------------------------------
-# EMAIL SETTINGS
-# --------------------------------------------------------------------
-# Docs: https://docs.djangoproject.com/en/stable/topics/email/
-
-EMAIL_BACKEND = (
-    "django.core.mail.backends.console.EmailBackend"
-    if DEBUG
-    else config("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
-)
-EMAIL_HOST = config("EMAIL_HOST", default="")
-EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
-EMAIL_USE_SSL = config("EMAIL_USE_SSL", default=False, cast=bool)
-EMAIL_PORT = config("EMAIL_PORT", default="587")
-EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
-
-# --------------------------------------------------------------------
-# DEFAULT PRIMARY KEY FIELD TYPE
-# --------------------------------------------------------------------
-# Docs: https://docs.djangoproject.com/en/stable/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
