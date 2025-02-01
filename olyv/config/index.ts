@@ -16,7 +16,7 @@ const env = {
   logoutRedirect: process.env.LOGOUT_REDIRECT,
 };
 
-const olyvConfig = {
+const conf = {
   debug: env.debug,
 
   django: {
@@ -69,4 +69,4 @@ const olyvConfig = {
   ].filter(Boolean) as string[],
 } as const;
 
-export default olyvConfig;
+export default conf;

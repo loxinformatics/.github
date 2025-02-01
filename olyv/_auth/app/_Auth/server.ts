@@ -5,23 +5,23 @@ import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { fetchData } from "../../../base/management/utils";
 import type { FormResponse } from "../../../base/widgets/forms/types";
-import olyvConfig from "../../../config";
+import conf from "../../../config";
 import { AuthDjangoUrl, isTokenExpired } from "../../management/utils";
 import type { UserDetails } from "../../widgets/listitems/types";
 import type {
   AuthTokensResponse,
   TokenDetails,
 } from "../../widgets/tokens/types";
-import type { AuthResponse } from "./types";
+import type { _AuthResponse } from "./types";
 
-export default async function fetchAuth(): Promise<AuthResponse> {
+export default async function fetch_Auth(): Promise<_AuthResponse> {
   const data = await fetchData<string[]>({
     endpoint: `${AuthDjangoUrl}/`,
     extra_action: "groups",
     revalidate: 0,
   });
 
-  return { groups: data || null } as AuthResponse;
+  return { groups: data || null } as _AuthResponse;
 }
 
 export async function refresh(
@@ -127,10 +127,10 @@ export async function login({
     const cookieStore = await cookies();
     const decodedAccessToken = jwtDecode<TokenDetails>(accessToken);
     const decodedRefreshToken = jwtDecode<TokenDetails>(refreshToken);
-    const isSecure = olyvConfig.debug === "false";
+    const isSecure = conf.debug === "false";
 
     cookieStore.set("accessToken", accessToken, {
-      path: olyvConfig.endpoints.home,
+      path: conf.endpoints.home,
       expires: new Date(decodedAccessToken.exp * 1000),
       httpOnly: true,
       secure: isSecure,
@@ -138,7 +138,7 @@ export async function login({
     });
 
     cookieStore.set("refreshToken", refreshToken, {
-      path: olyvConfig.endpoints.home,
+      path: conf.endpoints.home,
       expires: new Date(decodedRefreshToken.exp * 1000),
       httpOnly: true,
       secure: isSecure,

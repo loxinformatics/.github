@@ -1,16 +1,13 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import {
-  privateRoutes,
-} from "../../management/utils";
+import { privateRoutes } from "../../management/utils";
 import type { UserDetails } from "../../widgets/listitems/types";
 import { login } from "./server";
-import type { AuthResponse } from "./types";
+import type { _AuthResponse } from "./types";
 
-
-interface AuthContext {
-  authGroups: AuthResponse["groups"];
+interface _AuthContext {
+  authGroups: _AuthResponse["groups"];
   user: UserDetails | null;
   setUser: React.Dispatch<React.SetStateAction<any>>;
   isAuthorized: boolean;
@@ -18,13 +15,13 @@ interface AuthContext {
   privateRoutes: string[];
 }
 
-const authContext = createContext<AuthContext | undefined>(undefined);
+const _authContext = createContext<_AuthContext | undefined>(undefined);
 
-export default function Auth({
+export default function _Auth({
   groups,
   children,
 }: {
-  groups?: AuthResponse["groups"];
+  groups?: _AuthResponse["groups"];
   children: React.ReactNode;
 }) {
   const [user, setUser] = useState<UserDetails | null>(null);
@@ -46,7 +43,7 @@ export default function Auth({
   }, []);
 
   // Context
-  const context: AuthContext = {
+  const context: _AuthContext = {
     // * Ensure that all of these are being not used only within auth, and are auth related (if not move to base).
     // * Each one of these values should be global.
     authGroups,
@@ -58,12 +55,12 @@ export default function Auth({
   };
 
   return (
-    <authContext.Provider value={context}>{children}</authContext.Provider>
+    <_authContext.Provider value={context}>{children}</_authContext.Provider>
   );
 }
 
-export function useAuth() {
-  const context = useContext(authContext);
+export function use_Auth() {
+  const context = useContext(_authContext);
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
@@ -74,11 +71,11 @@ export function IsAuthorized({
   groups,
   children,
 }: {
-  groups: AuthResponse["groups"];
+  groups: _AuthResponse["groups"];
   children: React.ReactNode;
 }) {
   const groupList = groups || [];
-  const { authGroups, user, setIsAuthorized, isAuthorized } = useAuth();
+  const { authGroups, user, setIsAuthorized, isAuthorized } = use_Auth();
 
   // Validate groups and throw an error if invalid groups are passed (only if authGroups is not empty)
   useEffect(() => {

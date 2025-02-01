@@ -1,9 +1,9 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import AuthMiddleware from "../olyv/authentication/middleware";
+import _AuthMiddleware from "../olyv/_auth/middleware";
 
 // List the middlewares here. They will be executed in the order they appear.
-const middlewares = [AssetsMiddleware, AuthMiddleware];
+const middlewares = [AssetsMiddleware, _AuthMiddleware];
 
 export async function middleware(request: NextRequest) {
   for (const mw of middlewares) {

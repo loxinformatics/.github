@@ -1,11 +1,11 @@
-import { Auth } from "../../olyv/authentication/app";
+import { _Auth } from "../../olyv/_auth/app";
 import { Base } from "../../olyv/base/app";
 
-import { fetchAuth } from "../../olyv/authentication/app/server";
+import { fetch_Auth } from "../../olyv/_auth/app/server";
 import { fetchBase } from "../../olyv/base/app/server";
 
 import type { Metadata } from "next";
-import type { AuthResponse } from "../../olyv/authentication/app/types";
+import type { _AuthResponse } from "../../olyv/_auth/app/types";
 import type { BaseResponse, MetadataResponse } from "../../olyv/base/app/types";
 
 import localFont from "next/font/local";
@@ -77,7 +77,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const baseData: BaseResponse = await fetchBase();
-  const authData: AuthResponse = await fetchAuth();
+  const authData: _AuthResponse = await fetch_Auth();
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -88,7 +88,7 @@ export default async function RootLayout({
             `}
       >
         <Base {...baseData}>
-          <Auth {...authData}>{children}</Auth>
+          <_Auth {...authData}>{children}</_Auth>
         </Base>
       </body>
     </html>

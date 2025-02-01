@@ -3,18 +3,18 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 import { Preloader } from "../../../base/widgets/spinners";
-import olyvConfig from "../../../config";
-import { useAuth } from "../Auth";
-import { logout } from "../Auth/server";
+import conf from "../../../config";
+import { use_Auth } from "../_Auth";
+import { logout } from "../_Auth/server";
 
 export default function Logout() {
   const SignoutInner = () => {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const { setUser, setIsAuthorized } = useAuth();
+    const { setUser, setIsAuthorized } = use_Auth();
 
-    const logoutRedirect = olyvConfig.endpoints.logoutRedirect;
-    const loginUrl = olyvConfig.endpoints.login;
+    const logoutRedirect = conf.endpoints.logoutRedirect;
+    const loginUrl = conf.endpoints.login;
 
     const encodedHrefParam = searchParams.get("callbackUrl");
     const nextUrl =

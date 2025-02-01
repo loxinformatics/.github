@@ -2,7 +2,7 @@
 
 import { default as NextLink } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useAuth } from "../../../../authentication/app/Auth";
+import { use_Auth } from "../../../../_auth/app/_Auth";
 import { useBase } from "../../../app";
 
 export default function Link({
@@ -18,7 +18,7 @@ export default function Link({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, privateRoutes } = useAuth();
+  const { user, privateRoutes } = use_Auth();
   const {
     isNavModalOpen,
     setIsNavModalOpen,

@@ -1,13 +1,13 @@
 import type { NextConfig } from "next";
-import olyvConfig from "./olyv/config";
+import conf from "./olyv/config";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [...olyvConfig.imagesRemotePatterns],
+    remotePatterns: [...conf.imagesRemotePatterns],
   },
   experimental: {
     serverActions: {
-      allowedOrigins: [...olyvConfig.serverActionsAllowedOrigins],
+      allowedOrigins: [...conf.serverActionsAllowedOrigins],
     },
   },
 };

@@ -6,9 +6,9 @@ import { useBase } from "../../../../base/app";
 import { Button } from "../../../../base/widgets/buttons";
 import { Control, Form } from "../../../../base/widgets/forms/Form";
 import { Heading } from "../../../../base/widgets/text";
-import olyvConfig from "../../../../config";
-import { useAuth } from "../../../app/Auth";
-import { authenticate, login } from "../../../app/Auth/server";
+import conf from "../../../../config";
+import { use_Auth } from "../../../app/_Auth";
+import { authenticate, login } from "../../../app/_Auth/server";
 import baseStyles from "../../../base/widgets/forms/styles.module.css";
 import styles from "./styles.module.css";
 
@@ -37,7 +37,7 @@ function LoginForm() {
   const [success, setSuccess] = useState<string>("");
 
   const { borderPrimaryFocus } = useBase();
-  const { setUser } = useAuth();
+  const { setUser } = use_Auth();
 
   // Refs for form fields
   const usernameRef = useRef<HTMLInputElement>(null);
@@ -74,7 +74,7 @@ function LoginForm() {
 
         // Redirect
         const nextUrl = searchParams.get("nextUrl");
-        router.replace(nextUrl || olyvConfig.endpoints.loginRedirect);
+        router.replace(nextUrl || conf.endpoints.loginRedirect);
       } else {
         // Handle form field errors
         const usernameValidity = result.error.includes("username")
@@ -104,8 +104,7 @@ function LoginForm() {
     }
   };
 
-  const callbackUrl =
-    searchParams.get("callbackUrl") || olyvConfig.endpoints.home;
+  const callbackUrl = searchParams.get("callbackUrl") || conf.endpoints.home;
 
   return (
     <Form
@@ -174,11 +173,11 @@ function LoginForm() {
 
         {loading || success ? (
           <Button className="w-full sm:w-1/2" disabled>
-            {callbackUrl === olyvConfig.endpoints.home ? "Home" : "Back"}
+            {callbackUrl === conf.endpoints.home ? "Home" : "Back"}
           </Button>
         ) : (
           <Button className="w-full sm:w-1/2" href={callbackUrl}>
-            {callbackUrl === olyvConfig.endpoints.home ? "Home" : "Back"}
+            {callbackUrl === conf.endpoints.home ? "Home" : "Back"}
           </Button>
         )}
       </div>

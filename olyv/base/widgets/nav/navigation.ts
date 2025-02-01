@@ -1,5 +1,5 @@
 import type { NavLinksMap } from "@/olyv/base/app/base/types";
-import olyvConfig from "../../../config";
+import conf from "../../../config";
 import { createNavDropdown } from "../../management/utils";
 
 const navLinksMap: NavLinksMap = {
@@ -31,7 +31,7 @@ const navLinksMap: NavLinksMap = {
       ]),
     },
     { type: "heading", text: "Pages", href: "" },
-    { text: "Home", icon: "bi bi-house", href: olyvConfig.endpoints.home },
+    { text: "Home", icon: "bi bi-house", href: conf.endpoints.home },
     {
       text: "Admin",
       icon: "bi bi-shield-lock",

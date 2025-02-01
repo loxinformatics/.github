@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-import olyvConfig from "../../../config";
+import conf from "../../../config";
 import type { TokenDetails } from "../../widgets/tokens/types";
 
 export const privateRoutes = (process.env.PRIVATE_ROUTES ?? "")
@@ -18,4 +18,4 @@ export function isTokenExpired(token: string): boolean {
   }
 }
 
-export const AuthDjangoUrl = `${olyvConfig.django.url}/olyv/auth`;
+export const AuthDjangoUrl = `${conf.django.url}/olyv/_auth`;

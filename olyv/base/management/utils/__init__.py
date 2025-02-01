@@ -21,6 +21,7 @@ def process_urls(
     app_name: str,
     parent_dir: Path,
     excluded_file_paths: List[Path],
+    current_file: Path,
     exclude_self: bool = True,
 ) -> list:
     """Process URLs."""
@@ -44,7 +45,7 @@ def process_urls(
             print(colored(f"❌ Failed to include {module_name}: {e}", "red"))
 
     for file_path in parent_dir.rglob("urls.py"):
-        if file_path.samefile(parent_dir / "urls.py") and exclude_self:
+        if exclude_self and file_path.samefile(current_file):
             continue
         process_url_file(file_path)
 

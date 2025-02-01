@@ -1,7 +1,7 @@
 "use server";
 
 import chalk from "chalk";
-import olyvConfig from "../../../config";
+import conf from "../../../config";
 
 export async function fetchData<T>(options: {
   endpoint: string;
@@ -9,8 +9,7 @@ export async function fetchData<T>(options: {
   revalidate?: number;
 }): Promise<T | null> {
   const { endpoint, extra_action } = options;
-  const revalidate =
-    options.revalidate ?? (olyvConfig.debug === "true" ? 0 : 300);
+  const revalidate = options.revalidate ?? (conf.debug === "true" ? 0 : 300);
 
   try {
     const response = await fetch(
@@ -32,4 +31,4 @@ export async function fetchData<T>(options: {
   }
 }
 
-export const BaseDjangoURL = `${olyvConfig.django.url}/olyv/base`;
+export const BaseDjangoURL = `${conf.django.url}/olyv/base`;

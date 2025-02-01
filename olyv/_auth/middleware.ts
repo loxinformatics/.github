@@ -3,8 +3,8 @@
 import { jwtDecode } from "jwt-decode";
 import type { NextRequest, NextResponse } from "next/server";
 import { NextResponse as Response } from "next/server";
-import olyvConfig from "../config";
-import { refresh } from "./app/Auth/server";
+import conf from "../config";
+import { refresh } from "./app/_Auth/server";
 import {
   isTokenExpired,
   privateRoutes,
@@ -12,7 +12,7 @@ import {
 } from "./management/utils";
 import type { TokenDetails } from "./widgets/tokens/types";
 
-export default async function AuthMiddleware(
+export default async function _AuthMiddleware(
   request: NextRequest
 ): Promise<NextResponse | null> {
   const { pathname, searchParams } = request.nextUrl;
@@ -24,8 +24,8 @@ export default async function AuthMiddleware(
   ): NextResponse => {
     const decodedAccessToken = jwtDecode<TokenDetails>(accessToken);
     const decodedRefreshToken = jwtDecode<TokenDetails>(refreshToken);
-    const isSecure = olyvConfig.debug === "false";
-    const homeUrl = olyvConfig.endpoints.home;
+    const isSecure = conf.debug === "false";
+    const homeUrl = conf.endpoints.home;
 
     response.cookies.set("accessToken", accessToken, {
       httpOnly: true,
@@ -108,7 +108,7 @@ export default async function AuthMiddleware(
   ): Promise<NextResponse> => {
     if (accessToken && !isTokenExpired(accessToken)) {
       return Response.redirect(
-        new URL(olyvConfig.endpoints.loginRedirect, request.url)
+        new URL(conf.endpoints.loginRedirect, request.url)
       );
     } else {
       return Response.next();

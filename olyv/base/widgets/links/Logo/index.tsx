@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Link } from "..";
-import olyvConfig from "../../../../config";
+import conf from "../../../../config";
 import { useBase } from "../../../app";
 
 export default function Logo({
@@ -17,7 +17,7 @@ export default function Logo({
   const color = textColor || "text-color dark:text-color-reverse";
 
   return (
-    <Link href={olyvConfig.endpoints.home} id="logo" className="py-2">
+    <Link href={conf.endpoints.home} id="logo" className="py-2">
       {version === "logo_image" ? (
         // TODO: Have an option for choosing whether to either differentiate which images should be showing based on screen size or theme is dark, or if just one image should be used irrespective of screen size or theme.
         <Image

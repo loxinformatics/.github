@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../authentication/app/Auth";
+import { use_Auth } from "../../../_auth/app/_Auth";
 import { Link } from "../links";
 import {
   DropdownNavLink,
@@ -24,7 +24,7 @@ export default function Nav({
   navLinkClass,
 }: NavProps) {
   const pathname = usePathname();
-  const { user } = useAuth();
+  const { user } = use_Auth();
 
   const [openDropdowns, setOpenDropdowns] = useState<{
     [key: string]: boolean;

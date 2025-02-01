@@ -1,22 +1,28 @@
 from datetime import timedelta
 from pathlib import Path
 
-from olyv.config import olyv_config
+from olyv.config import conf
 
 # --------------------------------------------------------------------
-# BASE / PROJECT DIRECTORY
+# DIRECTORIES
 # --------------------------------------------------------------------
 
 BASE_DIR = Path(__file__).resolve().parent
+APP_DIR = BASE_DIR / "src" / "app"
+
+
+# --------------------------------------------------------------------
+# QUICK START SETTINGS
+# --------------------------------------------------------------------
+
+DEBUG = conf.debug
+SECRET_KEY = conf.secret_key
+ALLOWED_HOSTS = conf.allowed_hosts
 
 
 # --------------------------------------------------------------------
 # APPLICATION DEFINITION
 # --------------------------------------------------------------------
-
-APP_DIR = BASE_DIR / "src" / "app"
-
-ROOT_URLCONF = "src.urls"
 
 INSTALLED_APPS = [
     # Django default apps
@@ -32,8 +38,10 @@ INSTALLED_APPS = [
     "corsheaders",  # Docs: https://pypi.org/project/django-cors-headers/
     # Olyv apps
     "olyv.base",
-    "olyv.authentication",
+    "olyv._auth",
 ]
+
+ROOT_URLCONF = "olyv.config.urls"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -50,27 +58,18 @@ WSGI_APPLICATION = "wsgi.application"
 
 
 # --------------------------------------------------------------------
-# QUICK START SETTINGS
-# --------------------------------------------------------------------
-
-DEBUG = olyv_config.debug
-SECRET_KEY = olyv_config.secret_key
-ALLOWED_HOSTS = olyv_config.allowed_hosts
-
-
-# --------------------------------------------------------------------
 # DATABASE CONFIGURATION
 # --------------------------------------------------------------------
 # Docs: https://docs.djangoproject.com/en/stable/ref/settings/#databases
 
 DATABASES = {
     "default": {
-        "ENGINE": olyv_config.db.engine,
-        "NAME": olyv_config.db.name,
-        "USER": olyv_config.db.user,
-        "PASSWORD": olyv_config.db.password,
-        "HOST": olyv_config.db.host,
-        "PORT": olyv_config.db.port,
+        "ENGINE": conf.db.engine,
+        "NAME": conf.db.name,
+        "USER": conf.db.user,
+        "PASSWORD": conf.db.password,
+        "HOST": conf.db.host,
+        "PORT": conf.db.port,
     }
 }
 
@@ -81,16 +80,14 @@ DATABASES = {
 # Docs: https://docs.djangoproject.com/en/stable/topics/email/
 
 EMAIL_BACKEND = (
-    "django.core.mail.backends.console.EmailBackend"
-    if DEBUG
-    else olyv_config.email.backend
+    "django.core.mail.backends.console.EmailBackend" if DEBUG else conf.email.backend
 )
-EMAIL_HOST = olyv_config.email.host
-EMAIL_USE_TLS = olyv_config.email.use_tls
-EMAIL_USE_SSL = olyv_config.email.use_ssl
-EMAIL_PORT = olyv_config.email.port
-EMAIL_HOST_USER = olyv_config.email.host_user
-EMAIL_HOST_PASSWORD = olyv_config.email.host_password
+EMAIL_HOST = conf.email.host
+EMAIL_USE_TLS = conf.email.use_tls
+EMAIL_USE_SSL = conf.email.use_ssl
+EMAIL_PORT = conf.email.port
+EMAIL_HOST_USER = conf.email.host_user
+EMAIL_HOST_PASSWORD = conf.email.host_password
 
 
 # --------------------------------------------------------------------

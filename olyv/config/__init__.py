@@ -44,7 +44,7 @@ class DjangoConfig:
         return URL(self.protocol, self.host, self.port)
 
 
-class NextConfig:
+class NextjsConfig:
     def __init__(self):
         self.protocol = config("NEXT_PROTOCOL", default="http", cast=protocol)
         self.host = config("NEXT_HOST", default="localhost").rstrip("/")
@@ -79,6 +79,12 @@ class EmailConfig:
         self.host_password = config("EMAIL_HOST_PASSWORD", default="")
 
 
+class AdminSiteConfig:
+    def __init__(self):
+        nextjs = NextjsConfig()
+        self.site_url = config("ADMINSITE_SITE_URL", default=f"{nextjs.url}")
+
+
 class OlyvConfig:
     def __init__(self):
         self.secret_key = config(
@@ -89,9 +95,10 @@ class OlyvConfig:
         )
         self.debug = config("DEBUG", default=True, cast=bool)
         self.django = DjangoConfig()
-        self.next = NextConfig()
+        self.nextjs = NextjsConfig()
         self.db = DatabasesConfig()
         self.email = EmailConfig()
+        self.adminsite = AdminSiteConfig()
 
 
-olyv_config = OlyvConfig()
+conf = OlyvConfig()
