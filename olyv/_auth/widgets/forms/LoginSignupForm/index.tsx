@@ -9,7 +9,7 @@ import { Heading } from "../../../../base/widgets/text";
 import conf from "../../../../config";
 import { use_Auth } from "../../../app/_Auth";
 import { authenticate, login } from "../../../app/_Auth/server";
-import baseStyles from "../../../base/widgets/forms/styles.module.css";
+import baseStyles from "../../../../base/widgets/forms/Form/styles.module.css";
 import styles from "./styles.module.css";
 
 export default function LoginSignupForm({

@@ -11,7 +11,7 @@ export const createNavDropdown = (children: NavLink[]): NavLink[] => {
       "heading",
       "dropdown",
     ];
-    return !invalidTypes.includes(child.type);
+    return !invalidTypes.includes(child.type as NavLinkType);
   });
 };
 

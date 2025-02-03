@@ -5,4 +5,8 @@ export interface NavlinkDetails {
   type?: string;
   authorized?: string[];
   children?: NavlinkDetails[];
+
+  // ? Are these being used
+  loginText?: string;
+  logoutText?: string;
 }

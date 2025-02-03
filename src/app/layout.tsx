@@ -1,6 +1,5 @@
 import { _Auth } from "../../olyv/_auth/app";
-import { Base } from "../../olyv/base/app";
-
+import { Base } from "@lox-informatics/olyv/base/app";
 import { fetch_Auth } from "../../olyv/_auth/app/server";
 import { fetchBase } from "../../olyv/base/app/server";
 

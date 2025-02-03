@@ -1,10 +1,10 @@
-import type { NavLinksMap } from "@/olyv/base/app/base/types";
 import conf from "../../../config";
-import { createNavDropdown } from "../../management/utils";
+import type { NavLinksMap } from "./types";
+import { createNavDropdown } from "./utils";
 
 const navLinksMap: NavLinksMap = {
   footer_1: [
-    { text: "Useful Links", type: "heading" },
+    { text: "Useful Links", type: "heading", href: "#" },
     { text: "Home", href: "/#hero_page_1" },
     { text: "About us", href: "/#about_page_1" },
     { text: "Our Services", href: "/#list_page_1" },
@@ -40,6 +40,7 @@ const navLinksMap: NavLinksMap = {
     },
     { text: "Profile", href: "#", authorized: ["USER"], icon: "bi bi-person" },
     {
+      text: "",
       type: "login/logout",
       loginText: "Login",
       logoutText: "Logout",

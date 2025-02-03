@@ -6,10 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 7000",
-    "lint": "next lint",
-    "olyv:update": "npx npm-check-updates -u && pnpm install"
+    "lint": "next lint"
   },
   "dependencies": {
+    "@lox-informatics/olyv": "^0.0.2",
     "aos": "^2.3.4",
     "bootstrap-icons": "^1.11.3",
     "jwt-decode": "^4.0.0",
