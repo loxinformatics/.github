@@ -25,18 +25,16 @@ ALLOWED_HOSTS = conf.allowed_hosts
 # --------------------------------------------------------------------
 
 INSTALLED_APPS = [
-    # Django default apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Vendor apps
-    "rest_framework",  # Docs: https://www.django-rest-framework.org/
-    "rest_framework_simplejwt",  # Docs: https://django-rest-framework-simplejwt.readthedocs.io/
-    "corsheaders",  # Docs: https://pypi.org/project/django-cors-headers/
-    # Olyv apps
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "corsheaders",
+    "src.app",
     "olyv.base",
     "olyv._auth",
 ]

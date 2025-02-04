@@ -91,7 +91,9 @@ class OlyvConfig:
             "SECRET_KEY", default="8thn$cz4wou+(du$re)mj3v$6v78**pk7!#ic@08s_s$hf*fd^"
         )
         self.allowed_hosts = config(
-            "ALLOWED_HOSTS", default="localhost,127.0.0.1", cast=Csv()
+            "ALLOWED_HOSTS",
+            default="localhost,127.0.0.1,8000.loxinformatics.co.ke",
+            cast=Csv(),
         )
         self.debug = config("DEBUG", default=True, cast=bool)
         self.django = DjangoConfig()

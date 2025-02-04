@@ -1,12 +1,13 @@
-import { _Auth } from "../../olyv/_auth/app";
+import { _Auth } from "@lox-informatics/olyv/_auth/app";
+import { fetch_Auth } from "@lox-informatics/olyv/_auth/app/server";
+import type { _AuthResponse } from "@lox-informatics/olyv/_auth/app/types";
 import { Base } from "@lox-informatics/olyv/base/app";
-import { fetch_Auth } from "../../olyv/_auth/app/server";
-import { fetchBase } from "../../olyv/base/app/server";
-
+import { fetchBase } from "@lox-informatics/olyv/base/app/server";
+import type {
+  BaseResponse,
+  MetadataResponse,
+} from "@lox-informatics/olyv/base/app/types";
 import type { Metadata } from "next";
-import type { _AuthResponse } from "../../olyv/_auth/app/types";
-import type { BaseResponse, MetadataResponse } from "../../olyv/base/app/types";
-
 import localFont from "next/font/local";
 import "./global.css";
 

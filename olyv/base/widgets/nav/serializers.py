@@ -11,7 +11,7 @@ class NavigationItemSerializer(serializers.ModelSerializer):
         exclude = [
             "header_section",
             "footer_section",
-            "sidebar_section",
+            "aside_section",
             "section_type",
         ]
 
