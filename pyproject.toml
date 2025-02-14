@@ -1,0 +1,23 @@
+[tool.poetry]
+package-mode = false
+name = "loxinformatics"
+version = "0.1.0"
+readme = ["README.md"]
+
+[tool.poetry.dependencies]
+# Compatible Python versions
+python = ">=3.11"
+
+# Standard dependency with semver constraints
+tzdata = "2025.1"
+pillow = "^11.1.0"
+psycopg = "^3.2.4"
+gunicorn = "^23.0.0"
+django = "^5.1.6"
+djangorestframework = "^3.15.2"
+djangorestframework-simplejwt = "^5.4.0"
+django-cors-headers = "^4.7.0"
+python-decouple = "^3.8"
+treeolyv = { git = "https://github.com/treeolyv/treeolyv.git", subdirectory = "packages/api", branch = "master" }
+
+[tool.poetry.group.dev.dependencies]

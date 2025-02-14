@@ -4,46 +4,48 @@ import {
   Contact,
   FooterBottombar,
   HeaderHero,
-  ListDescriptions,
-} from "@lox-informatics/olyv/base/app";
+  Listdescriptions,
+} from "@treeolyv/web/base/app";
 
 import {
   fetchAbout,
   fetchCTA,
   fetchContact,
+  fetchFooterBottombar,
   fetchHeaderHero,
-  fetchListDescriptions,
-} from "@lox-informatics/olyv/base/app/server";
+  fetchListdescriptions,
+} from "@treeolyv/web/base/app/server";
 
 import {
   AboutResponse,
   CTAResponse,
   ContactResponse,
   HeaderHeroResponse,
-  ListDescriptionsResponse,
-} from "@lox-informatics/olyv/base/app/types";
+  ListdescriptionsResponse,
+} from "@treeolyv/web/base/app/types";
 
-// import { Preloader } from "../../olyv/base/widgets/spinners";
+import { Preloader } from "@treeolyv/web/base/widgets/spinners";
 
 export default async function Page() {
   const headerHero: HeaderHeroResponse = await fetchHeaderHero("page_1");
   const about: AboutResponse = await fetchAbout("page_1");
   const cta: CTAResponse = await fetchCTA("page_1");
   const contact: ContactResponse = await fetchContact("page_1");
-  const listdescriptions: ListDescriptionsResponse =
-    await fetchListDescriptions("page_1");
+  const listdescriptions: ListdescriptionsResponse =
+    await fetchListdescriptions("page_1");
+  const footerBottombar = await fetchFooterBottombar("page_1");
 
   return (
     <>
-      
+      <Preloader />
       <HeaderHero component="headerhero" {...headerHero} />
       <main>
         <About {...about} />
         <CTA {...cta} />
-        <ListDescriptions {...listdescriptions} />
+        <Listdescriptions {...listdescriptions} />
         <Contact {...contact} />
       </main>
-      <FooterBottombar />
+      <FooterBottombar {...footerBottombar} />
     </>
   );
 }

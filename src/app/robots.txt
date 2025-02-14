@@ -4,9 +4,9 @@
 
 User-agent: *
 
-# Block Olyv API endpoints
-Disallow: /olyv/
-Disallow: /olyv
+# Block treeolyv API endpoints
+Disallow: /treeolyv/
+Disallow: /treeolyv
 
 # Block test pages
 Disallow: /test/

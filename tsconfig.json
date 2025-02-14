@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "node_modules/@lox-informatics/**/*.ts"
+    "node_modules/@treeolyv/web/**/types.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules/**/*", "!node_modules/@treeolyv/web/**/types.d.ts"]
 }

@@ -1,5 +1,5 @@
+import conf from "@treeolyv/web/config";
 import type { NextConfig } from "next";
-import conf from "./olyv/config";
 
 const nextConfig: NextConfig = {
   images: {

@@ -1,7 +1,7 @@
-import { fetchBase } from "@lox-informatics/olyv/base/app/server";
-import type { ManifestResponse } from "@lox-informatics/olyv/base/app/types";
+import { fetchBase } from "@treeolyv/web/base/app/server";
+import type { ManifestResponse } from "@treeolyv/web/base/app/types";
+import conf from "@treeolyv/web/config";
 import type { MetadataRoute } from "next";
-import conf from "../../olyv/config";
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
   const manifest: ManifestResponse = await fetchBase("manifest");

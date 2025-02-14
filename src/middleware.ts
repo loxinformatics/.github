@@ -1,6 +1,6 @@
+import _AuthMiddleware from "@treeolyv/web/_auth/middleware";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import _AuthMiddleware from "../olyv/_auth/middleware";
 
 // List the middlewares here. They will be executed in the order they appear.
 const middlewares = [AssetsMiddleware, _AuthMiddleware];
