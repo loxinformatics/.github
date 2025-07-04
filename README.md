@@ -1,4 +1,4 @@
-![](./assets/social-preview.png)
+![](./assets/img/social-preview.png)
 
 # [_Lox Informatics_ GitHub profile](https://github.com/loxinformatics/.github/)
 
